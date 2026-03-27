@@ -1,6 +1,6 @@
 ---
 title: "Policy Brief"
-subtitle: "Education Mobility in Uzbekistan"
+subtitle: "Intergenerational Educational Mobility in Uzbekistan"
 author: "Research Team"
 date: today
 format:
@@ -13,26 +13,29 @@ execute:
   message: false
 ---
 
-## Why This Matters
+## Audience
 
-Educational mobility determines whether children from low-education households can move into higher-productivity careers. Stronger mobility supports inclusive growth because it widens access to educational opportunity rather than concentrating attainment within already-advantaged families.
+This brief is intended for education policymakers, development partners, and researchers working on human capital, inequality, and education reform in Uzbekistan.
 
-## What We Measure
+## Core Message
 
-- Mobility levels and trends across LiTS 2010, 2016, and 2022-23
-- Household and regional correlates of mobility
-- Suggestive pandemic-era child-learning disruption and support patterns from the LiTS IV child module
+The paper provides a descriptive and associational profile of intergenerational educational mobility in Uzbekistan using LiTS 2010, 2016, and 2022-23. The central message is cautious but policy-relevant: educational persistence remains substantial, parental education remains the clearest correlate of children's attainment, and household learning conditions matter when schooling is disrupted.
 
-## Key Results
+## What The Paper Shows
 
-The current paper documents substantial intergenerational educational persistence in Uzbekistan across the three LiTS waves. Parental education remains the clearest predictor of children's attainment in the pooled correlates models, while the LiTS IV child module suggests that remote-learning disruption and household support burdens were widespread during the pandemic period.
+Descriptive persistence measures rise across the three LiTS waves, but the pooled models do not estimate that change precisely once controls and fixed effects are added. The strongest evidence is therefore on the level of persistence, not on a firmly identified worsening time trend.
 
-## Recommended Policy Actions
+Across the pooled correlates models, parental education is the most consistent predictor of attainment. By contrast, migration exposure and multigenerational household structure are less precisely estimated once the core controls are included.
 
-1. Target low-mobility settings with practical support that eases transitions into upper-secondary and tertiary education.
-2. Reduce household bottlenecks that limit educational progress, including device access, internet quality, and support constraints inside the home.
-3. Strengthen remedial and learning-support programs for students from lower-parent-education households, especially when schooling disruption shifts learning back into the household.
+The LiTS IV child-module extension is deliberately bounded. It shows widespread pandemic-era disruption, heavy reliance on household support, and a higher probability of education stoppage among children from lower-parent-education households. These child-module results are suggestive rather than causal.
 
-## Evidence and Caveats
+## Policy Implications
 
-This brief summarizes descriptive and associational findings from the main paper. Module C uses a limited child-module subsample and is interpreted as suggestive rather than causal.
+1. Expand equalizing supports before educational disadvantage becomes locked in, especially around transitions into upper-secondary and post-secondary education.
+2. Address household bottlenecks that shape educational opportunity, including device access, internet quality, and the practical capacity of adults to support learning at home.
+3. Build continuity mechanisms for future shocks so that learning disruptions do not translate as easily into education stoppage for children from less advantaged households.
+4. Treat household support burdens, especially the burden carried by mothers during disruption, as a relevant education policy concern rather than as an invisible private adjustment.
+
+## Caveats
+
+This brief summarizes descriptive and associational evidence, not causal estimates. The 2022-23 category-based mobility rates should be read cautiously because the valid categorical denominator is much smaller than the valid sample for the 2022 rank-based measure. The child-module extension is also based on a limited subsample and is best used to flag household vulnerabilities rather than to support broad causal claims.

@@ -10,7 +10,7 @@ format:
   docx:
     toc: true
 execute:
-  echo: true
+  echo: false
   warning: false
   message: false
 ---
@@ -23,6 +23,25 @@ read_csv_safe <- function(path) {
     utils::read.csv(path),
     error = function(e) data.frame(note = paste("Could not read", basename(path), "-", conditionMessage(e)))
   )
+}
+
+fmt_num <- function(x, digits = 3) {
+  sprintf(paste0("%.", digits, "f"), as.numeric(x))
+}
+
+fmt_pct <- function(x, digits = 1) {
+  sprintf(paste0("%.", digits, "f percent"), 100 * as.numeric(x))
+}
+
+fmt_p <- function(x) {
+  x <- as.numeric(x)
+  if (is.na(x)) {
+    return(NA_character_)
+  }
+  if (x < 0.001) {
+    return("<0.001")
+  }
+  sprintf("%.3f", x)
 }
 
 inv_file <- file.path("..", "data", "metadata", "data_inventory_template.csv")
@@ -91,5 +110,92 @@ if (file.exists(robust_scenario_file)) {
   read_csv_safe(robust_scenario_file)
 } else {
   data.frame(note = "Module C robustness scenarios not available yet.")
+}
+```
+
+## F. Module C Descriptive Split by Parental Education
+
+```{r}
+if (file.exists(mech_summary_file)) {
+  group_labels <- c(
+    above_median_parent_edu = "Above median parent education",
+    lower_or_equal_median_parent_edu = "At or below median parent education"
+  )
+  outcome_labels <- c(
+    education_stopped_covid = "Stopped education due to COVID",
+    shared_device = "Child used shared device",
+    switched_online = "Switched to online learning",
+    challenge_internet = "Internet challenge",
+    support_mother = "Learning support from mother"
+  )
+
+  module_c_group_table <- read_csv_safe(mech_summary_file)
+  module_c_group_table <- module_c_group_table[
+    module_c_group_table$group == "parent_education" &
+      module_c_group_table$outcome %in% names(outcome_labels),
+    c("outcome", "group_value", "estimate", "n_non_missing")
+  ]
+  module_c_group_table$order_key <- match(
+    paste(module_c_group_table$outcome, module_c_group_table$group_value, sep = "::"),
+    c(
+      "education_stopped_covid::lower_or_equal_median_parent_edu",
+      "education_stopped_covid::above_median_parent_edu",
+      "shared_device::lower_or_equal_median_parent_edu",
+      "shared_device::above_median_parent_edu",
+      "switched_online::lower_or_equal_median_parent_edu",
+      "switched_online::above_median_parent_edu",
+      "challenge_internet::lower_or_equal_median_parent_edu",
+      "challenge_internet::above_median_parent_edu",
+      "support_mother::lower_or_equal_median_parent_edu",
+      "support_mother::above_median_parent_edu"
+    )
+  )
+  module_c_group_table <- module_c_group_table[order(module_c_group_table$order_key), ]
+  module_c_group_table$Outcome <- unname(outcome_labels[module_c_group_table$outcome])
+  module_c_group_table$Group <- unname(group_labels[module_c_group_table$group_value])
+  module_c_group_table$Estimate <- fmt_pct(module_c_group_table$estimate)
+
+  knitr::kable(
+    module_c_group_table[, c("Outcome", "Group", "Estimate", "n_non_missing")],
+    col.names = c("Outcome", "Group", "Estimate", "Valid N")
+  )
+} else {
+  data.frame(note = "Module C descriptive split outputs are not available yet.")
+}
+```
+
+## G. Module C Secondary Mechanism Regressions
+
+```{r}
+if (file.exists(mech_coef_file)) {
+  mech_term_labels <- c(
+    parent_low_edu = "Low parent education",
+    urban = "Urban",
+    gendermale = "Male child",
+    "parent_low_edu:urban" = "Low parent education x urban"
+  )
+  mech_model_labels <- c(
+    m1_switched_online = "Switched to online learning",
+    m2_school_closed_no_online = "School closed without online learning",
+    m3_education_stopped_covid = "Stopped education due to COVID",
+    m4_any_remote_challenge = "Any remote-learning challenge"
+  )
+
+  module_c_coef_table <- read_csv_safe(mech_coef_file)
+  module_c_coef_table <- module_c_coef_table[
+    module_c_coef_table$model %in% names(mech_model_labels),
+    c("model", "term", "estimate", "std.error", "p.value")
+  ]
+  module_c_coef_table$Model <- unname(mech_model_labels[module_c_coef_table$model])
+  module_c_coef_table$Term <- unname(mech_term_labels[module_c_coef_table$term])
+  module_c_coef_table$Estimate <- fmt_num(module_c_coef_table$estimate)
+  module_c_coef_table$`Std. Error` <- fmt_num(module_c_coef_table$std.error)
+  module_c_coef_table$`P-value` <- vapply(module_c_coef_table$p.value, fmt_p, character(1))
+
+  knitr::kable(
+    module_c_coef_table[, c("Model", "Term", "Estimate", "Std. Error", "P-value")]
+  )
+} else {
+  data.frame(note = "Module C mechanism coefficient outputs are not available yet.")
 }
 ```
