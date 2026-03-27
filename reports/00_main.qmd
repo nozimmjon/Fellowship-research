@@ -46,6 +46,24 @@ Main sample and estimation rules:
 - No causal language in Modules A and B.
 - Module C is interpreted as suggestive association evidence only.
 
+## Literature Positioning
+
+```{r results='asis'}
+lit_file <- file.path("..", "outputs", "publication", "literature_review_section.md")
+if (file.exists(lit_file)) {
+  cat(paste(readLines(lit_file, warn = FALSE), collapse = "\n"))
+} else {
+  cat(paste(
+    "This section will position the paper in four narrow areas:",
+    "intergenerational educational mobility, transition-economy evidence,",
+    "Uzbekistan or Central Asia context, and pandemic-learning background for Module C.",
+    "The review will justify the locked measure set and maintain the paper's",
+    "descriptive or associational framing.",
+    sep = " "
+  ))
+}
+```
+
 ## Module A: Mobility Metrics
 
 ```{r}
@@ -63,6 +81,23 @@ if (file.exists(summary_file)) {
   data.frame(note = "Run pipeline first to populate Module A outputs.")
 }
 ```
+
+```{r}
+if (file.exists(summary_file)) {
+  ms <- read_csv_safe(summary_file)
+  if (all(c("wave_year", "metric", "n", "status") %in% names(ms))) {
+    stats::na.omit(ms[c("wave_year", "metric", "n", "status")])
+  } else {
+    data.frame(note = "Metric-denominator diagnostics are unavailable.")
+  }
+} else {
+  data.frame(note = "Run pipeline first to populate Module A denominator diagnostics.")
+}
+```
+
+2022 caveat for categorical mobility metrics:
+- In the current harmonized data, the 2022 rank-rank slope uses a larger valid sample than category-based mobility rates because complete parent-child education-category pairs are more limited in that wave.
+- Category and subgroup outputs follow the locked suppression rule for valid `N < 30`, and 2022 category-based comparisons should be interpreted with this denominator constraint in mind.
 
 ## Tier A Descriptive Trends
 

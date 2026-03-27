@@ -39,8 +39,10 @@ read_csv_safe(dict_file)
 ## C. Identification Strategy
 
 - Module A fixed measure set: rank-rank slope, transition matrix, upward mobility rate, downward mobility rate, persistence probability
-- Module B: fixed-effects models with household and regional controls
-- Module C: event-study DiD with region and year fixed effects
+- Module B: descriptive or associational models with household and regional controls
+- Module C: LiTS IV mechanism models (2022-23 only), interpreted as suggestive non-causal evidence
+- Modules A and B do not support causal claims
+- Reform/COVID DiD: optional and conditional on validated admin region-time variation
 
 ## C1. Module A Locked Measure Set
 
@@ -54,21 +56,40 @@ read_csv_safe(spec_file)
 - Alternative mobility definitions
 - Alternative age windows
 - Weighted versus unweighted estimates
-- Placebo lead terms in event-study
-- Region-specific trend sensitivity
+- Parent proxy definition checks
+- Module C split-threshold sensitivity (`median`, `<=11`, `<=9`)
+- Module C sample-composition and fixed-effect attrition checks
 
 ## E. Diagnostics Outputs
 
 ```{r}
-event_file <- file.path("..", "outputs", "tables", "module_c_event_study_coefficients.csv")
-if (file.exists(event_file)) {
-  event_df <- read_csv_safe(event_file)
-  if ("term" %in% names(event_df)) {
-    event_df[order(event_df$term), ]
+mech_sample_file <- file.path("..", "outputs", "tables", "module_c_mechanism_sample.csv")
+mech_summary_file <- file.path("..", "outputs", "tables", "module_c_mechanism_summary.csv")
+mech_coef_file <- file.path("..", "outputs", "tables", "module_c_mechanism_coefficients.csv")
+robust_scenario_file <- file.path("..", "outputs", "tables", "module_c_mechanism_robustness_scenarios.csv")
+if (file.exists(mech_sample_file)) {
+  read_csv_safe(mech_sample_file)
+} else {
+  data.frame(note = "Module C mechanism sample diagnostics not available yet.")
+}
+if (file.exists(mech_summary_file)) {
+  read_csv_safe(mech_summary_file)
+} else {
+  data.frame(note = "Module C mechanism summary outputs not available yet.")
+}
+if (file.exists(mech_coef_file)) {
+  mech_df <- read_csv_safe(mech_coef_file)
+  if ("model" %in% names(mech_df)) {
+    mech_df[order(mech_df$model), ]
   } else {
-    event_df
+    mech_df
   }
 } else {
-  data.frame(note = "Event-study outputs not available yet.")
+  data.frame(note = "Module C mechanism diagnostics not available yet.")
+}
+if (file.exists(robust_scenario_file)) {
+  read_csv_safe(robust_scenario_file)
+} else {
+  data.frame(note = "Module C robustness scenarios not available yet.")
 }
 ```

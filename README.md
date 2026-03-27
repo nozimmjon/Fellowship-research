@@ -29,12 +29,13 @@ This repository contains the research pipeline for intergenerational education m
    - `source("R/02_renv_bootstrap.R")`
    - `bootstrap_renv()`
 5. Build pipeline:
-   - `source("run_pipeline.R")`
+    - `source("run_pipeline.R")`
 6. Render reports:
-    - `& 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe' render reports/00_main.qmd`
-    - `& 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe' render reports/10_technical_appendix.qmd`
-    - `& 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe' render reports/20_policy_brief.qmd`
-    - `& 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe' render reports/30_slides.qmd`
+    - `quarto render reports/00_main.qmd`
+    - `quarto render reports/10_technical_appendix.qmd`
+    - `quarto render reports/20_policy_brief.qmd`
+    - `quarto render reports/30_slides.qmd`
+    - Windows fallback (if `quarto` is not in `PATH`): use full executable path.
 7. Export audit/crosswalk sheets for sharing:
    - `source("R/14_export_audit_share_files.R")`
    - `export_audit_share_files()`

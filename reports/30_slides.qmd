@@ -23,12 +23,14 @@ execute:
 
 - Module A: Mobility measurement
 - Module B: Determinants
-- Module C: Event-study DiD for policy evaluation
+- Module C: Pandemic mechanisms (LiTS IV, suggestive/non-causal)
+- Reform/COVID DiD: conditional optional module (admin-data dependent)
 
 ## Data
 
 - LiTS: 2010, 2016, 2022-23
-- HBS and admin region-year panel
+- HBS for supplementary context
+- Admin region-year panel for conditional extensions only
 
 ## Status
 
