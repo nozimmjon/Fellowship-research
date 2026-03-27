@@ -112,14 +112,13 @@ For each source, create a one-page record with:
 - Policy brief (short, non-technical)
 - Slide deck (key results)
 
-## 7) Execution Timeline (8 Weeks)
-1. Week 1: Data access, dictionary, harmonization protocol
-2. Week 2: Cleaning scripts and reproducible data pipeline
-3. Week 3: Module A estimates and mobility atlas figures
-4. Week 4: Module B determinants and decomposition
-5. Week 5-6: Module C event-study DiD and diagnostics
-6. Week 7: Robustness, placebo, sensitivity, appendix tables
-7. Week 8: Quarto writing, final QA, publication pack
+## 7) Execution Timeline (6 Weeks)
+1. Week 1: Final question freeze, data audit completion, and variable crosswalk lock.
+2. Week 2: Construct and validate mobility measures; produce national trend tables.
+3. Week 3: Add subgroup and regional analysis; finalize core figures.
+4. Week 4: Estimate correlates models; finalize pandemic module as mechanisms (or causal only if diagnostics pass).
+5. Week 5: Integrate HBS and admin context; draft intro, data, methods, and results text.
+6. Week 6: Tighten identification language, remove weak claims, finalize appendix, references, and publication outputs.
 
 ## 8) Immediate Next Actions (Start Here)
 1. Build the project skeleton (`data/`, `R/`, `reports/`, `outputs/`).

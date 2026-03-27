@@ -1,0 +1,80 @@
+---
+title: "05 Tables and Figures Shells"
+author: "Research Team"
+date: today
+format:
+  docx: default
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Table 1. Data Sources and Variables
+
+| Source | Years | Unit | Outcome Variables | Parent Variables | Household Variables | Geography | Weights | Notes |
+|---|---|---|---|---|---|---|---|---|
+| LiTS II | 2010 | Respondent | [fill] | [fill] | [fill] | [fill] | [fill] | [fill] |
+| LiTS III | 2016 | Respondent | [fill] | [fill] | [fill] | [fill] | [fill] | [fill] |
+| LiTS IV | 2022-23 | Respondent/Child module | [fill] | [fill] | [fill] | [fill] | [fill] | [fill] |
+| HBS | [fill] | Household | [fill] | [fill] | [fill] | [fill] | [fill] | [fill] |
+| Admin | [fill] | Region-year | [fill] | NA | [fill] | [fill] | NA | [fill] |
+
+## Table 2. Mobility Measures by Wave
+
+| Measure | 2010 | 2016 | 2022-23 | Change 2010 to 2022-23 | Notes |
+|---|---:|---:|---:|---:|---|
+| Rank-rank slope | [fill] | [fill] | [fill] | [fill] | [fill] |
+| Upward mobility rate | [fill] | [fill] | [fill] | [fill] | [fill] |
+| Downward mobility rate | [fill] | [fill] | [fill] | [fill] | [fill] |
+| Persistence probability | [fill] | [fill] | [fill] | [fill] | [fill] |
+
+## Table 3. Mobility by Subgroup
+
+| Subgroup | Category | 2010 | 2016 | 2022-23 | Difference (latest minus earliest) |
+|---|---|---:|---:|---:|---:|
+| Urban/rural | Urban | [fill] | [fill] | [fill] | [fill] |
+| Urban/rural | Rural | [fill] | [fill] | [fill] | [fill] |
+| Gender | Male | [fill] | [fill] | [fill] | [fill] |
+| Gender | Female | [fill] | [fill] | [fill] | [fill] |
+| Cohort | 25-34 | [fill] | [fill] | [fill] | [fill] |
+| Cohort | 35-44 | [fill] | [fill] | [fill] | [fill] |
+| Cohort | 45-54 | [fill] | [fill] | [fill] | [fill] |
+| Cohort | 55-64 | [fill] | [fill] | [fill] | [fill] |
+
+## Table 4. Correlates of Mobility
+
+| Variable | OLS on Years of Schooling (coef) | OLS p-value | Logit Upward Mobility (coef) | Logit p-value | Interpretation |
+|---|---:|---:|---:|---:|---|
+| Parental education | [fill] | [fill] | [fill] | [fill] | [fill] |
+| Urban | [fill] | [fill] | [fill] | [fill] | [fill] |
+| Gender | [fill] | [fill] | [fill] | [fill] | [fill] |
+| Income proxy | [fill] | [fill] | [fill] | [fill] | [fill] |
+| Migration exposure | [fill] | [fill] | [fill] | [fill] | [fill] |
+| Multigenerational household | [fill] | [fill] | [fill] | [fill] | [fill] |
+
+## Table 5. Pandemic Mechanism Results (LiTS IV)
+
+| Outcome | Overall Rate | Lower Parent Education | Higher Parent Education | Baseline Weighted Model (parent term) | Robustness Summary |
+|---|---:|---:|---:|---|---|
+| Switched to online learning | [fill] | [fill] | [fill] | [fill] | [fill] |
+| School closed without online | [fill] | [fill] | [fill] | [fill] | [fill] |
+| Education stopped due to COVID | [fill] | [fill] | [fill] | [fill] | [fill] |
+| Any remote-learning challenge | [fill] | [fill] | [fill] | [fill] | [fill] |
+| Shared device use | [fill] | [fill] | [fill] | [fill] | [fill] |
+
+## Figure 1. Transition Matrix
+- Placeholder: parent education by child education heatmap.
+- Final file: `outputs/figures/[fill_transition_matrix].png`
+
+## Figure 2. Rank-Rank Slope by Wave
+- Placeholder: line plot across 2010, 2016, 2022-23.
+- Final file: `outputs/figures/tier_a_rank_rank_by_wave.png`
+
+## Figure 3. Regional Mobility Map
+- Placeholder: choropleth of mobility metric by region.
+- Final file: `outputs/figures/[fill_regional_map].png`
+
+## Figure 4. Heterogeneity by Urban/Rural and Gender
+- Placeholder: grouped lines or bars for subgroup differences over time.
+- Final file: `outputs/figures/[fill_heterogeneity_plot].png`
