@@ -58,6 +58,35 @@ div.csl-indent {
 <link href="00_main_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="00_main_files/libs/bootstrap/bootstrap-4d7f0bce1131f3e5f9547cd857cfbfc8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -69,53 +98,54 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract"><span class="header-section-number">1</span> Abstract</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">2</span> 1. Introduction</a></li>
-  <li><a href="#related-literature" id="toc-related-literature" class="nav-link" data-scroll-target="#related-literature"><span class="header-section-number">3</span> 2. Related Literature</a>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#related-literature" id="toc-related-literature" class="nav-link" data-scroll-target="#related-literature"><span class="header-section-number">2</span> Related Literature</a>
   <ul class="collapse">
-  <li><a href="#why-educational-mobility-matters" id="toc-why-educational-mobility-matters" class="nav-link" data-scroll-target="#why-educational-mobility-matters"><span class="header-section-number">3.1</span> Why Educational Mobility Matters</a></li>
-  <li><a href="#measurement-choices-and-contribution-discipline" id="toc-measurement-choices-and-contribution-discipline" class="nav-link" data-scroll-target="#measurement-choices-and-contribution-discipline"><span class="header-section-number">3.2</span> Measurement Choices and Contribution Discipline</a></li>
-  <li><a href="#transition-economies-and-regional-comparators" id="toc-transition-economies-and-regional-comparators" class="nav-link" data-scroll-target="#transition-economies-and-regional-comparators"><span class="header-section-number">3.3</span> Transition Economies and Regional Comparators</a></li>
-  <li><a href="#why-uzbekistan-matters" id="toc-why-uzbekistan-matters" class="nav-link" data-scroll-target="#why-uzbekistan-matters"><span class="header-section-number">3.4</span> Why Uzbekistan Matters</a></li>
-  <li><a href="#pandemic-learning-background-and-bounded-module-c-framing" id="toc-pandemic-learning-background-and-bounded-module-c-framing" class="nav-link" data-scroll-target="#pandemic-learning-background-and-bounded-module-c-framing"><span class="header-section-number">3.5</span> Pandemic Learning Background and Bounded Module C Framing</a></li>
-  <li><a href="#positioning-this-paper" id="toc-positioning-this-paper" class="nav-link" data-scroll-target="#positioning-this-paper"><span class="header-section-number">3.6</span> Positioning This Paper</a></li>
-  <li><a href="#scope-and-identification-limits" id="toc-scope-and-identification-limits" class="nav-link" data-scroll-target="#scope-and-identification-limits"><span class="header-section-number">3.7</span> Scope and Identification Limits</a></li>
+  <li><a href="#why-educational-mobility-matters" id="toc-why-educational-mobility-matters" class="nav-link" data-scroll-target="#why-educational-mobility-matters"><span class="header-section-number">2.1</span> Why Educational Mobility Matters</a></li>
+  <li><a href="#measurement-choices-and-contribution-discipline" id="toc-measurement-choices-and-contribution-discipline" class="nav-link" data-scroll-target="#measurement-choices-and-contribution-discipline"><span class="header-section-number">2.2</span> Measurement Choices and Contribution Discipline</a></li>
+  <li><a href="#transition-economies-and-regional-comparators" id="toc-transition-economies-and-regional-comparators" class="nav-link" data-scroll-target="#transition-economies-and-regional-comparators"><span class="header-section-number">2.3</span> Transition Economies and Regional Comparators</a></li>
+  <li><a href="#why-uzbekistan-matters" id="toc-why-uzbekistan-matters" class="nav-link" data-scroll-target="#why-uzbekistan-matters"><span class="header-section-number">2.4</span> Why Uzbekistan Matters</a></li>
+  <li><a href="#pandemic-learning-background-and-bounded-module-c-framing" id="toc-pandemic-learning-background-and-bounded-module-c-framing" class="nav-link" data-scroll-target="#pandemic-learning-background-and-bounded-module-c-framing"><span class="header-section-number">2.5</span> Pandemic Learning Background and Bounded Module C Framing</a></li>
+  <li><a href="#positioning-this-paper" id="toc-positioning-this-paper" class="nav-link" data-scroll-target="#positioning-this-paper"><span class="header-section-number">2.6</span> Positioning This Paper</a></li>
+  <li><a href="#scope-and-identification-limits" id="toc-scope-and-identification-limits" class="nav-link" data-scroll-target="#scope-and-identification-limits"><span class="header-section-number">2.7</span> Scope and Identification Limits</a></li>
   </ul></li>
-  <li><a href="#data-and-measurement" id="toc-data-and-measurement" class="nav-link" data-scroll-target="#data-and-measurement"><span class="header-section-number">4</span> 3. Data and Measurement</a>
+  <li><a href="#data-and-measurement" id="toc-data-and-measurement" class="nav-link" data-scroll-target="#data-and-measurement"><span class="header-section-number">3</span> Data and Measurement</a>
   <ul class="collapse">
-  <li><a href="#core-data" id="toc-core-data" class="nav-link" data-scroll-target="#core-data"><span class="header-section-number">4.1</span> 3.1 Core data</a></li>
-  <li><a href="#education-measures" id="toc-education-measures" class="nav-link" data-scroll-target="#education-measures"><span class="header-section-number">4.2</span> 3.2 Education measures</a></li>
-  <li><a href="#mobility-outcomes" id="toc-mobility-outcomes" class="nav-link" data-scroll-target="#mobility-outcomes"><span class="header-section-number">4.3</span> 3.3 Mobility outcomes</a></li>
-  <li><a href="#covariates" id="toc-covariates" class="nav-link" data-scroll-target="#covariates"><span class="header-section-number">4.4</span> 3.4 Covariates</a></li>
-  <li><a href="#pandemic-mechanism-variables" id="toc-pandemic-mechanism-variables" class="nav-link" data-scroll-target="#pandemic-mechanism-variables"><span class="header-section-number">4.5</span> 3.5 Pandemic mechanism variables</a></li>
+  <li><a href="#core-data" id="toc-core-data" class="nav-link" data-scroll-target="#core-data"><span class="header-section-number">3.1</span> Core Data</a></li>
+  <li><a href="#education-measures" id="toc-education-measures" class="nav-link" data-scroll-target="#education-measures"><span class="header-section-number">3.2</span> Education Measures</a></li>
+  <li><a href="#mobility-outcomes" id="toc-mobility-outcomes" class="nav-link" data-scroll-target="#mobility-outcomes"><span class="header-section-number">3.3</span> Mobility Outcomes</a></li>
+  <li><a href="#covariates" id="toc-covariates" class="nav-link" data-scroll-target="#covariates"><span class="header-section-number">3.4</span> Covariates</a></li>
+  <li><a href="#pandemic-mechanism-variables" id="toc-pandemic-mechanism-variables" class="nav-link" data-scroll-target="#pandemic-mechanism-variables"><span class="header-section-number">3.5</span> Pandemic Mechanism Variables</a></li>
   </ul></li>
-  <li><a href="#empirical-strategy" id="toc-empirical-strategy" class="nav-link" data-scroll-target="#empirical-strategy"><span class="header-section-number">5</span> 4. Empirical Strategy</a>
+  <li><a href="#empirical-strategy" id="toc-empirical-strategy" class="nav-link" data-scroll-target="#empirical-strategy"><span class="header-section-number">4</span> Empirical Strategy</a>
   <ul class="collapse">
-  <li><a href="#module-a-mobility-levels-and-trends" id="toc-module-a-mobility-levels-and-trends" class="nav-link" data-scroll-target="#module-a-mobility-levels-and-trends"><span class="header-section-number">5.1</span> 4.1 Module A: mobility levels and trends</a></li>
-  <li><a href="#module-b-correlates-of-mobility" id="toc-module-b-correlates-of-mobility" class="nav-link" data-scroll-target="#module-b-correlates-of-mobility"><span class="header-section-number">5.2</span> 4.2 Module B: correlates of mobility</a></li>
-  <li><a href="#module-c-pandemic-era-mechanisms" id="toc-module-c-pandemic-era-mechanisms" class="nav-link" data-scroll-target="#module-c-pandemic-era-mechanisms"><span class="header-section-number">5.3</span> 4.3 Module C: pandemic-era mechanisms</a></li>
+  <li><a href="#module-a-mobility-levels-and-trends" id="toc-module-a-mobility-levels-and-trends" class="nav-link" data-scroll-target="#module-a-mobility-levels-and-trends"><span class="header-section-number">4.1</span> Module A: Mobility Levels and Trends</a></li>
+  <li><a href="#module-b-correlates-of-mobility" id="toc-module-b-correlates-of-mobility" class="nav-link" data-scroll-target="#module-b-correlates-of-mobility"><span class="header-section-number">4.2</span> Module B: Correlates of Mobility</a></li>
+  <li><a href="#module-c-pandemic-era-mechanisms" id="toc-module-c-pandemic-era-mechanisms" class="nav-link" data-scroll-target="#module-c-pandemic-era-mechanisms"><span class="header-section-number">4.3</span> Module C: Pandemic-Era Mechanisms</a></li>
   </ul></li>
-  <li><a href="#mobility-levels-and-trends" id="toc-mobility-levels-and-trends" class="nav-link" data-scroll-target="#mobility-levels-and-trends"><span class="header-section-number">6</span> 5. Mobility Levels and Trends</a>
+  <li><a href="#descriptive-results" id="toc-descriptive-results" class="nav-link" data-scroll-target="#descriptive-results"><span class="header-section-number">5</span> Descriptive Results</a>
   <ul class="collapse">
-  <li><a href="#rank-based-persistence" id="toc-rank-based-persistence" class="nav-link" data-scroll-target="#rank-based-persistence"><span class="header-section-number">6.1</span> 5.1 Rank-based persistence</a></li>
-  <li><a href="#category-based-mobility-measures" id="toc-category-based-mobility-measures" class="nav-link" data-scroll-target="#category-based-mobility-measures"><span class="header-section-number">6.2</span> 5.2 Category-based mobility measures</a></li>
-  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">6.3</span> 5.3 Interpretation</a></li>
+  <li><a href="#sample-composition-and-completeness" id="toc-sample-composition-and-completeness" class="nav-link" data-scroll-target="#sample-composition-and-completeness"><span class="header-section-number">5.1</span> Sample Composition and Completeness</a></li>
+  <li><a href="#national-mobility-metrics-by-wave" id="toc-national-mobility-metrics-by-wave" class="nav-link" data-scroll-target="#national-mobility-metrics-by-wave"><span class="header-section-number">5.2</span> National Mobility Metrics by Wave</a></li>
+  <li><a href="#transition-structure" id="toc-transition-structure" class="nav-link" data-scroll-target="#transition-structure"><span class="header-section-number">5.3</span> Transition Structure</a></li>
+  <li><a href="#descriptive-heterogeneity" id="toc-descriptive-heterogeneity" class="nav-link" data-scroll-target="#descriptive-heterogeneity"><span class="header-section-number">5.4</span> Descriptive Heterogeneity</a></li>
   </ul></li>
-  <li><a href="#correlates-of-educational-mobility" id="toc-correlates-of-educational-mobility" class="nav-link" data-scroll-target="#correlates-of-educational-mobility"><span class="header-section-number">7</span> 6. Correlates of Educational Mobility</a>
+  <li><a href="#correlates-of-educational-mobility" id="toc-correlates-of-educational-mobility" class="nav-link" data-scroll-target="#correlates-of-educational-mobility"><span class="header-section-number">6</span> Correlates of Educational Mobility</a>
   <ul class="collapse">
-  <li><a href="#pooled-persistence-trend-model" id="toc-pooled-persistence-trend-model" class="nav-link" data-scroll-target="#pooled-persistence-trend-model"><span class="header-section-number">7.1</span> 6.1 Pooled persistence-trend model</a></li>
-  <li><a href="#attainment-score-model" id="toc-attainment-score-model" class="nav-link" data-scroll-target="#attainment-score-model"><span class="header-section-number">7.2</span> 6.2 Attainment-score model</a></li>
-  <li><a href="#upward-mobility-models" id="toc-upward-mobility-models" class="nav-link" data-scroll-target="#upward-mobility-models"><span class="header-section-number">7.3</span> 6.3 Upward mobility models</a></li>
-  <li><a href="#heterogeneity-in-persistence" id="toc-heterogeneity-in-persistence" class="nav-link" data-scroll-target="#heterogeneity-in-persistence"><span class="header-section-number">7.4</span> 6.4 Heterogeneity in persistence</a></li>
+  <li><a href="#pooled-persistence-trend-model" id="toc-pooled-persistence-trend-model" class="nav-link" data-scroll-target="#pooled-persistence-trend-model"><span class="header-section-number">6.1</span> Pooled Persistence-Trend Model</a></li>
+  <li><a href="#attainment-score-model" id="toc-attainment-score-model" class="nav-link" data-scroll-target="#attainment-score-model"><span class="header-section-number">6.2</span> Attainment-Score Model</a></li>
+  <li><a href="#upward-mobility-models" id="toc-upward-mobility-models" class="nav-link" data-scroll-target="#upward-mobility-models"><span class="header-section-number">6.3</span> Upward Mobility Models</a></li>
+  <li><a href="#heterogeneity-in-persistence" id="toc-heterogeneity-in-persistence" class="nav-link" data-scroll-target="#heterogeneity-in-persistence"><span class="header-section-number">6.4</span> Heterogeneity in Persistence</a></li>
   </ul></li>
-  <li><a href="#bounded-lits-iv-child-module-extension" id="toc-bounded-lits-iv-child-module-extension" class="nav-link" data-scroll-target="#bounded-lits-iv-child-module-extension"><span class="header-section-number">8</span> 7. Bounded LiTS IV Child Module Extension</a>
+  <li><a href="#bounded-lits-iv-child-module-extension" id="toc-bounded-lits-iv-child-module-extension" class="nav-link" data-scroll-target="#bounded-lits-iv-child-module-extension"><span class="header-section-number">7</span> Bounded LiTS IV Child Module Extension</a>
   <ul class="collapse">
-  <li><a href="#sample-and-disruption-profile" id="toc-sample-and-disruption-profile" class="nav-link" data-scroll-target="#sample-and-disruption-profile"><span class="header-section-number">8.1</span> 7.1 Sample and disruption profile</a></li>
-  <li><a href="#main-regression-takeaway" id="toc-main-regression-takeaway" class="nav-link" data-scroll-target="#main-regression-takeaway"><span class="header-section-number">8.2</span> 7.2 Main regression takeaway</a></li>
+  <li><a href="#sample-and-disruption-profile" id="toc-sample-and-disruption-profile" class="nav-link" data-scroll-target="#sample-and-disruption-profile"><span class="header-section-number">7.1</span> Sample and Disruption Profile</a></li>
+  <li><a href="#main-regression-takeaway" id="toc-main-regression-takeaway" class="nav-link" data-scroll-target="#main-regression-takeaway"><span class="header-section-number">7.2</span> Main Regression Takeaway</a></li>
   </ul></li>
-  <li><a href="#discussion-and-policy-implications" id="toc-discussion-and-policy-implications" class="nav-link" data-scroll-target="#discussion-and-policy-implications"><span class="header-section-number">9</span> 8. Discussion and Policy Implications</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">10</span> 9. Limitations</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">11</span> 10. Conclusion</a></li>
+  <li><a href="#discussion-and-policy-implications" id="toc-discussion-and-policy-implications" class="nav-link" data-scroll-target="#discussion-and-policy-implications"><span class="header-section-number">8</span> Discussion and Policy Implications</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">9</span> Limitations</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">10</span> Conclusion</a></li>
   <li><a href="#bibliography" id="toc-bibliography" class="nav-link" data-scroll-target="#bibliography">References</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="00_main.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
@@ -153,74 +183,74 @@ div.csl-indent {
 </header>
 
 
-<section id="abstract" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="abstract"><span class="header-section-number">1</span> Abstract</h2>
+<section id="abstract" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="abstract">Abstract</h2>
 <p>This paper studies intergenerational educational mobility in Uzbekistan using the 2010, 2016, and 2022-23 waves of the Life in Transition Survey (LiTS). It asks how strongly educational attainment is associated across generations, which household and regional characteristics are correlated with mobility, and what the 2022-23 child module suggests about household learning conditions during pandemic disruption.</p>
 <p>The paper’s contribution is a reproducible multi-wave mobility profile built around descriptive and associational evidence. Descriptive rank-based persistence measures rise from 0.133 in 2010 to 0.299 in 2016 and 0.350 in 2022-23, but pooled models do not estimate that change precisely once controls and fixed effects are added. Category-based rates move in the same direction, yet the 2022-23 categorical estimates rely on only 124 valid observations and therefore receive limited interpretive weight. In pooled correlates models, parental education remains the clearest predictor of attainment, while women record somewhat lower attainment scores conditional on controls. The LiTS IV child module suggests widespread disruption and household-based support, and lower parental education is associated with a higher probability that education stopped during COVID, though the child-module evidence remains suggestive because of sample limits.</p>
 <p>The results point to substantial educational persistence and to the importance of household support conditions, but they do not provide precise model-based evidence of a worsening time trend or a causal pandemic mechanism.</p>
 </section>
-<section id="introduction" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2</span> 1. Introduction</h2>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <p>Educational mobility links family background to the allocation of opportunity. When mobility is low, parental education remains a strong predictor of children’s schooling, and the distribution of skills is shaped more by inherited circumstance than by individual potential.</p>
 <p>Uzbekistan is an important setting for this question. The country combines a young population, persistent regional inequality, and a policy agenda centered on human capital and productivity growth. At the same time, market transition, urbanization, higher-education expansion, and digital change have altered both the returns to schooling and the ways households support children’s learning.</p>
 <p>This paper uses LiTS repeated cross-sections from 2010, 2016, and 2022-23 to provide a structured profile of intergenerational educational mobility in Uzbekistan. It makes three contributions. First, it documents national mobility patterns using a locked bundle of measures: a rank-rank slope, upward mobility, downward mobility, and same-category persistence. Second, it estimates pooled correlates models with a disciplined set of household and regional controls. Third, it adds a short LiTS IV child-module extension on pandemic-era disruption and support patterns.</p>
 <p>The claims are intentionally limited by design. Module A is descriptive, Module B is associational, and Module C is a bounded non-causal extension. Descriptive persistence measures rise across waves, but the pooled models do not estimate the change precisely. The paper therefore emphasizes levels, correlates, and household constraints rather than a firm time-trend claim. Section 2 positions the paper in the literature, Section 3 describes the data and measurement choices, Sections 4-7 present the empirical design and results, and Sections 8-10 discuss interpretation, limitations, and conclusion.</p>
 </section>
-<section id="related-literature" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="related-literature"><span class="header-section-number">3</span> 2. Related Literature</h2>
-<section id="why-educational-mobility-matters" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="why-educational-mobility-matters"><span class="header-section-number">3.1</span> Why Educational Mobility Matters</h3>
+<section id="related-literature" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="related-literature"><span class="header-section-number">2</span> Related Literature</h2>
+<section id="why-educational-mobility-matters" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="why-educational-mobility-matters"><span class="header-section-number">2.1</span> Why Educational Mobility Matters</h3>
 <p>Intergenerational educational mobility matters because it links family background to both equality of opportunity and the allocation of skills. When parent-child schooling links are strong, educational attainment reflects inherited circumstance as much as individual effort or talent. That makes mobility relevant not only for fairness, but also for long-run productivity and the conversion of human potential into completed schooling and labor-market opportunity <span class="citation" data-cites="torche_2015 causa_johansson_2010">(<a href="#ref-torche_2015" role="doc-biblioref">Torche 2015</a>; <a href="#ref-causa_johansson_2010" role="doc-biblioref">Causa and Johansson 2010</a>)</span>. Cross-country evidence consistently shows that educational persistence remains substantial and highly uneven rather than mechanically converging as countries develop. Hertz et al. <span class="citation" data-cites="hertz_2008">(<a href="#ref-hertz_2008" role="doc-biblioref">Hertz et al. 2008</a>)</span> document large cross-country variation over a long horizon, and van der Weide et al. <span class="citation" data-cites="weide_etal_2024">(<a href="#ref-weide_etal_2024" role="doc-biblioref">Weide et al. 2024</a>)</span> show that average mobility remains lower in many developing settings than in higher-income ones.</p>
 <p>This literature also clarifies why the question is substantively important for Uzbekistan. Educational mobility is one way of asking whether a young and expanding population can translate schooling opportunity into broader social mobility, or whether the distribution of education remains tightly tied to family origin. In that sense, mobility is not a side issue to development; it is a compact summary of how inherited background interacts with schooling systems, local opportunity structures, and household support capacity <span class="citation" data-cites="causa_johansson_2010 neidhoefer_etal_2024">(<a href="#ref-causa_johansson_2010" role="doc-biblioref">Causa and Johansson 2010</a>; <a href="#ref-neidhoefer_etal_2024" role="doc-biblioref">Neidhöfer et al. 2024</a>)</span>.</p>
 </section>
-<section id="measurement-choices-and-contribution-discipline" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="measurement-choices-and-contribution-discipline"><span class="header-section-number">3.2</span> Measurement Choices and Contribution Discipline</h3>
+<section id="measurement-choices-and-contribution-discipline" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="measurement-choices-and-contribution-discipline"><span class="header-section-number">2.2</span> Measurement Choices and Contribution Discipline</h3>
 <p>The mobility literature further cautions against treating any single statistic as a complete description of opportunity. Torche <span class="citation" data-cites="torche_2015">(<a href="#ref-torche_2015" role="doc-biblioref">Torche 2015</a>)</span> emphasizes that mobility measures summarize intergenerational association rather than directly recovering a full structural model of equality of opportunity. Recent measurement work strengthens that warning: Stromberg and Engzell <span class="citation" data-cites="stromberg_engzell_2025">(<a href="#ref-stromberg_engzell_2025" role="doc-biblioref">Strömberg and Engzell 2025</a>)</span> show that country rankings can move materially with coding, sample, and estimator choices. For a paper based on repeated surveys with modest cross-wave questionnaire differences, that is a direct argument against relying on one headline number.</p>
 <p>This is why the manuscript uses a deliberately locked measure bundle rather than a single preferred statistic. Category-based measures retain the intuitive language of educational transitions by asking whether respondents surpass, match, or fall below parental schooling categories. Rank-based measures, in contrast, are better suited to cross-wave comparison because they locate respondents within the educational distribution of each wave. The two families therefore answer related but not identical questions: category rates preserve substantive interpretation, while rank-based persistence is more robust to shifts in educational expansion and coding detail <span class="citation" data-cites="torche_2015 weide_etal_2024">(<a href="#ref-torche_2015" role="doc-biblioref">Torche 2015</a>; <a href="#ref-weide_etal_2024" role="doc-biblioref">Weide et al. 2024</a>)</span>.</p>
 <p>A related lesson from the earlier comparative literature is that educational expansion does not automatically imply weaker persistence. Chevalier, Denny, and McMahon <span class="citation" data-cites="chevalier_denny_mcmahon_2009">(<a href="#ref-chevalier_denny_mcmahon_2009" role="doc-biblioref">Chevalier, Denny, and McMahon 2009</a>)</span> show that broader access to higher education need not erase family-background gradients, and Razzu and Wambile <span class="citation" data-cites="razzu_wambile_2022">(<a href="#ref-razzu_wambile_2022" role="doc-biblioref">Razzu and Wambile 2022</a>)</span> similarly stress that cohort change can coexist with persistent intergenerational gradients. That point is important for this paper’s contribution discipline: descriptive increases in persistence across LiTS waves are informative, but they are not by themselves proof of a precisely estimated structural trend.</p>
 </section>
-<section id="transition-economies-and-regional-comparators" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="transition-economies-and-regional-comparators"><span class="header-section-number">3.3</span> Transition Economies and Regional Comparators</h3>
+<section id="transition-economies-and-regional-comparators" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="transition-economies-and-regional-comparators"><span class="header-section-number">2.3</span> Transition Economies and Regional Comparators</h3>
 <p>Transition settings are especially relevant for Uzbekistan because market transition, institutional restructuring, and uneven regional development can alter both schooling opportunities and the household strategies through which education is reproduced. Comparative post-communist evidence does not suggest a single mobility path. Verashchagina <span class="citation" data-cites="verashchagina_2012">(<a href="#ref-verashchagina_2012" role="doc-biblioref">Verashchagina 2012</a>)</span> finds substantial heterogeneity in educational inheritance across post-communist countries, while Bruck and Esenaliev <span class="citation" data-cites="bruck_esenaliev_2018">(<a href="#ref-bruck_esenaliev_2018" role="doc-biblioref">Brück and Esenaliev 2018</a>)</span> document a distinct trajectory for Kyrgyzstan, the closest Central Asian comparator in the published literature currently cited here. Together, these studies suggest that Soviet legacy alone does not determine current mobility outcomes.</p>
 <p>Turkey provides a second useful comparator because it combines middle-income status, strong spatial disparities, and variation in local schooling opportunity. Aydemir and Yazici <span class="citation" data-cites="aydemir_yazici_2019">(<a href="#ref-aydemir_yazici_2019" role="doc-biblioref">Aydemir and Yazici 2019</a>)</span> show that intergenerational educational mobility is higher in Turkish regions with better school availability, stronger home resources, and lower educational inequality. Akarcay-Gurbuz and Polat <span class="citation" data-cites="akarcay_polat_2017">(<a href="#ref-akarcay_polat_2017" role="doc-biblioref">Akarçay-Gürbüz and Polat 2017</a>)</span> go further by using exogenous provincial variation in schooling opportunity, which is helpful here not because the paper adopts that design, but because it clarifies what a causal architecture would require and why the present manuscript does not claim one.</p>
 <p>Broader evidence also links mobility to local development conditions rather than to family background alone. Guell et al. <span class="citation" data-cites="guell_etal_2018">(<a href="#ref-guell_etal_2018" role="doc-biblioref">Guell et al. 2018</a>)</span> show that intergenerational mobility covaries with provincial inequality, social capital, and economic activity, and Neidhoefer et al. <span class="citation" data-cites="neidhoefer_etal_2024">(<a href="#ref-neidhoefer_etal_2024" role="doc-biblioref">Neidhöfer et al. 2024</a>)</span> connect changes in mobility to regional development indicators. That literature supports the inclusion of region, cohort, and wave effects in the pooled correlates models while reinforcing the paper’s decision to treat those coefficients as associational rather than causal.</p>
 </section>
-<section id="why-uzbekistan-matters" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="why-uzbekistan-matters"><span class="header-section-number">3.4</span> Why Uzbekistan Matters</h3>
+<section id="why-uzbekistan-matters" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="why-uzbekistan-matters"><span class="header-section-number">2.4</span> Why Uzbekistan Matters</h3>
 <p>Country diagnostics explain why the Uzbek case deserves separate attention rather than inference from neighboring settings alone. World Bank and UNICEF assessments point to persistent disparities in access, tertiary pathways, gendered constraints, and rural-urban differences in educational opportunity <span class="citation" data-cites="wb_uzb_2018 unicef_sitan_2020 unicef_sitan_2024 wb_gender_2024">(<a href="#ref-wb_uzb_2018" role="doc-biblioref">World Bank 2018</a>, <a href="#ref-wb_gender_2024" role="doc-biblioref">2024</a>; <a href="#ref-unicef_sitan_2020" role="doc-biblioref">UNICEF Uzbekistan 2020</a>, <a href="#ref-unicef_sitan_2024" role="doc-biblioref">2024</a>)</span>. These sources are not mobility designs, but they establish why parental education, household support, and place-based conditions are plausible correlates in Uzbekistan and why a descriptive mobility profile is policy-relevant even without a causal design.</p>
 </section>
-<section id="pandemic-learning-background-and-bounded-module-c-framing" class="level3" data-number="3.5">
-<h3 data-number="3.5" class="anchored" data-anchor-id="pandemic-learning-background-and-bounded-module-c-framing"><span class="header-section-number">3.5</span> Pandemic Learning Background and Bounded Module C Framing</h3>
+<section id="pandemic-learning-background-and-bounded-module-c-framing" class="level3" data-number="2.5">
+<h3 data-number="2.5" class="anchored" data-anchor-id="pandemic-learning-background-and-bounded-module-c-framing"><span class="header-section-number">2.5</span> Pandemic Learning Background and Bounded Module C Framing</h3>
 <p>The pandemic-learning literature is used here only to motivate the limited role of Module C. Global evidence shows that remote schooling shifted a large share of learning support back into the household and amplified differences in connectivity, device access, supervision time, and caregiver capacity <span class="citation" data-cites="alam_tiwari_2020 munoz_najar_etal_2021">(<a href="#ref-alam_tiwari_2020" role="doc-biblioref">Alam and Tiwari 2020</a>; <a href="#ref-munoz_najar_etal_2021" role="doc-biblioref">Muñoz-Najar et al. 2021</a>)</span>. Parent-survey evidence from Europe similarly finds that parents became active learning agents during school closures and faced uneven burdens in sustaining children’s study routines <span class="citation" data-cites="daniela_etal_2021 knopik_etal_2021">(<a href="#ref-daniela_etal_2021" role="doc-biblioref">Daniela, Rubene, and Rudolfa 2021</a>; <a href="#ref-knopik_etal_2021" role="doc-biblioref">Knopik et al. 2021</a>)</span>.</p>
 <p>For Uzbekistan, policy-response and learning-recovery evidence provide useful background but do not identify household causal channels on their own. World Bank reporting documents the country’s rapid emergency response during school closures <span class="citation" data-cites="wb_blog_2020">(<a href="#ref-wb_blog_2020" role="doc-biblioref">Meliboeva, Patrinos, and Teixeira 2020</a>)</span>, while Iqbal and Patrinos <span class="citation" data-cites="iqbal_patrinos_2025">(<a href="#ref-iqbal_patrinos_2025" role="doc-biblioref">Iqbal and Patrinos 2025</a>)</span> show that pandemic-era learning outcomes were unevenly distributed across students and household conditions. Those studies justify asking whether lower-parent-education households in the LiTS child module report more disruption, but they do not convert the present child-module exercise into a causal design.</p>
 </section>
-<section id="positioning-this-paper" class="level3" data-number="3.6">
-<h3 data-number="3.6" class="anchored" data-anchor-id="positioning-this-paper"><span class="header-section-number">3.6</span> Positioning This Paper</h3>
+<section id="positioning-this-paper" class="level3" data-number="2.6">
+<h3 data-number="2.6" class="anchored" data-anchor-id="positioning-this-paper"><span class="header-section-number">2.6</span> Positioning This Paper</h3>
 <p>Taken together, the literature supports a narrow but meaningful contribution: a transparent multi-wave profile of intergenerational educational mobility in Uzbekistan that combines descriptive persistence measures, pooled associational correlates, and a short descriptive child-module extension. Module A shows the levels of persistence, Module B asks how those patterns covary with household and regional characteristics, and Module C adds bounded evidence on pandemic-era household vulnerability. The manuscript’s contribution is therefore not to offer a broad review or a causal identification strategy, but to provide a disciplined empirical benchmark for an important transition-economy case that remains understudied in the mobility literature.</p>
 </section>
-<section id="scope-and-identification-limits" class="level3" data-number="3.7">
-<h3 data-number="3.7" class="anchored" data-anchor-id="scope-and-identification-limits"><span class="header-section-number">3.7</span> Scope and Identification Limits</h3>
+<section id="scope-and-identification-limits" class="level3" data-number="2.7">
+<h3 data-number="2.7" class="anchored" data-anchor-id="scope-and-identification-limits"><span class="header-section-number">2.7</span> Scope and Identification Limits</h3>
 <p>The literature also disciplines what these data can and cannot identify. Mobility statistics are informative summaries of intergenerational association, but they are not themselves causal estimates of equality of opportunity <span class="citation" data-cites="torche_2015">(<a href="#ref-torche_2015" role="doc-biblioref">Torche 2015</a>)</span>. Measurement studies likewise show that cross-country or cross-study rankings can move materially with coding, sample, and estimator choices <span class="citation" data-cites="stromberg_engzell_2025">(<a href="#ref-stromberg_engzell_2025" role="doc-biblioref">Strömberg and Engzell 2025</a>)</span>. That is why this paper reports a locked bundle of complementary metrics rather than a single headline measure.</p>
 <p>The core evidence is based on repeated LiTS cross-sections rather than a panel following fixed families over time. The design can therefore characterize population-level persistence in each survey wave, but it cannot isolate within-family causal change. This distinction is central for the manuscript’s time-trend language: descriptive persistence measures rise across waves, but pooled models do not estimate the change precisely once controls and fixed effects are added.</p>
 <p>The causal literature clarifies the boundary even more sharply. Akarcay-Gurbuz and Polat <span class="citation" data-cites="akarcay_polat_2017">(<a href="#ref-akarcay_polat_2017" role="doc-biblioref">Akarçay-Gürbüz and Polat 2017</a>)</span> identify schooling-opportunity effects using exogenous provincial variation. The Uzbekistan design does not contain a comparable source of plausibly exogenous region-time exposure, so Modules A and B are appropriately interpreted as descriptive and associational. The same logic applies to Module C. Pandemic-learning studies motivate attention to devices, internet quality, and household support <span class="citation" data-cites="alam_tiwari_2020 munoz_najar_etal_2021">(<a href="#ref-alam_tiwari_2020" role="doc-biblioref">Alam and Tiwari 2020</a>; <a href="#ref-munoz_najar_etal_2021" role="doc-biblioref">Muñoz-Najar et al. 2021</a>)</span>, but the LiTS IV child module remains a small cross-sectional subsample. It can identify descriptive vulnerability gaps, especially around education stoppage, but not the causal effect of parental education net of all correlated household constraints.</p>
 <p>These limits are substantive design choices rather than caveats added after the fact. They keep the paper’s claims aligned with what the available data can credibly support.</p>
 </section>
 </section>
-<section id="data-and-measurement" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="data-and-measurement"><span class="header-section-number">4</span> 3. Data and Measurement</h2>
-<section id="core-data" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="core-data"><span class="header-section-number">4.1</span> 3.1 Core data</h3>
+<section id="data-and-measurement" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="data-and-measurement"><span class="header-section-number">3</span> Data and Measurement</h2>
+<section id="core-data" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="core-data"><span class="header-section-number">3.1</span> Core Data</h3>
 <p>The main source is the Life in Transition Survey (LiTS) for 2010, 2016, and 2022-23. These repeated cross-sections provide comparable information on respondents’ own education, parental education, age, sex, place of residence, and regional identifiers, which makes them suitable for multi-wave mobility analysis.</p>
 <p>The analytical sample is restricted to respondents aged 25-64 so that own education is largely complete. Cohorts are grouped as 25-34, 35-44, 45-54, and 55-64. Weighted estimates are used throughout, and subgroup outputs are suppressed when the valid cell size is below 30.</p>
 <p>The Household Budget Survey is used only as a supplementary source for context and construct validation, especially around household structure, migration, schooling expenses, tutoring, and internet access. Because direct parent-child linkage in HBS is only partially supported in the current audit, it is not the source of the intergenerational estimates reported here.</p>
 </section>
-<section id="education-measures" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="education-measures"><span class="header-section-number">4.2</span> 3.2 Education measures</h3>
+<section id="education-measures" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="education-measures"><span class="header-section-number">3.2</span> Education Measures</h3>
 <p>The paper uses two measurement families built from a single parental-education harmonization rule. LiTS parental-schooling responses vary somewhat across waves in wording and granularity, so all observed mother and father responses are first mapped onto a common six-category ladder: no formal education, primary, lower secondary, upper secondary, post-secondary non-tertiary, and tertiary. When both parents are observed, the analysis uses the higher reported category as the parental education measure; when only one parent’s schooling is available, the observed value is retained. This rule keeps the comparison consistent across waves while limiting attrition from asymmetric parental reporting.</p>
 <p>That harmonized ladder then supports two complementary measures. First, the paper constructs an ordered education score used for category-based mobility rates and pooled attainment regressions. Second, it converts both respondent and parental schooling into within-wave weighted percentile ranks for the rank-rank persistence models. The category-based outcomes preserve the intuitive language of upward mobility, downward mobility, and same-category persistence. The rank-based outcomes, by contrast, are better suited to cross-wave comparison because they are less sensitive to modest questionnaire differences and to aggregate educational expansion. Reporting both is therefore deliberate rather than redundant: one family preserves substantive interpretability, while the other provides the paper’s preferred cross-wave benchmark.</p>
 </section>
-<section id="mobility-outcomes" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="mobility-outcomes"><span class="header-section-number">4.3</span> 3.3 Mobility outcomes</h3>
+<section id="mobility-outcomes" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="mobility-outcomes"><span class="header-section-number">3.3</span> Mobility Outcomes</h3>
 <p>The main outcomes are:</p>
 <ul>
 <li>Rank-rank slope: the relationship between own education rank and parental education rank within each wave.</li>
@@ -230,152 +260,109 @@ div.csl-indent {
 </ul>
 <p>These measures are reported nationally and, where the denominator permits, by subgroup.</p>
 </section>
-<section id="covariates" class="level3" data-number="4.4">
-<h3 data-number="4.4" class="anchored" data-anchor-id="covariates"><span class="header-section-number">4.4</span> 3.4 Covariates</h3>
+<section id="covariates" class="level3" data-number="3.4">
+<h3 data-number="3.4" class="anchored" data-anchor-id="covariates"><span class="header-section-number">3.4</span> Covariates</h3>
 <p>The core covariates in the pooled correlates models are urban residence, female, migration exposure, and multigenerational household structure, with region, cohort, and wave fixed effects. These were selected through the project’s audit and coverage rules and represent the active set of non-core controls in the current design.</p>
 </section>
-<section id="pandemic-mechanism-variables" class="level3" data-number="4.5">
-<h3 data-number="4.5" class="anchored" data-anchor-id="pandemic-mechanism-variables"><span class="header-section-number">4.5</span> 3.5 Pandemic mechanism variables</h3>
+<section id="pandemic-mechanism-variables" class="level3" data-number="3.5">
+<h3 data-number="3.5" class="anchored" data-anchor-id="pandemic-mechanism-variables"><span class="header-section-number">3.5</span> Pandemic Mechanism Variables</h3>
 <p>The 2022-23 LiTS child module is used to create descriptive indicators for remote-learning disruption, learning support, and home-learning constraints. These include switching to online learning, switching to hybrid learning, education stopping during COVID, school closure without online learning, shared-device use, support from mother, father, or relatives, and indicators for internet, device, cost, and time-balance challenges.</p>
 <p>The mechanism sample is much smaller than the full LiTS IV sample. The child-module flow is as follows: 1006 Uzbekistan respondents in LiTS IV, 650 with child-module eligibility information, 186 with a child enrolled before COVID, and 183 with non-missing parental schooling. This extension is therefore used to illustrate patterns rather than to support broad generalization.</p>
 </section>
 </section>
-<section id="empirical-strategy" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="empirical-strategy"><span class="header-section-number">5</span> 4. Empirical Strategy</h2>
-<p>The empirical strategy has three modules built around a common notation. Let (Y_{iw}) denote respondent (i)’s educational outcome in wave (w). Depending on the specification, (Y) is either the respondent’s within-wave education rank, the harmonized education score, an indicator for upward mobility or same-category persistence, or a child-module disruption outcome. (P_{iw}) denotes parental education in the corresponding metric: parental rank in the rank models, the harmonized parental education score in the attainment and persistence models, and parental-education-category indicators in the upward-mobility model. (X_i) collects migration exposure and multigenerational household structure, (U_i) indicates urban residence, (F_i) indicates a female respondent, and (_r), (_c), and (_w) denote region, cohort, and wave effects. In Module C, (L_i) indicates low parental education and (M_i) indicates a male child.</p>
-<section id="module-a-mobility-levels-and-trends" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="module-a-mobility-levels-and-trends"><span class="header-section-number">5.1</span> 4.1 Module A: mobility levels and trends</h3>
-<p>The first module estimates national mobility levels by wave. The core descriptive specification is:</p>
-<p>[ Y_{iw} = <em>w + <em>w P</em>{iw} + </em>{iw} ]</p>
-<p>where (Y_{iw}) and (P_{iw}) are respondent and parental education ranks within wave (w). The slope (_w) is the main persistence statistic: larger values imply a tighter parent-child rank linkage and therefore lower relative mobility. The same module also reports weighted rates of upward mobility, downward mobility, and same-category persistence using the harmonized education categories.</p>
+<section id="empirical-strategy" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="empirical-strategy"><span class="header-section-number">4</span> Empirical Strategy</h2>
+<p>The empirical strategy has three modules and uses one compact notation throughout. Let <span class="math inline">\(Y_{iw}\)</span> denote respondent <span class="math inline">\(i\)</span>’s educational outcome in wave <span class="math inline">\(w\)</span>, and let <span class="math inline">\(P_{iw}\)</span> denote parental education measured on the corresponding scale. In Module A, <span class="math inline">\(Y_{iw}\)</span> and <span class="math inline">\(P_{iw}\)</span> are within-wave education ranks. In Module B, <span class="math inline">\(Y_i\)</span> alternates across respondent rank, the harmonized education score, an indicator for upward mobility, and an indicator for same-category persistence; <span class="math inline">\(P_i\)</span> likewise denotes parental rank, the parental education score, or a set of parental education-category indicators. <span class="math inline">\(U_i\)</span> and <span class="math inline">\(F_i\)</span> indicate urban residence and female, <span class="math inline">\(X_i\)</span> collects migration exposure and multigenerational household structure, <span class="math inline">\(D_{ti}\)</span> is a wave indicator for <span class="math inline">\(t \in \{2016, 2022\}\)</span> with 2010 as the omitted category, and <span class="math inline">\(\mu_r\)</span>, <span class="math inline">\(\lambda_c\)</span>, and <span class="math inline">\(\tau_w\)</span> denote region, cohort, and wave effects. In Module C, <span class="math inline">\(L_i\)</span> indicates low parental education and <span class="math inline">\(M_i\)</span> a male child.</p>
+<section id="module-a-mobility-levels-and-trends" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="module-a-mobility-levels-and-trends"><span class="header-section-number">4.1</span> Module A: Mobility Levels and Trends</h3>
+<p>The first module estimates national mobility levels by wave. Its core descriptive specification is:</p>
+<p><span class="math display">\[
+Y_{iw} = \alpha_w + \beta_w P_{iw} + \varepsilon_{iw}
+\]</span></p>
+<p>where <span class="math inline">\(Y_{iw}\)</span> and <span class="math inline">\(P_{iw}\)</span> are respondent and parental education ranks within wave <span class="math inline">\(w\)</span>. The coefficient <span class="math inline">\(\beta_w\)</span> is the within-wave persistence slope: larger values imply that respondent rank tracks parental rank more closely and therefore signal lower relative mobility. The same module also reports weighted rates of upward mobility, downward mobility, and same-category persistence on the harmonized categorical scale.</p>
 </section>
-<section id="module-b-correlates-of-mobility" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="module-b-correlates-of-mobility"><span class="header-section-number">5.2</span> 4.2 Module B: correlates of mobility</h3>
-<p>The second module estimates pooled correlates models with region, cohort, and wave fixed effects. Its baseline pooled specification is:</p>
-<p>[ Y_i = + P_i + <em>{2016} (P_i D</em>{2016,i}) + <em>{2022} (P_i D</em>{2022,i}) + _1 U_i + _2 F_i + X_i’ + _r + _c + _w + _i ]</p>
-<p>In the persistence-trend model, (Y_i) is respondent rank and (P_i) is parental rank, so (<em>{2016}) and (</em>{2022}) measure whether the parent-child gradient differs from 2010 after conditioning on fixed effects and controls. The attainment specification replaces (Y_i) with the harmonized education score and (P_i) with the parental education score. The upward-mobility model keeps the same control structure but replaces (P_i) with parental-education-category indicators, while the persistence heterogeneity model augments the pooled equation with interactions between parental education and urban residence, female, and the 2022-23 wave. Across all variants, the coefficients are interpreted as conditional correlates rather than causal effects.</p>
+<section id="module-b-correlates-of-mobility" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="module-b-correlates-of-mobility"><span class="header-section-number">4.2</span> Module B: Correlates of Mobility</h3>
+<p>The second module estimates pooled correlates models with region, cohort, and wave fixed effects. Its pooled benchmark is:</p>
+<p><span class="math display">\[
+Y_i
+= \alpha + \beta P_i
++ \sum_{t \in \{2016, 2022\}} \theta_t \left(P_i \times D_{ti}\right)
++ \rho_1 U_i + \rho_2 F_i + X_i' \gamma + \mu_r + \lambda_c + \tau_w + \varepsilon_i
+\]</span></p>
+<p>In the persistence-trend specification, <span class="math inline">\(Y_i\)</span> is respondent rank and <span class="math inline">\(P_i\)</span> is parental rank, so <span class="math inline">\(\theta_t\)</span> captures whether the parent-child gradient in wave <span class="math inline">\(t\)</span> differs from 2010 after conditioning on controls and fixed effects. In the attainment model, <span class="math inline">\(Y_i\)</span> becomes the harmonized education score and <span class="math inline">\(\beta\)</span> is the conditional association between parental and respondent schooling. In the upward-mobility model, <span class="math inline">\(P_i\)</span> is replaced by parental education-category indicators, so the coefficients compare transition probabilities relative to the upper-secondary reference group. The persistence heterogeneity model keeps the same pooled structure but augments it with <span class="math inline">\(P_i \times U_i\)</span>, <span class="math inline">\(P_i \times F_i\)</span>, and <span class="math inline">\(P_i \times D_{2022,i}\)</span>. Throughout, the coefficients are interpreted as conditional associations rather than causal effects.</p>
 </section>
-<section id="module-c-pandemic-era-mechanisms" class="level3" data-number="5.3">
-<h3 data-number="5.3" class="anchored" data-anchor-id="module-c-pandemic-era-mechanisms"><span class="header-section-number">5.3</span> 4.3 Module C: pandemic-era mechanisms</h3>
+<section id="module-c-pandemic-era-mechanisms" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="module-c-pandemic-era-mechanisms"><span class="header-section-number">4.3</span> Module C: Pandemic-Era Mechanisms</h3>
 <p>The third module uses the 2022-23 child module to examine whether disruption and support patterns differ by parental education. Its descriptive heterogeneity specification is:</p>
-<p>[ Y_i = + L_i + _1 U_i + _2 M_i + (L_i U_i) + _r + _i ]</p>
-<p>where (Y_i) is a binary disruption or support outcome. In the main text, the emphasis falls on the education-stoppage specification, so () is read as the conditional gap in the probability that schooling stopped during COVID between lower- and higher-parent-education households. Parallel estimates for online switching, school closure without online learning, and a broad remote-learning-challenge indicator are reported in the appendix. These models are descriptive heterogeneity exercises rather than identification strategies.</p>
+<p><span class="math display">\[
+Y_i = \alpha + \beta L_i + \delta_1 U_i + \delta_2 M_i + \kappa \left(L_i \times U_i\right) + \mu_r + \varepsilon_i
+\]</span></p>
+<p>where <span class="math inline">\(Y_i\)</span> is a binary child-module outcome. In the main text, the focal case is education stoppage during COVID, so <span class="math inline">\(\beta\)</span> is the conditional difference in stoppage risk between lower- and higher-parent-education households, while <span class="math inline">\(\kappa\)</span> indicates whether that gap differs between urban and non-urban households. Parallel estimates for online switching, school closure without online learning, and the broad remote-learning-challenge indicator are reported in the appendix. These regressions are descriptive heterogeneity exercises rather than identification strategies.</p>
 </section>
 </section>
-<section id="mobility-levels-and-trends" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="mobility-levels-and-trends"><span class="header-section-number">6</span> 5. Mobility Levels and Trends</h2>
-<section id="rank-based-persistence" class="level3" data-number="6.1">
-<h3 data-number="6.1" class="anchored" data-anchor-id="rank-based-persistence"><span class="header-section-number">6.1</span> 5.1 Rank-based persistence</h3>
-<p>The rank-rank slope is the paper’s most stable descriptive mobility measure. It rises from <strong>0.133</strong> in 2010 to <strong>0.299</strong> in 2016 and <strong>0.350</strong> in 2022-23. Read descriptively, later waves show a stronger parent-child rank association than 2010.</p>
-<p>That pattern should not, however, be read as precise evidence of a monotonic time trend. The by-wave estimates are informative about levels in each survey, while the pooled models in Section 6 do not estimate the change precisely once controls and fixed effects are added. The substantive conclusion is that educational persistence is high in every wave, even though the change in that gradient is not precisely estimated in the pooled models.</p>
-</section>
-<section id="category-based-mobility-measures" class="level3" data-number="6.2">
-<h3 data-number="6.2" class="anchored" data-anchor-id="category-based-mobility-measures"><span class="header-section-number">6.2</span> 5.2 Category-based mobility measures</h3>
-<p>The category-based measures broadly move in the same direction as the rank-based profile, but they receive lower evidentiary weight in 2022-23 because of denominator size.</p>
-<p>In 2010, the weighted upward mobility rate is <strong>26.2 percent</strong>, the downward mobility rate is <strong>13.5 percent</strong>, and persistence is <strong>60.3 percent</strong>. In 2016, upward mobility is <strong>24.7 percent</strong>, downward mobility is <strong>5.8 percent</strong>, and persistence is <strong>69.5 percent</strong>. In 2022-23, category-based rates indicate <strong>3.0 percent</strong> upward mobility, <strong>1.6 percent</strong> downward mobility, and <strong>95.3 percent</strong> persistence.</p>
-<p>These 2022-23 category-based results should be treated very cautiously. The valid denominator for the 2022 rank-rank slope is 782, while the valid denominator for 2022 category-based mobility rates is only 124. The 2022 category rates are therefore used as a directional cross-check, not as primary headline evidence. Substantively, the category profile supports the rank-based pattern but is too thin in 2022-23 to anchor the headline claim.</p>
+<section id="descriptive-results" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="descriptive-results"><span class="header-section-number">5</span> Descriptive Results</h2>
+<section id="sample-composition-and-completeness" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="sample-composition-and-completeness"><span class="header-section-number">5.1</span> Sample Composition and Completeness</h3>
+<p>Before turning to the mobility estimates, Table <a href="#tbl-sample-composition" class="quarto-xref">Table&nbsp;1</a> establishes the analytical base by wave. The age-restricted Uzbekistan LiTS samples contain 1,157 respondents in 2010, 1,240 in 2016, and 797 in 2022-23. The 2022-23 wave is notably more female in the harmonized adult sample, while the cohort mix remains centered on the younger and middle adult cohorts in all three surveys.</p>
+<p>The more consequential descriptive issue is completeness rather than headline sample size. Missingness in respondents’ own education rises to 74.3 percent in 2022-23, and missingness in parental education reaches 65.9 percent, which helps explain why category-based mobility denominators deteriorate more sharply than the rank-based sample in the latest wave.</p>
 <div class="cell">
-<div id="tbl-mobility-metrics" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-sample-composition" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mobility-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: National mobility metrics by LiTS wave.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sample-composition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Analytical sample composition and completeness by LiTS wave.
 </figcaption>
-<div aria-describedby="tbl-mobility-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-sample-composition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 33%">
+<col style="width: 16%">
+<col style="width: 19%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
 <th style="text-align: left;">Wave</th>
-<th style="text-align: left;">Metric</th>
-<th style="text-align: left;">Estimate</th>
-<th style="text-align: right;">Valid N</th>
+<th style="text-align: left;">Valid N</th>
+<th style="text-align: left;">Female share</th>
+<th style="text-align: left;">Urban share</th>
+<th style="text-align: left;">Cohort shares (25-34 / 35-44 / 45-54 / 55-64)</th>
+<th style="text-align: left;">Own education missing</th>
+<th style="text-align: left;">Parental education missing</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">2010</td>
-<td style="text-align: left;">Rank-rank slope</td>
-<td style="text-align: left;">0.133</td>
-<td style="text-align: right;">936</td>
+<td style="text-align: left;">1,157</td>
+<td style="text-align: left;">61.6 percent</td>
+<td style="text-align: left;">33.4 percent</td>
+<td style="text-align: left;">33.8 / 30.3 / 22.9 / 13.1</td>
+<td style="text-align: left;">16.7 percent</td>
+<td style="text-align: left;">38.2 percent</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
 <td style="text-align: left;">2016</td>
-<td style="text-align: left;">Rank-rank slope</td>
-<td style="text-align: left;">0.299</td>
-<td style="text-align: right;">1186</td>
+<td style="text-align: left;">1,240</td>
+<td style="text-align: left;">54.7 percent</td>
+<td style="text-align: left;">41.7 percent</td>
+<td style="text-align: left;">25.6 / 26.6 / 24.5 / 23.3</td>
+<td style="text-align: left;">45.9 percent</td>
+<td style="text-align: left;">47.2 percent</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">3</td>
 <td style="text-align: left;">2022-23</td>
-<td style="text-align: left;">Rank-rank slope</td>
-<td style="text-align: left;">0.350</td>
-<td style="text-align: right;">782</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">2010</td>
-<td style="text-align: left;">Upward mobility rate</td>
-<td style="text-align: left;">26.2 percent</td>
-<td style="text-align: right;">612</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">7</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">Upward mobility rate</td>
-<td style="text-align: left;">24.7 percent</td>
-<td style="text-align: right;">439</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">10</td>
-<td style="text-align: left;">2022-23</td>
-<td style="text-align: left;">Upward mobility rate</td>
-<td style="text-align: left;">3.0 percent</td>
-<td style="text-align: right;">124</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">2010</td>
-<td style="text-align: left;">Downward mobility rate</td>
-<td style="text-align: left;">13.5 percent</td>
-<td style="text-align: right;">612</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">8</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">Downward mobility rate</td>
-<td style="text-align: left;">5.8 percent</td>
-<td style="text-align: right;">439</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">11</td>
-<td style="text-align: left;">2022-23</td>
-<td style="text-align: left;">Downward mobility rate</td>
-<td style="text-align: left;">1.6 percent</td>
-<td style="text-align: right;">124</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">6</td>
-<td style="text-align: left;">2010</td>
-<td style="text-align: left;">Persistence probability</td>
-<td style="text-align: left;">60.3 percent</td>
-<td style="text-align: right;">612</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">9</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">Persistence probability</td>
-<td style="text-align: left;">69.5 percent</td>
-<td style="text-align: right;">439</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">12</td>
-<td style="text-align: left;">2022-23</td>
-<td style="text-align: left;">Persistence probability</td>
-<td style="text-align: left;">95.3 percent</td>
-<td style="text-align: right;">124</td>
+<td style="text-align: left;">797</td>
+<td style="text-align: left;">91.2 percent</td>
+<td style="text-align: left;">36.4 percent</td>
+<td style="text-align: left;">32.6 / 29.1 / 23.7 / 14.6</td>
+<td style="text-align: left;">74.3 percent</td>
+<td style="text-align: left;">65.9 percent</td>
 </tr>
 </tbody>
 </table>
@@ -384,12 +371,72 @@ Table&nbsp;1: National mobility metrics by LiTS wave.
 </figure>
 </div>
 </div>
-<p>Table <a href="#tbl-mobility-metrics" class="quarto-xref">Table&nbsp;1</a> reports the point estimates and valid denominators that anchor the descriptive discussion. The current reporting outputs do not provide design-consistent standard errors for these weighted headline mobility measures, so the table is interpreted as descriptive accounting rather than as a basis for formal inference.</p>
+<p>Table <a href="#tbl-sample-composition" class="quarto-xref">Table&nbsp;1</a> combines the published Tier A sample and completeness outputs with simple analytical-sample composition shares from the harmonized LiTS file; the main takeaway is that the descriptive section rests on usable national samples in every wave, but 2022-23 has substantially weaker education completeness than the earlier surveys.</p>
 </section>
-<section id="interpretation" class="level3" data-number="6.3">
-<h3 data-number="6.3" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">6.3</span> 5.3 Interpretation</h3>
-<p>Table <a href="#tbl-mobility-metrics" class="quarto-xref">Table&nbsp;1</a> and Figures <a href="#fig-rank-rank" class="quarto-xref">Figure&nbsp;1</a> and <a href="#fig-directional-rates" class="quarto-xref">Figure&nbsp;2</a> tell a consistent high-level story: intergenerational persistence is substantial in Uzbekistan, and the descriptive measures do not suggest a weakening over time. The rank-based pattern is the more informative part of this result because it uses much larger valid samples and is less vulnerable to sparse category cells.</p>
-<p>The descriptive profile does not, however, identify why persistence differs across waves. Composition changes, regional inequality, tertiary expansion, and measurement noise all remain plausible explanations. The rest of the paper therefore turns to pooled correlates rather than causal explanations.</p>
+<section id="national-mobility-metrics-by-wave" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="national-mobility-metrics-by-wave"><span class="header-section-number">5.2</span> National Mobility Metrics by Wave</h3>
+<p>Table <a href="#tbl-mobility-metrics" class="quarto-xref">Table&nbsp;2</a> reports the paper’s locked national mobility measures in a by-wave layout. The rank-rank slope rises from <strong>0.133</strong> in 2010 to <strong>0.299</strong> in 2016 and <strong>0.350</strong> in 2022-23, while the category-based measures move in the same direction but with much thinner support in the latest wave.</p>
+<p>The 2022-23 category profile therefore remains strictly secondary. The valid denominator for the 2022 rank-rank slope is 782, whereas the valid denominator for the 2022 category-based rates is only 124. As a result, the rank-based series is the paper’s preferred descriptive benchmark across waves.</p>
+<div class="cell">
+<div id="tbl-mobility-metrics" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mobility-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: National mobility metrics by LiTS wave.
+</figcaption>
+<div aria-describedby="tbl-mobility-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 18%">
+<col style="width: 13%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Wave</th>
+<th style="text-align: left;">Rank-rank slope</th>
+<th style="text-align: left;">Upward mobility</th>
+<th style="text-align: left;">Downward mobility</th>
+<th style="text-align: left;">Persistence</th>
+<th style="text-align: left;">Valid N (rank / category)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">0.133</td>
+<td style="text-align: left;">26.2 percent</td>
+<td style="text-align: left;">13.5 percent</td>
+<td style="text-align: left;">60.3 percent</td>
+<td style="text-align: left;">936 / 612</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">0.299</td>
+<td style="text-align: left;">24.7 percent</td>
+<td style="text-align: left;">5.8 percent</td>
+<td style="text-align: left;">69.5 percent</td>
+<td style="text-align: left;">1,186 / 439</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2022-23</td>
+<td style="text-align: left;">0.350</td>
+<td style="text-align: left;">3.0 percent</td>
+<td style="text-align: left;">1.6 percent</td>
+<td style="text-align: left;">95.3 percent</td>
+<td style="text-align: left;">782 / 124</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Table <a href="#tbl-mobility-metrics" class="quarto-xref">Table&nbsp;2</a> and Figures <a href="#fig-rank-rank" class="quarto-xref">Figure&nbsp;1</a> and <a href="#fig-directional-rates" class="quarto-xref">Figure&nbsp;2</a> tell the same high-level story: educational persistence is substantial in every wave, and the rise in descriptive persistence is clearer in the rank-based series than in the much thinner 2022-23 category measures. The main takeaway is that descriptive persistence measures rise across waves, but pooled models do not estimate the change precisely.</p>
 <div id="fig-rank-rank" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Rank-rank slope by LiTS wave.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rank-rank-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -411,34 +458,187 @@ Figure&nbsp;2: Directional mobility rates by LiTS wave.
 </figure>
 </div>
 </section>
+<section id="transition-structure" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="transition-structure"><span class="header-section-number">5.3</span> Transition Structure</h3>
+<p>The by-wave rates are easier to interpret alongside the transition structure in Table <a href="#tbl-transition-structure" class="quarto-xref">Table&nbsp;3</a>. In both 2010 and 2016, respondents from lower-secondary and primary parental origins most often reach upper secondary, while respondents from upper-secondary parental origins remain concentrated in the same category. This is consistent with a system that permits some upward movement from lower origins but still exhibits strong persistence around the upper-secondary category that dominates the analytical sample.</p>
+<p>The 2022-23 transition matrix is too sparse to serve as a persuasive main-text exhibit. Only the upper-secondary parental-origin row clears the reporting threshold, and within that row the table shows 98.3 percent persistence out of 121 valid cases. The main takeaway is that the transition evidence reinforces high persistence in the upper-middle of the education ladder, while the latest-wave category detail is too sparse to anchor a time-trend claim.</p>
+<div class="cell">
+<div id="tbl-transition-structure" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-transition-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Transition structure for parental-origin categories with usable cell counts.
+</figcaption>
+<div aria-describedby="tbl-transition-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 16%">
+<col style="width: 13%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Wave</th>
+<th style="text-align: left;">Parental origin</th>
+<th style="text-align: left;">Own: Primary</th>
+<th style="text-align: left;">Own: Lower secondary</th>
+<th style="text-align: left;">Own: Upper secondary</th>
+<th style="text-align: left;">Parent-origin N</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">Primary</td>
+<td style="text-align: left;">3.1 percent</td>
+<td style="text-align: left;">22.7 percent</td>
+<td style="text-align: left;">74.3 percent</td>
+<td style="text-align: left;">42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">Lower secondary</td>
+<td style="text-align: left;">0.7 percent</td>
+<td style="text-align: left;">29.3 percent</td>
+<td style="text-align: left;">70.0 percent</td>
+<td style="text-align: left;">198</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">Upper secondary</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">20.6 percent</td>
+<td style="text-align: left;">79.4 percent</td>
+<td style="text-align: left;">372</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">Primary</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Suppressed</td>
+<td style="text-align: left;">Suppressed</td>
+<td style="text-align: left;">26</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">Lower secondary</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">25.7 percent</td>
+<td style="text-align: left;">74.3 percent</td>
+<td style="text-align: left;">122</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">Upper secondary</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">8.5 percent</td>
+<td style="text-align: left;">91.5 percent</td>
+<td style="text-align: left;">291</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
 </section>
-<section id="correlates-of-educational-mobility" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="correlates-of-educational-mobility"><span class="header-section-number">7</span> 6. Correlates of Educational Mobility</h2>
-<section id="pooled-persistence-trend-model" class="level3" data-number="7.1">
-<h3 data-number="7.1" class="anchored" data-anchor-id="pooled-persistence-trend-model"><span class="header-section-number">7.1</span> 6.1 Pooled persistence-trend model</h3>
+<section id="descriptive-heterogeneity" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="descriptive-heterogeneity"><span class="header-section-number">5.4</span> Descriptive Heterogeneity</h3>
+<section id="cohort-profiles" class="level4" data-number="5.4.1">
+<h4 data-number="5.4.1" class="anchored" data-anchor-id="cohort-profiles"><span class="header-section-number">5.4.1</span> Cohort Profiles</h4>
+<p>Figure <a href="#fig-cohort-rank-rank" class="quarto-xref">Figure&nbsp;3</a> shows that the rank-based persistence gradient differs across cohorts, even though all cohort profiles remain positive. The youngest adult cohort moves from a slope of <strong>0.181</strong> in 2010 to <strong>0.409</strong> in 2022-23, while the oldest cohort stays closer to one quarter throughout the period. These are descriptive cross-cohort differences rather than cohort effects identified from a panel.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-cohort-rank-rank" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cohort-rank-rank-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="00_main_files/figure-html/fig-cohort-rank-rank-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cohort-rank-rank-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Rank-rank persistence by cohort and LiTS wave.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The main takeaway is that cohort profiles are heterogeneous in levels, but they do not overturn the broader descriptive picture of substantial persistence across all waves.</p>
+</section>
+<section id="regional-variation" class="level4" data-number="5.4.2">
+<h4 data-number="5.4.2" class="anchored" data-anchor-id="regional-variation"><span class="header-section-number">5.4.2</span> Regional Variation</h4>
+<p>Regional dispersion is most legible in the rank-based measure, because the 2022 category-based regional outputs are sparse for most origin cells. Figure <a href="#fig-region-rank-rank" class="quarto-xref">Figure&nbsp;4</a> ranks the 2022-23 regional slopes and shows a wide descriptive spread around the national slope of <strong>0.350</strong>. The highest observed persistence appears in Andijan region at <strong>0.592</strong>, while Surkhandarya region sits at <strong>0.124</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-region-rank-rank" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-region-rank-rank-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="00_main_files/figure-html/fig-region-rank-rank-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-region-rank-rank-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Regional dispersion in the 2022-23 rank-rank slope.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The main takeaway is that regional differences are descriptively large enough to matter for interpretation, even though the paper does not treat them as identified regional effects.</p>
+</section>
+<section id="subgroup-split" class="level4" data-number="5.4.3">
+<h4 data-number="5.4.3" class="anchored" data-anchor-id="subgroup-split"><span class="header-section-number">5.4.3</span> Subgroup Split</h4>
+<p>Figure <a href="#fig-upward-urban-rural" class="quarto-xref">Figure&nbsp;5</a> brings one existing subgroup visual into the main text. The urban-rural split is worth showing because it connects directly to the paper’s pooled correlates framework, but it should still be read as descriptive because the figure is based on the category-coded upward-mobility rate rather than the paper’s preferred rank-based trend benchmark.</p>
+<p>The companion gender split is not promoted to the main text because the 2022-23 male denominator for category-based upward mobility is only 11, which makes that panel less informative than the urban-rural comparison.</p>
+<div id="fig-upward-urban-rural" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Upward mobility by urban and rural residence.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-upward-urban-rural-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../outputs/figures/tier_a_upward_by_urban_rural.png" class="img-fluid figure-img" alt="Upward mobility by urban and rural residence.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-upward-urban-rural-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Upward mobility by urban and rural residence.
+</figcaption>
+</figure>
+</div>
+<p>The main takeaway is that subgroup descriptives are useful for orientation, but the rank-based national series remains the most reliable summary of cross-wave mobility levels.</p>
+</section>
+</section>
+</section>
+<section id="correlates-of-educational-mobility" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="correlates-of-educational-mobility"><span class="header-section-number">6</span> Correlates of Educational Mobility</h2>
+<section id="pooled-persistence-trend-model" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="pooled-persistence-trend-model"><span class="header-section-number">6.1</span> Pooled Persistence-Trend Model</h3>
 <p>The pooled rank-based persistence model does not provide precise evidence that persistence changed relative to 2010 once controls and fixed effects are added. The coefficient on parental rank is positive at <strong>0.080</strong>, but the interaction terms for 2016 and 2022 relative to 2010 are imprecisely estimated in this specification.</p>
 <p>This result matters for interpretation. The descriptive by-wave rank-rank slopes clearly rise across the three surveys, but once the model adds region, cohort, wave fixed effects, and the selected covariates, the change in persistence over time is estimated less precisely. That suggests that part of the raw trend may reflect shifts in composition or limited power rather than a simple structural break. Descriptive persistence measures rise across waves, but pooled models do not estimate the change precisely.</p>
 </section>
-<section id="attainment-score-model" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="attainment-score-model"><span class="header-section-number">7.2</span> 6.2 Attainment-score model</h3>
+<section id="attainment-score-model" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="attainment-score-model"><span class="header-section-number">6.2</span> Attainment-Score Model</h3>
 <p>The attainment-score regression shows a robust positive association between parental education and own educational attainment. The coefficient on parental education score is <strong>0.082</strong> and is precisely estimated. This is the clearest correlates result in the paper: better-educated parents are associated with higher educational attainment among adult children even after adding fixed effects and the active covariates.</p>
 <p>Among the covariates, the female coefficient is negative at <strong>-0.045</strong>, while the urban coefficient is positive but not estimated precisely. Migration exposure and multigenerational household structure are also imprecisely estimated in this specification. The central correlates result is that parental educational background remains the strongest and most stable predictor in the pooled attainment model.</p>
 </section>
-<section id="upward-mobility-models" class="level3" data-number="7.3">
-<h3 data-number="7.3" class="anchored" data-anchor-id="upward-mobility-models"><span class="header-section-number">7.3</span> 6.3 Upward mobility models</h3>
+<section id="upward-mobility-models" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="upward-mobility-models"><span class="header-section-number">6.3</span> Upward Mobility Models</h3>
 <p>The upward-mobility linear probability models are useful mainly for showing where upward transitions are mechanically more likely. Relative to the upper-secondary reference group, respondents from primary-educated households and lower-secondary households have much higher estimated probabilities of upward mobility, with coefficients of <strong>0.974</strong> and <strong>0.736</strong>, respectively.</p>
 <p>The non-parental covariates in the upward-mobility models are weaker. Urban residence is close to zero, the female coefficient is negative but only modestly estimated, migration exposure is not precise, and multigenerational household structure is positive but not strongly estimated. In substantive terms, the upward-mobility models mostly reflect where households begin in the parental education ladder rather than strong independent roles for the additional covariates.</p>
 </section>
-<section id="heterogeneity-in-persistence" class="level3" data-number="7.4">
-<h3 data-number="7.4" class="anchored" data-anchor-id="heterogeneity-in-persistence"><span class="header-section-number">7.4</span> 6.4 Heterogeneity in persistence</h3>
+<section id="heterogeneity-in-persistence" class="level3" data-number="6.4">
+<h3 data-number="6.4" class="anchored" data-anchor-id="heterogeneity-in-persistence"><span class="header-section-number">6.4</span> Heterogeneity in Persistence</h3>
 <p>The persistence heterogeneity model shows a strong positive association between parental education score and the probability of remaining in the same education category as one’s parents. The coefficient on parental education score is <strong>0.512</strong> and is precisely estimated.</p>
 <p>There is suggestive heterogeneity by subgroup. The interaction between parent education and urban residence is positive at <strong>0.076</strong>, while the interaction between parent education and female is negative at <strong>-0.081</strong>. By contrast, the interaction between parent education and the 2022 wave is not precisely estimated.</p>
-<p>A cautious reading is that parental education translates into same-category persistence across the entire sample, but the strength of that translation may vary by subgroup. In this dataset, the strongest subgroup signal points to weaker persistence among women and somewhat stronger persistence in urban settings. The broader result, however, remains the overall persistence gradient by parental education. Table <a href="#tbl-pooled-correlates" class="quarto-xref">Table&nbsp;2</a> collects the selected coefficients discussed in Section 6.</p>
+<p>A cautious reading is that parental education translates into same-category persistence across the entire sample, but the strength of that translation may vary by subgroup. In this dataset, the strongest subgroup signal points to weaker persistence among women and somewhat stronger persistence in urban settings. The broader result, however, remains the overall persistence gradient by parental education. Table <a href="#tbl-pooled-correlates" class="quarto-xref">Table&nbsp;4</a> collects the selected coefficients discussed in Section 6.</p>
 <div class="cell">
 <div id="tbl-pooled-correlates" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pooled-correlates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Selected pooled correlates estimates.
+Table&nbsp;4: Selected pooled correlates estimates.
 </figcaption>
 <div aria-describedby="tbl-pooled-correlates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -551,17 +751,17 @@ Table&nbsp;2: Selected pooled correlates estimates.
 </div>
 </section>
 </section>
-<section id="bounded-lits-iv-child-module-extension" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="bounded-lits-iv-child-module-extension"><span class="header-section-number">8</span> 7. Bounded LiTS IV Child Module Extension</h2>
-<section id="sample-and-disruption-profile" class="level3" data-number="8.1">
-<h3 data-number="8.1" class="anchored" data-anchor-id="sample-and-disruption-profile"><span class="header-section-number">8.1</span> 7.1 Sample and disruption profile</h3>
-<p>The child-module extension is deliberately kept secondary to Modules A and B. It is based on 183 respondents with a child enrolled before COVID and non-missing parental schooling. Table <a href="#tbl-modulec-sample" class="quarto-xref">Table&nbsp;3</a> reports the sample flow.</p>
+<section id="bounded-lits-iv-child-module-extension" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="bounded-lits-iv-child-module-extension"><span class="header-section-number">7</span> Bounded LiTS IV Child Module Extension</h2>
+<section id="sample-and-disruption-profile" class="level3" data-number="7.1">
+<h3 data-number="7.1" class="anchored" data-anchor-id="sample-and-disruption-profile"><span class="header-section-number">7.1</span> Sample and Disruption Profile</h3>
+<p>The child-module extension is deliberately kept secondary to Modules A and B. It is based on 183 respondents with a child enrolled before COVID and non-missing parental schooling. Table <a href="#tbl-modulec-sample" class="quarto-xref">Table&nbsp;5</a> reports the sample flow.</p>
 <p>Within this restricted sample, disruption and household substitution were substantial: <strong>78.3 percent</strong> report education stoppage during COVID, <strong>75.8 percent</strong> report at least one remote-learning challenge, and mothers are reported as the learning-support channel in <strong>87.0 percent</strong> of cases. Additional descriptive splits and the lower-value mechanism details are reported in the technical appendix so that the main text remains focused on the strongest facts.</p>
 <div class="cell">
 <div id="tbl-modulec-sample" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-modulec-sample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3: LiTS IV child-module sample construction for Uzbekistan.
+Table&nbsp;5: LiTS IV child-module sample construction for Uzbekistan.
 </figcaption>
 <div aria-describedby="tbl-modulec-sample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -613,14 +813,14 @@ Table&nbsp;3: LiTS IV child-module sample construction for Uzbekistan.
 </div>
 </div>
 </section>
-<section id="main-regression-takeaway" class="level3" data-number="8.2">
-<h3 data-number="8.2" class="anchored" data-anchor-id="main-regression-takeaway"><span class="header-section-number">8.2</span> 7.2 Main regression takeaway</h3>
+<section id="main-regression-takeaway" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="main-regression-takeaway"><span class="header-section-number">7.2</span> Main Regression Takeaway</h3>
 <p>One regression result deserves emphasis. Low parental education is positively associated with the probability that a child’s education stopped during COVID, with a coefficient of <strong>1.040</strong> in the stoppage model. This aligns with the descriptive split: the stoppage rate is <strong>81.5 percent</strong> among children from lower-parent-education households versus <strong>74.5 percent</strong> among those from higher-parent-education households.</p>
 <p>Beyond this stoppage result, the remaining mechanism regressions are secondary and less precise, so they are reported in the technical appendix rather than emphasized in the main text. Module C therefore contributes bounded descriptive evidence on household vulnerability, not causal evidence on pandemic mechanisms.</p>
 </section>
 </section>
-<section id="discussion-and-policy-implications" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="discussion-and-policy-implications"><span class="header-section-number">9</span> 8. Discussion and Policy Implications</h2>
+<section id="discussion-and-policy-implications" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="discussion-and-policy-implications"><span class="header-section-number">8</span> Discussion and Policy Implications</h2>
 <p>Three broad conclusions emerge from the analysis.</p>
 <p>First, Uzbekistan exhibits substantial intergenerational educational persistence. Descriptive persistence measures rise across waves, but the pooled models do not estimate the change precisely, so the evidence is stronger on levels than on time trends.</p>
 <p>Second, parental education is the most consistent predictor in the pooled correlates models. The data provide less clear evidence that migration exposure or multigenerational household structure independently explain mobility once the core controls and fixed effects are added, although these factors may still matter through channels the present specifications do not capture well.</p>
@@ -628,8 +828,8 @@ Table&nbsp;3: LiTS IV child-module sample construction for Uzbekistan.
 <p>These findings imply several policy priorities. The first is to reduce the degree to which educational attainment depends on parental background through earlier remedial support, stronger transitions across schooling stages, and wider access to quality secondary and post-secondary pathways. The second is to address spatial and household bottlenecks directly. Even when the pooled urban coefficient is imprecise, the broader pattern points to local infrastructure, service access, and household support conditions as meaningful constraints on mobility.</p>
 <p>The third priority is to strengthen household support capacity in periods of disruption. The child module shows that digital inclusion is not only a question of nominal internet access, but also of connection quality, device availability, and adults’ ability to help children learn. A related implication is that education policy should recognize mothers’ support burden as a real part of learning continuity rather than assume that home-based adjustment is costless inside the household.</p>
 </section>
-<section id="limitations" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="limitations"><span class="header-section-number">10</span> 9. Limitations</h2>
+<section id="limitations" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="limitations"><span class="header-section-number">9</span> Limitations</h2>
 <p>This paper has four main limitations.</p>
 <p>First, the three LiTS waves are repeated cross-sections rather than a panel, so changes over time should be interpreted as changes in population-level patterns rather than changes within fixed families.</p>
 <p>Second, the comparability of some parental education information across waves is imperfect, which is why the rank-based measures are more reliable than some category-based comparisons.</p>
@@ -637,8 +837,8 @@ Table&nbsp;3: LiTS IV child-module sample construction for Uzbekistan.
 <p>Fourth, the pandemic mechanism module is based on a limited child subsample and is not a causal design. It is useful for describing disruption and support patterns, but it should not be treated as evidence of the causal effect of parental education.</p>
 <p>These limitations do not undermine the central contribution of the paper, but they do shape the appropriate scope of the conclusions.</p>
 </section>
-<section id="conclusion" class="level2" data-number="11">
-<h2 data-number="11" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">11</span> 10. Conclusion</h2>
+<section id="conclusion" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">10</span> Conclusion</h2>
 <p>This paper provides structured multi-wave evidence on intergenerational educational mobility in Uzbekistan using LiTS 2010, 2016, and 2022-23. The results indicate substantial educational persistence across generations. Descriptive persistence measures rise across waves, but the pooled models do not estimate that change precisely enough to support a firm trend claim. Parental education remains the clearest predictor of children’s educational attainment in the pooled correlates models.</p>
 <p>The extension based on the LiTS IV child module shows that pandemic-era learning disruption was widespread and that household support, especially maternal support, was central to learning continuity. Lower parental education appears to be associated with a higher risk that education stopped during COVID, but these patterns should be treated as suggestive due to sample limits.</p>
 <p>The broader message is that improving educational mobility in Uzbekistan will require more than expanding formal access. It will require reducing the degree to which family background governs educational trajectories, especially through the unequal household conditions under which children study, recover from shocks, and convert schooling opportunities into completed attainment.</p>
