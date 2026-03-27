@@ -15,24 +15,24 @@ execute:
 
 ## Why This Matters
 
-Educational mobility determines whether children from low-education households can move into higher-productivity careers. Strong mobility supports innovation and inclusive growth.
+Educational mobility determines whether children from low-education households can move into higher-productivity careers. Stronger mobility supports inclusive growth because it widens access to educational opportunity rather than concentrating attainment within already-advantaged families.
 
 ## What We Measure
 
-- Mobility trends by cohort and region
-- Household and local drivers of mobility
-- Reform-period changes after 2017
+- Mobility levels and trends across LiTS 2010, 2016, and 2022-23
+- Household and regional correlates of mobility
+- Suggestive pandemic-era child-learning disruption and support patterns from the LiTS IV child module
 
 ## Key Results
 
-Insert final estimated effects after pipeline completion.
+The current paper documents substantial intergenerational educational persistence in Uzbekistan across the three LiTS waves. Parental education remains the clearest predictor of children's attainment in the pooled correlates models, while the LiTS IV child module suggests that remote-learning disruption and household support burdens were widespread during the pandemic period.
 
 ## Recommended Policy Actions
 
-1. Target low-mobility regions with resource and teacher support.
-2. Strengthen pathways from upper secondary to tertiary for first-generation students.
-3. Expand remedial and digital support for students in low-parent-education households.
+1. Target low-mobility settings with practical support that eases transitions into upper-secondary and tertiary education.
+2. Reduce household bottlenecks that limit educational progress, including device access, internet quality, and support constraints inside the home.
+3. Strengthen remedial and learning-support programs for students from lower-parent-education households, especially when schooling disruption shifts learning back into the household.
 
 ## Evidence and Caveats
 
-This brief summarizes causal and descriptive findings from the full technical appendix.
+This brief summarizes descriptive and associational findings from the main paper. Module C uses a limited child-module subsample and is interpreted as suggestive rather than causal.

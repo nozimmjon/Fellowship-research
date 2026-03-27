@@ -17,30 +17,28 @@ execute:
 ## Motivation
 
 - Mobility is central to inclusive growth.
-- Uzbekistan has a young population and strong policy interest in education reform.
+- Uzbekistan has a young population and strong policy interest in educational opportunity.
 
 ## Research Design
 
-- Module A: Mobility measurement
-- Module B: Determinants
-- Module C: Pandemic mechanisms (LiTS IV, suggestive/non-causal)
-- Reform/COVID DiD: conditional optional module (admin-data dependent)
+- Module A: Mobility measurement and trends
+- Module B: Correlates of mobility
+- Module C: Pandemic mechanisms from the LiTS IV child module (suggestive and non-causal)
 
 ## Data
 
 - LiTS: 2010, 2016, 2022-23
 - HBS for supplementary context
-- Admin region-year panel for conditional extensions only
+- Publication literature section integrated from the current review outputs
 
-## Status
+## Current Stage
 
-- Pipeline scaffold complete
-- Data harmonization template ready
-- Estimation modules scripted
+- Main draft merged into the Quarto paper
+- Literature review and limits note integrated into the main paper
+- Publication-facing scope aligned to the descriptive/associational design
 
-## Next Milestones
+## Next Step
 
-1. Finalize raw data ingestion map
-2. Run baseline estimates
-3. Complete diagnostics and robustness
-4. Draft final publication package
+1. Final rendering of the paper package
+2. Final robustness pass within the locked descriptive design
+3. Publication cleanup across report outputs
