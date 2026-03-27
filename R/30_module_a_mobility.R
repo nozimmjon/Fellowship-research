@@ -5,6 +5,36 @@ safe_rank <- function(x) {
   rank(x, ties.method = "average", na.last = "keep") / sum(!is.na(x))
 }
 
+weighted_rank <- function(x, w) {
+  out <- rep(NA_real_, length(x))
+  keep <- !is.na(x) & !is.na(w) & w > 0
+  if (!any(keep)) {
+    return(out)
+  }
+
+  tmp <- tibble::tibble(idx = which(keep), x = x[keep], w = as.numeric(w[keep])) %>%
+    dplyr::group_by(x) %>%
+    dplyr::summarise(w_group = sum(w), idx = list(idx), .groups = "drop") %>%
+    dplyr::arrange(x) %>%
+    dplyr::mutate(
+      w_cum_prev = dplyr::lag(cumsum(w_group), default = 0),
+      rank_value = (w_cum_prev + 0.5 * w_group) / sum(w_group)
+    )
+
+  for (i in seq_len(nrow(tmp))) {
+    out[unlist(tmp$idx[[i]])] <- tmp$rank_value[[i]]
+  }
+  out
+}
+
+weighted_share <- function(cond, w) {
+  keep <- !is.na(cond) & !is.na(w) & w > 0
+  if (!any(keep)) {
+    return(NA_real_)
+  }
+  stats::weighted.mean(as.numeric(cond[keep]), w[keep])
+}
+
 normalize_ed_level <- function(x) {
   x <- tolower(as.character(x))
   x <- dplyr::case_when(
@@ -53,6 +83,7 @@ prepare_mobility_data <- function(df) {
   if (!("parent_ed_level" %in% names(out))) out$parent_ed_level <- NA_character_
   if (!("own_years_schooling" %in% names(out))) out$own_years_schooling <- NA_real_
   if (!("parent_years_schooling" %in% names(out))) out$parent_years_schooling <- NA_real_
+  if (!("sample_weight" %in% names(out))) out$sample_weight <- 1
 
   out <- out %>%
     dplyr::mutate(
@@ -66,7 +97,9 @@ prepare_mobility_data <- function(df) {
       urban_group = coerce_urban_group(urban),
       gender_group = coerce_gender_group(gender),
       own_years_schooling = suppressWarnings(as.numeric(own_years_schooling)),
-      parent_years_schooling = suppressWarnings(as.numeric(parent_years_schooling))
+      parent_years_schooling = suppressWarnings(as.numeric(parent_years_schooling)),
+      sample_weight = suppressWarnings(as.numeric(sample_weight)),
+      sample_weight = dplyr::if_else(is.na(sample_weight) | sample_weight <= 0, NA_real_, sample_weight)
     )
 
   out
@@ -109,14 +142,14 @@ label_subgroup <- function(df, group_var = NULL) {
 }
 
 compute_rank_rank_slope <- function(df, group_var = NULL, min_n = 30L) {
-  needed <- c("own_years_schooling", "parent_years_schooling", "wave_year")
+  needed <- c("own_years_schooling", "parent_years_schooling", "wave_year", "sample_weight")
   if (!all(needed %in% names(df)) || nrow(df) == 0) {
     return(tibble::tibble())
   }
 
   group_cols <- c("wave_year", if (!is.null(group_var)) group_var)
   tmp <- df %>%
-    dplyr::filter(!is.na(own_years_schooling), !is.na(parent_years_schooling))
+    dplyr::filter(!is.na(own_years_schooling), !is.na(parent_years_schooling), !is.na(sample_weight), sample_weight > 0)
   if (!is.null(group_var)) {
     tmp <- tmp %>%
       dplyr::filter(!is.na(.data[[group_var]]), as.character(.data[[group_var]]) != "")
@@ -131,8 +164,8 @@ compute_rank_rank_slope <- function(df, group_var = NULL, min_n = 30L) {
     dplyr::group_modify(~{
       dat <- .x %>%
         dplyr::mutate(
-          child_rank = safe_rank(own_years_schooling),
-          parent_rank = safe_rank(parent_years_schooling)
+          child_rank = weighted_rank(own_years_schooling, sample_weight),
+          parent_rank = weighted_rank(parent_years_schooling, sample_weight)
         ) %>%
         dplyr::filter(!is.na(child_rank), !is.na(parent_rank))
 
@@ -141,7 +174,7 @@ compute_rank_rank_slope <- function(df, group_var = NULL, min_n = 30L) {
         return(tibble::tibble(metric = "rank_rank_slope", estimate = NA_real_, n = n, status = "small_n"))
       }
 
-      fit <- stats::lm(child_rank ~ parent_rank, data = dat)
+      fit <- stats::lm(child_rank ~ parent_rank, data = dat, weights = sample_weight)
       tibble::tibble(
         metric = "rank_rank_slope",
         estimate = unname(stats::coef(fit)[["parent_rank"]]),
@@ -155,14 +188,14 @@ compute_rank_rank_slope <- function(df, group_var = NULL, min_n = 30L) {
 }
 
 compute_directional_rates <- function(df, group_var = NULL, min_n = 30L) {
-  needed <- c("own_ed_rank", "parent_ed_rank", "wave_year")
+  needed <- c("own_ed_rank", "parent_ed_rank", "wave_year", "sample_weight")
   if (!all(needed %in% names(df)) || nrow(df) == 0) {
     return(tibble::tibble())
   }
 
   group_cols <- c("wave_year", if (!is.null(group_var)) group_var)
   tmp <- df %>%
-    dplyr::filter(!is.na(own_ed_rank), !is.na(parent_ed_rank))
+    dplyr::filter(!is.na(own_ed_rank), !is.na(parent_ed_rank), !is.na(sample_weight), sample_weight > 0)
   if (!is.null(group_var)) {
     tmp <- tmp %>%
       dplyr::filter(!is.na(.data[[group_var]]), as.character(.data[[group_var]]) != "")
@@ -175,9 +208,9 @@ compute_directional_rates <- function(df, group_var = NULL, min_n = 30L) {
   out <- tmp %>%
     dplyr::group_by(dplyr::across(dplyr::all_of(group_cols))) %>%
     dplyr::summarise(
-      upward_mobility_rate = mean(own_ed_rank > parent_ed_rank),
-      downward_mobility_rate = mean(own_ed_rank < parent_ed_rank),
-      persistence_probability = mean(own_ed_rank == parent_ed_rank),
+      upward_mobility_rate = weighted_share(own_ed_rank > parent_ed_rank, sample_weight),
+      downward_mobility_rate = weighted_share(own_ed_rank < parent_ed_rank, sample_weight),
+      persistence_probability = weighted_share(own_ed_rank == parent_ed_rank, sample_weight),
       n = dplyr::n(),
       .groups = "drop"
     ) %>%
@@ -195,35 +228,37 @@ compute_directional_rates <- function(df, group_var = NULL, min_n = 30L) {
 }
 
 compute_transition_matrix <- function(df, min_n = 30L) {
-  needed <- c("wave_year", "own_ed_level", "parent_ed_level")
+  needed <- c("wave_year", "own_ed_level", "parent_ed_level", "sample_weight")
   if (!all(needed %in% names(df)) || nrow(df) == 0) {
     return(tibble::tibble())
   }
 
   df %>%
-    dplyr::filter(!is.na(parent_ed_level), !is.na(own_ed_level)) %>%
-    dplyr::count(wave_year, parent_ed_level, own_ed_level, name = "n") %>%
+    dplyr::filter(!is.na(parent_ed_level), !is.na(own_ed_level), !is.na(sample_weight), sample_weight > 0) %>%
+    dplyr::group_by(wave_year, parent_ed_level, own_ed_level) %>%
+    dplyr::summarise(n = dplyr::n(), w_n = sum(sample_weight), .groups = "drop") %>%
     dplyr::group_by(wave_year, parent_ed_level) %>%
     dplyr::mutate(
       n_parent_total = sum(n),
-      share = dplyr::if_else(n_parent_total >= min_n, n / n_parent_total, NA_real_),
+      w_parent_total = sum(w_n),
+      share = dplyr::if_else(n_parent_total >= min_n & w_parent_total > 0, w_n / w_parent_total, NA_real_),
       status = dplyr::if_else(n_parent_total >= min_n, "ok", "small_n")
     ) %>%
     dplyr::ungroup()
 }
 
 compute_persistence_by_parent <- function(df, min_n = 30L) {
-  needed <- c("wave_year", "own_ed_rank", "parent_ed_rank", "parent_ed_level")
+  needed <- c("wave_year", "own_ed_rank", "parent_ed_rank", "parent_ed_level", "sample_weight")
   if (!all(needed %in% names(df)) || nrow(df) == 0) {
     return(tibble::tibble())
   }
 
   df %>%
-    dplyr::filter(!is.na(parent_ed_rank), !is.na(own_ed_rank), !is.na(parent_ed_level)) %>%
+    dplyr::filter(!is.na(parent_ed_rank), !is.na(own_ed_rank), !is.na(parent_ed_level), !is.na(sample_weight), sample_weight > 0) %>%
     dplyr::group_by(wave_year, parent_ed_level) %>%
     dplyr::summarise(
       metric = "persistence_probability",
-      estimate = dplyr::if_else(dplyr::n() >= min_n, mean(own_ed_rank == parent_ed_rank), NA_real_),
+      estimate = dplyr::if_else(dplyr::n() >= min_n, weighted_share(own_ed_rank == parent_ed_rank, sample_weight), NA_real_),
       n = dplyr::n(),
       status = dplyr::if_else(dplyr::n() >= min_n, "ok", "small_n"),
       .groups = "drop"
@@ -257,7 +292,9 @@ empty_module_a_result <- function(measure_spec, variable_lock) {
       parent_ed_level = character(),
       own_ed_level = character(),
       n = integer(),
+      w_n = double(),
       n_parent_total = integer(),
+      w_parent_total = double(),
       share = double(),
       status = character()
     ),

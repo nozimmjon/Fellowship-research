@@ -1,7 +1,6 @@
 covariate,n_total,n_non_missing,share_non_missing,n_unique_non_missing
-parent_years_schooling,2906,2906,1,33
-urban,2906,2772,0.9538885065381968,2
-gender,2906,2904,0.9993117687543015,2
-hh_income_proxy,2906,1690,0.5815554026152787,279
-migration_exposure,2906,2895,0.996214728148658,2
-multigenerational_hh,2906,2906,1,2
+urban,1175,1100,0.9361702127659575,2
+female,1175,1175,1,2
+hh_income_proxy,1175,503,0.4280851063829787,148
+migration_exposure,1175,1174,0.9991489361702127,2
+multigenerational_hh,1175,1175,1,2

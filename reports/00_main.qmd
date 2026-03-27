@@ -17,21 +17,34 @@ execute:
 
 ## Executive Summary
 
-This report presents the main results of the project across three modules:
-mobility measurement, determinants, and pandemic mechanism evidence.
+This report follows a locked design with three modules:
+Module A (mobility levels and trends), Module B (correlates), and Module C (pandemic-era mechanisms).
+Modules A and B are descriptive/associational. Module C is suggestive heterogeneity evidence and is not interpreted causally.
 
 ## Research Questions
 
-1. How has intergenerational education mobility changed across cohorts and regions?
-2. Which household and regional factors are associated with mobility gaps?
-3. Did post-2017 reforms shift mobility-related outcomes?
+1. How persistent is educational attainment across generations in Uzbekistan, and how did persistence change from 2010 to 2022-23?
+2. Which household and regional factors are associated with higher or lower mobility?
+3. In 2022-23, which child-learning disruption and support patterns are associated with parental background (suggestive evidence)?
 
 ## Data
 
-Primary inputs:
+Primary analytical source:
 - LiTS 2010, 2016, 2022-23
+
+Supplementary sources:
 - Household Budget Survey
-- Administrative region-year education panel (2010-2024)
+- Administrative region-year education files (contextual/conditional use)
+
+## Design Lock
+
+Main sample and estimation rules:
+- Respondents aged 25-64.
+- Cohort bands fixed at 25-34, 35-44, 45-54, 55-64.
+- Weighted estimates in descriptive tables and regressions.
+- Subgroup outputs suppressed where valid `N < 30`.
+- No causal language in Modules A and B.
+- Module C is interpreted as suggestive association evidence only.
 
 ## Module A: Mobility Metrics
 
@@ -183,4 +196,4 @@ Policy recommendations should prioritize practical bottlenecks revealed by the m
 - shared-device constraints,
 - support capacity for at-home learning.
 
-Final policy language should note that estimates are based on a limited child-module subsample and are therefore suggestive.
+Final policy language should note that estimates are based on a limited child-module subsample and are suggestive rather than causal.

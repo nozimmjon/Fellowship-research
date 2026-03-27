@@ -1,132 +1,128 @@
-﻿# Research Strategy: Intergenerational Education Mobility in Uzbekistan
+# Research Strategy: Intergenerational Educational Mobility in Uzbekistan
 
-## 1) Study Goal
-Estimate how intergenerational education mobility has changed in Uzbekistan since 2010, identify the strongest household and regional drivers, and quantify the effect of post-2017 education policy changes on mobility-relevant outcomes.
+## 1) Frozen Paper Question
+"How persistent is educational attainment across generations in Uzbekistan, how has that persistence changed from 2010 to 2022-23, and which household and regional factors are associated with higher mobility?"
 
-## 2) Core Research Questions
-1. What are the levels and trends of intergenerational education mobility across cohorts and regions?
-2. Which household and regional factors explain lower or higher mobility?
-3. Did education-system changes after 2017 improve mobility-related outcomes, and for whom?
+## 2) Contribution Statement
+This paper provides reproducible multi-wave evidence on intergenerational educational mobility in Uzbekistan using LiTS 2010, 2016, and 2022-23. It documents national trends and subgroup differences and relates mobility to household and regional correlates, while treating pandemic-era child-learning evidence as suggestive rather than causal.
 
-## 3) Empirical Architecture (Three Modules)
+## 3) Final Paper Architecture
 
-### Module A: Mobility Measurement (Descriptive + Comparative)
-- Data: LiTS 2010, 2016, 2022-23 (+ any parent-child linkage available in HBS).
-- Unit: adults with own education and parental education information.
-- Main outcomes:
-  - Years of schooling (continuous)
-  - Highest degree (ordered categories)
-  - Upward mobility indicator (child reaches tertiary conditional on low parental education)
-- Metrics:
-  - Intergenerational elasticity/slope (beta)
-  - Rank-rank slope
-  - Transition matrices (parent education x child education)
-  - Absolute upward mobility rates by region/cohort
+### Module A (Core)
+- National and subgroup mobility estimates from LiTS 2010, 2016, 2022-23.
+- Locked measure set: rank-rank slope, transition matrix, upward mobility, downward mobility, persistence.
 
-### Module B: Determinants of Mobility
-- Micro regressions with region and cohort controls.
-- Candidate determinants:
-  - Parental education, occupation, income proxy
-  - Household migration exposure
-  - Family structure (including multigenerational household)
-  - Urban/rural status
-  - Local education infrastructure
-- Methods:
-  - OLS/ordered logit/logit (outcome-dependent)
-  - Region and cohort fixed effects
-  - Oaxaca-Shapley style decomposition to separate composition vs return effects
+### Module B (Core)
+- Correlates of mobility with fixed effects and locked core covariates.
+- Conditional additions only if coverage/information thresholds pass.
 
-### Module C: Policy Evaluation (Post-2017 Reform Period)
-- Build region-year panel (2010-2024) from administrative sources.
-- Outcomes (region-year):
-  - Enrollment rates, completion rates, exam performance, tertiary admission rates
-- Treatment intensity (region-year):
-  - Growth in school capacity, teacher recruitment, tertiary seats, public education spending per student
-- Identification:
-  - Event-study DiD with region and year fixed effects
-  - Parallel-trend diagnostics and placebo leads
-  - Clustered SEs at region level
-- Note:
-  - We avoid a "DiD from one cross-section" mistake by requiring true pre/post variation in region-year data.
+### Module C (Short Extension)
+- 2022-23 LiTS IV mechanism section using child-learning/device/support variables.
+- Explicitly labeled as suggestive heterogeneity evidence.
 
-## 4) Data Strategy
+### Conditional Module (Not Main by Default)
+- Reform/COVID DiD only if admin data with credible region-by-time variation is added and diagnostics pass.
 
-### 4.1 Data Inventory and Access Log
-For each source, create a one-page record with:
-- Owner and access status
-- Time coverage
-- Geographic coverage
-- Key variables needed vs available
-- Known limitations
+## 4) Final Sample Rules
+- Respondents aged 25-64.
+- Cohorts fixed to: 25-34, 35-44, 45-54, 55-64.
+- One respondent-level observation per LiTS record.
+- Weighted estimates in descriptive tables and regressions.
+- Subgroup outputs suppressed when valid `N < 30`.
 
-### 4.2 Minimum Variable Dictionary
-- IDs: survey wave, household ID, person ID, region, district, year
-- Education: own years/level, parental years/level
-- Household context: household size, migration, urban/rural, income/consumption proxy
-- Policy environment: region-year school capacity, teacher counts, budget, tertiary places
+## 5) Canonical Variable Plan
 
-### 4.3 Harmonization Rules
-- Standardize region codes across years
-- Build common education categories across datasets
-- Define age windows (primary analysis: 25-64)
-- Pre-register missing-data rules (complete-case + multiple imputation sensitivity)
+### Core variables (main paper)
+- `wave_year`
+- `own_years_schooling`
+- `parent_years_schooling`
+- `own_ed_level`
+- `parent_ed_level`
+- `region`
+- `urban`
+- `gender`
+- `cohort`
 
-## 5) Identification and Validation Plan
+### Conditional Module B variables
+- `hh_income_proxy`
+- `migration_exposure`
+- `multigenerational_hh`
 
-### 5.1 Identification Threats
-- Selection into educational attainment
-- Omitted regional shocks
-- Survey comparability across waves
+## 6) Harmonization Rules
+- Education categories are locked as:
+  - `no_formal`, `primary`, `lower_secondary`, `upper_secondary`, `post_secondary_non_tertiary`, `tertiary`
+- Parent proxy for category analysis:
+  - Main spec: `parent_ed_level = max(father_ed_level, mother_ed_level)`
+  - Robustness: averaged ordered parent score
+- Primary cross-wave comparisons are category-based.
+- Rank-rank slope is estimated with within-wave education ranks from monotone parent/child scores.
 
-### 5.2 Mitigations
-- Fixed effects (region, cohort, year)
-- Covariate controls with clear causal ordering
-- Robustness sets:
-  - Alternative mobility definitions
-  - Alternative age bands
-  - Weighted vs unweighted estimates
-  - Region-specific trends in policy models
+## 7) Locked Equation Set
 
-### 5.3 Falsification / Placebo
-- Pre-reform placebo timing in event-study
-- Outcomes unlikely to move from education reforms as negative controls
+### Eq. 1: Wave-Specific Rank-Rank Slope
+`R_own(i,w) = alpha_w + beta_w * R_parent(i,w) + e(i,w)`
 
-## 6) R + Quarto Production System
+### Eq. 2: Pooled Persistence with Wave Interactions
+`R_own(i) = alpha + beta*R_parent(i) + theta2016*(R_parent(i)*D2016) + theta2022*(R_parent(i)*D2022) + gamma'X(i) + region_FE + cohort_FE + wave_FE + e(i)`
 
-### 6.1 Project Structure
-- `data/raw/` (immutable inputs)
-- `data/processed/` (analysis-ready files)
-- `R/` (scripts/functions)
-- `outputs/tables/`, `outputs/figures/`
-- `reports/` (Quarto manuscripts)
+### Eq. 3: Attainment Score Correlates
+`S_own(i) = alpha + beta*S_parent(i) + gamma'X(i) + region_FE + cohort_FE + wave_FE + e(i)`
 
-### 6.2 Reproducibility Stack
-- `renv` for package locking
-- `targets` for pipeline orchestration
-- `fixest`, `tidyverse`, `arrow`, `modelsummary`, `gt`, `janitor`
-- Quarto for final manuscript and appendix rendering
+### Eq. 4: Upward Mobility Model
+`Up(i) = alpha + sum_k beta_k * 1(parent_level(i)=k) + gamma'X(i) + region_FE + cohort_FE + wave_FE + e(i)`
 
-### 6.3 Publication Outputs
-- Main paper (English)
-- Technical appendix (methods and robustness)
-- Policy brief (short, non-technical)
-- Slide deck (key results)
+### Eq. 5: Persistence Heterogeneity
+`Persist(i) = alpha + beta*S_parent(i) + d1*(S_parent(i)*Urban(i)) + d2*(S_parent(i)*Female(i)) + d3*(S_parent(i)*D2022) + region_FE + cohort_FE + wave_FE + e(i)`
 
-## 7) Execution Timeline (6 Weeks)
-1. Week 1: Final question freeze, data audit completion, and variable crosswalk lock.
-2. Week 2: Construct and validate mobility measures; produce national trend tables.
-3. Week 3: Add subgroup and regional analysis; finalize core figures.
-4. Week 4: Estimate correlates models; finalize pandemic module as mechanisms (or causal only if diagnostics pass).
-5. Week 5: Integrate HBS and admin context; draft intro, data, methods, and results text.
-6. Week 6: Tighten identification language, remove weak claims, finalize appendix, references, and publication outputs.
+### Eq. 6: LiTS IV Mechanism Model (2022-23 only)
+`M(i) = alpha + beta*S_parent(i) + gamma'X(i) + region_FE + e(i)`
 
-## 8) Immediate Next Actions (Start Here)
-1. Build the project skeleton (`data/`, `R/`, `reports/`, `outputs/`).
-2. Create `R/00_config.R` with paths, region mappings, and standard labels.
-3. Create `R/10_data_inventory.R` template and fill for LiTS/HBS/admin sources.
-4. Initialize Quarto report shell with sections linked to each module.
+### Eq. 7: HBS Supplemental Model (Appendix-only, conditional)
+Run only if parent-child linkage diagnostics are adequate.
 
-## 9) Success Criteria
-- All tables/figures reproduce from a clean run.
-- Main identification assumptions are explicitly tested and documented.
-- Policy conclusions remain directionally stable across robustness checks.
+## 8) Estimation and Language Rules
+- Weighted estimation throughout.
+- Robust standard errors clustered at PSU if retained; otherwise clustered at region.
+- Suppress subgroup outputs for `N < 30`.
+- No causal verbs in Modules A and B.
+- For Module C use: "associated with", "more likely", "suggestive evidence".
+
+## 9) Main and Appendix Roadmap
+
+### Main tables
+1. Data sources, sample, and harmonization.
+2. Sample composition by wave.
+3. National mobility metrics by wave.
+4. Transition matrices by wave.
+5. Pooled persistence regressions.
+6. Heterogeneity interactions.
+7. Upward mobility regressions.
+8. LiTS IV mechanism results (suggestive evidence).
+
+### Appendix tables
+- A1 variable crosswalk by wave.
+- A2 covariate coverage and selection.
+- A3 parent proxy robustness.
+- A4 HBS linkage diagnostics.
+- A5 HBS supplemental models (conditional).
+
+### Main figures
+1. Mobility metric trends by wave.
+2. Transition heatmaps by wave.
+3. Region-level mobility plot.
+4. Cohort mobility gradients.
+5. LiTS IV mechanism coefficient plot.
+
+## 10) Items to Exclude from Current Main Draft
+- Full causal reform claims.
+- Any DiD section based on school-closure timing unless validated admin variation is available.
+- Direct ma(h)alla effect claims unless measured.
+- Main-text HBS intergenerational claims unless linkage diagnostics support them.
+
+## 11) Execution Timeline (6 Weeks)
+1. Week 1: freeze question, close audit, lock crosswalk.
+2. Week 2: build mobility measures and national trend outputs.
+3. Week 3: subgroup and regional outputs plus core figures.
+4. Week 4: correlates models and mechanism section finalization.
+5. Week 5: integrate HBS/admin context and draft full text.
+6. Week 6: tighten identification language, finalize appendix, produce publication pack.

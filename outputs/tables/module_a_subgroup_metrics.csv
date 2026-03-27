@@ -1,233 +1,233 @@
 subgroup_type,subgroup_value,wave_year,metric,estimate,n,status
-urban_rural,rural,2010,rank_rank_slope,0.09633685020024431,542,ok
-urban_rural,urban,2010,rank_rank_slope,0.1552075256454815,262,ok
-urban_rural,rural,2016,rank_rank_slope,0.24597236088011648,684,ok
-urban_rural,urban,2016,rank_rank_slope,0.31645300436693385,502,ok
-urban_rural,rural,2022,rank_rank_slope,0.2712210302467116,497,ok
-urban_rural,urban,2022,rank_rank_slope,0.4719998938743844,285,ok
-urban_rural,rural,2010,upward_mobility_rate,0.36674816625916873,409,ok
-urban_rural,rural,2010,downward_mobility_rate,0.1295843520782396,409,ok
-urban_rural,rural,2010,persistence_probability,0.5036674816625917,409,ok
-urban_rural,urban,2010,upward_mobility_rate,0.4030612244897959,196,ok
-urban_rural,urban,2010,downward_mobility_rate,0.07142857142857142,196,ok
-urban_rural,urban,2010,persistence_probability,0.5255102040816326,196,ok
-urban_rural,rural,2016,upward_mobility_rate,0.23384615384615384,325,ok
-urban_rural,rural,2016,downward_mobility_rate,0.08,325,ok
-urban_rural,rural,2016,persistence_probability,0.6861538461538461,325,ok
-urban_rural,urban,2016,upward_mobility_rate,0.27461139896373055,193,ok
-urban_rural,urban,2016,downward_mobility_rate,0.06217616580310881,193,ok
-urban_rural,urban,2016,persistence_probability,0.6632124352331606,193,ok
-urban_rural,rural,2022,upward_mobility_rate,0.009433962264150943,106,ok
-urban_rural,rural,2022,downward_mobility_rate,0.009433962264150943,106,ok
-urban_rural,rural,2022,persistence_probability,0.9811320754716981,106,ok
-urban_rural,urban,2022,upward_mobility_rate,0.043478260869565216,46,ok
-urban_rural,urban,2022,downward_mobility_rate,0.021739130434782608,46,ok
-urban_rural,urban,2022,persistence_probability,0.9347826086956522,46,ok
-gender,female,2010,rank_rank_slope,0.08762212772750791,560,ok
-gender,male,2010,rank_rank_slope,0.12561815258752135,376,ok
-gender,female,2016,rank_rank_slope,0.29852808636106887,643,ok
-gender,male,2016,rank_rank_slope,0.25729715839455414,543,ok
-gender,female,2022,rank_rank_slope,0.3515977126691676,712,ok
-gender,male,2022,rank_rank_slope,0.4434785902316157,70,ok
-gender,female,2010,upward_mobility_rate,0.38497652582159625,426,ok
-gender,female,2010,downward_mobility_rate,0.107981220657277,426,ok
-gender,female,2010,persistence_probability,0.5070422535211268,426,ok
-gender,male,2010,upward_mobility_rate,0.4,265,ok
-gender,male,2010,downward_mobility_rate,0.09056603773584905,265,ok
-gender,male,2010,persistence_probability,0.5094339622641509,265,ok
-gender,female,2016,upward_mobility_rate,0.23344947735191637,287,ok
-gender,female,2016,downward_mobility_rate,0.07665505226480836,287,ok
-gender,female,2016,persistence_probability,0.6898954703832753,287,ok
-gender,male,2016,upward_mobility_rate,0.2683982683982684,231,ok
-gender,male,2016,downward_mobility_rate,0.06926406926406926,231,ok
-gender,male,2016,persistence_probability,0.6623376623376623,231,ok
-gender,female,2022,upward_mobility_rate,0.014184397163120567,141,ok
-gender,female,2022,downward_mobility_rate,0.014184397163120567,141,ok
-gender,female,2022,persistence_probability,0.9716312056737588,141,ok
+urban_rural,rural,2010,rank_rank_slope,0.14601169325917646,542,ok
+urban_rural,urban,2010,rank_rank_slope,0.17170435261312994,260,ok
+urban_rural,rural,2016,rank_rank_slope,0.2898125013929332,684,ok
+urban_rural,urban,2016,rank_rank_slope,0.30359923912290104,502,ok
+urban_rural,rural,2022,rank_rank_slope,0.26928147046707657,497,ok
+urban_rural,urban,2022,rank_rank_slope,0.46745127568401085,285,ok
+urban_rural,rural,2010,upward_mobility_rate,0.2466333863852695,367,ok
+urban_rural,rural,2010,downward_mobility_rate,0.16255211948789755,367,ok
+urban_rural,rural,2010,persistence_probability,0.590814494126833,367,ok
+urban_rural,urban,2010,upward_mobility_rate,0.25454121227946847,170,ok
+urban_rural,urban,2010,downward_mobility_rate,0.10264931622873383,170,ok
+urban_rural,urban,2010,persistence_probability,0.6428094714917976,170,ok
+urban_rural,rural,2016,upward_mobility_rate,0.22072532151747368,276,ok
+urban_rural,rural,2016,downward_mobility_rate,0.07015573854888918,276,ok
+urban_rural,rural,2016,persistence_probability,0.7091189399336372,276,ok
+urban_rural,urban,2016,upward_mobility_rate,0.2755873877472487,163,ok
+urban_rural,urban,2016,downward_mobility_rate,0.04551005594405167,163,ok
+urban_rural,urban,2016,persistence_probability,0.6789025563086996,163,ok
+urban_rural,rural,2022,upward_mobility_rate,0.01293002795442068,83,ok
+urban_rural,rural,2022,downward_mobility_rate,0.0023088497719110754,83,ok
+urban_rural,rural,2022,persistence_probability,0.9847611222736684,83,ok
+urban_rural,urban,2022,upward_mobility_rate,0.06135696584533729,41,ok
+urban_rural,urban,2022,downward_mobility_rate,0.04188065458046635,41,ok
+urban_rural,urban,2022,persistence_probability,0.8967623795741964,41,ok
+gender,female,2010,rank_rank_slope,0.1215007211704028,560,ok
+gender,male,2010,rank_rank_slope,0.14345398076187268,376,ok
+gender,female,2016,rank_rank_slope,0.3508283347838053,643,ok
+gender,male,2016,rank_rank_slope,0.23017287791428964,543,ok
+gender,female,2022,rank_rank_slope,0.34232441270149033,712,ok
+gender,male,2022,rank_rank_slope,0.47378417288311125,70,ok
+gender,female,2010,upward_mobility_rate,0.25626628668991536,379,ok
+gender,female,2010,downward_mobility_rate,0.13164750466603536,379,ok
+gender,female,2010,persistence_probability,0.6120862086440492,379,ok
+gender,male,2010,upward_mobility_rate,0.27197090257224965,233,ok
+gender,male,2010,downward_mobility_rate,0.1402242555557111,233,ok
+gender,male,2010,persistence_probability,0.5878048418720393,233,ok
+gender,female,2016,upward_mobility_rate,0.24340409245446284,241,ok
+gender,female,2016,downward_mobility_rate,0.06048896727141077,241,ok
+gender,female,2016,persistence_probability,0.6961069402741265,241,ok
+gender,male,2016,upward_mobility_rate,0.2523576523417738,198,ok
+gender,male,2016,downward_mobility_rate,0.05512466308273605,198,ok
+gender,male,2016,persistence_probability,0.6925176845754901,198,ok
+gender,female,2022,upward_mobility_rate,0.026767318481726282,113,ok
+gender,female,2022,downward_mobility_rate,0.01738890301065327,113,ok
+gender,female,2022,persistence_probability,0.9558437785076205,113,ok
 gender,male,2022,upward_mobility_rate,NA,11,small_n
 gender,male,2022,downward_mobility_rate,NA,11,small_n
 gender,male,2022,persistence_probability,NA,11,small_n
-region,Bukhara oblast,2010,rank_rank_slope,0.06620292178360439,110,ok
-region,Djizak oblast,2010,rank_rank_slope,0.21083619019227912,55,ok
-region,Karakalpakstan,2010,rank_rank_slope,0.32137168141592953,59,ok
-region,Khorezm oblast,2010,rank_rank_slope,0.2308246092929786,77,ok
-region,Namangan oblast,2010,rank_rank_slope,0.04139243138214571,151,ok
-region,Navoi oblast,2010,rank_rank_slope,0.04406370224568309,42,ok
-region,Samarkand oblast,2010,rank_rank_slope,0.06812361878660063,161,ok
-region,Syrdarya oblast,2010,rank_rank_slope,-0.236035867737717,46,ok
-region,Tashkent city,2010,rank_rank_slope,0.05061905747741658,134,ok
-region,Tashkent oblast,2010,rank_rank_slope,0.15004436458199635,103,ok
-region,Bukhara oblast,2016,rank_rank_slope,0.23750770150768352,111,ok
-region,Jizzak oblast,2016,rank_rank_slope,0.3297397600236791,82,ok
-region,Karakalpakistan AR,2016,rank_rank_slope,0.3552047461278582,115,ok
-region,Khorezm oblast,2016,rank_rank_slope,0.22743292845415194,93,ok
-region,Namangan oblast,2016,rank_rank_slope,0.36819452926081264,156,ok
-region,Navoi oblast,2016,rank_rank_slope,0.3452934183508048,39,ok
-region,Samarkand oblast,2016,rank_rank_slope,0.17472034029853697,216,ok
-region,Sirdarya oblast,2016,rank_rank_slope,0.17564730580825721,45,ok
-region,Tashkent,2016,rank_rank_slope,0.4169277229658665,163,ok
-region,Tashkent oblast,2016,rank_rank_slope,0.1345486969843619,166,ok
-region,Andijan region,2022,rank_rank_slope,0.5159261287782828,74,ok
-region,Bukhara region,2022,rank_rank_slope,0.1199549766843543,43,ok
-region,Djizak region,2022,rank_rank_slope,0.5121263395375071,33,ok
-region,Fergana region,2022,rank_rank_slope,0.2552413981716935,103,ok
-region,Karakalpakstan region,2022,rank_rank_slope,0.4476804123711339,32,ok
-region,Kashkadarya region,2022,rank_rank_slope,0.2777493843795005,78,ok
-region,Khorezm region,2022,rank_rank_slope,0.38298888206807097,46,ok
-region,Namangan region,2022,rank_rank_slope,0.39146541283750075,65,ok
-region,Navoi region,2022,rank_rank_slope,0.3326266458379827,38,ok
-region,Samarkand region,2022,rank_rank_slope,0.4020554365291913,80,ok
-region,Surkhandarya region,2022,rank_rank_slope,0.1292267589163906,64,ok
+region,Bukhara oblast,2010,rank_rank_slope,0.04535483337486229,110,ok
+region,Djizak oblast,2010,rank_rank_slope,0.13198208879059414,55,ok
+region,Karakalpakstan,2010,rank_rank_slope,0.32404162536795383,59,ok
+region,Khorezm oblast,2010,rank_rank_slope,0.2179503044137821,77,ok
+region,Namangan oblast,2010,rank_rank_slope,0.1488256060985257,150,ok
+region,Navoi oblast,2010,rank_rank_slope,0.14155193911590394,42,ok
+region,Samarkand oblast,2010,rank_rank_slope,0.14183760388287656,160,ok
+region,Syrdarya oblast,2010,rank_rank_slope,-0.1956174404321038,46,ok
+region,Tashkent city,2010,rank_rank_slope,0.04439266854480872,134,ok
+region,Tashkent oblast,2010,rank_rank_slope,0.1721861639333823,103,ok
+region,Bukhara oblast,2016,rank_rank_slope,0.23575132596645001,111,ok
+region,Jizzak oblast,2016,rank_rank_slope,0.33854191331640376,82,ok
+region,Karakalpakistan AR,2016,rank_rank_slope,0.3193898180639401,115,ok
+region,Khorezm oblast,2016,rank_rank_slope,0.33477661342214093,93,ok
+region,Namangan oblast,2016,rank_rank_slope,0.26172402049853233,156,ok
+region,Navoi oblast,2016,rank_rank_slope,0.42085819559533455,39,ok
+region,Samarkand oblast,2016,rank_rank_slope,0.21675991148809282,216,ok
+region,Sirdarya oblast,2016,rank_rank_slope,0.3640789780309332,45,ok
+region,Tashkent,2016,rank_rank_slope,0.47494416499781117,163,ok
+region,Tashkent oblast,2016,rank_rank_slope,0.18553053510526862,166,ok
+region,Andijan region,2022,rank_rank_slope,0.5915376847611709,74,ok
+region,Bukhara region,2022,rank_rank_slope,0.28193651060427394,43,ok
+region,Djizak region,2022,rank_rank_slope,0.4545855166565972,33,ok
+region,Fergana region,2022,rank_rank_slope,0.2750975712888274,103,ok
+region,Karakalpakstan region,2022,rank_rank_slope,0.5744062199368715,32,ok
+region,Kashkadarya region,2022,rank_rank_slope,0.21225380480043063,78,ok
+region,Khorezm region,2022,rank_rank_slope,0.35214219758958126,46,ok
+region,Namangan region,2022,rank_rank_slope,0.31063507909274524,65,ok
+region,Navoi region,2022,rank_rank_slope,0.4272304234150356,38,ok
+region,Samarkand region,2022,rank_rank_slope,0.2618557278077468,80,ok
+region,Surkhandarya region,2022,rank_rank_slope,0.12432301365867883,64,ok
 region,Syrdarya region,2022,rank_rank_slope,NA,6,small_n
-region,Tashkent city,2022,rank_rank_slope,0.31022660029934895,57,ok
-region,Tashkent region,2022,rank_rank_slope,0.5052123061276382,63,ok
-region,Bukhara oblast,2010,upward_mobility_rate,0.3409090909090909,88,ok
-region,Bukhara oblast,2010,downward_mobility_rate,0.18181818181818182,88,ok
-region,Bukhara oblast,2010,persistence_probability,0.4772727272727273,88,ok
-region,Djizak oblast,2010,upward_mobility_rate,0.37209302325581395,43,ok
-region,Djizak oblast,2010,downward_mobility_rate,0.23255813953488372,43,ok
-region,Djizak oblast,2010,persistence_probability,0.3953488372093023,43,ok
-region,Karakalpakstan,2010,upward_mobility_rate,0.5333333333333333,30,ok
-region,Karakalpakstan,2010,downward_mobility_rate,0.03333333333333333,30,ok
-region,Karakalpakstan,2010,persistence_probability,0.43333333333333335,30,ok
-region,Khorezm oblast,2010,upward_mobility_rate,0.38028169014084506,71,ok
-region,Khorezm oblast,2010,downward_mobility_rate,0.08450704225352113,71,ok
-region,Khorezm oblast,2010,persistence_probability,0.5352112676056338,71,ok
-region,Namangan oblast,2010,upward_mobility_rate,0.42105263157894735,133,ok
-region,Namangan oblast,2010,downward_mobility_rate,0.05263157894736842,133,ok
-region,Namangan oblast,2010,persistence_probability,0.5263157894736842,133,ok
-region,Navoi oblast,2010,upward_mobility_rate,NA,26,small_n
-region,Navoi oblast,2010,downward_mobility_rate,NA,26,small_n
-region,Navoi oblast,2010,persistence_probability,NA,26,small_n
-region,Samarkand oblast,2010,upward_mobility_rate,0.3103448275862069,116,ok
-region,Samarkand oblast,2010,downward_mobility_rate,0.1206896551724138,116,ok
-region,Samarkand oblast,2010,persistence_probability,0.5689655172413793,116,ok
-region,Syrdarya oblast,2010,upward_mobility_rate,0.43243243243243246,37,ok
-region,Syrdarya oblast,2010,downward_mobility_rate,0.13513513513513514,37,ok
-region,Syrdarya oblast,2010,persistence_probability,0.43243243243243246,37,ok
-region,Tashkent city,2010,upward_mobility_rate,0.4659090909090909,88,ok
-region,Tashkent city,2010,downward_mobility_rate,0.045454545454545456,88,ok
-region,Tashkent city,2010,persistence_probability,0.48863636363636365,88,ok
-region,Tashkent oblast,2010,upward_mobility_rate,0.3770491803278688,61,ok
-region,Tashkent oblast,2010,downward_mobility_rate,0.11475409836065574,61,ok
-region,Tashkent oblast,2010,persistence_probability,0.5081967213114754,61,ok
-region,Bukhara oblast,2016,upward_mobility_rate,0.16216216216216217,37,ok
-region,Bukhara oblast,2016,downward_mobility_rate,0.08108108108108109,37,ok
-region,Bukhara oblast,2016,persistence_probability,0.7567567567567568,37,ok
-region,Jizzak oblast,2016,upward_mobility_rate,0.16666666666666666,36,ok
-region,Jizzak oblast,2016,downward_mobility_rate,0.08333333333333333,36,ok
-region,Jizzak oblast,2016,persistence_probability,0.75,36,ok
-region,Karakalpakistan AR,2016,upward_mobility_rate,0.2807017543859649,57,ok
-region,Karakalpakistan AR,2016,downward_mobility_rate,0.03508771929824561,57,ok
-region,Karakalpakistan AR,2016,persistence_probability,0.6842105263157895,57,ok
-region,Khorezm oblast,2016,upward_mobility_rate,0.22916666666666666,48,ok
-region,Khorezm oblast,2016,downward_mobility_rate,0.0625,48,ok
-region,Khorezm oblast,2016,persistence_probability,0.7083333333333334,48,ok
-region,Namangan oblast,2016,upward_mobility_rate,0.17333333333333334,75,ok
-region,Namangan oblast,2016,downward_mobility_rate,0.09333333333333334,75,ok
-region,Namangan oblast,2016,persistence_probability,0.7333333333333333,75,ok
-region,Navoi oblast,2016,upward_mobility_rate,NA,13,small_n
-region,Navoi oblast,2016,downward_mobility_rate,NA,13,small_n
-region,Navoi oblast,2016,persistence_probability,NA,13,small_n
-region,Samarkand oblast,2016,upward_mobility_rate,0.19791666666666666,96,ok
-region,Samarkand oblast,2016,downward_mobility_rate,0.0625,96,ok
-region,Samarkand oblast,2016,persistence_probability,0.7395833333333334,96,ok
-region,Sirdarya oblast,2016,upward_mobility_rate,NA,24,small_n
-region,Sirdarya oblast,2016,downward_mobility_rate,NA,24,small_n
-region,Sirdarya oblast,2016,persistence_probability,NA,24,small_n
-region,Tashkent,2016,upward_mobility_rate,0.30612244897959184,49,ok
-region,Tashkent,2016,downward_mobility_rate,0.04081632653061224,49,ok
-region,Tashkent,2016,persistence_probability,0.6530612244897959,49,ok
-region,Tashkent oblast,2016,upward_mobility_rate,0.37349397590361444,83,ok
-region,Tashkent oblast,2016,downward_mobility_rate,0.10843373493975904,83,ok
-region,Tashkent oblast,2016,persistence_probability,0.5180722891566265,83,ok
-region,Andijan region,2022,upward_mobility_rate,0,35,ok
-region,Andijan region,2022,downward_mobility_rate,0,35,ok
-region,Andijan region,2022,persistence_probability,1,35,ok
-region,Bukhara region,2022,upward_mobility_rate,NA,11,small_n
-region,Bukhara region,2022,downward_mobility_rate,NA,11,small_n
-region,Bukhara region,2022,persistence_probability,NA,11,small_n
-region,Djizak region,2022,upward_mobility_rate,NA,8,small_n
-region,Djizak region,2022,downward_mobility_rate,NA,8,small_n
-region,Djizak region,2022,persistence_probability,NA,8,small_n
-region,Fergana region,2022,upward_mobility_rate,NA,21,small_n
-region,Fergana region,2022,downward_mobility_rate,NA,21,small_n
-region,Fergana region,2022,persistence_probability,NA,21,small_n
+region,Tashkent city,2022,rank_rank_slope,0.45530442467730425,57,ok
+region,Tashkent region,2022,rank_rank_slope,0.32347763400766855,63,ok
+region,Bukhara oblast,2010,upward_mobility_rate,0.21152226387305778,77,ok
+region,Bukhara oblast,2010,downward_mobility_rate,0.22589898021437002,77,ok
+region,Bukhara oblast,2010,persistence_probability,0.5625787559125722,77,ok
+region,Djizak oblast,2010,upward_mobility_rate,0.32553370681214394,36,ok
+region,Djizak oblast,2010,downward_mobility_rate,0.2204775302877592,36,ok
+region,Djizak oblast,2010,persistence_probability,0.45398876290009677,36,ok
+region,Karakalpakstan,2010,upward_mobility_rate,NA,25,small_n
+region,Karakalpakstan,2010,downward_mobility_rate,NA,25,small_n
+region,Karakalpakstan,2010,persistence_probability,NA,25,small_n
+region,Khorezm oblast,2010,upward_mobility_rate,0.19344715905384569,66,ok
+region,Khorezm oblast,2010,downward_mobility_rate,0.1465784840723504,66,ok
+region,Khorezm oblast,2010,persistence_probability,0.6599743568738039,66,ok
+region,Namangan oblast,2010,upward_mobility_rate,0.27302502480203683,118,ok
+region,Namangan oblast,2010,downward_mobility_rate,0.08745248895741214,118,ok
+region,Namangan oblast,2010,persistence_probability,0.639522486240551,118,ok
+region,Navoi oblast,2010,upward_mobility_rate,NA,24,small_n
+region,Navoi oblast,2010,downward_mobility_rate,NA,24,small_n
+region,Navoi oblast,2010,persistence_probability,NA,24,small_n
+region,Samarkand oblast,2010,upward_mobility_rate,0.22902443356557092,105,ok
+region,Samarkand oblast,2010,downward_mobility_rate,0.107187280112816,105,ok
+region,Samarkand oblast,2010,persistence_probability,0.6637882863216131,105,ok
+region,Syrdarya oblast,2010,upward_mobility_rate,NA,29,small_n
+region,Syrdarya oblast,2010,downward_mobility_rate,NA,29,small_n
+region,Syrdarya oblast,2010,persistence_probability,NA,29,small_n
+region,Tashkent city,2010,upward_mobility_rate,0.36395967775118815,75,ok
+region,Tashkent city,2010,downward_mobility_rate,0.06503457054051974,75,ok
+region,Tashkent city,2010,persistence_probability,0.5710057517082922,75,ok
+region,Tashkent oblast,2010,upward_mobility_rate,0.160505745986833,57,ok
+region,Tashkent oblast,2010,downward_mobility_rate,0.21057359499869402,57,ok
+region,Tashkent oblast,2010,persistence_probability,0.628920659014473,57,ok
+region,Bukhara oblast,2016,upward_mobility_rate,0.11395769289692752,32,ok
+region,Bukhara oblast,2016,downward_mobility_rate,0.0728591682589481,32,ok
+region,Bukhara oblast,2016,persistence_probability,0.8131831388441244,32,ok
+region,Jizzak oblast,2016,upward_mobility_rate,NA,24,small_n
+region,Jizzak oblast,2016,downward_mobility_rate,NA,24,small_n
+region,Jizzak oblast,2016,persistence_probability,NA,24,small_n
+region,Karakalpakistan AR,2016,upward_mobility_rate,0.31512111823630135,50,ok
+region,Karakalpakistan AR,2016,downward_mobility_rate,0.012150555133278266,50,ok
+region,Karakalpakistan AR,2016,persistence_probability,0.6727283266304204,50,ok
+region,Khorezm oblast,2016,upward_mobility_rate,0.21856808051746882,41,ok
+region,Khorezm oblast,2016,downward_mobility_rate,0.028307197909774005,41,ok
+region,Khorezm oblast,2016,persistence_probability,0.7531247215727573,41,ok
+region,Namangan oblast,2016,upward_mobility_rate,0.20830740361185654,66,ok
+region,Namangan oblast,2016,downward_mobility_rate,0.08300196044666008,66,ok
+region,Namangan oblast,2016,persistence_probability,0.7086906359414834,66,ok
+region,Navoi oblast,2016,upward_mobility_rate,NA,12,small_n
+region,Navoi oblast,2016,downward_mobility_rate,NA,12,small_n
+region,Navoi oblast,2016,persistence_probability,NA,12,small_n
+region,Samarkand oblast,2016,upward_mobility_rate,0.1583044377836972,81,ok
+region,Samarkand oblast,2016,downward_mobility_rate,0.06287243785228233,81,ok
+region,Samarkand oblast,2016,persistence_probability,0.7788231243640205,81,ok
+region,Sirdarya oblast,2016,upward_mobility_rate,NA,23,small_n
+region,Sirdarya oblast,2016,downward_mobility_rate,NA,23,small_n
+region,Sirdarya oblast,2016,persistence_probability,NA,23,small_n
+region,Tashkent,2016,upward_mobility_rate,0.301020048472858,40,ok
+region,Tashkent,2016,downward_mobility_rate,0.023065579634959015,40,ok
+region,Tashkent,2016,persistence_probability,0.675914371892183,40,ok
+region,Tashkent oblast,2016,upward_mobility_rate,0.4068768002684927,70,ok
+region,Tashkent oblast,2016,downward_mobility_rate,0.08850958665018249,70,ok
+region,Tashkent oblast,2016,persistence_probability,0.5046136130813248,70,ok
+region,Andijan region,2022,upward_mobility_rate,0,30,ok
+region,Andijan region,2022,downward_mobility_rate,0,30,ok
+region,Andijan region,2022,persistence_probability,1,30,ok
+region,Bukhara region,2022,upward_mobility_rate,NA,10,small_n
+region,Bukhara region,2022,downward_mobility_rate,NA,10,small_n
+region,Bukhara region,2022,persistence_probability,NA,10,small_n
+region,Djizak region,2022,upward_mobility_rate,NA,7,small_n
+region,Djizak region,2022,downward_mobility_rate,NA,7,small_n
+region,Djizak region,2022,persistence_probability,NA,7,small_n
+region,Fergana region,2022,upward_mobility_rate,NA,15,small_n
+region,Fergana region,2022,downward_mobility_rate,NA,15,small_n
+region,Fergana region,2022,persistence_probability,NA,15,small_n
 region,Karakalpakstan region,2022,upward_mobility_rate,NA,2,small_n
 region,Karakalpakstan region,2022,downward_mobility_rate,NA,2,small_n
 region,Karakalpakstan region,2022,persistence_probability,NA,2,small_n
-region,Kashkadarya region,2022,upward_mobility_rate,NA,13,small_n
-region,Kashkadarya region,2022,downward_mobility_rate,NA,13,small_n
-region,Kashkadarya region,2022,persistence_probability,NA,13,small_n
-region,Khorezm region,2022,upward_mobility_rate,NA,4,small_n
-region,Khorezm region,2022,downward_mobility_rate,NA,4,small_n
-region,Khorezm region,2022,persistence_probability,NA,4,small_n
-region,Namangan region,2022,upward_mobility_rate,NA,16,small_n
-region,Namangan region,2022,downward_mobility_rate,NA,16,small_n
-region,Namangan region,2022,persistence_probability,NA,16,small_n
-region,Navoi region,2022,upward_mobility_rate,NA,4,small_n
-region,Navoi region,2022,downward_mobility_rate,NA,4,small_n
-region,Navoi region,2022,persistence_probability,NA,4,small_n
+region,Kashkadarya region,2022,upward_mobility_rate,NA,11,small_n
+region,Kashkadarya region,2022,downward_mobility_rate,NA,11,small_n
+region,Kashkadarya region,2022,persistence_probability,NA,11,small_n
+region,Khorezm region,2022,upward_mobility_rate,NA,2,small_n
+region,Khorezm region,2022,downward_mobility_rate,NA,2,small_n
+region,Khorezm region,2022,persistence_probability,NA,2,small_n
+region,Namangan region,2022,upward_mobility_rate,NA,15,small_n
+region,Namangan region,2022,downward_mobility_rate,NA,15,small_n
+region,Namangan region,2022,persistence_probability,NA,15,small_n
+region,Navoi region,2022,upward_mobility_rate,NA,3,small_n
+region,Navoi region,2022,downward_mobility_rate,NA,3,small_n
+region,Navoi region,2022,persistence_probability,NA,3,small_n
 region,Samarkand region,2022,upward_mobility_rate,NA,6,small_n
 region,Samarkand region,2022,downward_mobility_rate,NA,6,small_n
 region,Samarkand region,2022,persistence_probability,NA,6,small_n
-region,Surkhandarya region,2022,upward_mobility_rate,NA,20,small_n
-region,Surkhandarya region,2022,downward_mobility_rate,NA,20,small_n
-region,Surkhandarya region,2022,persistence_probability,NA,20,small_n
+region,Surkhandarya region,2022,upward_mobility_rate,NA,13,small_n
+region,Surkhandarya region,2022,downward_mobility_rate,NA,13,small_n
+region,Surkhandarya region,2022,persistence_probability,NA,13,small_n
 region,Syrdarya region,2022,upward_mobility_rate,NA,1,small_n
 region,Syrdarya region,2022,downward_mobility_rate,NA,1,small_n
 region,Syrdarya region,2022,persistence_probability,NA,1,small_n
 region,Tashkent city,2022,upward_mobility_rate,NA,2,small_n
 region,Tashkent city,2022,downward_mobility_rate,NA,2,small_n
 region,Tashkent city,2022,persistence_probability,NA,2,small_n
-region,Tashkent region,2022,upward_mobility_rate,NA,9,small_n
-region,Tashkent region,2022,downward_mobility_rate,NA,9,small_n
-region,Tashkent region,2022,persistence_probability,NA,9,small_n
-cohort,25-34,2010,rank_rank_slope,0.19026230800025992,330,ok
-cohort,35-44,2010,rank_rank_slope,0.09561258837531769,302,ok
-cohort,45-54,2010,rank_rank_slope,0.13549430389195724,204,ok
-cohort,55-64,2010,rank_rank_slope,0.22592554345019858,102,ok
-cohort,25-34,2016,rank_rank_slope,0.3546597780403016,314,ok
-cohort,35-44,2016,rank_rank_slope,0.37609005923408445,321,ok
-cohort,45-54,2016,rank_rank_slope,0.3080195238628812,284,ok
-cohort,55-64,2016,rank_rank_slope,0.17463948085636583,267,ok
-cohort,25-34,2022,rank_rank_slope,0.47617416578386845,250,ok
-cohort,35-44,2022,rank_rank_slope,0.314243005057776,230,ok
-cohort,45-54,2022,rank_rank_slope,0.3453849163046385,188,ok
-cohort,55-64,2022,rank_rank_slope,0.1854749417913231,114,ok
-cohort,25-34,2010,upward_mobility_rate,0.2222222222222222,252,ok
-cohort,25-34,2010,downward_mobility_rate,0.15873015873015872,252,ok
-cohort,25-34,2010,persistence_probability,0.6190476190476191,252,ok
-cohort,35-44,2010,upward_mobility_rate,0.405982905982906,234,ok
-cohort,35-44,2010,downward_mobility_rate,0.07692307692307693,234,ok
-cohort,35-44,2010,persistence_probability,0.5170940170940171,234,ok
-cohort,45-54,2010,upward_mobility_rate,0.5986394557823129,147,ok
-cohort,45-54,2010,downward_mobility_rate,0.07482993197278912,147,ok
-cohort,45-54,2010,persistence_probability,0.32653061224489793,147,ok
-cohort,55-64,2010,upward_mobility_rate,0.5166666666666667,60,ok
-cohort,55-64,2010,downward_mobility_rate,0.03333333333333333,60,ok
-cohort,55-64,2010,persistence_probability,0.45,60,ok
-cohort,25-34,2016,upward_mobility_rate,0.13559322033898305,118,ok
-cohort,25-34,2016,downward_mobility_rate,0.1271186440677966,118,ok
-cohort,25-34,2016,persistence_probability,0.7372881355932204,118,ok
-cohort,35-44,2016,upward_mobility_rate,0.19310344827586207,145,ok
-cohort,35-44,2016,downward_mobility_rate,0.0896551724137931,145,ok
-cohort,35-44,2016,persistence_probability,0.7172413793103448,145,ok
-cohort,45-54,2016,upward_mobility_rate,0.22962962962962963,135,ok
-cohort,45-54,2016,downward_mobility_rate,0.022222222222222223,135,ok
-cohort,45-54,2016,persistence_probability,0.7481481481481481,135,ok
-cohort,55-64,2016,upward_mobility_rate,0.45,120,ok
-cohort,55-64,2016,downward_mobility_rate,0.058333333333333334,120,ok
-cohort,55-64,2016,persistence_probability,0.49166666666666664,120,ok
-cohort,25-34,2022,upward_mobility_rate,0,30,ok
-cohort,25-34,2022,downward_mobility_rate,0.06666666666666667,30,ok
-cohort,25-34,2022,persistence_probability,0.9333333333333333,30,ok
-cohort,35-44,2022,upward_mobility_rate,0.04878048780487805,41,ok
-cohort,35-44,2022,downward_mobility_rate,0,41,ok
-cohort,35-44,2022,persistence_probability,0.9512195121951219,41,ok
-cohort,45-54,2022,upward_mobility_rate,0.02127659574468085,47,ok
-cohort,45-54,2022,downward_mobility_rate,0,47,ok
-cohort,45-54,2022,persistence_probability,0.9787234042553191,47,ok
-cohort,55-64,2022,upward_mobility_rate,0,34,ok
-cohort,55-64,2022,downward_mobility_rate,0,34,ok
-cohort,55-64,2022,persistence_probability,1,34,ok
+region,Tashkent region,2022,upward_mobility_rate,NA,7,small_n
+region,Tashkent region,2022,downward_mobility_rate,NA,7,small_n
+region,Tashkent region,2022,persistence_probability,NA,7,small_n
+cohort,25-34,2010,rank_rank_slope,0.1813557096657951,328,ok
+cohort,35-44,2010,rank_rank_slope,0.12179858624506802,302,ok
+cohort,45-54,2010,rank_rank_slope,0.19771326022445088,204,ok
+cohort,55-64,2010,rank_rank_slope,0.29484748059283555,102,ok
+cohort,25-34,2016,rank_rank_slope,0.29405021811980614,314,ok
+cohort,35-44,2016,rank_rank_slope,0.3630429324165155,321,ok
+cohort,45-54,2016,rank_rank_slope,0.3497553671093273,284,ok
+cohort,55-64,2016,rank_rank_slope,0.24358919401241108,267,ok
+cohort,25-34,2022,rank_rank_slope,0.4088806238939303,250,ok
+cohort,35-44,2022,rank_rank_slope,0.3038720889788268,230,ok
+cohort,45-54,2022,rank_rank_slope,0.35854462417649463,188,ok
+cohort,55-64,2022,rank_rank_slope,0.24458835183291472,114,ok
+cohort,25-34,2010,upward_mobility_rate,0.13086227783522678,214,ok
+cohort,25-34,2010,downward_mobility_rate,0.18236082654736777,214,ok
+cohort,25-34,2010,persistence_probability,0.6867768956174054,214,ok
+cohort,35-44,2010,upward_mobility_rate,0.2821243121737725,209,ok
+cohort,35-44,2010,downward_mobility_rate,0.10520780828938679,209,ok
+cohort,35-44,2010,persistence_probability,0.6126678795368409,209,ok
+cohort,45-54,2010,upward_mobility_rate,0.5171596971287057,135,ok
+cohort,45-54,2010,downward_mobility_rate,0.09053095755432475,135,ok
+cohort,45-54,2010,persistence_probability,0.3923093453169696,135,ok
+cohort,55-64,2010,upward_mobility_rate,0.46178894865676345,54,ok
+cohort,55-64,2010,downward_mobility_rate,0.03594688089556606,54,ok
+cohort,55-64,2010,persistence_probability,0.5022641704476704,54,ok
+cohort,25-34,2016,upward_mobility_rate,0.21537019557577342,93,ok
+cohort,25-34,2016,downward_mobility_rate,0.07728696935452514,93,ok
+cohort,25-34,2016,persistence_probability,0.7073428350697014,93,ok
+cohort,35-44,2016,upward_mobility_rate,0.2266759025864082,123,ok
+cohort,35-44,2016,downward_mobility_rate,0.09286288478377588,123,ok
+cohort,35-44,2016,persistence_probability,0.6804612126298158,123,ok
+cohort,45-54,2016,upward_mobility_rate,0.18094538735193422,118,ok
+cohort,45-54,2016,downward_mobility_rate,0.019165241296047325,118,ok
+cohort,45-54,2016,persistence_probability,0.7998893713520184,118,ok
+cohort,55-64,2016,upward_mobility_rate,0.4210602881385587,105,ok
+cohort,55-64,2016,downward_mobility_rate,0.04447772760644232,105,ok
+cohort,55-64,2016,persistence_probability,0.5344619842549989,105,ok
+cohort,25-34,2022,upward_mobility_rate,NA,22,small_n
+cohort,25-34,2022,downward_mobility_rate,NA,22,small_n
+cohort,25-34,2022,persistence_probability,NA,22,small_n
+cohort,35-44,2022,upward_mobility_rate,0.053319906359966696,30,ok
+cohort,35-44,2022,downward_mobility_rate,0,30,ok
+cohort,35-44,2022,persistence_probability,0.9466800936400335,30,ok
+cohort,45-54,2022,upward_mobility_rate,0.04716180822934845,41,ok
+cohort,45-54,2022,downward_mobility_rate,0,41,ok
+cohort,45-54,2022,persistence_probability,0.9528381917706515,41,ok
+cohort,55-64,2022,upward_mobility_rate,0,31,ok
+cohort,55-64,2022,downward_mobility_rate,0,31,ok
+cohort,55-64,2022,persistence_probability,1,31,ok

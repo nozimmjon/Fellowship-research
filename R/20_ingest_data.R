@@ -86,6 +86,19 @@ years_to_education_level <- function(years) {
   )
 }
 
+parent_max_level <- function(father_level, mother_level) {
+  f_idx <- match(father_level, EDUCATION_LEVELS)
+  m_idx <- match(mother_level, EDUCATION_LEVELS)
+  idx <- pmax(
+    dplyr::if_else(is.na(f_idx), -Inf, as.numeric(f_idx)),
+    dplyr::if_else(is.na(m_idx), -Inf, as.numeric(m_idx))
+  )
+  out <- rep(NA_character_, length(idx))
+  valid <- is.finite(idx)
+  out[valid] <- EDUCATION_LEVELS[idx[valid]]
+  out
+}
+
 coerce_urban_binary <- function(x) {
   x <- tolower(as.character(x))
   dplyr::case_when(
@@ -232,9 +245,10 @@ read_lits_2010 <- function(raw_dir) {
       own_years = education_level_to_years(own_level),
       father_years = clean_numeric(q718),
       mother_years = clean_numeric(q719),
-      parent_years = rowMeans(cbind(father_years, mother_years), na.rm = TRUE),
-      parent_years = dplyr::if_else(is.nan(parent_years), NA_real_, parent_years),
-      parent_level = years_to_education_level(parent_years),
+      father_level = years_to_education_level(father_years),
+      mother_level = years_to_education_level(mother_years),
+      parent_level = parent_max_level(father_level, mother_level),
+      parent_years = education_level_to_years(parent_level),
       multigen_proxy = build_multigenerational_proxy(
         .,
         age_cols = c("q104a_1", "q104a_2", "q104a_3", "q104a_4", "q104a_5", "q104a_6", "q104a_7", "q104a_8", "q104a_9", "q104a_10", "q104a_11", "q104a_12")
@@ -317,11 +331,8 @@ read_lits_2016 <- function(raw_dir) {
       father_level = map_education_level(father_cat),
       mother_level = map_education_level(mother_cat),
       own_years = education_level_to_years(own_level),
-      father_years = education_level_to_years(father_level),
-      mother_years = education_level_to_years(mother_level),
-      parent_years = rowMeans(cbind(father_years, mother_years), na.rm = TRUE),
-      parent_years = dplyr::if_else(is.nan(parent_years), NA_real_, parent_years),
-      parent_level = years_to_education_level(parent_years)
+      parent_level = parent_max_level(father_level, mother_level),
+      parent_years = education_level_to_years(parent_level)
     )
 
   as_harmonized_frame(
@@ -375,11 +386,8 @@ read_lits_2022 <- function(raw_dir) {
       father_level = map_education_level(father_cat),
       mother_level = map_education_level(mother_cat),
       own_years = education_level_to_years(own_level),
-      father_years = education_level_to_years(father_level),
-      mother_years = education_level_to_years(mother_level),
-      parent_years = rowMeans(cbind(father_years, mother_years), na.rm = TRUE),
-      parent_years = dplyr::if_else(is.nan(parent_years), NA_real_, parent_years),
-      parent_level = years_to_education_level(parent_years)
+      parent_level = parent_max_level(father_level, mother_level),
+      parent_years = education_level_to_years(parent_level)
     )
 
   as_harmonized_frame(
