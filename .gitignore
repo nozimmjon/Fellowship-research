@@ -30,3 +30,14 @@
 .httr-oauth
 .DS_Store
 .quarto
+
+
+# Keep ignoring outputs by default
+outputs/*
+
+# BUT allow publication files
+!outputs/publication/
+!outputs/publication/*.md
+
+# Allow literature tables if needed
+!outputs/tables/literature_*.csv
