@@ -1,0 +1,4 @@
+source,expected_wave,expected_years,wave_file_found
+LiTS,2010,2010,TRUE
+LiTS,2016,2016,TRUE
+LiTS,2022-23,2022-2023,TRUE

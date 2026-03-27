@@ -1,0 +1,4 @@
+source,inventory_md_file,inventory_exists
+LiTS,data/metadata/audit_lits_inventory.md,TRUE
+HBS,data/metadata/audit_hbs_inventory.md,TRUE
+Administrative data,data/metadata/audit_admin_inventory.md,TRUE

@@ -17,7 +17,7 @@ This repository contains the research pipeline for intergenerational education m
 - `reports/`: Quarto publication files
 
 ## Quick Start
-1. Open [FellowshipResearch.Rproj](C:/Users/n.ortiqov/Desktop/Fellowship%20research/FellowshipResearch.Rproj) in RStudio.
+1. Open `FellowshipResearch.Rproj` in RStudio.
 2. Put raw datasets into:
    - `data/raw/lits/`
    - `data/raw/hbs/`
@@ -31,13 +31,17 @@ This repository contains the research pipeline for intergenerational education m
 5. Build pipeline:
    - `source("run_pipeline.R")`
 6. Render reports:
-   - `& 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe' render reports/00_main.qmd`
-   - `& 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe' render reports/10_technical_appendix.qmd`
-   - `& 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe' render reports/20_policy_brief.qmd`
-   - `& 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe' render reports/30_slides.qmd`
+    - `& 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe' render reports/00_main.qmd`
+    - `& 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe' render reports/10_technical_appendix.qmd`
+    - `& 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe' render reports/20_policy_brief.qmd`
+    - `& 'C:\Program Files\RStudio\resources\app\bin\quarto\bin\quarto.exe' render reports/30_slides.qmd`
+7. Export audit/crosswalk sheets for sharing:
+   - `source("R/14_export_audit_share_files.R")`
+   - `export_audit_share_files()`
 
 ## Current Status
-- Research strategy drafted in [research_strategy.md](C:/Users/n.ortiqov/Desktop/Fellowship%20research/research_strategy.md).
+- Research strategy drafted in `research_strategy.md`.
 - End-to-end scaffold created.
 - Step 2 data audit is completed with workbooks in `data/metadata/02_data_audit.xlsx` and `data/metadata/03_variable_crosswalk.xlsx`.
+- GitHub-readable CSV exports are available in `data/metadata/exports/` (index: `data/metadata/exports/README_audit_exports.md`).
 - Step 3 measure pre-commit is now locked in `data/metadata/mobility_measure_set.csv` and `data/metadata/mobility_variable_lock.csv`.
