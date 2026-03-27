@@ -64,6 +64,17 @@ if (file.exists(lit_file)) {
 }
 ```
 
+### Scope and Identification Limits
+
+```{r results='asis'}
+lit_limits_file <- file.path("..", "outputs", "publication", "literature_limits_note.md")
+if (file.exists(lit_limits_file)) {
+  cat(paste(readLines(lit_limits_file, warn = FALSE), collapse = "\n"))
+} else {
+  cat("This note will summarize why the literature and the current empirical design support descriptive or associational claims rather than causal ones.")
+}
+```
+
 ## Module A: Mobility Metrics
 
 ```{r}
