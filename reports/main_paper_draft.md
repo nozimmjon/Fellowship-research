@@ -247,22 +247,6 @@ The extension based on the LiTS IV child module shows that pandemic-era learning
 
 The broader message is that improving educational mobility in Uzbekistan will require more than expanding formal access. It will require reducing the degree to which family background governs educational trajectories, especially through the unequal household conditions under which children study, recover from shocks, and convert schooling opportunities into completed attainment.
 
-## References
-
-Aydemir, A. B., and H. Yazici. 2019. *Intergenerational education mobility and the level of development: Evidence from Turkey.*
-
-Causa, O., and A. Johansson. 2009. *Intergenerational social mobility in OECD countries.*
-
-Chevalier, A., K. Denny, and D. McMahon. 2009. *A multi-country study of inter-generational educational mobility.*
-
-Güell, M., M. Pellizzari, G. Pica, and J. V. Rodriguez Mora. 2018. *Correlating social mobility and economic outcomes.*
-
-Hertz, T., T. Jayasundera, P. Piraino, S. Selcuk, N. Smith, and A. Verashchagina. 2008. *The inheritance of educational inequality: International comparisons and fifty-year trends.*
-
-Neidhöfer, G., M. Ciaschi, L. Gasparini, and J. Serrano. 2024. *Social mobility and economic development.*
-
-van der Weide, R., C. Lakner, D. G. Mahler, A. Narayan, and R. Gupta. 2024. *Intergenerational mobility around the world: A new database.*
-
 ---
 
 ### Notes for revision
@@ -271,4 +255,3 @@ van der Weide, R., C. Lakner, D. G. Mahler, A. Narayan, and R. Gupta. 2024. *Int
 - Expand the literature section once `literature_review_section.md` is generated.
 - Recheck wording around the 2022 categorical mobility estimates after final denominator diagnostics.
 - Keep Module C clearly labeled as suggestive and non-causal in all publication versions.
-

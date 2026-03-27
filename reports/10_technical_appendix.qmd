@@ -61,7 +61,6 @@ read_csv_safe(dict_file)
 - Module B: descriptive or associational models with household and regional controls
 - Module C: LiTS IV mechanism models (2022-23 only), interpreted as suggestive non-causal evidence
 - Modules A and B do not support causal claims
-- Reform/COVID DiD: optional and conditional on validated admin region-time variation
 
 ## C1. Module A Locked Measure Set
 

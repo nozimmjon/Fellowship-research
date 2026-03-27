@@ -2,6 +2,10 @@ project:
   type: default
   output-dir: outputs/publication
 
+bibliography: references.bib
+link-citations: true
+reference-section-title: References
+
 execute:
   echo: false
   warning: false

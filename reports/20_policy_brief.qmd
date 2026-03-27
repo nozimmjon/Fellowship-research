@@ -15,27 +15,28 @@ execute:
 
 ## Audience
 
-This brief is intended for education policymakers, development partners, and researchers working on human capital, inequality, and education reform in Uzbekistan.
+This brief is written for three core audiences: education policymakers in Uzbekistan, development partners supporting education and human-capital programs, and researchers working on mobility and inequality measurement.
 
-## Core Message
+## What This Evidence Is
 
-The paper provides a descriptive and associational profile of intergenerational educational mobility in Uzbekistan using LiTS 2010, 2016, and 2022-23. The central message is cautious but policy-relevant: educational persistence remains substantial, parental education remains the clearest correlate of children's attainment, and household learning conditions matter when schooling is disrupted.
+The paper provides a descriptive and associational profile of intergenerational educational mobility in Uzbekistan using LiTS 2010, 2016, and 2022-23. It does not estimate causal policy effects.
 
-## What The Paper Shows
+## Core Findings
 
-Descriptive persistence measures rise across the three LiTS waves, but the pooled models do not estimate that change precisely once controls and fixed effects are added. The strongest evidence is therefore on the level of persistence, not on a firmly identified worsening time trend.
+Descriptive persistence measures rise across the three LiTS waves, but pooled models do not estimate that change precisely once controls and fixed effects are added. The strongest inference is therefore about substantial persistence levels, not a precisely estimated worsening time trend.
 
-Across the pooled correlates models, parental education is the most consistent predictor of attainment. By contrast, migration exposure and multigenerational household structure are less precisely estimated once the core controls are included.
+Across pooled correlates models, parental education remains the clearest predictor of adult educational attainment. Other household correlates are less consistently estimated once fixed effects are included.
 
-The LiTS IV child-module extension is deliberately bounded. It shows widespread pandemic-era disruption, heavy reliance on household support, and a higher probability of education stoppage among children from lower-parent-education households. These child-module results are suggestive rather than causal.
+The bounded LiTS IV child-module extension shows widespread disruption during COVID-era schooling and heavy reliance on household support, especially maternal support. It also shows higher education-stoppage risk among children from lower-parent-education households. These patterns are suggestive, not causal.
+
+## Caveats for Decision-Makers
+
+The 2022-23 category-based mobility rates should be treated cautiously because the valid categorical denominator is much smaller than the valid sample used for the 2022 rank-based measure. Those rates are useful as directional checks, not stand-alone headline evidence.
 
 ## Policy Implications
 
-1. Expand equalizing supports before educational disadvantage becomes locked in, especially around transitions into upper-secondary and post-secondary education.
-2. Address household bottlenecks that shape educational opportunity, including device access, internet quality, and the practical capacity of adults to support learning at home.
-3. Build continuity mechanisms for future shocks so that learning disruptions do not translate as easily into education stoppage for children from less advantaged households.
-4. Treat household support burdens, especially the burden carried by mothers during disruption, as a relevant education policy concern rather than as an invisible private adjustment.
-
-## Caveats
-
-This brief summarizes descriptive and associational evidence, not causal estimates. The 2022-23 category-based mobility rates should be read cautiously because the valid categorical denominator is much smaller than the valid sample for the 2022 rank-based measure. The child-module extension is also based on a limited subsample and is best used to flag household vulnerabilities rather than to support broad causal claims.
+1. Protect learning transitions where persistence is most likely to harden: prioritize remedial support at lower-to-upper-secondary and upper-secondary-to-post-secondary transitions in regions with weaker progression profiles.
+2. Target household learning constraints directly: combine school-side interventions with household-side support packages (device access, reliable connectivity support, and practical caregiver guidance for home learning).
+3. Build shock-readiness protocols into routine education planning: pre-position remote-learning continuity tools so future disruptions are less likely to convert into education stoppage among lower-parent-education households.
+4. Recognize household care and support burdens in program design: when continuity plans assume home support, include gender-aware measures that reduce disproportionate burdens on mothers.
+5. Strengthen mobility monitoring: maintain regular rank-based and category-based reporting from repeated surveys so policy can track persistence levels without over-interpreting noisy categorical cells.

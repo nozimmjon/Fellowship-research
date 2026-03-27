@@ -2,9 +2,6 @@
 title: "Intergenerational Educational Mobility in Uzbekistan"
 author: "Research Team"
 date: today
-bibliography: ../references.bib
-link-citations: true
-reference-section-title: References
 format:
   html:
     toc: true
@@ -185,11 +182,14 @@ The Household Budget Survey is used only as a supplementary source for context a
 
 ### 3.2 Education measures
 
-The paper uses two related education measures. Cross-wave parental education harmonization follows a common rule. Within each wave, mothers' and fathers' schooling responses are mapped into a shared six-category ladder: no formal education, primary, lower secondary, upper secondary, post-secondary non-tertiary, and tertiary. The harmonized parental measure takes the higher observed parental category. Rank-based measures are then constructed within wave using survey weights, so the rank-rank estimates compare respondents' and parents' relative position inside each survey rather than imposing exact equivalence on raw questionnaire categories across waves.
+The paper uses two complementary education-measure families built from one harmonization rule. Within each wave, mothers' and fathers' schooling responses are mapped to a shared six-category ladder (no formal education, primary, lower secondary, upper secondary, post-secondary non-tertiary, tertiary). The parental education variable is the higher observed parental category, which stabilizes coding when one parent's schooling is missing or reported with less detail.
 
-First, it constructs a harmonized ordered education score from the common categories above. This score supports the categorical mobility measures and the attainment-score regressions.
+From that harmonized scale, the analysis constructs:
 
-Second, it constructs within-wave weighted ranks for respondents' own schooling and parental schooling. These are used to summarize relative persistence in a way that is less sensitive to small cross-wave differences in questionnaire coding.
+1.  an ordered attainment score used for category-based mobility rates and pooled attainment regressions;
+2.  within-wave weighted percentile ranks for own and parental schooling used in rank-rank persistence models.
+
+The category-based outcomes retain intuitive transition interpretation (upward, downward, same-category), while rank-based outcomes improve comparability across waves by focusing on relative position inside each survey distribution. Reporting both allows the paper to preserve substantive interpretability and measurement robustness.
 
 ### 3.3 Mobility outcomes
 
@@ -216,15 +216,17 @@ The mechanism sample is much smaller than the full LiTS IV sample. The child-mod
 
 The empirical strategy has three modules.
 
+Notation is shared across modules. Index \(i\) denotes respondents, \(w\) survey waves, \(r\) regions, and \(c\) birth cohorts. \(R^{C}_{iw}\) is the within-wave weighted rank of respondents' own education, and \(R^{P}_{iw}\) is the corresponding parental rank. \(\mathbf{X}_i\) collects the core covariates (urban residence, female, migration exposure, multigenerational household). Region, cohort, and wave fixed effects are denoted by \(\eta_r\), \(\lambda_c\), and \(\tau_w\). In Module C, \(L_i\) indicates low parental education.
+
 ### 4.1 Module A: mobility levels and trends
 
 The first module estimates national mobility levels by wave. The core rank-based specification is:
 
 \[
-R^{\mathrm{own}}_{iw} = \alpha_w + \beta_w R^{\mathrm{parent}}_{iw} + \varepsilon_{iw}
+R^{C}_{iw} = \alpha_w + \beta_w R^{P}_{iw} + \varepsilon_{iw}
 \]
 
-where \(R^{\mathrm{own}}_{iw}\) is the respondent's within-wave education rank and \(R^{\mathrm{parent}}_{iw}\) is the parental education rank in wave \(w\). A larger \(\beta_w\) implies greater intergenerational persistence and lower relative mobility.
+where \(\beta_w\) summarizes intergenerational persistence in wave \(w\): larger values imply stronger parent-child rank linkage and lower relative mobility.
 
 The module also reports the weighted rates of upward mobility, downward mobility, and persistence using harmonized education categories.
 
@@ -233,11 +235,11 @@ The module also reports the weighted rates of upward mobility, downward mobility
 The second module estimates pooled correlates models with region, cohort, and wave fixed effects. The baseline pooled rank specification is:
 
 \[
-R^{\mathrm{own}}_{i}
-= \alpha + \beta R^{\mathrm{parent}}_{i}
-+ \theta_{2016} \left(R^{\mathrm{parent}}_{i} \times D_{2016}\right)
-+ \theta_{2022} \left(R^{\mathrm{parent}}_{i} \times D_{2022}\right)
-+ \gamma X_i + \eta_r + \lambda_c + \tau_w + \varepsilon_i
+R^{C}_{i}
+= \alpha + \beta R^{P}_{i}
++ \theta_{2016} \left(R^{P}_{i} \times D_{2016}\right)
++ \theta_{2022} \left(R^{P}_{i} \times D_{2022}\right)
++ \gamma' \mathbf{X}_i + \eta_r + \lambda_c + \tau_w + \varepsilon_i
 \]
 
 The paper also estimates:
@@ -253,7 +255,7 @@ These models are interpreted as correlates, not causal effects.
 The third module uses the 2022-23 child module to examine whether disruption and support patterns differ by parental education. The baseline mechanism equation is:
 
 \[
-M_i = \alpha + \beta LowParentEdu_i + \delta Urban_i + \phi Male_i + \kappa \left(LowParentEdu_i \times Urban_i\right) + \eta_r + \varepsilon_i
+M_i = \alpha + \beta L_i + \delta Urban_i + \phi Male_i + \kappa \left(L_i \times Urban_i\right) + \eta_r + \varepsilon_i
 \]
 
 where \(M_i\) is a binary disruption or support outcome. These models are best treated as descriptive heterogeneity exercises rather than as identification strategies.
@@ -268,11 +270,11 @@ That pattern should not, however, be read as precise evidence of a monotonic tim
 
 ### 5.2 Category-based mobility measures
 
-The category-based measures move in the same direction, though with an important caveat about denominator size.
+The category-based measures broadly move in the same direction as the rank-based profile, but they receive lower evidentiary weight in 2022-23 because of denominator size.
 
-In 2010, the weighted upward mobility rate is **`r fmt_pct(metric_est("upward_mobility_rate", 2010))`**, the downward mobility rate is **`r fmt_pct(metric_est("downward_mobility_rate", 2010))`**, and the persistence probability is **`r fmt_pct(metric_est("persistence_probability", 2010))`**. In 2016, upward mobility is **`r fmt_pct(metric_est("upward_mobility_rate", 2016))`**, downward mobility is **`r fmt_pct(metric_est("downward_mobility_rate", 2016))`**, and persistence rises to **`r fmt_pct(metric_est("persistence_probability", 2016))`**. In 2022-23, the category-based rates indicate **`r fmt_pct(metric_est("upward_mobility_rate", 2022))`** upward mobility, **`r fmt_pct(metric_est("downward_mobility_rate", 2022))`** downward mobility, and **`r fmt_pct(metric_est("persistence_probability", 2022))`** persistence.
+In 2010, the weighted upward mobility rate is **`r fmt_pct(metric_est("upward_mobility_rate", 2010))`**, the downward mobility rate is **`r fmt_pct(metric_est("downward_mobility_rate", 2010))`**, and persistence is **`r fmt_pct(metric_est("persistence_probability", 2010))`**. In 2016, upward mobility is **`r fmt_pct(metric_est("upward_mobility_rate", 2016))`**, downward mobility is **`r fmt_pct(metric_est("downward_mobility_rate", 2016))`**, and persistence is **`r fmt_pct(metric_est("persistence_probability", 2016))`**. In 2022-23, category-based rates indicate **`r fmt_pct(metric_est("upward_mobility_rate", 2022))`** upward mobility, **`r fmt_pct(metric_est("downward_mobility_rate", 2022))`** downward mobility, and **`r fmt_pct(metric_est("persistence_probability", 2022))`** persistence.
 
-These 2022-23 category-based results should be treated carefully. The valid denominator for the rank-rank slope in 2022-23 is `r metric_n("rank_rank_slope", 2022)`, but the valid denominator for the category-based mobility rates is only `r metric_n("upward_mobility_rate", 2022)`. The 2022 categorical estimates are therefore best treated as a noisy cross-check rather than as standalone headline evidence.
+These 2022-23 category-based results should be treated very cautiously. The valid denominator for the 2022 rank-rank slope is `r metric_n("rank_rank_slope", 2022)`, while the valid denominator for 2022 category-based mobility rates is only `r metric_n("upward_mobility_rate", 2022)`. The 2022 category rates are therefore used as a directional cross-check, not as primary headline evidence.
 
 ```{r}
 #| label: tbl-mobility-metrics
@@ -325,17 +327,19 @@ The descriptive profile does not, however, identify why persistence differs acro
 
 ### 6.1 Pooled persistence-trend model
 
-The pooled rank-based persistence model does not provide statistically precise evidence that persistence changed relative to 2010 once the controls and fixed effects are added. The coefficient on parental rank is positive at **`r fmt_num(coef_est("eq2_persistence_trend", "parent_rank"))`**, but the interaction terms for 2016 and 2022 relative to 2010 are not statistically distinguishable from zero in this specification (p = `r fmt_p(coef_p("eq2_persistence_trend", "wave_year_fe::2016:parent_rank"))` and p = `r fmt_p(coef_p("eq2_persistence_trend", "wave_year_fe::2022:parent_rank"))`, respectively).
+The pooled rank-based persistence model does not provide precise evidence that persistence changed relative to 2010 once controls and fixed effects are added. The coefficient on parental rank is positive at **`r fmt_num(coef_est("eq2_persistence_trend", "parent_rank"))`**, but the interaction terms for 2016 and 2022 relative to 2010 are imprecisely estimated in this specification.
 
 This result matters for interpretation. The descriptive by-wave rank-rank slopes clearly rise across the three surveys, but once the model adds region, cohort, wave fixed effects, and the selected covariates, the change in persistence over time is estimated less precisely. That suggests that part of the raw trend may reflect shifts in composition or limited power rather than a simple structural break.
 
+Takeaway: descriptive persistence rises across waves, but pooled interaction models do not estimate the change precisely.
+
 ### 6.2 Attainment-score model
 
-The attainment-score regression shows a robust positive association between parental education and own educational attainment. The coefficient on parental education score is **`r fmt_num(coef_est("eq3_attainment_score", "parent_ed_score"))`** and statistically significant (p = `r fmt_p(coef_p("eq3_attainment_score", "parent_ed_score"))`). This is the clearest correlates result in the paper: better-educated parents are associated with higher educational attainment among adult children even after adding fixed effects and the active covariates.
+The attainment-score regression shows a robust positive association between parental education and own educational attainment. The coefficient on parental education score is **`r fmt_num(coef_est("eq3_attainment_score", "parent_ed_score"))`** and is precisely estimated. This is the clearest correlates result in the paper: better-educated parents are associated with higher educational attainment among adult children even after adding fixed effects and the active covariates.
 
 Among the covariates, the female coefficient is negative and statistically significant at **`r fmt_num(coef_est("eq3_attainment_score", "female"))`**, while the urban coefficient is positive but not statistically precise. Migration exposure and multigenerational household structure are not estimated precisely in this specification.
 
-The main takeaway is that parental educational background remains the strongest predictor in the model. Household structure and migration may still matter, but the current data do not deliver equally strong statistical evidence for those channels in the core pooled attainment specification.
+Takeaway: parental educational background is the strongest and most stable correlate in the pooled attainment model.
 
 ### 6.3 Upward mobility models
 
@@ -345,13 +349,15 @@ The non-parental covariates in the upward-mobility models are weaker. Urban resi
 
 These results suggest that most of the upward-mobility variation in the pooled model is driven by where the household starts in the parental education distribution rather than by the additional correlates included here.
 
+Takeaway: upward-mobility coefficients mostly capture baseline parental-education position rather than strong independent effects of other covariates.
+
 ### 6.4 Heterogeneity in persistence
 
 The persistence heterogeneity model shows a strong positive association between parental education score and the probability of remaining in the same education category as one's parents. The coefficient on parental education score is **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score"))`** and is precisely estimated.
 
-There is some suggestive evidence that persistence is stronger in urban settings and weaker for women. The interaction between parent education and urban residence is positive at **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score:urban"))`** and statistically significant (p = `r fmt_p(coef_p("eq5_persistence_heterogeneity", "parent_ed_score:urban"))`), while the interaction between parent education and female is negative at **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score:female"))`** and statistically significant (p = `r fmt_p(coef_p("eq5_persistence_heterogeneity", "parent_ed_score:female"))`). By contrast, the interaction between parent education and the 2022 wave is not statistically precise.
+There is suggestive heterogeneity by subgroup. The interaction between parent education and urban residence is positive at **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score:urban"))`**, while the interaction between parent education and female is negative at **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score:female"))`**. By contrast, the interaction between parent education and the 2022 wave is not precisely estimated.
 
-A cautious reading is that parental education translates into same-category persistence across the entire sample, but the strength of that translation may vary by subgroup. In this dataset, the strongest subgroup evidence points to weaker persistence among women and somewhat stronger persistence in urban settings. Table @tbl-pooled-correlates collects the selected coefficients discussed in Section 6.
+A cautious reading is that parental education translates into same-category persistence across the entire sample, but the strength of that translation may vary by subgroup. In this dataset, the strongest subgroup signal points to weaker persistence among women and somewhat stronger persistence in urban settings. Takeaway: heterogeneity is plausible, but the central result remains the overall persistence gradient by parental education. Table @tbl-pooled-correlates collects the selected coefficients discussed in Section 6.
 
 ```{r}
 #| label: tbl-pooled-correlates
@@ -412,7 +418,7 @@ knitr::kable(
 
 The child-module extension is deliberately kept secondary to Modules A and B. It is based on `r sample_n("^Mechanism sample with non-missing parental schooling$")` respondents with a child enrolled before COVID and non-missing parental schooling. Table @tbl-modulec-sample reports the sample flow.
 
-Within this sample, disruption was widespread. About **`r fmt_pct(mech_est("switched_online"))`** report switching to online learning, **`r fmt_pct(mech_est("switched_hybrid"))`** report switching to hybrid learning, **`r fmt_pct(mech_est("school_closed_no_online"))`** report school closure without online learning, and **`r fmt_pct(mech_est("education_stopped_covid"))`** report that the child stopped education during COVID. Constraints were also common: **`r fmt_pct(mech_est("challenge_internet"))`** report internet challenges, **`r fmt_pct(mech_est("challenge_cost"))`** cost-related challenges, **`r fmt_pct(mech_est("challenge_device"))`** device challenges, and **`r fmt_pct(mech_est("shared_device"))`** shared-device use. Learning support was overwhelmingly household-based, with mothers reported as the support channel in **`r fmt_pct(mech_est("support_mother"))`** of cases, compared with **`r fmt_pct(mech_est("support_father"))`** for fathers and **`r fmt_pct(mech_est("support_grand_relatives"))`** for grandparents or relatives.
+Within this sample, disruption and household substitution were substantial: **`r fmt_pct(mech_est("education_stopped_covid"))`** report education stoppage during COVID, **`r fmt_pct(mech_est("any_remote_challenge"))`** report at least one remote-learning challenge, and mothers are reported as the learning-support channel in **`r fmt_pct(mech_est("support_mother"))`** of cases. Detailed descriptive breakdowns for additional Module C outcomes are reported in the technical appendix to keep the main text focused on the strongest descriptive facts.
 
 ```{r}
 #| label: tbl-modulec-sample
@@ -426,9 +432,9 @@ knitr::kable(
 
 ### 7.2 Main regression takeaway
 
-One regression result deserves emphasis. Low parental education is positively and significantly associated with the probability that a child's education stopped during COVID. The corresponding coefficient is **`r fmt_num(mech_coef_est("m3_education_stopped_covid", "parent_low_edu"))`** with p = `r fmt_p(mech_coef_p("m3_education_stopped_covid", "parent_low_edu"))`. That result is substantively consistent with the descriptive split: the stoppage rate is **`r fmt_pct(mech_est("education_stopped_covid", "parent_education", "lower_or_equal_median_parent_edu"))`** among children from lower-parent-education households versus **`r fmt_pct(mech_est("education_stopped_covid", "parent_education", "above_median_parent_edu"))`** among those from higher-parent-education households.
+One regression result deserves emphasis. Low parental education is positively associated with the probability that a child's education stopped during COVID, with a coefficient of **`r fmt_num(mech_coef_est("m3_education_stopped_covid", "parent_low_edu"))`** in the stoppage model. This aligns with the descriptive split: the stoppage rate is **`r fmt_pct(mech_est("education_stopped_covid", "parent_education", "lower_or_equal_median_parent_edu"))`** among children from lower-parent-education households versus **`r fmt_pct(mech_est("education_stopped_covid", "parent_education", "above_median_parent_edu"))`** among those from higher-parent-education households.
 
-Beyond this stoppage result, the remaining mechanism regressions are secondary, less precise, or both, and are therefore reported in the technical appendix rather than emphasized in the main text. The extension is useful for showing that household vulnerability mattered during disruption, but it remains suggestive rather than causal.
+Beyond this stoppage result, remaining mechanism regressions are secondary and less precise, so they are reported in the technical appendix rather than emphasized in the main text. Takeaway: Module C contributes bounded descriptive mechanism evidence on household vulnerability, not causal inference.
 
 ## 8. Discussion and Policy Implications
 
