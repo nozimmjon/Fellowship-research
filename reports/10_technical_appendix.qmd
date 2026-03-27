@@ -1,0 +1,74 @@
+---
+title: "Technical Appendix"
+subtitle: "Intergenerational Education Mobility in Uzbekistan"
+author: "Research Team"
+date: today
+format:
+  html:
+    toc: true
+    number-sections: true
+  docx:
+    toc: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## A. Data Inventory
+
+```{r}
+read_csv_safe <- function(path) {
+  tryCatch(
+    utils::read.csv(path),
+    error = function(e) data.frame(note = paste("Could not read", basename(path), "-", conditionMessage(e)))
+  )
+}
+
+inv_file <- file.path("..", "data", "metadata", "data_inventory_template.csv")
+read_csv_safe(inv_file)
+```
+
+## B. Variable Dictionary
+
+```{r}
+dict_file <- file.path("..", "data", "metadata", "variable_dictionary_template.csv")
+read_csv_safe(dict_file)
+```
+
+## C. Identification Strategy
+
+- Module A fixed measure set: rank-rank slope, transition matrix, upward mobility rate, downward mobility rate, persistence probability
+- Module B: fixed-effects models with household and regional controls
+- Module C: event-study DiD with region and year fixed effects
+
+## C1. Module A Locked Measure Set
+
+```{r}
+spec_file <- file.path("..", "data", "metadata", "mobility_measure_set.csv")
+read_csv_safe(spec_file)
+```
+
+## D. Robustness Checklist
+
+- Alternative mobility definitions
+- Alternative age windows
+- Weighted versus unweighted estimates
+- Placebo lead terms in event-study
+- Region-specific trend sensitivity
+
+## E. Diagnostics Outputs
+
+```{r}
+event_file <- file.path("..", "outputs", "tables", "module_c_event_study_coefficients.csv")
+if (file.exists(event_file)) {
+  event_df <- read_csv_safe(event_file)
+  if ("term" %in% names(event_df)) {
+    event_df[order(event_df$term), ]
+  } else {
+    event_df
+  }
+} else {
+  data.frame(note = "Event-study outputs not available yet.")
+}
+```

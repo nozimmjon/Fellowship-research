@@ -1,0 +1,38 @@
+---
+title: "Policy Brief"
+subtitle: "Education Mobility in Uzbekistan"
+author: "Research Team"
+date: today
+format:
+  html:
+    toc: false
+  docx: default
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Why This Matters
+
+Educational mobility determines whether children from low-education households can move into higher-productivity careers. Strong mobility supports innovation and inclusive growth.
+
+## What We Measure
+
+- Mobility trends by cohort and region
+- Household and local drivers of mobility
+- Reform-period changes after 2017
+
+## Key Results
+
+Insert final estimated effects after pipeline completion.
+
+## Recommended Policy Actions
+
+1. Target low-mobility regions with resource and teacher support.
+2. Strengthen pathways from upper secondary to tertiary for first-generation students.
+3. Expand remedial and digital support for students in low-parent-education households.
+
+## Evidence and Caveats
+
+This brief summarizes causal and descriptive findings from the full technical appendix.

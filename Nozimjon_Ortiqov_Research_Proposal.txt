@@ -1,0 +1,149 @@
+Research on Intergenerational Education Mobility
+in Uzbekistan
+Proposal
+1 Introduction and Motivation
+The Government of Uzbekistan views the adoption of new technologies and technological progress
+as one of the primary drivers of economic growth and improvements in the living standards of the
+population in the country. But such an agenda requires an increasing flow of talented, well-trained
+people. When all talents in society are fully realized, the labor markets become more eﬀicient, and
+productivity grows at a faster rate. This is possible only in socially mobile societies, where family
+circumstances do not matter in explaining educational outcomes.
+The individuals’ opportunities to reach their full potential are determined by complex interactions
+between inherited traits, social norms, the environment in which children are raised, labor markets,
+and public policies. Education plays a major role in defining a person’s career trajectory and lifetime
+earnings. The investment in a child’s education strongly depends on the income and education of
+the parents as well as on their preferences and risk perceptions. Better-educated parents might
+be more effective in producing better outcomes in their children. The complementarity between
+parental human capital and investments in children leads wealthier parents to invest more in their
+children’s human capital than poor parents. Such intergenerational persistence of education could
+perpetuate cross-generational income inequality, lowering the chances of children from poor families
+succeeding in life. Targeted government interventions are needed to draw such children into science
+and innovation, and policies designed to improve intergenerational mobility could increase the
+number of inventors and boost economic growth.
+For countries of Central Asia in general, and for Uzbekistan in particular, where almost 40 percent of
+the population is under 18 and about 35 percent resides in rural areas, educational mobility is one of
+the primary factors defining economic, social, and cultural futures. The large and growing number
+of young people presents an opportunity for Uzbekistan to leverage this demographic dividend
+to fuel economic growth. However, without investment in equitable education, the country risks
+falling into the cycle of increasing poverty and inequality that could slow down the adoption of new
+technologies, and reduce rates of innovation and economic growth.
+Uzbekistan is a country dominated by traditional family structures characterized by respect for el-
+ders and community involvement in child-rearing, all of which shape educational outcomes. Multi-
+generational households are typical across the region, with grandparents playing an important
+role in child-rearing decisions and child discipline, especially in the presence of the massive male
+1
+
+Intergenerational Education Mobility in Uzbekistan Proposal
+migration that transforms family relationships and gender roles. The mahala (neighborhood com-
+munity) in Uzbekistan institutionalizes collective child-rearing beyond the extended family, creating
+a unique context to study intergenerational mobility in education.
+The transition to a market economy fundamentally altered the educational system and family
+structures in Uzbekistan. The period after independence saw a renewal of national cultural and
+religious traditions, including Islamic principles that emphasized respect for parents, moral develop-
+ment, and gender-specific socialization. On the other hand, globalization, migration, and increased
+cultural and information exchange have exposed parents in Central Asia to alternative approaches
+to educational practices. For example, families where parents come from different cultures often
+combine different ideas about discipline, autonomy, and their children’s success. Many families in
+the region struggle to maintain traditional hierarchical family structures on one hand, while adapt-
+ing to global demands for inclusive, comprehensive education of their children. Urban families
+in Uzbekistan are increasingly open to more modern approaches to education. In contrast, rural
+families tend to adhere more to traditional approaches, encouraging their children to continue the
+occupations of their parents.
+However, despite the importance of intergenerational educational mobility for long-term economic
+growth, I am not aware of any rigorous academic research on this topic in Uzbekistan. This project
+aims to fill this gap in the literature.
+2 Related Literature
+This research is based on the body of literature on intergenerational mobility. Hertz et al. (2007)
+find significant variation in the cross-country levels of intergenerational educational mobility, with
+high persistence of educational attainment in Latin America and much higher educational mobility
+in countries of Northern Europe. Chevalier, Denny, and McMahon (2009) look at the patterns of
+education mobility in developed countries and report that expanding access to higher education
+is not always associated with increased mobility. Causa and Johansson (2009) find a positive
+and significant correlation between parental human capital and their children’s educational and
+wage outcomes in OECD countries. Financial constraints may hold back talented children from
+poor rural families. Razzu and Wambile (2022) demonstrate that children’s educational outcomes
+depend strongly on their parents’ educational status, but that the strength of this association
+is weaker for younger generations. Van der Weide and others (2024) compile a global database
+of intergenerational education mobility across 153 countries, demonstrating that such mobility is
+estimated to be lower in the average developing country than in the average high-income country.
+Several papers study the link between social mobility and economic development. Aydemir and
+Yazici (2019) discover that regions of Türkiye with better school availability, greater social capital,
+higher home resources, and lower educational inequalities tend to have higher intergenerational
+mobility. Güell and others (2018) find that in Italy, provinces with higher levels of economic
+activity, lower inequality, and higher social capital and educational attainment have greater in-
+tergenerational social mobility. Neidhöfer et al. (2024) study the relationship between changes in
+educational intergenerational mobility and regional economic indicators in Latin America. They
+report that increasing social mobility correlates with rising income per capita, income growth, and
+other development indicators.
+2
+
+Intergenerational Education Mobility in Uzbekistan Proposal
+3 Research Questions
+In this project, which relies on methodological and empirical approaches to studying intergenera-
+tional educational mobility, I plan to examine the factors determining intergenerational mobility
+in Uzbekistan. I will address three research questions:
+1. How has intergenerational educational mobility in Uzbekistan evolved over the past decade
+(2010–2023), and what impact have the 2017–2021 education reforms had on breaking the
+cycle of educational persistence?
+2. What are the main determinants of intergenerational educational mobility in Uzbekistan, and
+how do regional disparities affect educational outcomes?
+3. How does parental human capital (education, income, occupation) interact with household
+characteristics (migration status, multigenerational structure, mahala involvement) to influ-
+ence investment in children’s education?
+4 Data
+I plan to use data from several sources. First, I will use data on intergenerational education mobility
+from three rounds of the Life in Transition Survey (2010, 2016, and 2022–23). I will supplement
+this with data from the Uzbekistan Household Budget Survey. In addition, I plan to use data on
+education infrastructure, university admissions and enrollment rates, and migration statistics from
+the relevant ministries.
+5 Empirical Strategy
+The analysis will document changes in intergenerational mobility in Uzbekistan over the last decade,
+both nationally and regionally, using relative and absolute measures of intergenerational educational
+mobility.
+The next part of the project will relate the characteristics of parents and the households where the
+children live to the investments in their education. I plan to use the restrictions on in-person school
+attendance in Uzbekistan during the COVID-19 pandemic as a strategy to identify how parental
+human capital is related to investment in the education of their children.
+In particular, I will focus on the impact of regional income inequality on parental investment in
+their children’s education. When children could not attend schools in person, parental education
+likely became more important for supporting children’s learning, as less-educated and lower-income
+parents may struggle assisting with online education.
+Using a difference-in-differences (DiD) approach to compare pre- and post-pandemic educational
+outcomes across households with varying parental education levels, I will estimate the causal effect
+of parental human capital on educational investment. I will use the 2022–23 LiTS round, combined
+with administrative data on school closures by region, for this analysis.
+3
+
+Intergenerational Education Mobility in Uzbekistan Proposal
+6 Expected Contributions and Policy Relevance
+This research will be the first comprehensive study of intergenerational educational mobility in
+Uzbekistan. It will examine how education reforms, cultural factors, and economic conditions
+shape educational opportunities and affect the upward mobility of children from disadvantaged
+backgrounds.
+The results of this study will help design policy interventions aimed at creating a more equitable
+educational system, promoting innovation, and boosting economic growth. Understanding the main
+determinants of educational inequality in Uzbekistan is crucial for the country to achieve its vision
+of becoming a knowledge-based, innovation-driven economy that fully leverages the potential of its
+young population.
+References
+Aydemir, A. B., & Yazici, H. (2019). Intergenerational education mobility and the level of devel-
+opment: Evidence from turkey. European Economic Review, 116, 160–185. https://doi.org/10.
+1016/j.euroecorev.2019.04.003
+Causa, O., & Johansson, A. (2009). Intergenerational social mobility in OECD countries (Working
+Paper 707). OECD Economics Department. https://doi.org/10.1787/223106258208
+Chevalier, A., Denny, K., & McMahon, D. (2009). A multi-country study of inter-generational
+educational mobility. In P. Dolton, R. Asplund, & E. Barth (Eds.), Education and inequality
+across europe. Edward Elgar.
+Guell, M., Pellizzari, M., Pica, G., & Rodriguez Mora, J. V. (2018). Correlating social mobility
+and economic outcomes. The Economic Journal , 128(612), F353–F403. https://doi.org/10.
+1111/ecoj.12599
+Hertz, T., Jayasundera, T., Piraino, P., Selcuk, S., Smith, N., & Verashchagina, A. (2008). The
+inheritance of educational inequality: International comparisons and fifty-year trends. The B.E.
+Journal of Economic Analysis & Policy , 7 (2). https://doi.org/10.2202/1935-1682.1775
+Neidh”ofer, G., Ciaschi, M., Gasparini, L., & Serrano, J. (2024). Social mobility and economic
+development. Journal of Economic Growth , 29(2), 327–359. https://doi.org/10.1007/s10887-
+023-09234-8
+Weide, R. van der, Lakner, C., Mahler, D. G., Narayan, A., & Gupta, R. (2024). Intergenerational
+mobility around the world: A new database. Journal of Development Economics , 166, 103167.
+https://doi.org/10.1016/j.jdeveco.2023.103167
+4

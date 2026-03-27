@@ -1,0 +1,8 @@
+source_file,zip_entry,source_type,source_name,wave
+C:/Users/n.ortiqov/Desktop/Fellowship research/data/raw/lits/lits_i.csv,NA,csv,lits_i.csv,2006
+C:/Users/n.ortiqov/Desktop/Fellowship research/data/raw/lits/lits_ii.csv,NA,csv,lits_ii.csv,2010
+C:/Users/n.ortiqov/Desktop/Fellowship research/data/raw/lits/lits_iii.csv,NA,csv,lits_iii.csv,2016
+C:/Users/n.ortiqov/Desktop/Fellowship research/data/raw/lits/lits_iii.dta,NA,dta,lits_iii.dta,2016
+C:/Users/n.ortiqov/Desktop/Fellowship research/data/raw/lits/lits_iv_dta/lits_iv.dta,NA,dta,lits_iv.dta,2022-23
+C:/Users/n.ortiqov/Desktop/Fellowship research/data/raw/lits/lits2.dta,NA,dta,lits2.dta,2010
+C:/Users/n.ortiqov/Desktop/Fellowship research/data/raw/lits/lits_iv_csv.zip,lits_iv.csv,zip_csv,lits_iv_csv.zip,2022-23

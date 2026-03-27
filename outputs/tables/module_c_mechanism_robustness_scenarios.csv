@@ -1,0 +1,5 @@
+scenario_id,split_rule,split_threshold,use_weights,n_total,n_parent_non_missing,n_low_group,n_high_group
+baseline_weighted_median,median,12,TRUE,186,183,99,87
+unweighted_median,median,12,FALSE,186,183,99,87
+weighted_leq11,leq_11,11,TRUE,186,183,75,111
+weighted_leq9,leq_9,9,TRUE,186,183,7,179

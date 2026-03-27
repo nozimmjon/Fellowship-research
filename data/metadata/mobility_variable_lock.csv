@@ -1,0 +1,10 @@
+construct,standard_variable,type,required_for_module_a,coding_rule,allowed_values_or_units,missing_rule
+Survey wave,wave_year,integer,yes,"Parse from source metadata; keep one of 2010, 2016, 2022, 2023.",year,Drop from wave-specific outputs if missing.
+Respondent education years,own_years_schooling,double,yes (rank-rank),Numeric years of schooling completed by respondent.,years,Exclude from rank-rank if missing.
+Parental education years,parent_years_schooling,double,yes (rank-rank),Numeric years of schooling for parent proxy variable.,years,Exclude from rank-rank if missing.
+Respondent education category,own_ed_level,character,yes,Map to ordered categories defined in EDUCATION_LEVELS.,no_formal|primary|lower_secondary|upper_secondary|post_secondary_non_tertiary|tertiary,Exclude from category-based metrics if missing.
+Parental education category,parent_ed_level,character,yes,Map to same ordered categories as respondent education.,no_formal|primary|lower_secondary|upper_secondary|post_secondary_non_tertiary|tertiary,Exclude from category-based metrics if missing.
+Region,region,character,no (subgroup),Administrative region label harmonized across waves.,region label,"If missing, skip region subgroup."
+Urban/rural,urban,integer/character,no (subgroup),Map to binary urban/rural indicator then label.,urban|rural,"If missing, skip urban/rural subgroup."
+Gender,gender,character,no (subgroup),Map to male/female when available.,male|female,"If missing, skip gender subgroup."
+Birth cohort band,cohort,character,no (subgroup),"Fixed bands: 25-34, 35-44, 45-54, 55-64.",25-34|35-44|45-54|55-64,"If missing, skip cohort subgroup."

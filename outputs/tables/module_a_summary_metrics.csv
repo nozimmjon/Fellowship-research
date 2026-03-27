@@ -1,0 +1,13 @@
+subgroup_type,subgroup_value,wave_year,metric,estimate,n,status
+overall,all,2010,rank_rank_slope,0.10345019428939155,938,ok
+overall,all,2016,rank_rank_slope,0.27833778907922163,1186,ok
+overall,all,2022,rank_rank_slope,0.36081380857213774,782,ok
+overall,all,2010,upward_mobility_rate,0.38961038961038963,693,ok
+overall,all,2010,downward_mobility_rate,0.10245310245310245,693,ok
+overall,all,2010,persistence_probability,0.5079365079365079,693,ok
+overall,all,2016,upward_mobility_rate,0.24903474903474904,518,ok
+overall,all,2016,downward_mobility_rate,0.07335907335907337,518,ok
+overall,all,2016,persistence_probability,0.6776061776061776,518,ok
+overall,all,2022,upward_mobility_rate,0.019736842105263157,152,ok
+overall,all,2022,downward_mobility_rate,0.013157894736842105,152,ok
+overall,all,2022,persistence_probability,0.9671052631578947,152,ok

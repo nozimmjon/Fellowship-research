@@ -1,0 +1,38 @@
+Type: Package
+Package: secretbase
+Title: Cryptographic Hash, Extendable-Output and Binary/Text Encoding
+        Functions
+Version: 1.2.0
+Authors@R: c(
+    person("Charlie", "Gao", , "charlie.gao@posit.co", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-0750-061X")),
+    person("Posit Software, PBC", role = c("cph", "fnd"),
+           comment = c(ROR = "03wc8by49")),
+    person("Hibiki AI Limited", role = "cph")
+  )
+Description: Fast and memory-efficient streaming hash functions,
+    binary/text encoding and serialization. Hashes strings and raw vectors
+    directly.  Stream hashes files which can be larger than memory, as
+    well as in-memory objects through R's serialization mechanism.
+    Implements the SHA-256, SHA-3 and 'Keccak' cryptographic hash
+    functions, SHAKE256 extendable-output function (XOF), 'SipHash'
+    pseudo-random function, base64 and base58 encoding, 'CBOR' and 'JSON'
+    serialization.
+License: MIT + file LICENSE
+URL: https://shikokuchuo.net/secretbase/,
+        https://github.com/shikokuchuo/secretbase/
+BugReports: https://github.com/shikokuchuo/secretbase/issues
+Depends: R (>= 3.5)
+Config/build/compilation-database: true
+Encoding: UTF-8
+RoxygenNote: 7.3.3
+NeedsCompilation: yes
+Packaged: 2026-02-05 00:38:47 UTC; cg334
+Author: Charlie Gao [aut, cre] (ORCID: <https://orcid.org/0000-0002-0750-061X>),
+  Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>),
+  Hibiki AI Limited [cph]
+Maintainer: Charlie Gao <charlie.gao@posit.co>
+Repository: CRAN
+Date/Publication: 2026-02-05 06:10:02 UTC
+Built: R 4.5.2; x86_64-w64-mingw32; 2026-02-06 00:52:05 UTC; windows
+Archs: x64

@@ -1,0 +1,6 @@
+source_id,source_name,owner,access_status,time_coverage,geo_coverage,unit_of_observation,key_variables,expected_file_path,notes
+lits_2010,Life in Transition Survey 2010,EBRD / World Bank,pending,2010,national + region,adult individual,"own education; parental education; demographics",data/raw/lits/lits_2010.*,fill exact file extension
+lits_2016,Life in Transition Survey 2016,EBRD / World Bank,pending,2016,national + region,adult individual,"own education; parental education; demographics",data/raw/lits/lits_2016.*,fill exact file extension
+lits_2022_23,Life in Transition Survey 2022-23,EBRD / World Bank,pending,2022-2023,national + region,adult individual,"own education; parental education; demographics",data/raw/lits/lits_2022_23.*,fill exact file extension
+hbs,Household Budget Survey,Uzb. Statistics Agency,pending,2010-2024,national + region,household and individual,"income/consumption; household structure; migration",data/raw/hbs/,add per-year file list
+admin_region_year,Administrative Education Panel,Mo Preschool and School Ed. + Mo Higher Ed.,pending,2010-2024,region-year,region-year,"enrollment; completion; teachers; capacity; spending; tertiary seats",data/raw/admin/region_year_policy_panel.*,preferred as csv

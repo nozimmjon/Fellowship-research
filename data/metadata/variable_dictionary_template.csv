@@ -1,0 +1,12 @@
+dataset,raw_variable,standard_variable,type,description,units_or_levels,required,module
+lits,respondent_education,own_ed_level,character,Respondent highest completed education,ordered categories,yes,A|B
+lits,parent_education,parent_ed_level,character,Parent highest completed education,ordered categories,yes,A|B
+lits,respondent_age,age,integer,Age of respondent,years,yes,A|B
+lits,region,region,character,Administrative region,current official labels,yes,A|B
+lits,wave_year,wave_year,integer,Survey wave year,year,yes,A|B
+lits,household_income,hh_income_proxy,double,Income or welfare proxy,local currency or index,no,B
+lits,migration_status,migration_exposure,integer,Household migration exposure,0/1,no,B
+hbs,household_structure,multigenerational_hh,integer,Multigenerational household indicator,0/1,no,B
+admin,enrollment_rate,enrollment_rate,double,School enrollment rate,percent,yes,C
+admin,tertiary_admission_rate,tertiary_admission_rate,double,Tertiary admissions per eligible cohort,percent,yes,C
+admin,treatment_intensity,treatment_intensity,double,Reform intensity index,index,yes,C

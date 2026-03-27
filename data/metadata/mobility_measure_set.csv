@@ -1,0 +1,6 @@
+metric_order,metric_id,metric_label,definition,estimation_unit,subgroup_splits,min_n,core_set
+1,rank_rank_slope,Years-of-schooling rank-rank slope,OLS slope of respondent schooling rank on parental schooling rank.,wave,overall + urban/rural + gender + region + cohort,30,TRUE
+2,transition_matrix_share,Transition matrix share,Conditional share of child education category within each parental education category.,wave x parent_education x child_education,overall,30,TRUE
+3,upward_mobility_rate,Upward mobility rate,Share with higher education category than parent.,wave,overall + urban/rural + gender + region + cohort,30,TRUE
+4,downward_mobility_rate,Downward mobility rate,Share with lower education category than parent.,wave,overall + urban/rural + gender + region + cohort,30,TRUE
+5,persistence_probability,Persistence probability,Share with same education category as parent.,wave,overall + urban/rural + gender + region + cohort + parent_education,30,TRUE

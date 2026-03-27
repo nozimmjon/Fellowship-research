@@ -1,0 +1,46 @@
+outcome,outcome_label,group,group_value,estimate,n_non_missing
+any_remote_challenge,Any remote-learning challenge,overall,all,0.7581697426019285,176
+challenge_balance,Work/home-school balance challenge,overall,all,0.6512618163519993,176
+challenge_cost,Cost challenge,overall,all,0.662722156818835,176
+challenge_device,Device challenge,overall,all,0.6346369768214408,176
+challenge_internet,Internet challenge,overall,all,0.725899346313982,176
+challenge_tech,Technology-learning challenge,overall,all,0.6734600626502288,176
+education_stopped_covid,Stopped education due to COVID,overall,all,0.7828254243430521,186
+no_support_needed,No additional support needed,overall,all,0.025355710677040098,176
+school_closed_no_online,School closed without online learning,overall,all,0.8518658368541796,186
+shared_device,Child used shared device,overall,all,0.6051716577980987,176
+support_father,Learning support from father,overall,all,0.03719194635324232,176
+support_grand_relatives,Learning support from grandparents/relatives,overall,all,0.06562293201078265,176
+support_mother,Learning support from mother,overall,all,0.8701658074459887,176
+switched_hybrid,Switched to hybrid learning,overall,all,0.8334268382409573,186
+switched_online,Switched to online learning,overall,all,0.9301443018677237,186
+any_remote_challenge,Any remote-learning challenge,parent_education,above_median_parent_edu,0.7660304306489009,84
+any_remote_challenge,Any remote-learning challenge,parent_education,lower_or_equal_median_parent_edu,0.7509332338816264,92
+challenge_balance,Work/home-school balance challenge,parent_education,above_median_parent_edu,0.6854470920923715,84
+challenge_balance,Work/home-school balance challenge,parent_education,lower_or_equal_median_parent_edu,0.6197910284867536,92
+challenge_cost,Cost challenge,parent_education,above_median_parent_edu,0.7040570884402624,84
+challenge_cost,Cost challenge,parent_education,lower_or_equal_median_parent_edu,0.6246694327641303,92
+challenge_device,Device challenge,parent_education,above_median_parent_edu,0.6442250634490687,84
+challenge_device,Device challenge,parent_education,lower_or_equal_median_parent_edu,0.6258102339107404,92
+challenge_internet,Internet challenge,parent_education,above_median_parent_edu,0.7068618323592496,84
+challenge_internet,Internet challenge,parent_education,lower_or_equal_median_parent_edu,0.7434251831011776,92
+challenge_tech,Technology-learning challenge,parent_education,above_median_parent_edu,0.7122772828676714,84
+challenge_tech,Technology-learning challenge,parent_education,lower_or_equal_median_parent_edu,0.6377251306795335,92
+education_stopped_covid,Stopped education due to COVID,parent_education,above_median_parent_edu,0.7451325673011361,87
+education_stopped_covid,Stopped education due to COVID,parent_education,lower_or_equal_median_parent_edu,0.8145449142329517,99
+no_support_needed,No additional support needed,parent_education,above_median_parent_edu,0.019208506235925158,84
+no_support_needed,No additional support needed,parent_education,lower_or_equal_median_parent_edu,0.031014795260703554,92
+school_closed_no_online,School closed without online learning,parent_education,above_median_parent_edu,0.8534331149126899,87
+school_closed_no_online,School closed without online learning,parent_education,lower_or_equal_median_parent_edu,0.8505469328380609,99
+shared_device,Child used shared device,parent_education,above_median_parent_edu,0.5731052772843955,84
+shared_device,Child used shared device,parent_education,lower_or_equal_median_parent_edu,0.6346918016874519,92
+support_father,Learning support from father,parent_education,above_median_parent_edu,0.013736555113000643,84
+support_father,Learning support from father,parent_education,lower_or_equal_median_parent_edu,0.0587848580975883,92
+support_grand_relatives,Learning support from grandparents/relatives,parent_education,above_median_parent_edu,0.09429864032363137,84
+support_grand_relatives,Learning support from grandparents/relatives,parent_education,lower_or_equal_median_parent_edu,0.03922422339561266,92
+support_mother,Learning support from mother,parent_education,above_median_parent_edu,0.8692855984985025,84
+support_mother,Learning support from mother,parent_education,lower_or_equal_median_parent_edu,0.8709761232460954,92
+switched_hybrid,Switched to hybrid learning,parent_education,above_median_parent_edu,0.8385118287339548,87
+switched_hybrid,Switched to hybrid learning,parent_education,lower_or_equal_median_parent_edu,0.8291476904874852,99
+switched_online,Switched to online learning,parent_education,above_median_parent_edu,0.9633180956091351,87
+switched_online,Switched to online learning,parent_education,lower_or_equal_median_parent_edu,0.902227717725,99

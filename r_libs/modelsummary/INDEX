@@ -1,0 +1,42 @@
+coef_rename             Rename model terms
+config_modelsummary     Persistent user settings for the 'modelsummary'
+                        package
+datasummary             Summary tables using 2-sided formulae:
+                        crosstabs, frequencies, table 1s and more.
+datasummary_balance     Balance table: Summary statistics for different
+                        subsets of the data (e.g., control and
+                        treatment groups)
+datasummary_correlation
+                        Generate a correlation table for all numeric
+                        variables in your dataset.
+datasummary_correlation_format
+                        Format the content of a correlation table
+datasummary_crosstab    Cross tabulations for categorical variables
+datasummary_df          Draw a table from a data.frame
+datasummary_skim        Quick overview of numeric or categorical
+                        variables
+dvnames                 Title models with their dependent variables
+fmt_decimal             Rounding with decimal digits in the 'fmt'
+                        argument
+fmt_equivalence         Rounding with number of digits determined by an
+                        equivalence test
+fmt_sci                 Rounding using scientific notation
+fmt_significant         Rounding with significant digits in the 'fmt'
+                        argument
+fmt_sprintf             Rounding with the 'sprintf()' function in the
+                        'fmt' argument.
+fmt_statistic           Rounding with decimal digits on a per-statistic
+                        basis in the 'fmt' argument for
+                        'modelsummary()'
+fmt_term                Rounding with decimal digits on a per-term
+                        basis in the 'fmt' argument for
+                        'modelsummary()'
+get_estimates           Extract model estimates in a tidy format.
+get_gof                 Extract goodness-of-fit statistics a tidy
+                        format.
+gof_map                 Data.frame used to clean up and format
+                        goodness-of-fit statistics
+modelplot               Model Summary Plots with Estimates and
+                        Confidence Intervals
+modelsummary            Model Summary Tables
+update_modelsummary     Update 'modelsummary' and its dependencies

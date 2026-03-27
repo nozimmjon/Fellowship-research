@@ -1,0 +1,62 @@
+tar_age                 Create a target that runs when the last run
+                        gets old
+tar_assign              An assignment-based pipeline DSL
+tar_change              Target that responds to an arbitrary change.
+tar_combine             Static aggregation
+tar_cue_age             Cue to run a target when the last output
+                        reaches a certain age
+tar_cue_force           Cue to force a target to run if a condition is
+                        true
+tar_cue_skip            Cue to skip a target if a condition is true
+tar_download            Target that downloads URLs.
+tar_eval                Evaluate multiple expressions created with
+                        symbol substitution.
+tar_file_read           Track a file and read the contents.
+tar_files               Dynamic branching over output or input files.
+tar_files_input         Dynamic branching over input files or URLs
+tar_force               Target with a custom condition to force
+                        execution.
+tar_format_nanoparquet
+                        Nanoparquet format
+tar_formats             Target factories for storage formats
+tar_group_by            Group a data frame target by one or more
+                        variables.
+tar_group_count         Group the rows of a data frame into a given
+                        number groups
+tar_group_select        Group a data frame target with 'tidyselect'
+                        semantics.
+tar_group_size          Group the rows of a data frame into groups of a
+                        given size.
+tar_hook_before         Hook to prepend code
+tar_hook_inner          Hook to wrap dependencies
+tar_hook_outer          Hook to wrap commands
+tar_knit                Target with a 'knitr' document.
+tar_knitr_deps          List literate programming dependencies.
+tar_knitr_deps_expr     Expression with literate programming
+                        dependencies.
+tar_map                 Static branching.
+tar_map2_count          Dynamic-within-static branching for data frames
+                        (count batching).
+tar_map2_size           Dynamic-within-static branching for data frames
+                        (size batching).
+tar_map_rep             Dynamic batched replication within static
+                        branches for data frames.
+tar_plan                A 'drake'-plan-like pipeline DSL
+tar_quarto              Target with a Quarto project.
+tar_quarto_files        Quarto file detection
+tar_quarto_rep          Parameterized Quarto with dynamic branching.
+tar_render              Target with an R Markdown document.
+tar_render_rep          Parameterized R Markdown with dynamic
+                        branching.
+tar_rep                 Batched replication with dynamic branching.
+tar_rep2                Dynamic batched computation downstream of
+                        'tar_rep()'
+tar_rep_index           Get overall rep index.
+tar_select_names        Select target names from a target list
+tar_select_targets      Select target definition objects from a target
+                        list
+tar_skip                Target with a custom cancellation condition.
+tar_sub                 Create multiple expressions with symbol
+                        substitution.
+tar_tangle              Convert Quarto or R Markdown to a pipeline
+tarchetypes-package     targets: Archetypes for Targets

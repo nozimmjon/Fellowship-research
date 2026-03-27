@@ -1,0 +1,3 @@
+model,formula
+ols,own_years_schooling ~ parent_years_schooling + urban + gender + hh_income_proxy + migration_exposure + multigenerational_hh | region + cohort + wave_year_fe
+logit,upward_tertiary ~ parent_years_schooling + urban + gender + hh_income_proxy + migration_exposure + multigenerational_hh | region + cohort + wave_year_fe

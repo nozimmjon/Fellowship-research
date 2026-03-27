@@ -1,0 +1,10 @@
+wave_year,parent_ed_level,metric,estimate,n,status
+2010,lower_secondary,persistence_probability,0.25196850393700787,254,ok
+2010,primary,persistence_probability,0.012195121951219513,82,ok
+2010,upper_secondary,persistence_probability,0.803921568627451,357,ok
+2016,lower_secondary,persistence_probability,0.25735294117647056,136,ok
+2016,primary,persistence_probability,NA,28,small_n
+2016,upper_secondary,persistence_probability,0.8926553672316384,354,ok
+2022,lower_secondary,persistence_probability,NA,2,small_n
+2022,primary,persistence_probability,NA,1,small_n
+2022,upper_secondary,persistence_probability,0.9865771812080537,149,ok

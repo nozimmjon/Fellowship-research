@@ -1,0 +1,44 @@
+---
+title: "Intergenerational Education Mobility in Uzbekistan"
+subtitle: "Research Update"
+author: "Research Team"
+date: today
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    theme: simple
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Motivation
+
+- Mobility is central to inclusive growth.
+- Uzbekistan has a young population and strong policy interest in education reform.
+
+## Research Design
+
+- Module A: Mobility measurement
+- Module B: Determinants
+- Module C: Event-study DiD for policy evaluation
+
+## Data
+
+- LiTS: 2010, 2016, 2022-23
+- HBS and admin region-year panel
+
+## Status
+
+- Pipeline scaffold complete
+- Data harmonization template ready
+- Estimation modules scripted
+
+## Next Milestones
+
+1. Finalize raw data ingestion map
+2. Run baseline estimates
+3. Complete diagnostics and robustness
+4. Draft final publication package

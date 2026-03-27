@@ -1,0 +1,5 @@
+model,outcome,formula,n_used
+m1_switched_online,switched_online,switched_online ~ parent_low_edu + urban + gender + parent_low_edu:urban | region,186
+m2_school_closed_no_online,school_closed_no_online,school_closed_no_online ~ parent_low_edu + urban + gender + parent_low_edu:urban | region,186
+m3_education_stopped_covid,education_stopped_covid,education_stopped_covid ~ parent_low_edu + urban + gender + parent_low_edu:urban | region,186
+m4_any_remote_challenge,any_remote_challenge,any_remote_challenge ~ parent_low_edu + urban + gender + parent_low_edu:urban | region,176

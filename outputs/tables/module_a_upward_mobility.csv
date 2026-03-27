@@ -1,0 +1,62 @@
+subgroup_type,subgroup_value,wave_year,metric,estimate,n,status
+overall,all,2010,upward_mobility_rate,0.38961038961038963,693,ok
+overall,all,2016,upward_mobility_rate,0.24903474903474904,518,ok
+overall,all,2022,upward_mobility_rate,0.019736842105263157,152,ok
+urban_rural,rural,2010,upward_mobility_rate,0.36674816625916873,409,ok
+urban_rural,urban,2010,upward_mobility_rate,0.4030612244897959,196,ok
+urban_rural,rural,2016,upward_mobility_rate,0.23384615384615384,325,ok
+urban_rural,urban,2016,upward_mobility_rate,0.27461139896373055,193,ok
+urban_rural,rural,2022,upward_mobility_rate,0.009433962264150943,106,ok
+urban_rural,urban,2022,upward_mobility_rate,0.043478260869565216,46,ok
+gender,female,2010,upward_mobility_rate,0.38497652582159625,426,ok
+gender,male,2010,upward_mobility_rate,0.4,265,ok
+gender,female,2016,upward_mobility_rate,0.23344947735191637,287,ok
+gender,male,2016,upward_mobility_rate,0.2683982683982684,231,ok
+gender,female,2022,upward_mobility_rate,0.014184397163120567,141,ok
+gender,male,2022,upward_mobility_rate,NA,11,small_n
+region,Bukhara oblast,2010,upward_mobility_rate,0.3409090909090909,88,ok
+region,Djizak oblast,2010,upward_mobility_rate,0.37209302325581395,43,ok
+region,Karakalpakstan,2010,upward_mobility_rate,0.5333333333333333,30,ok
+region,Khorezm oblast,2010,upward_mobility_rate,0.38028169014084506,71,ok
+region,Namangan oblast,2010,upward_mobility_rate,0.42105263157894735,133,ok
+region,Navoi oblast,2010,upward_mobility_rate,NA,26,small_n
+region,Samarkand oblast,2010,upward_mobility_rate,0.3103448275862069,116,ok
+region,Syrdarya oblast,2010,upward_mobility_rate,0.43243243243243246,37,ok
+region,Tashkent city,2010,upward_mobility_rate,0.4659090909090909,88,ok
+region,Tashkent oblast,2010,upward_mobility_rate,0.3770491803278688,61,ok
+region,Bukhara oblast,2016,upward_mobility_rate,0.16216216216216217,37,ok
+region,Jizzak oblast,2016,upward_mobility_rate,0.16666666666666666,36,ok
+region,Karakalpakistan AR,2016,upward_mobility_rate,0.2807017543859649,57,ok
+region,Khorezm oblast,2016,upward_mobility_rate,0.22916666666666666,48,ok
+region,Namangan oblast,2016,upward_mobility_rate,0.17333333333333334,75,ok
+region,Navoi oblast,2016,upward_mobility_rate,NA,13,small_n
+region,Samarkand oblast,2016,upward_mobility_rate,0.19791666666666666,96,ok
+region,Sirdarya oblast,2016,upward_mobility_rate,NA,24,small_n
+region,Tashkent,2016,upward_mobility_rate,0.30612244897959184,49,ok
+region,Tashkent oblast,2016,upward_mobility_rate,0.37349397590361444,83,ok
+region,Andijan region,2022,upward_mobility_rate,0,35,ok
+region,Bukhara region,2022,upward_mobility_rate,NA,11,small_n
+region,Djizak region,2022,upward_mobility_rate,NA,8,small_n
+region,Fergana region,2022,upward_mobility_rate,NA,21,small_n
+region,Karakalpakstan region,2022,upward_mobility_rate,NA,2,small_n
+region,Kashkadarya region,2022,upward_mobility_rate,NA,13,small_n
+region,Khorezm region,2022,upward_mobility_rate,NA,4,small_n
+region,Namangan region,2022,upward_mobility_rate,NA,16,small_n
+region,Navoi region,2022,upward_mobility_rate,NA,4,small_n
+region,Samarkand region,2022,upward_mobility_rate,NA,6,small_n
+region,Surkhandarya region,2022,upward_mobility_rate,NA,20,small_n
+region,Syrdarya region,2022,upward_mobility_rate,NA,1,small_n
+region,Tashkent city,2022,upward_mobility_rate,NA,2,small_n
+region,Tashkent region,2022,upward_mobility_rate,NA,9,small_n
+cohort,25-34,2010,upward_mobility_rate,0.2222222222222222,252,ok
+cohort,35-44,2010,upward_mobility_rate,0.405982905982906,234,ok
+cohort,45-54,2010,upward_mobility_rate,0.5986394557823129,147,ok
+cohort,55-64,2010,upward_mobility_rate,0.5166666666666667,60,ok
+cohort,25-34,2016,upward_mobility_rate,0.13559322033898305,118,ok
+cohort,35-44,2016,upward_mobility_rate,0.19310344827586207,145,ok
+cohort,45-54,2016,upward_mobility_rate,0.22962962962962963,135,ok
+cohort,55-64,2016,upward_mobility_rate,0.45,120,ok
+cohort,25-34,2022,upward_mobility_rate,0,30,ok
+cohort,35-44,2022,upward_mobility_rate,0.04878048780487805,41,ok
+cohort,45-54,2022,upward_mobility_rate,0.02127659574468085,47,ok
+cohort,55-64,2022,upward_mobility_rate,0,34,ok
