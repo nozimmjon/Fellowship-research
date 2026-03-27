@@ -1,0 +1,19 @@
+study,data,identification_type,relevance_to_module,main_limitation,use_in_paper
+Hertz et al. 2008,42-country education mobility sample,descriptive comparative,A,Older global benchmark and broad category harmonization,benchmark global persistence patterns
+Causa and Johansson 2010,OECD cross-country evidence,descriptive comparative / policy discussion,A/B,OECD-focused; not directly comparable to Uzbekistan,motivate policy relevance of educational mobility
+Torche 2015,review article,conceptual review,A/B,not country-specific,frame descriptive association and measurement choices
+van der Weide et al. 2024,"GDIM, 153 economies",descriptive comparative database,A,cross-country standardization may mask within-country complexity,place Uzbekistan in global educational mobility discussion
+Strömberg and Engzell 2025,"ESS, 16 countries",measurement multiverse,A,European sample; not transition-economy specific,justify multiple mobility measures and coding transparency
+Verashchagina 2009/2012,13 post-communist countries,descriptive comparative,A/B,older evidence and mixed country comparability,transition-economy backdrop
+Brück and Esenaliev 2018,Kyrgyzstan repeated household surveys,descriptive comparative over time,A/B,"single-country comparator, not Uzbekistan",closest Central Asian comparator
+Aydemir and Yazici 2019,Turkey national survey,descriptive / associational,A/B,different institutional context,regional comparator on development and mobility
+Akarçay-Gürbüz and Polat 2017,Turkey censuses + IV,causal IV,design note,Turkey-specific instrument and context,show what stronger causal evidence would require
+World Bank 2018 Uzbekistan ESA,sector analysis,diagnostic report,context,not an intergenerational mobility study,motivate access and tertiary bottlenecks
+UNICEF 2021 Uzbekistan ESA,sector analysis,diagnostic report,context,not intergenerational,connect reforms and access context
+UNICEF 2023 SitAn,national child situation analysis,diagnostic report,B/context,broad social analysis,support rural-urban and migration context
+UNICEF 2020 remote learning brief,global synthesis,policy synthesis,C,not Uzbekistan-specific,household burden and parental readiness background
+Muñoz-Najar et al. 2021,global remote-learning synthesis,policy synthesis,C,not causal or country-specific,teacher-parent communication and home-learning support
+Daniela et al. 2021,Latvian parent survey,descriptive survey,C,different country setting,illustrate parental support burden
+Knopik et al. 2021,Polish parent survey,descriptive survey,C,different educational system,illustrate variation in parental involvement
+Iqbal et al. 2025,Uzbekistan student assessments 2019/2021,panel/repeated assessment analysis,C/context,learning-outcome design differs from household child-module evidence,bounded Uzbekistan-specific pandemic background
+"Meliboeva, Patrinos, and Teixeira 2020",policy blog on Uzbekistan response,policy background,C/context,non-peer-reviewed and early-pandemic,describe remote-learning policy environment
