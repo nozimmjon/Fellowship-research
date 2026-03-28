@@ -73,8 +73,6 @@ The claims are intentionally limited by design. Module A is descriptive, Module 
 
 {{< include ../outputs/publication/literature_review_section.md >}}
 
-{{< include ../outputs/publication/literature_limits_note.md >}}
-
 ## Data and Measurement
 
 ### Core Data
