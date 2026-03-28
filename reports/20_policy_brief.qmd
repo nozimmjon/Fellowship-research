@@ -40,3 +40,5 @@ The 2022-23 category-based mobility rates should be treated cautiously because t
 3. Build shock-readiness protocols into routine education planning: pre-position remote-learning continuity tools so future disruptions are less likely to convert into education stoppage among lower-parent-education households.
 4. Recognize household care and support burdens in program design: when continuity plans assume home support, include gender-aware measures that reduce disproportionate burdens on mothers.
 5. Strengthen mobility monitoring: maintain regular rank-based and category-based reporting from repeated surveys so policy can track persistence levels without over-interpreting noisy categorical cells.
+
+Supplementary HBS evidence on the household support environment points in the same direction: connectivity, tutoring access, education spending capacity, and migration/remittance resources remain part of the constraint set facing families, even though HBS is not used for headline mobility estimation.

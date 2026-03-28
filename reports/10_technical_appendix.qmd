@@ -198,3 +198,83 @@ if (file.exists(mech_coef_file)) {
   data.frame(note = "Module C mechanism coefficient outputs are not available yet.")
 }
 ```
+
+## H. HBS Linkage Diagnostics
+
+The HBS linkage rule is intentionally conservative. An adult aged 25-64 is treated as linkable only if the respondent is coded as a co-resident child of the household head and at least one parental-generation education measure can be recovered from the head/spouse structure with a minimum 12-year age gap. This produces a selective co-resident sample rather than a population-representative intergenerational sample, so the diagnostics are reported before any supplemental HBS model is considered.
+
+```{r}
+hbs_linkage_overview_file <- file.path("..", "outputs", "tables", "hbs_linkage_overview.csv")
+hbs_linkage_selection_file <- file.path("..", "outputs", "tables", "hbs_linkage_selection.csv")
+hbs_linkage_parent_file <- file.path("..", "outputs", "tables", "hbs_linkage_parent_measure_availability.csv")
+hbs_linkage_diag_file <- file.path("..", "data", "processed", "hbs_linkage_diagnostics.csv")
+
+hbs_linkage_overview <- if (file.exists(hbs_linkage_overview_file)) read_csv_safe(hbs_linkage_overview_file) else data.frame(note = "HBS linkage overview not available.")
+hbs_linkage_selection <- if (file.exists(hbs_linkage_selection_file)) read_csv_safe(hbs_linkage_selection_file) else data.frame(note = "HBS linkage selection diagnostics not available.")
+hbs_linkage_parent <- if (file.exists(hbs_linkage_parent_file)) read_csv_safe(hbs_linkage_parent_file) else data.frame(note = "HBS parent-measure availability diagnostics not available.")
+hbs_linkage_diag <- if (file.exists(hbs_linkage_diag_file)) read_csv_safe(hbs_linkage_diag_file) else data.frame(note = "HBS linkage diagnostics not available.")
+
+if ("metric" %in% names(hbs_linkage_overview)) {
+  overview_table <- hbs_linkage_overview
+  overview_table$value <- ifelse(grepl("Percent|Share", overview_table$metric), fmt_pct(overview_table$value), format(as.integer(round(overview_table$value)), big.mark = ","))
+  knitr::kable(overview_table, col.names = c("Diagnostic", "Value"))
+} else {
+  hbs_linkage_overview
+}
+```
+
+```{r}
+if ("metric" %in% names(hbs_linkage_selection)) {
+  selection_table <- hbs_linkage_selection
+  selection_table$full_sample <- ifelse(selection_table$metric == "Mean age", fmt_num(selection_table$full_sample), fmt_pct(selection_table$full_sample))
+  selection_table$linked_sample <- ifelse(selection_table$metric == "Mean age", fmt_num(selection_table$linked_sample), fmt_pct(selection_table$linked_sample))
+  knitr::kable(selection_table, col.names = c("Diagnostic", "Group", "Full adult sample", "Linked sample"))
+} else {
+  hbs_linkage_selection
+}
+```
+
+```{r}
+if ("parent_measure_category" %in% names(hbs_linkage_parent)) {
+  parent_table <- hbs_linkage_parent
+  parent_table$share <- fmt_pct(parent_table$share)
+  knitr::kable(parent_table, col.names = c("Parent-measure category", "N", "Share of adults 25-64"))
+} else {
+  hbs_linkage_parent
+}
+```
+
+```{r}
+if ("model_justified" %in% names(hbs_linkage_diag)) {
+  linkage_note <- if (isTRUE(as.logical(hbs_linkage_diag$model_justified[1]))) {
+    "The diagnostics clear the minimum thresholds for a selective supplemental HBS model."
+  } else {
+    "The diagnostics do not justify supplemental HBS intergenerational estimation: the linked sample is too selective relative to the full adult sample."
+  }
+  data.frame(note = linkage_note)
+} else {
+  data.frame(note = "HBS linkage diagnostics summary is not available.")
+}
+```
+
+## I. HBS Supplemental Co-resident Models (Conditional)
+
+```{r}
+hbs_model_status_file <- file.path("..", "outputs", "tables", "hbs_appendix_model_status.csv")
+hbs_model_coef_file <- file.path("..", "outputs", "tables", "hbs_appendix_model_coefficients.csv")
+
+hbs_model_status <- if (file.exists(hbs_model_status_file)) read_csv_safe(hbs_model_status_file) else data.frame(note = "HBS appendix model status not available.")
+hbs_model_coef <- if (file.exists(hbs_model_coef_file)) read_csv_safe(hbs_model_coef_file) else data.frame(note = "HBS appendix model coefficients not available.")
+
+if ("model_run" %in% names(hbs_model_status) && !isTRUE(as.logical(hbs_model_status$model_run[1]))) {
+  data.frame(note = hbs_model_status$note[1])
+} else if ("estimate" %in% names(hbs_model_coef)) {
+  model_table <- hbs_model_coef[, c("term", "estimate", "std.error", "p.value")]
+  model_table$estimate <- fmt_num(model_table$estimate)
+  model_table$std.error <- fmt_num(model_table$std.error)
+  model_table$p.value <- vapply(model_table$p.value, fmt_p, character(1))
+  knitr::kable(model_table, col.names = c("Term", "Estimate", "Std. Error", "P-value"))
+} else {
+  data.frame(note = "No supplemental HBS co-resident model is reported.")
+}
+```

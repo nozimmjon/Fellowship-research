@@ -57,6 +57,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#e.-diagnostics-outputs" id="toc-e.-diagnostics-outputs" class="nav-link" data-scroll-target="#e.-diagnostics-outputs"><span class="header-section-number">6</span> E. Diagnostics Outputs</a></li>
   <li><a href="#f.-module-c-descriptive-split-by-parental-education" id="toc-f.-module-c-descriptive-split-by-parental-education" class="nav-link" data-scroll-target="#f.-module-c-descriptive-split-by-parental-education"><span class="header-section-number">7</span> F. Module C Descriptive Split by Parental Education</a></li>
   <li><a href="#g.-module-c-secondary-mechanism-regressions" id="toc-g.-module-c-secondary-mechanism-regressions" class="nav-link" data-scroll-target="#g.-module-c-secondary-mechanism-regressions"><span class="header-section-number">8</span> G. Module C Secondary Mechanism Regressions</a></li>
+  <li><a href="#h.-hbs-linkage-diagnostics" id="toc-h.-hbs-linkage-diagnostics" class="nav-link" data-scroll-target="#h.-hbs-linkage-diagnostics"><span class="header-section-number">9</span> H. HBS Linkage Diagnostics</a></li>
+  <li><a href="#i.-hbs-supplemental-co-resident-models-conditional" id="toc-i.-hbs-supplemental-co-resident-models-conditional" class="nav-link" data-scroll-target="#i.-hbs-supplemental-co-resident-models-conditional"><span class="header-section-number">10</span> I. HBS Supplemental Co-resident Models (Conditional)</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="10_technical_appendix.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
 </div>
@@ -181,7 +183,6 @@ ul.task-list li input[type="checkbox"] {
 <li>Module B: descriptive or associational models with household and regional controls</li>
 <li>Module C: LiTS IV mechanism models (2022-23 only), interpreted as suggestive non-causal evidence</li>
 <li>Modules A and B do not support causal claims</li>
-<li>Reform/COVID DiD: optional and conditional on validated admin region-time variation</li>
 </ul>
 </section>
 <section id="c1.-module-a-locked-measure-set" class="level2" data-number="4">
@@ -622,6 +623,212 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</section>
+<section id="h.-hbs-linkage-diagnostics" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="h.-hbs-linkage-diagnostics"><span class="header-section-number">9</span> H. HBS Linkage Diagnostics</h2>
+<p>The HBS linkage rule is intentionally conservative. An adult aged 25-64 is treated as linkable only if the respondent is coded as a co-resident child of the household head and at least one parental-generation education measure can be recovered from the head/spouse structure with a minimum 12-year age gap. This produces a selective co-resident sample rather than a population-representative intergenerational sample, so the diagnostics are reported before any supplemental HBS model is considered.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Diagnostic</th>
+<th style="text-align: left;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Adult sample size (ages 25-64)</td>
+<td style="text-align: left;">181,021</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Linked co-resident sample size</td>
+<td style="text-align: left;">16,784</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Percent linkable under implemented rule</td>
+<td style="text-align: left;">9.3 percent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Adults with usable parent education/proxy</td>
+<td style="text-align: left;">27,905</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Share with usable parent education/proxy</td>
+<td style="text-align: left;">15.4 percent</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Diagnostic</th>
+<th style="text-align: left;">Group</th>
+<th style="text-align: left;">Full adult sample</th>
+<th style="text-align: left;">Linked sample</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mean age</td>
+<td style="text-align: left;">overall</td>
+<td style="text-align: left;">43.103</td>
+<td style="text-align: left;">33.704</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Female share</td>
+<td style="text-align: left;">overall</td>
+<td style="text-align: left;">51.1 percent</td>
+<td style="text-align: left;">15.5 percent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Urban share</td>
+<td style="text-align: left;">overall</td>
+<td style="text-align: left;">50.7 percent</td>
+<td style="text-align: left;">52.0 percent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Andijan</td>
+<td style="text-align: left;">9.3 percent</td>
+<td style="text-align: left;">9.4 percent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Bukhara</td>
+<td style="text-align: left;">5.7 percent</td>
+<td style="text-align: left;">5.5 percent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Fergana</td>
+<td style="text-align: left;">11.7 percent</td>
+<td style="text-align: left;">11.0 percent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Jizzakh</td>
+<td style="text-align: left;">4.0 percent</td>
+<td style="text-align: left;">4.1 percent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Karakalpakstan</td>
+<td style="text-align: left;">5.4 percent</td>
+<td style="text-align: left;">5.4 percent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Kashkadarya</td>
+<td style="text-align: left;">9.6 percent</td>
+<td style="text-align: left;">9.4 percent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Khorezm</td>
+<td style="text-align: left;">5.5 percent</td>
+<td style="text-align: left;">5.8 percent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Namangan</td>
+<td style="text-align: left;">8.4 percent</td>
+<td style="text-align: left;">8.4 percent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Navoi</td>
+<td style="text-align: left;">3.1 percent</td>
+<td style="text-align: left;">2.0 percent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Samarkand</td>
+<td style="text-align: left;">11.0 percent</td>
+<td style="text-align: left;">11.5 percent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Surkhandarya</td>
+<td style="text-align: left;">7.5 percent</td>
+<td style="text-align: left;">7.7 percent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Syrdarya</td>
+<td style="text-align: left;">2.5 percent</td>
+<td style="text-align: left;">2.7 percent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Tashkent City</td>
+<td style="text-align: left;">4.8 percent</td>
+<td style="text-align: left;">3.5 percent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Province share</td>
+<td style="text-align: left;">Tashkent Region</td>
+<td style="text-align: left;">11.4 percent</td>
+<td style="text-align: left;">13.6 percent</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Parent-measure category</th>
+<th style="text-align: right;">N</th>
+<th style="text-align: left;">Share of adults 25-64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">both parents</td>
+<td style="text-align: right;">17258</td>
+<td style="text-align: left;">9.5 percent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mother only</td>
+<td style="text-align: right;">8179</td>
+<td style="text-align: left;">4.5 percent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">father only</td>
+<td style="text-align: right;">2468</td>
+<td style="text-align: left;">1.4 percent</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">no usable parent measure</td>
+<td style="text-align: right;">153116</td>
+<td style="text-align: left;">84.6 percent</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                                                                                                                 note
+1 The diagnostics do not justify supplemental HBS intergenerational estimation: the linked sample is too selective relative to the full adult sample.</code></pre>
+</div>
+</div>
+</section>
+<section id="i.-hbs-supplemental-co-resident-models-conditional" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="i.-hbs-supplemental-co-resident-models-conditional"><span class="header-section-number">10</span> I. HBS Supplemental Co-resident Models (Conditional)</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                                                                                                                                    note
+1 The linkage diagnostics indicate that the co-resident HBS sample is too selective for a supplemental intergenerational appendix model.</code></pre>
 </div>
 </div>
 </section>

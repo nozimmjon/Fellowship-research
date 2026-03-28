@@ -33,6 +33,8 @@ region_trends <- read_csv_safe(project_file("outputs", "tables", "tier_a_region_
 subgroup_trends <- read_csv_safe(project_file("outputs", "tables", "tier_a_subgroup_trends.csv"))
 subgroup_metrics <- read_csv_safe(project_file("outputs", "tables", "module_a_subgroup_metrics.csv"))
 lits_harmonized <- read_csv_safe(project_file("data", "processed", "lits_harmonized.csv"))
+hbs_support_context <- read_csv_safe(project_file("outputs", "tables", "hbs_household_support_context.csv"))
+hbs_linkage_diagnostics <- read_csv_safe(project_file("data", "processed", "hbs_linkage_diagnostics.csv"))
 
 lits_harmonized$age_num <- suppressWarnings(as.numeric(lits_harmonized$age))
 lits_harmonized$wave_year <- suppressWarnings(as.integer(lits_harmonized$wave_year))
@@ -43,6 +45,10 @@ lits_uzb_sample <- lits_harmonized[
     lits_harmonized$age_num >= 25 &
     lits_harmonized$age_num <= 64,
 ]
+
+hbs_context_value <- function(metric, column = "national") {
+  as.numeric(hbs_support_context[hbs_support_context$metric == metric, column][1])
+}
 ```
 
 ## Abstract {.unnumbered}
@@ -480,6 +486,26 @@ module_b_table$`P-value` <- vapply(module_b_table$p.value, fmt_p, character(1))
 
 knitr::kable(
   module_b_table[, c("Model", "Term", "Estimate", "Std. Error", "P-value")]
+)
+```
+
+### Household Support Environment from HBS
+
+Supplementary HBS evidence is used here only to characterize the household support environment around schooling, not to replace the core LiTS intergenerational estimates. Across pooled HBS 2021-2025 households, `r fmt_pct(hbs_context_value("has_enrolled_member"))` had an enrolled member, `r fmt_pct(hbs_context_value("education_spending_positive"))` reported positive education spending, `r fmt_pct(hbs_context_value("has_tutoring"))` reported tutoring, `r fmt_pct(hbs_context_value("has_emigrant_hh"))` had an emigrant member, and `r fmt_pct(hbs_context_value("has_remittance_hh"))` received remittances; internet access is observed for `r fmt_pct(hbs_context_value("internet_access_hh"))` of households in the 2021-2024 internet module. These patterns provide context for interpretation by showing that schooling support, migration-linked resources, and connectivity constraints sit inside the same household environment as the LiTS persistence patterns.
+
+The HBS linkage diagnostics in Appendix H also show why HBS remains supplementary. Under a conservative co-resident linkage rule, only `r fmt_pct(hbs_linkage_diagnostics$link_rate[1])` of HBS adults ages 25-64 are linkable, and that linked sample is materially younger and much less female than the full adult sample. HBS therefore informs the household support environment, but it is not a direct substitute for the headline LiTS intergenerational estimates.
+
+```{r}
+#| label: tbl-hbs-context
+#| tbl-cap: "Supplementary HBS household support environment, pooled 2021-2025."
+hbs_context_table <- hbs_support_context[, c("row_label", "national", "urban", "rural")]
+hbs_context_table$National <- fmt_pct(hbs_context_table$national)
+hbs_context_table$Urban <- fmt_pct(hbs_context_table$urban)
+hbs_context_table$Rural <- fmt_pct(hbs_context_table$rural)
+
+knitr::kable(
+  hbs_context_table[, c("row_label", "National", "Urban", "Rural")],
+  col.names = c("Household support indicator", "National", "Urban", "Rural")
 )
 ```
 

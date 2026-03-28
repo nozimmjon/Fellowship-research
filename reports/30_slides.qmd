@@ -41,6 +41,7 @@ module_b_coef <- read_csv_safe(project_file("outputs", "tables", "module_b_model
 module_c_sample <- read_csv_safe(project_file("outputs", "tables", "module_c_mechanism_sample.csv"))
 module_c_summary <- read_csv_safe(project_file("outputs", "tables", "module_c_mechanism_summary.csv"))
 module_c_coef <- read_csv_safe(project_file("outputs", "tables", "module_c_mechanism_coefficients.csv"))
+hbs_context <- read_csv_safe(project_file("outputs", "tables", "hbs_household_support_context.csv"))
 
 metric_row <- function(metric, wave_year) {
   out <- module_a_summary[
@@ -85,6 +86,10 @@ mech_coef_est <- function(model, term) as.numeric(mech_coef_row(model, term)$est
 sample_n <- function(step_pattern) {
   idx <- grep(step_pattern, module_c_sample$step)
   as.integer(module_c_sample$n[idx[1]])
+}
+
+hbs_context_est <- function(metric) {
+  as.numeric(hbs_context$national[hbs_context$metric == metric][1])
 }
 ```
 
@@ -155,6 +160,13 @@ sample_n <- function(step_pattern) {
 - Descriptive persistence rises across waves, but pooled models do not estimate the change precisely.
 - 2022-23 category-based mobility rates use a much smaller valid denominator than rank-based estimates.
 - Module C is secondary and based on a limited subsample.
+
+## HBS Household Support Context
+
+- HBS is supplementary context, not the main mobility engine.
+- `r fmt_pct(hbs_context_est("has_enrolled_member"))` of pooled HBS households had an enrolled member.
+- `r fmt_pct(hbs_context_est("education_spending_positive"))` reported positive education spending and `r fmt_pct(hbs_context_est("has_tutoring"))` reported tutoring.
+- `r fmt_pct(hbs_context_est("has_remittance_hh"))` received remittances, while `r fmt_pct(hbs_context_est("internet_access_hh"))` had internet access in the 2021-2024 internet module.
 
 ## Policy Implications
 

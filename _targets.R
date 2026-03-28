@@ -6,6 +6,9 @@ source("R/12_analysis_specs.R")
 source("R/20_ingest_data.R")
 source("R/30_module_a_mobility.R")
 source("R/31_module_a_tier_a_descriptive.R")
+source("R/31_build_hbs_household_context.R")
+source("R/32_build_hbs_linkage_diagnostics.R")
+source("R/33_estimate_hbs_appendix_models.R")
 source("R/40_module_b_determinants.R")
 source("R/50_module_c_policy_did.R")
 source("R/90_reporting_helpers.R")
@@ -91,6 +94,33 @@ list(
   targets::tar_target(
     module_c_files,
     save_module_c_outputs(module_c_model),
+    format = "file"
+  ),
+  targets::tar_target(
+    hbs_household_context,
+    build_hbs_household_context()
+  ),
+  targets::tar_target(
+    hbs_household_context_files,
+    write_hbs_household_context_outputs(hbs_household_context),
+    format = "file"
+  ),
+  targets::tar_target(
+    hbs_linkage_results,
+    build_hbs_linkage_diagnostics()
+  ),
+  targets::tar_target(
+    hbs_linkage_files,
+    write_hbs_linkage_outputs(hbs_linkage_results),
+    format = "file"
+  ),
+  targets::tar_target(
+    hbs_appendix_model,
+    build_hbs_appendix_model(hbs_linkage_results)
+  ),
+  targets::tar_target(
+    hbs_appendix_model_files,
+    write_hbs_appendix_model_outputs(hbs_appendix_model),
     format = "file"
   )
 )
