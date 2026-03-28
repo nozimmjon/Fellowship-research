@@ -49,14 +49,16 @@ as_label_text <- function(x) {
 }
 
 map_education_level <- function(x) {
-  x <- tolower(as.character(x))
+  x <- tolower(trimws(as.character(x)))
+  x_norm <- gsub("_+", "_", gsub("[[:space:]-]+", "_", x))
   dplyr::case_when(
-    stringr::str_detect(x, "master|phd|bachelor|tertiary education \\(not a university") ~ "tertiary",
-    stringr::str_detect(x, "post-secondary non-tertiary|post-secondary non tertiary") ~ "post_secondary_non_tertiary",
+    x_norm %in% EDUCATION_LEVELS ~ x_norm,
+    stringr::str_detect(x, "master|phd|bachelor|tertiary education \\(not a university|tertiary") ~ "tertiary",
+    stringr::str_detect(x, "post-secondary non-tertiary|post-secondary non tertiary|post secondary non tertiary|post_secondary_non_tertiary") ~ "post_secondary_non_tertiary",
     stringr::str_detect(x, "upper") ~ "upper_secondary",
     stringr::str_detect(x, "lower") ~ "lower_secondary",
     stringr::str_detect(x, "primary") ~ "primary",
-    stringr::str_detect(x, "no degree|no education|no formal") ~ "no_formal",
+    stringr::str_detect(x, "no degree|no education|no formal|no_formal") ~ "no_formal",
     TRUE ~ NA_character_
   )
 }
@@ -149,6 +151,18 @@ build_multigenerational_proxy <- function(df, age_cols, child_max_age = 17, olde
   as.integer(out)
 }
 
+extract_roster_value_by_code <- function(code, values) {
+  idx <- suppressWarnings(as.integer(code))
+  out <- rep(NA, length(idx))
+  for (j in seq_along(values)) {
+    hit <- !is.na(idx) & idx == j
+    if (any(hit)) {
+      out[hit] <- values[[j]][hit]
+    }
+  }
+  out
+}
+
 age_from_band <- function(x) {
   x <- as.character(x)
   dplyr::case_when(
@@ -184,6 +198,10 @@ as_harmonized_frame <- function(
   own_years,
   parent_years,
   weight,
+  father_level = NULL,
+  mother_level = NULL,
+  father_years = NULL,
+  mother_years = NULL,
   hh_income_proxy = NULL,
   migration_exposure = NULL,
   multigenerational_hh = NULL
@@ -192,6 +210,10 @@ as_harmonized_frame <- function(
   if (is.null(hh_income_proxy)) hh_income_proxy <- rep(NA_real_, n)
   if (is.null(migration_exposure)) migration_exposure <- rep(NA_integer_, n)
   if (is.null(multigenerational_hh)) multigenerational_hh <- rep(NA_integer_, n)
+  if (is.null(father_level)) father_level <- rep(NA_character_, n)
+  if (is.null(mother_level)) mother_level <- rep(NA_character_, n)
+  if (is.null(father_years)) father_years <- rep(NA_real_, n)
+  if (is.null(mother_years)) mother_years <- rep(NA_real_, n)
 
   tibble::tibble(
     wave_year = as.integer(wave_year),
@@ -204,6 +226,10 @@ as_harmonized_frame <- function(
     parent_ed_level = map_education_level(parent_level),
     own_years_schooling = clean_numeric(own_years),
     parent_years_schooling = clean_numeric(parent_years),
+    father_ed_level = map_education_level(father_level),
+    mother_ed_level = map_education_level(mother_level),
+    father_years_schooling = clean_numeric(father_years),
+    mother_years_schooling = clean_numeric(mother_years),
     sample_weight = clean_numeric(weight),
     hh_income_proxy = clean_numeric(hh_income_proxy),
     migration_exposure = suppressWarnings(as.integer(migration_exposure)),
@@ -267,6 +293,10 @@ read_lits_2010 <- function(raw_dir) {
     own_years = d$own_years,
     parent_years = d$parent_years,
     weight = d$weight,
+    father_level = d$father_level,
+    mother_level = d$mother_level,
+    father_years = d$father_years,
+    mother_years = d$mother_years,
     hh_income_proxy = NA_real_,
     migration_exposure = d$migration,
     multigenerational_hh = d$multigen_proxy
@@ -347,6 +377,10 @@ read_lits_2016 <- function(raw_dir) {
     own_years = d$own_years,
     parent_years = d$parent_years,
     weight = d$weight_population,
+    father_level = d$father_level,
+    mother_level = d$mother_level,
+    father_years = education_level_to_years(d$father_level),
+    mother_years = education_level_to_years(d$mother_level),
     hh_income_proxy = d$hh_income_raw,
     migration_exposure = d$migration,
     multigenerational_hh = d$multigen_proxy
@@ -363,7 +397,14 @@ read_lits_2022 <- function(raw_dir) {
 
   d <- haven::read_dta(
     path,
-    col_select = c(country, region, q1051, q1052, q1053, q1054, q1055, q1056, q1057, q1058, q1059, q10510, q10511, q10512, q10513, q10514, q10515, q10516, q10517, q10518, q10519, q10520, int_gender, urbanity, q109a, q109b, q110a, q110b, q111a, q111b, q225, q505, weight_pop, weight)
+    col_select = c(
+      country, region, know_resp_code, rand_resp_code,
+      q1031, q1032, q1033, q1034, q1035, q1036, q1037, q1038, q1039, q10310,
+      q10311, q10312, q10313, q10314, q10315, q10316, q10317, q10318, q10319, q10320,
+      q1051, q1052, q1053, q1054, q1055, q1056, q1057, q1058, q1059, q10510,
+      q10511, q10512, q10513, q10514, q10515, q10516, q10517, q10518, q10519, q10520,
+      urbanity, q109a, q109b, q110a, q110b, q111a, q111b, q225, q505, weight_pop, weight
+    )
   ) %>%
     dplyr::mutate(
       country = as.character(haven::as_factor(country)),
@@ -372,13 +413,25 @@ read_lits_2022 <- function(raw_dir) {
       mother_cat = dplyr::coalesce(as_label_text(q111b), as_label_text(q111a)),
       migration = yes_no_to_binary(as_label_text(q505)),
       hh_income_raw = clean_numeric(q225),
-      gender = as_label_text(int_gender),
       urban_raw = as_label_text(urbanity),
       weight_final = dplyr::coalesce(weight_pop, weight),
       multigen_proxy = build_multigenerational_proxy(
         .,
         age_cols = c("q1051", "q1052", "q1053", "q1054", "q1055", "q1056", "q1057", "q1058", "q1059", "q10510", "q10511", "q10512", "q10513", "q10514", "q10515", "q10516", "q10517", "q10518", "q10519", "q10520")
       )
+    )
+
+  roster_gender_cols <- lapply(paste0("q103", seq_len(20)), function(nm) as_label_text(d[[nm]]))
+  roster_age_cols <- lapply(paste0("q105", seq_len(20)), function(nm) clean_numeric(d[[nm]]))
+
+  d <- d %>%
+    dplyr::mutate(
+      primary_gender = extract_roster_value_by_code(rand_resp_code, roster_gender_cols),
+      knowledgeable_gender = extract_roster_value_by_code(know_resp_code, roster_gender_cols),
+      primary_age = extract_roster_value_by_code(rand_resp_code, roster_age_cols),
+      knowledgeable_age = extract_roster_value_by_code(know_resp_code, roster_age_cols),
+      respondent_gender = dplyr::coalesce(primary_gender, knowledgeable_gender),
+      respondent_age = dplyr::coalesce(primary_age, knowledgeable_age)
     ) %>%
     dplyr::filter(country == "Uzbekistan") %>%
     dplyr::mutate(
@@ -394,14 +447,18 @@ read_lits_2022 <- function(raw_dir) {
     wave_year = 2022L,
     country = d$country,
     region = d$region,
-    age = d$q1051,
-    gender = d$gender,
+    age = d$respondent_age,
+    gender = d$respondent_gender,
     urban = d$urban_raw,
     own_level = d$own_level,
     parent_level = d$parent_level,
     own_years = d$own_years,
     parent_years = d$parent_years,
     weight = d$weight_final,
+    father_level = d$father_level,
+    mother_level = d$mother_level,
+    father_years = education_level_to_years(d$father_level),
+    mother_years = education_level_to_years(d$mother_level),
     hh_income_proxy = d$hh_income_raw,
     migration_exposure = d$migration,
     multigenerational_hh = d$multigen_proxy

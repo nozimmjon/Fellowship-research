@@ -78,6 +78,98 @@ read_csv_safe(spec_file)
 - Module C split-threshold sensitivity (`median`, `<=11`, `<=9`)
 - Module C sample-composition and fixed-effect attrition checks
 
+## D1. Empirical Audit Summary
+
+```{r}
+claim_audit_file <- file.path("..", "outputs", "tables", "empirical_claim_audit.csv")
+
+if (file.exists(claim_audit_file)) {
+  claim_audit <- read_csv_safe(claim_audit_file)
+  claim_audit$Status <- gsub("_", " ", claim_audit$status)
+  knitr::kable(
+    claim_audit[, c("module", "check_id", "Status", "detail")],
+    col.names = c("Module", "Check", "Status", "Detail")
+  )
+} else {
+  data.frame(note = "Empirical claim-audit outputs are not available yet.")
+}
+```
+
+## D2. Parent-Measure Robustness
+
+```{r}
+parent_robust_file <- file.path("..", "outputs", "tables", "empirical_parent_measure_robustness.csv")
+
+if (file.exists(parent_robust_file)) {
+  parent_robust <- read_csv_safe(parent_robust_file)
+  parent_robust <- parent_robust[
+    parent_robust$subgroup_type == "overall" &
+      parent_robust$subgroup_value == "all" &
+      parent_robust$metric %in% c("rank_rank_slope", "persistence_probability"),
+  ]
+
+  variant_labels <- c(
+    baseline_max = "Baseline: max parent category",
+    mean_parent_years = "Mean parent years",
+    father_only = "Father only",
+    mother_only = "Mother only",
+    both_parents_observed_only = "Both parents observed only"
+  )
+  metric_labels <- c(
+    rank_rank_slope = "Rank-rank slope",
+    persistence_probability = "Persistence probability"
+  )
+
+  parent_robust$display <- paste0(
+    fmt_num(parent_robust$estimate),
+    " [",
+    fmt_num(parent_robust$ci_low),
+    ", ",
+    fmt_num(parent_robust$ci_high),
+    "]"
+  )
+  parent_robust$variant_label <- unname(variant_labels[parent_robust$parent_measure_variant])
+  parent_robust$metric_label <- unname(metric_labels[parent_robust$metric])
+
+  parent_robust_wide <- reshape(
+    parent_robust[, c("variant_label", "metric_label", "wave_year", "display")],
+    idvar = c("variant_label", "metric_label"),
+    timevar = "wave_year",
+    direction = "wide"
+  )
+  names(parent_robust_wide) <- sub("^display\\.", "", names(parent_robust_wide))
+  parent_robust_wide <- parent_robust_wide[
+    order(
+      match(parent_robust_wide$variant_label, variant_labels),
+      match(parent_robust_wide$metric_label, metric_labels)
+    ),
+  ]
+
+  knitr::kable(
+    parent_robust_wide,
+    col.names = c("Parent-measure variant", "Metric", "2010", "2016", "2022-23")
+  )
+} else {
+  data.frame(note = "Parent-measure robustness outputs are not available yet.")
+}
+```
+
+## D3. Model Inventory
+
+```{r}
+model_inventory_file <- file.path("..", "outputs", "tables", "empirical_model_inventory.csv")
+
+if (file.exists(model_inventory_file)) {
+  model_inventory <- read_csv_safe(model_inventory_file)
+  knitr::kable(
+    model_inventory[, c("module", "model", "outcome", "estimator", "family", "link", "weighted", "fixed_effects", "parameter_scale", "interaction_structure")],
+    col.names = c("Module", "Model", "Outcome", "Estimator", "Family", "Link", "Weighted", "Fixed effects", "Parameter scale", "Interaction structure")
+  )
+} else {
+  data.frame(note = "Empirical model inventory is not available yet.")
+}
+```
+
 ## E. Diagnostics Outputs
 
 ```{r}
@@ -196,6 +288,38 @@ if (file.exists(mech_coef_file)) {
   )
 } else {
   data.frame(note = "Module C mechanism coefficient outputs are not available yet.")
+}
+```
+
+## G1. Module C Stoppage Fragility Check
+
+```{r}
+robust_coef_file <- file.path("..", "outputs", "tables", "module_c_mechanism_robustness_coefficients.csv")
+
+if (file.exists(robust_coef_file)) {
+  stop_gap_table <- read_csv_safe(robust_coef_file)
+  stop_gap_table <- stop_gap_table[
+    stop_gap_table$model == "m3_education_stopped_covid" &
+      stop_gap_table$term == "parent_low_edu",
+    c("scenario_id", "split_rule", "split_threshold", "use_weights", "estimate", "std.error", "p.value", "n_used", "status")
+  ]
+  scenario_labels <- c(
+    baseline_weighted_median = "Weighted median split",
+    unweighted_median = "Unweighted median split",
+    weighted_leq11 = "Weighted <=11 years split",
+    weighted_leq9 = "Weighted <=9 years split"
+  )
+  stop_gap_table$Scenario <- unname(scenario_labels[stop_gap_table$scenario_id])
+  stop_gap_table$Estimate <- fmt_num(stop_gap_table$estimate)
+  stop_gap_table$`Std. Error` <- fmt_num(stop_gap_table$std.error)
+  stop_gap_table$`P-value` <- vapply(stop_gap_table$p.value, fmt_p, character(1))
+
+  knitr::kable(
+    stop_gap_table[, c("Scenario", "split_threshold", "Estimate", "Std. Error", "P-value", "n_used", "status")],
+    col.names = c("Scenario", "Threshold", "Log-odds estimate", "Std. Error", "P-value", "Used N", "Status")
+  )
+} else {
+  data.frame(note = "Module C stoppage fragility diagnostics are not available yet.")
 }
 ```
 

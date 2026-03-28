@@ -56,6 +56,27 @@ load_main_manuscript_context <- function(project_root = "..", env = parent.frame
     as.integer(metric_row(metric, wave_year)$n)
   }
 
+  metric_ci_low <- function(metric, wave_year) {
+    as.numeric(metric_row(metric, wave_year)$ci_low)
+  }
+
+  metric_ci_high <- function(metric, wave_year) {
+    as.numeric(metric_row(metric, wave_year)$ci_high)
+  }
+
+  metric_ci <- function(metric, wave_year, digits = 3) {
+    low <- metric_ci_low(metric, wave_year)
+    high <- metric_ci_high(metric, wave_year)
+    if (is.na(low) || is.na(high)) {
+      return(NA_character_)
+    }
+    paste0("[", fmt_num(low, digits = digits), ", ", fmt_num(high, digits = digits), "]")
+  }
+
+  metric_effective_n <- function(metric, wave_year) {
+    as.numeric(metric_row(metric, wave_year)$effective_n)
+  }
+
   coef_row <- function(model, term) {
     out <- module_b_coef[module_b_coef$model == model & module_b_coef$term == term, ]
     if (nrow(out) == 0) {
@@ -126,6 +147,10 @@ load_main_manuscript_context <- function(project_root = "..", env = parent.frame
       mech_est = mech_est,
       mech_summary_row = mech_summary_row,
       metric_est = metric_est,
+      metric_ci = metric_ci,
+      metric_ci_low = metric_ci_low,
+      metric_ci_high = metric_ci_high,
+      metric_effective_n = metric_effective_n,
       metric_n = metric_n,
       metric_row = metric_row,
       module_a_summary = module_a_summary,

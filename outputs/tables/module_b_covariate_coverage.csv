@@ -1,6 +1,6 @@
 covariate,n_total,n_non_missing,share_non_missing,n_unique_non_missing
-urban,1175,1100,0.9361702127659575,2
-female,1175,1175,1,2
-hh_income_proxy,1175,503,0.4280851063829787,148
-migration_exposure,1175,1174,0.9991489361702127,2
-multigenerational_hh,1175,1175,1,2
+urban,2901,2767,0.9538090313684936,2
+female,2901,2901,1,2
+hh_income_proxy,2901,1687,0.5815236125473975,279
+migration_exposure,2901,2890,0.9962082040675629,2
+multigenerational_hh,2901,2901,1,2

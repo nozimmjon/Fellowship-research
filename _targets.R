@@ -11,6 +11,7 @@ source("R/32_build_hbs_linkage_diagnostics.R")
 source("R/33_estimate_hbs_appendix_models.R")
 source("R/40_module_b_determinants.R")
 source("R/50_module_c_policy_did.R")
+source("R/60_empirical_audit.R")
 source("R/90_reporting_helpers.R")
 
 targets::tar_option_set(
@@ -94,6 +95,15 @@ list(
   targets::tar_target(
     module_c_files,
     save_module_c_outputs(module_c_model),
+    format = "file"
+  ),
+  targets::tar_target(
+    empirical_audit,
+    build_empirical_audit(lits_harmonized, module_a_metrics, module_b_models, module_c_model)
+  ),
+  targets::tar_target(
+    empirical_audit_files,
+    save_empirical_audit_outputs(empirical_audit),
     format = "file"
   ),
   targets::tar_target(

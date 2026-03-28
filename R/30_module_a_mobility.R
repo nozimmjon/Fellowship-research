@@ -35,6 +35,50 @@ weighted_share <- function(cond, w) {
   stats::weighted.mean(as.numeric(cond[keep]), w[keep])
 }
 
+weight_effective_n <- function(w) {
+  w_num <- suppressWarnings(as.numeric(w))
+  w_num <- w_num[!is.na(w_num) & w_num > 0]
+  if (length(w_num) == 0) {
+    return(NA_real_)
+  }
+  (sum(w_num) ^ 2) / sum(w_num ^ 2)
+}
+
+weighted_binary_summary <- function(cond, w, conf_level = 0.95) {
+  keep <- !is.na(cond) & !is.na(w) & w > 0
+  if (!any(keep)) {
+    return(list(
+      estimate = NA_real_,
+      std.error = NA_real_,
+      ci_low = NA_real_,
+      ci_high = NA_real_,
+      effective_n = NA_real_
+    ))
+  }
+
+  cond_num <- as.numeric(cond[keep])
+  w_num <- as.numeric(w[keep])
+  estimate <- stats::weighted.mean(cond_num, w_num)
+  effective_n <- weight_effective_n(w_num)
+  if (is.na(effective_n) || effective_n <= 1) {
+    std.error <- NA_real_
+  } else {
+    std.error <- sqrt(max(estimate * (1 - estimate), 0) / effective_n)
+  }
+  alpha <- 1 - conf_level
+  z_val <- stats::qnorm(1 - alpha / 2)
+  ci_low <- if (is.na(std.error)) NA_real_ else max(0, estimate - z_val * std.error)
+  ci_high <- if (is.na(std.error)) NA_real_ else min(1, estimate + z_val * std.error)
+
+  list(
+    estimate = estimate,
+    std.error = std.error,
+    ci_low = ci_low,
+    ci_high = ci_high,
+    effective_n = effective_n
+  )
+}
+
 normalize_ed_level <- function(x) {
   x <- tolower(as.character(x))
   x <- dplyr::case_when(
@@ -171,13 +215,37 @@ compute_rank_rank_slope <- function(df, group_var = NULL, min_n = 30L) {
 
       n <- nrow(dat)
       if (n < min_n) {
-        return(tibble::tibble(metric = "rank_rank_slope", estimate = NA_real_, n = n, status = "small_n"))
+        return(tibble::tibble(
+          metric = "rank_rank_slope",
+          estimate = NA_real_,
+          std.error = NA_real_,
+          ci_low = NA_real_,
+          ci_high = NA_real_,
+          effective_n = weight_effective_n(dat$sample_weight),
+          n = n,
+          status = "small_n"
+        ))
       }
 
       fit <- stats::lm(child_rank ~ parent_rank, data = dat, weights = sample_weight)
+      fit_summary <- summary(fit)
+      coef_table <- fit_summary$coefficients
+      slope_estimate <- unname(stats::coef(fit)[["parent_rank"]])
+      slope_se <- if ("parent_rank" %in% rownames(coef_table)) coef_table["parent_rank", "Std. Error"] else NA_real_
+      alpha <- 0.05
+      t_val <- if (!is.na(stats::df.residual(fit)) && stats::df.residual(fit) > 0) {
+        stats::qt(1 - alpha / 2, df = stats::df.residual(fit))
+      } else {
+        stats::qnorm(1 - alpha / 2)
+      }
+
       tibble::tibble(
         metric = "rank_rank_slope",
-        estimate = unname(stats::coef(fit)[["parent_rank"]]),
+        estimate = slope_estimate,
+        std.error = slope_se,
+        ci_low = if (is.na(slope_se)) NA_real_ else slope_estimate - t_val * slope_se,
+        ci_high = if (is.na(slope_se)) NA_real_ else slope_estimate + t_val * slope_se,
+        effective_n = weight_effective_n(dat$sample_weight),
         n = n,
         status = "ok"
       )
@@ -207,21 +275,31 @@ compute_directional_rates <- function(df, group_var = NULL, min_n = 30L) {
 
   out <- tmp %>%
     dplyr::group_by(dplyr::across(dplyr::all_of(group_cols))) %>%
-    dplyr::summarise(
-      upward_mobility_rate = weighted_share(own_ed_rank > parent_ed_rank, sample_weight),
-      downward_mobility_rate = weighted_share(own_ed_rank < parent_ed_rank, sample_weight),
-      persistence_probability = weighted_share(own_ed_rank == parent_ed_rank, sample_weight),
-      n = dplyr::n(),
-      .groups = "drop"
-    ) %>%
-    tidyr::pivot_longer(
-      cols = c(upward_mobility_rate, downward_mobility_rate, persistence_probability),
-      names_to = "metric",
-      values_to = "estimate"
-    ) %>%
+    dplyr::group_modify(~{
+      group_n <- nrow(.x)
+      upward <- weighted_binary_summary(.x$own_ed_rank > .x$parent_ed_rank, .x$sample_weight)
+      downward <- weighted_binary_summary(.x$own_ed_rank < .x$parent_ed_rank, .x$sample_weight)
+      persistence <- weighted_binary_summary(.x$own_ed_rank == .x$parent_ed_rank, .x$sample_weight)
+      group_status <- if (group_n >= min_n) "ok" else "small_n"
+
+      tibble::tibble(
+        metric = c("upward_mobility_rate", "downward_mobility_rate", "persistence_probability"),
+        estimate = c(upward$estimate, downward$estimate, persistence$estimate),
+        std.error = c(upward$std.error, downward$std.error, persistence$std.error),
+        ci_low = c(upward$ci_low, downward$ci_low, persistence$ci_low),
+        ci_high = c(upward$ci_high, downward$ci_high, persistence$ci_high),
+        effective_n = c(upward$effective_n, downward$effective_n, persistence$effective_n),
+        n = rep(group_n, 3),
+        status = rep(group_status, 3)
+      )
+    }) %>%
+    dplyr::ungroup() %>%
     dplyr::mutate(
-      estimate = dplyr::if_else(n >= min_n, estimate, NA_real_),
-      status = dplyr::if_else(n >= min_n, "ok", "small_n")
+      estimate = dplyr::if_else(status == "ok", estimate, NA_real_),
+      std.error = dplyr::if_else(status == "ok", std.error, NA_real_),
+      ci_low = dplyr::if_else(status == "ok", ci_low, NA_real_),
+      ci_high = dplyr::if_else(status == "ok", ci_high, NA_real_),
+      effective_n = dplyr::if_else(status == "ok", effective_n, NA_real_)
     )
 
   label_subgroup(out, group_var)
@@ -275,6 +353,10 @@ empty_module_a_result <- function(measure_spec, variable_lock) {
       wave_year = integer(),
       metric = character(),
       estimate = double(),
+      std.error = double(),
+      ci_low = double(),
+      ci_high = double(),
+      effective_n = double(),
       n = integer(),
       status = character()
     ),
@@ -284,6 +366,10 @@ empty_module_a_result <- function(measure_spec, variable_lock) {
       wave_year = integer(),
       metric = character(),
       estimate = double(),
+      std.error = double(),
+      ci_low = double(),
+      ci_high = double(),
+      effective_n = double(),
       n = integer(),
       status = character()
     ),

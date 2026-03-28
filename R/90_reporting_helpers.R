@@ -26,14 +26,28 @@ plot_national_rank_rank <- function(national_trends, path) {
       graphics::title("Rank-Rank Slope by Wave")
       graphics::text(0.5, 0.5, "No data available")
     } else {
+      y_min <- if ("ci_low" %in% names(dat)) min(c(0, dat$ci_low), na.rm = TRUE) else min(c(0, dat$estimate), na.rm = TRUE)
+      y_max <- if ("ci_high" %in% names(dat)) max(dat$ci_high, na.rm = TRUE) else max(dat$estimate, na.rm = TRUE)
       graphics::plot(
         dat$wave_year, dat$estimate,
         type = "b", pch = 19, lwd = 2, col = "#1f4e79",
         xlab = "Wave Year", ylab = "Rank-Rank Slope",
         main = "Rank-Rank Slope by Wave",
-        ylim = range(c(0, dat$estimate), na.rm = TRUE)
+        ylim = c(y_min, y_max)
       )
       graphics::grid()
+      if (all(c("ci_low", "ci_high") %in% names(dat))) {
+        graphics::arrows(
+          x0 = dat$wave_year,
+          y0 = dat$ci_low,
+          x1 = dat$wave_year,
+          y1 = dat$ci_high,
+          angle = 90,
+          code = 3,
+          length = 0.05,
+          col = "#1f4e79"
+        )
+      }
     }
   })
 }
@@ -72,6 +86,18 @@ plot_national_directional_rates <- function(national_trends, path) {
       for (m in names(metric_labels)) {
         dm <- dat %>% dplyr::filter(metric == m) %>% dplyr::arrange(wave_year)
         graphics::lines(dm$wave_year, dm$estimate, type = "b", pch = 19, lwd = 2, col = colors[[m]])
+        if (all(c("ci_low", "ci_high") %in% names(dm))) {
+          graphics::arrows(
+            x0 = dm$wave_year,
+            y0 = dm$ci_low,
+            x1 = dm$wave_year,
+            y1 = dm$ci_high,
+            angle = 90,
+            code = 3,
+            length = 0.03,
+            col = colors[[m]]
+          )
+        }
       }
       graphics::legend(
         "topright",
@@ -111,6 +137,18 @@ plot_subgroup_upward <- function(subgroup_trends, subgroup_name, path) {
         g <- groups[[i]]
         dg <- dat %>% dplyr::filter(subgroup_value == g)
         graphics::lines(dg$wave_year, dg$estimate, type = "b", pch = 19, lwd = 2, col = cols[[i]])
+        if (all(c("ci_low", "ci_high") %in% names(dg))) {
+          graphics::arrows(
+            x0 = dg$wave_year,
+            y0 = dg$ci_low,
+            x1 = dg$wave_year,
+            y1 = dg$ci_high,
+            angle = 90,
+            code = 3,
+            length = 0.03,
+            col = cols[[i]]
+          )
+        }
       }
       graphics::legend("topright", legend = groups, col = cols, pch = 19, lty = 1, bty = "n")
     }
@@ -331,4 +369,40 @@ save_module_c_outputs <- function(model) {
   saveRDS(model, model_obj_path)
 
   c(summary_path, coverage_path, sample_path, formulae_path, coef_path, robust_scenarios_path, robust_coef_path, model_obj_path)
+}
+
+save_empirical_audit_outputs <- function(audit_bundle) {
+  master_flags_path <- file.path(PROJ_PATHS$tables, "empirical_master_inclusion_flags.csv")
+  module_c_flags_path <- file.path(PROJ_PATHS$tables, "empirical_module_c_inclusion_flags.csv")
+  sample_flow_path <- file.path(PROJ_PATHS$tables, "empirical_sample_flow.csv")
+  inclusion_comp_path <- file.path(PROJ_PATHS$tables, "empirical_inclusion_composition.csv")
+  parent_availability_path <- file.path(PROJ_PATHS$tables, "empirical_parent_availability.csv")
+  parent_robustness_path <- file.path(PROJ_PATHS$tables, "empirical_parent_measure_robustness.csv")
+  claim_audit_path <- file.path(PROJ_PATHS$tables, "empirical_claim_audit.csv")
+  model_inventory_path <- file.path(PROJ_PATHS$tables, "empirical_model_inventory.csv")
+  memo_path <- file.path(PROJ_PATHS$outputs, "publication", "empirical_audit_memo.md")
+
+  safe_write_csv(audit_bundle$master_flags, master_flags_path)
+  safe_write_csv(audit_bundle$module_c_flags, module_c_flags_path)
+  safe_write_csv(audit_bundle$sample_flow, sample_flow_path)
+  safe_write_csv(audit_bundle$inclusion_composition, inclusion_comp_path)
+  safe_write_csv(audit_bundle$parent_availability, parent_availability_path)
+  safe_write_csv(audit_bundle$parent_measure_robustness, parent_robustness_path)
+  safe_write_csv(audit_bundle$claim_audit, claim_audit_path)
+  safe_write_csv(audit_bundle$model_inventory, model_inventory_path)
+
+  dir.create(dirname(memo_path), recursive = TRUE, showWarnings = FALSE)
+  writeLines(audit_bundle$memo_lines, con = memo_path, useBytes = TRUE)
+
+  c(
+    master_flags_path,
+    module_c_flags_path,
+    sample_flow_path,
+    inclusion_comp_path,
+    parent_availability_path,
+    parent_robustness_path,
+    claim_audit_path,
+    model_inventory_path,
+    memo_path
+  )
 }

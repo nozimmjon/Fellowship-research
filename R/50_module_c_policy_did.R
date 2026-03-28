@@ -180,11 +180,10 @@ apply_parent_education_split <- function(df, split_rule = "median") {
 
   df %>%
     dplyr::mutate(
-      parent_low_edu = dplyr::if_else(
-        !is.na(parent_years_schooling) & parent_years_schooling <= split_threshold,
-        1L,
-        0L,
-        missing = NA_integer_
+      parent_low_edu = dplyr::case_when(
+        is.na(parent_years_schooling) ~ NA_integer_,
+        parent_years_schooling <= split_threshold ~ 1L,
+        TRUE ~ 0L
       ),
       split_rule = split_rule,
       split_threshold = split_threshold
@@ -244,6 +243,9 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
   if (nrow(prepared) == 0) {
     message("LiTS IV data not available for Module C mechanisms. Returning empty output.")
     return(list(
+      prepared_data = tibble::tibble(),
+      base_sample_data = tibble::tibble(),
+      analysis_data = tibble::tibble(),
       summary = tibble::tibble(),
       coverage = tibble::tibble(),
       sample_overview = tibble::tibble(),
@@ -396,6 +398,9 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
   formulae_tbl <- if (length(formula_rows) == 0) tibble::tibble() else dplyr::bind_rows(formula_rows)
 
   list(
+    prepared_data = prepared,
+    base_sample_data = mech_df_base,
+    analysis_data = mech_df,
     summary = summary_tbl,
     coverage = coverage_tbl,
     sample_overview = sample_overview,

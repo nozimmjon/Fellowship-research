@@ -12,136 +12,154 @@ prepare_policy_panel|function|4f036f69db5739b6
 extract_event_study_table|function|34f990d648218d8f
 fit_event_study_did|function|f552f6316d28942e
 build_module_b_formula|function|4a9a079a8437fb84
-module_c_model|stem|9d5d803ac1866807|37d76ed41d989fd8|89d9199a5f6ae901|1151713364||t20538.7280897984s|s159394b|159394|rds|local|vector|||1.08|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
-module_c_files|stem|48a1a391bdb939fb|b530aaf57352b837|f7753294e724007d|-83800478|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_summary.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_coverage.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_sample.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_formulae.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_robustness_scenarios.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_robustness_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/models/module_c_mechanism_models.rds|t20538.7280919056s|s179809b|179809|file|local|vector|||0.13||
-lits_harmonized|stem|1cba86701e54f332|faa306ad180050f8|88117c7ec9cc2fea|656146977||t20539.2491589337s|s29881b|29881|rds|local|vector|||1.36|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
-module_a_metrics|stem|c346ed7d100a6081|cd455fda32151972|86a405cacab05acf|-548845857||t20539.2491723828s|s4593b|4593|rds|local|vector|||0.83||
-lits_harmonized_csv|stem|2740638e9ba8d825|94b2d0d3a210bef5|04fca478895cdeea|-1149006851|C:/Users/n.ortiqov/Desktop/Fellowship research/data/processed/lits_harmonized.csv|t20539.2491758744s|s315883b|315883|file|local|vector|||0.27||
-module_a_tier_a|stem|a3cdc299bf032975|63da1cce4d70d25e|ae7fdcf9a1d802a0|2043644909||t20539.2491789994s|s2779b|2779|rds|local|vector|||0.16||
-module_a_files|stem|adf8be9680ed47e7|9f6c5f291a833437|90ebb813ad62a573|-151818714|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_summary_metrics.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_subgroup_metrics.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_upward_mobility.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_transition_matrix.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_persistence_by_parent.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_measure_set.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_variable_lock.csv|t20539.2491807038s|s25591b|25591|file|local|vector|||0.12||
-module_a_tier_a_files|stem|14848921fab73093|a5f4976ddf24f0f0|ada5bb0558e320e0|1853466565|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_national_trends.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_subgroup_trends.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_region_trends.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_transition_summary.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_sample_by_wave.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_data_completeness.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_rank_rank_by_wave.png*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_directional_rates_by_wave.png*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_upward_by_urban_rural.png*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_upward_by_gender.png|t20539.2491836551s|s69482b|69482|file|local|vector|||0.24||
-mobility_measure_spec_csv|stem|9893f19d243d4827|81e589732f7f73a0|ed64f859485d5753|-1875568739|C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_measure_set.csv|t20539.2491805302s|s963b|963|file|local|vector|||0.09|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
-mobility_variable_lock_csv|stem|df13a5e4375dbff3|176fba88c3cd03cc|5b2dfc2ad91ef2c9|-1228650967|C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_variable_lock.csv|t20539.2491807038s|s1642b|1642|file|local|vector|||0||
-module_b_models|stem|147cff6e1f8b26b4|a72cc66dda7ea03a|ccd473f78abac493|-801911758||t20539.2500396908s|s397368b|397368|rds|local|vector|||0.2||
-module_b_files|stem|42edddbed3773139|0fa7bed86dc4cde4|7c8e79b41e9ffed8|-870279112|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_model_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_covariate_coverage.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_selected_covariates.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_formulae.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/models/module_b_models.rds|t20539.2500415312s|s402589b|402589|file|local|vector|||0.13||
 hbs_appendix_model_files|stem|c4011201ba2b7b0f|d0a1c0811477d2fc|474f7fc2cf9dff64|535861188|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/hbs_appendix_model_status.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/hbs_appendix_model_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/hbs_appendix_model_formula.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/models/hbs_appendix_model.rds|t20539.7131725413s|s355b|355|file|local|vector|||0||
 hbs_household_context|stem|1165dc4481ddd1b9|3801d6da4e9ec661|d5ff7241905c43c8|-887568734||t20539.7161333637s|s391259b|391259|rds|local|vector|||14.55||
 hbs_appendix_model|stem|013f25e7e9e42392|1f692b1a4aff70c4|27b664332a7d8db4|-2072612873||t20539.716134359s|s395b|395|rds|local|vector|||0.02||
 hbs_linkage_files|stem|4d41fb2225ef1b3f|b6f1f9587565b255|c9d9c7d16388052b|1278365628|C:/Users/n.ortiqov/Desktop/Fellowship research/data/processed/hbs_linkage_diagnostics.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/data/processed/hbs_linked_adult_sample.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/hbs_linkage_overview.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/hbs_linkage_selection.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/hbs_linkage_parent_measure_availability.csv|t20539.7161381676s|s1815648b|1815648|file|local|vector|||0.3||
 hbs_household_context_files|stem|7c31c763a705b616|d04b6be60c442b79|daca079efa6cb7e6|2102714665|C:/Users/n.ortiqov/Desktop/Fellowship research/data/processed/hbs_household_context.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/hbs_household_support_context.csv|t20539.7161408528s|s4136313b|4136313|file|local|vector|||0.19||
+hbs_linkage_results|stem|8cca2ed24e17dc83|b1d7b58b60e8aa71|a35c075dd91c8631|-1908838219||t20539.7265399283s|s243831b|243831|rds|local|vector|||16.75|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
+module_c_model|stem|bdcde7d40d41e55a|37d76ed41d989fd8|2066f6fe99a32827|1151713364||t20540.6356896553s|s201895b|201895|rds|local|vector|||1.04|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
+module_c_files|stem|5ac93cf44f7b6de0|b530aaf57352b837|64e6bc0f675c2e5a|-83800478|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_summary.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_coverage.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_sample.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_formulae.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_robustness_scenarios.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_robustness_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/models/module_c_mechanism_models.rds|t20540.6356918829s|s222390b|222390|file|local|vector|||0.13||
+available_subgroup_vars|function|9ae740d35a2b157c
 PROJ_PATHS|object|633412a3290080fc
-apply_parent_education_split|function|72f44c66b2581f7f
+hbs_available_years_label|function|11b44076179a995e
+hbs_weighted_share|function|df59c02405f3a471
+compute_transition_matrix|function|2cf4a2ec220d2dbe
+hbs_mean_weighted|function|df59c02405f3a471
+label_subgroup|function|08b8420782bfb3aa
+EDUCATION_LEVELS|object|c229c7c9dcc2ea33
+coerce_gender_group|function|6e6c1728e01f790a
+coerce_urban_group|function|6f16481c143905c9
+assign_cohort|function|9c941b3ed6341697
+clean_numeric|function|fc12210ec8d3298a
 coerce_gender_label|function|5bf7d9b9331ac891
-as_label_text|function|2fbd59083e43c93f
 coerce_urban_binary|function|28d30e2113cf553f
+safe_write_csv|function|5107255a10f97e34
+weight_effective_n|function|6d7e7909d0b035a2
+weighted_rank|function|7c2e616715e059b4
+fit_module_c_outcome_model|function|de88d0bb2d3bbd7f
+fit_feols_weighted|function|de82db6a4b0ca2ab
+build_module_c_coverage|function|8450f83116c363ca
+build_data_inventory_template|function|b7c925bd4ea82aa8
+weighted_share|function|0274a662dfd19fed
+build_empirical_sample_flow|function|5851e4119a25d4e3
+as_label_text|function|2fbd59083e43c93f
+hbs_parent_role_fields|function|b4ce7ae8f6b37dd7
+build_mobility_variable_lock|function|50beb776805625d8
+safe_png_plot|function|e9bc365f79b154fe
+safe_rank|function|01c19c9076c86b10
 hbs_col_or_na|function|48b51dfe5d30910a
 hbs_extract_year|function|8dd0d6b363399361
 hbs_find_module_path|function|5e271d4fe546d3a0
 hbs_numeric|function|de50fd31db16a8c8
-hbs_parent_role_fields|function|b4ce7ae8f6b37dd7
-safe_rank|function|01c19c9076c86b10
-build_mobility_measure_spec|function|8ab2907be93b234b
-text_match_binary|function|ba3d8a2008747201
-clean_numeric|function|fc12210ec8d3298a
-education_level_to_years|function|e49e72dcb08a107b
-map_education_level|function|b7e60d6ff85cea5a
-select_existing_file|function|72f9238727f06465
-yes_no_to_binary|function|19ddc7dc5acc93c7
+build_empirical_audit_memo_lines|function|96759420be9b3436
+build_empirical_claim_audit|function|bee22399088d7188
+build_empirical_model_inventory|function|0aa12111e24e777c
+build_inclusion_composition|function|c554bfbd392cbdc5
+build_parent_availability|function|c00be696d6ead081
+prepare_module_c_inclusion_flags|function|a23dc2ae14275d96
+local_lib|object|df62860ae6828514
+required_packages|object|fd4d9b400fcfe941
 build_covariate_coverage|function|e67ac94e53f78556
-build_fe_formula|function|4a9a079a8437fb84
-fit_feols_weighted|function|de82db6a4b0ca2ab
-is_covariate_informative|function|048a15af4b2b1987
-rhs_with_optional|function|54db63d3a9cab9c0
-available_subgroup_vars|function|9ae740d35a2b157c
-build_mobility_variable_lock|function|50beb776805625d8
-compute_transition_matrix|function|2cf4a2ec220d2dbe
-empty_module_a_result|function|3b32aabe5cbdac7d
-UZB_REGIONS|object|d95c52e72d47be0c
-label_subgroup|function|08b8420782bfb3aa
-hbs_collapse_binary|function|fe040d03f202b8eb
-coerce_urban_group|function|6f16481c143905c9
-weighted_share|function|0274a662dfd19fed
-EDUCATION_LEVELS|object|c229c7c9dcc2ea33
-weighted_rank|function|7c2e616715e059b4
-build_variable_dictionary_template|function|c98eb493312a2e89
-weighted_rate|function|3e5fae06e591ce4e
-build_module_c_coverage|function|8450f83116c363ca
-fit_module_c_outcome_model|function|de88d0bb2d3bbd7f
-find_project_root|function|e31159b458691626
-safe_write_csv|function|5107255a10f97e34
-ANALYSIS_SAMPLE|object|098a547285f41313
+infer_wave_from_filename|function|48c7ec33c0539f62
 PROJECT_ROOT|object|1f22bac59e0b1a90
 read_any_table|function|728ff52a838ee4a6
-age_from_band|function|492b4192b006ca95
-years_to_education_level|function|b7065ffd141f3e2b
-hbs_mean_weighted|function|df59c02405f3a471
-hbs_weighted_share|function|df59c02405f3a471
-safe_png_plot|function|e9bc365f79b154fe
-.Random.seed|object|a98c82b7c79bcb09
-hbs_available_years_label|function|11b44076179a995e
-assign_cohort|function|9c941b3ed6341697
-required_packages|object|fd4d9b400fcfe941
-build_tier_a_descriptive|function|ce2e15bddd47b4f3
-coerce_gender_group|function|6e6c1728e01f790a
-build_data_inventory_template|function|b7c925bd4ea82aa8
-hbs_first_non_missing|function|60a8472d3e6c389f
-local_lib|object|df62860ae6828514
+apply_parent_education_split|function|ee7692fa6aed2c61
 build_hbs_appendix_model|function|92347f10d44c2eff
-infer_wave_from_filename|function|48c7ec33c0539f62
+weighted_rate|function|3e5fae06e591ce4e
+age_from_band|function|492b4192b006ca95
+education_level_to_years|function|e49e72dcb08a107b
+select_existing_file|function|72f9238727f06465
+years_to_education_level|function|b7065ffd141f3e2b
+yes_no_to_binary|function|19ddc7dc5acc93c7
+build_variable_dictionary_template|function|c98eb493312a2e89
+build_fe_formula|function|4a9a079a8437fb84
+is_covariate_informative|function|048a15af4b2b1987
+rhs_with_optional|function|54db63d3a9cab9c0
+ANALYSIS_SAMPLE|object|098a547285f41313
+hbs_first_non_missing|function|60a8472d3e6c389f
+hbs_collapse_binary|function|fe040d03f202b8eb
+build_mobility_measure_spec|function|8ab2907be93b234b
+extract_roster_value_by_code|function|32d09a257bdaf891
+build_tier_a_descriptive|function|b8ba0f36f7f0dabc
+empty_module_a_result|function|abc9a1dcfe6b5d0d
+.Random.seed|object|f77e8694f27d4b54
+text_match_binary|function|ba3d8a2008747201
+UZB_REGIONS|object|d95c52e72d47be0c
+find_project_root|function|e31159b458691626
 ensure_project_dirs|function|cf978b90c2a7d47f
 hbs_year_folders|function|88f3e826b8e13115
 activate_local_lib|function|8618b063ee305680
-challenge_to_binary|function|da2401b637498071
+normalize_ed_level|function|c3c9212ffcbb9c45
+map_education_level|function|790a89852ec47338
+parent_max_level|function|7ee139f6ccdcbfcc
+build_multigenerational_proxy|function|4f9680be24bd12e1
+save_empirical_audit_outputs|function|9d19a952ccac5074
+save_module_a_outputs|function|a87dfbc4845e4aab
+write_hbs_linkage_outputs|function|fb3873eb96cce2a1
+write_hbs_household_context_outputs|function|a5720989697946b5
+write_hbs_appendix_model_outputs|function|704e37acddfb9f97
+save_module_c_outputs|function|0d4dfc87cb5d60b3
+save_module_b_outputs|function|c2466acd4474c0b3
+weighted_binary_summary|function|3990c8cbf614d13e
+compute_rank_rank_slope|function|438aabedfcc64789
+compute_persistence_by_parent|function|01bf9efeeab400a0
 hbs_text|function|adef23793c2c2629
 hbs_gender_label|function|e2c276450165242f
+challenge_to_binary|function|da2401b637498071
+plot_subgroup_upward|function|f1b7666012dd50ae
+plot_national_directional_rates|function|98b4c1ede3f330d4
+plot_national_rank_rank|function|c5b341cf779ab34c
 hbs_build_multigenerational|function|e9d2f4df2c602cc9
-build_multigenerational_proxy|function|4f9680be24bd12e1
-compute_directional_rates|function|1da707aaae60f949
-compute_persistence_by_parent|function|01bf9efeeab400a0
-normalize_ed_level|function|c3c9212ffcbb9c45
-parent_max_level|function|7ee139f6ccdcbfcc
-compute_rank_rank_slope|function|023e6bdf12c90324
-build_module_c_summary|function|a2a82f34c76dbc3f
-save_module_b_outputs|function|c2466acd4474c0b3
-write_hbs_linkage_outputs|function|fb3873eb96cce2a1
-save_module_c_outputs|function|0d4dfc87cb5d60b3
-write_hbs_household_context_outputs|function|a5720989697946b5
-save_module_a_outputs|function|a87dfbc4845e4aab
-write_hbs_appendix_model_outputs|function|704e37acddfb9f97
-plot_subgroup_upward|function|e049f9078a4d7a90
-plot_national_rank_rank|function|93929a7c6ffb18c9
-plot_national_directional_rates|function|4e69067337a3bbd3
-as_harmonized_frame|function|ab3aa232a9840f03
 missing_packages|function|2f86f58fe33b9172
+build_module_c_summary|function|a2a82f34c76dbc3f
+write_mobility_variable_lock|function|77c66544fd48d19c
 write_lits_harmonized|function|fad757648c1c5b78
+write_data_inventory_template|function|bd6e9c2d5ba477a3
+build_policy_panel|function|a49bdeb219b8ecda
 write_mobility_measure_spec|function|a46f6193c9ff263f
 write_variable_dictionary_template|function|64482435da1161b8
-build_policy_panel|function|a49bdeb219b8ecda
-write_data_inventory_template|function|bd6e9c2d5ba477a3
-write_mobility_variable_lock|function|77c66544fd48d19c
-prepare_module_c_mechanism_data|function|d4da7bd2f8343f6f
-hbs_normalize_province|function|666bf2d7325227cf
-hbs_binary|function|fcc7f13cb041921e
-hbs_map_education_years|function|15cbe9660f3f24b3
-prepare_module_b_data|function|b1c14118e220625d
 prepare_mobility_data|function|d4262ac6e57dc68f
-save_module_a_tier_a_outputs|function|62430c60fb0106b0
-read_lits_2010|function|303c0deb85665544
-read_lits_2016|function|baa7e84666302237
-read_lits_2022|function|66d34cc39f7f0444
-install_missing_packages|function|af761ae749949e87
+prepare_module_b_data|function|b1c14118e220625d
+coalesce_years_from_level|function|47a58f8f1701111d
+as_harmonized_frame|function|f65d45d8d2e1008b
+compute_directional_rates|function|cf6663b610202ee3
+hbs_binary|function|fcc7f13cb041921e
+hbs_normalize_province|function|666bf2d7325227cf
+hbs_map_education_years|function|15cbe9660f3f24b3
+prepare_module_c_mechanism_data|function|5f54679f5b724d22
+save_module_a_tier_a_outputs|function|4efef12b252988af
 check_required_packages|function|36460fad0e903198
-fit_module_c_mechanisms|function|235ef6f73c6df48c
-hbs_read_household_weights|function|d2be2d308c4277ad
-hbs_binary_any|function|0126427e16b2a82f
-hbs_build_education_household_flags|function|3d006550612bdb94
-hbs_build_adult_person_file|function|5e6db26c737885e8
+install_missing_packages|function|af761ae749949e87
 fit_module_b_models|function|e1f69fdbf6a5d9be
-estimate_mobility_metrics|function|a4a7219dbe4d7ec8
-build_lits_harmonized|function|eef4d55a6b555d43
+prepare_empirical_master_flags|function|0283cf04d264b780
+build_parent_variant_data|function|7f8e150f49acd681
+read_lits_2010|function|f4c0df82f2f092c7
+read_lits_2016|function|e8c49f19d808f9d2
+read_lits_2022|function|8870d22e75d04ab4
+estimate_mobility_metrics|function|6ba3b0eb5b0ba162
+hbs_build_education_household_flags|function|3d006550612bdb94
+hbs_binary_any|function|0126427e16b2a82f
+hbs_read_household_weights|function|d2be2d308c4277ad
+hbs_build_adult_person_file|function|5e6db26c737885e8
+fit_module_c_mechanisms|function|5519c6073f4031f2
 load_required_packages|function|084c6ad08d093101
+build_lits_harmonized|function|e840a93c5935634e
+build_parent_measure_robustness|function|7d6e7c0a92f5d06c
 hbs_build_internet_household_flags|function|33c7ed47cb391e13
 hbs_build_migration_household_flags|function|44d005382d3ea42e
 build_hbs_linkage_diagnostics|function|1846a56074d9b861
+build_empirical_audit|function|6015097381585e52
 build_hbs_household_context|function|5031f994bd887eeb
-hbs_linkage_results|stem|8cca2ed24e17dc83|b1d7b58b60e8aa71|a35c075dd91c8631|-1908838219||t20539.7265399283s|s243831b|243831|rds|local|vector|||16.75|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
+lits_harmonized|stem|e9bbbd8ae19252c2|faa306ad180050f8|bdeb8e9eccae2d2c|656146977||t20540.6573086515s|s38882b|38882|rds|local|vector|||1.69|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
+mobility_measure_spec_csv|stem|9893f19d243d4827|81e589732f7f73a0|ed64f859485d5753|-1875568739|C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_measure_set.csv|t20540.6434399878s|s963b|963|file|local|vector|||0.09|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
+mobility_variable_lock_csv|stem|df13a5e4375dbff3|176fba88c3cd03cc|5b2dfc2ad91ef2c9|-1228650967|C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_variable_lock.csv|t20540.6434400228s|s1642b|1642|file|local|vector|||0||
+module_b_models|stem|9f320d3447cc3f8c|a72cc66dda7ea03a|16c0bcefe8522b73|-801911758||t20540.6573133952s|s998005b|998005|rds|local|vector|||0.26||
+module_a_metrics|stem|6c55b0db4a78b1a9|cd455fda32151972|0c271dd959c249dd|-548845857||t20540.6573305154s|s12153b|12153|rds|local|vector|||1.43||
+lits_harmonized_csv|stem|e2132a3e99b9d0d7|94b2d0d3a210bef5|4e37df8c118d9afe|-1149006851|C:/Users/n.ortiqov/Desktop/Fellowship research/data/processed/lits_harmonized.csv|t20540.6573355659s|s428945b|428945|file|local|vector|||0.4||
+module_b_files|stem|0c8d37391466770d|0fa7bed86dc4cde4|215306405cd5ed6e|-870279112|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_model_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_covariate_coverage.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_selected_covariates.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_formulae.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/models/module_b_models.rds|t20540.6573378139s|s1003776b|1003776|file|local|vector|||0.14||
+empirical_audit|stem|6ae945a4db63c0ed|3c69aeadad873182|6d867295f85ad73c|1809157309||t20540.6574123652s|s36516b|36516|rds|local|vector|||6.39||
+module_a_tier_a|stem|289c260c43dcfa15|63da1cce4d70d25e|188b30290c592d37|2043644909||t20540.6574136027s|s7917b|7917|rds|local|vector|||0.07||
+module_a_files|stem|e886f5a32f43f8b4|9f6c5f291a833437|b23a82395586de5b|-151818714|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_summary_metrics.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_subgroup_metrics.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_upward_mobility.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_transition_matrix.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_persistence_by_parent.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_measure_set.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_variable_lock.csv|t20540.6574147497s|s52785b|52785|file|local|vector|||0.08||
+empirical_audit_files|stem|a3006ce5bb205d6f|9841bcfdafca25e5|7011da5d8d093134|1157178876|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_master_inclusion_flags.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_module_c_inclusion_flags.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_sample_flow.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_inclusion_composition.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_parent_availability.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_parent_measure_robustness.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_claim_audit.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_model_inventory.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/publication/empirical_audit_memo.md|t20540.6574206449s|s584972b|584972|file|local|vector|||0.49||
+module_a_tier_a_files|stem|d7460016ae20bcec|a5f4976ddf24f0f0|66f04076730b9d53|1853466565|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_national_trends.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_subgroup_trends.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_region_trends.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_transition_summary.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_sample_by_wave.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_data_completeness.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_rank_rank_by_wave.png*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_directional_rates_by_wave.png*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_upward_by_urban_rural.png*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_upward_by_gender.png|t20540.6574238056s|s88453b|88453|file|local|vector|||0.27||

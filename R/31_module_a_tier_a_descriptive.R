@@ -46,7 +46,7 @@ build_tier_a_descriptive <- function(module_a_metrics, lits_harmonized) {
 
   national_trends <- core %>%
     dplyr::filter(status == "ok") %>%
-    dplyr::select(wave_year, metric, estimate, n) %>%
+    dplyr::select(dplyr::any_of(c("wave_year", "metric", "estimate", "std.error", "ci_low", "ci_high", "effective_n", "n", "status"))) %>%
     dplyr::arrange(metric, wave_year)
 
   subgroup_trends <- subgroup %>%
@@ -55,7 +55,7 @@ build_tier_a_descriptive <- function(module_a_metrics, lits_harmonized) {
       subgroup_type %in% c("urban_rural", "gender", "cohort"),
       metric %in% c("rank_rank_slope", "upward_mobility_rate", "downward_mobility_rate", "persistence_probability")
     ) %>%
-    dplyr::select(subgroup_type, subgroup_value, wave_year, metric, estimate, n) %>%
+    dplyr::select(dplyr::any_of(c("subgroup_type", "subgroup_value", "wave_year", "metric", "estimate", "std.error", "ci_low", "ci_high", "effective_n", "n", "status"))) %>%
     dplyr::arrange(subgroup_type, subgroup_value, metric, wave_year)
 
   region_trends <- subgroup %>%
@@ -64,7 +64,7 @@ build_tier_a_descriptive <- function(module_a_metrics, lits_harmonized) {
       subgroup_type == "region",
       metric %in% c("rank_rank_slope", "upward_mobility_rate")
     ) %>%
-    dplyr::select(subgroup_value, wave_year, metric, estimate, n) %>%
+    dplyr::select(dplyr::any_of(c("subgroup_value", "wave_year", "metric", "estimate", "std.error", "ci_low", "ci_high", "effective_n", "n", "status"))) %>%
     dplyr::rename(region = subgroup_value) %>%
     dplyr::arrange(region, metric, wave_year)
 

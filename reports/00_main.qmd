@@ -55,9 +55,9 @@ hbs_context_value <- function(metric, column = "national") {
 
 This paper studies intergenerational educational mobility in Uzbekistan using the 2010, 2016, and 2022-23 waves of the Life in Transition Survey (LiTS). It asks how strongly educational attainment is associated across generations, which household and regional characteristics are correlated with mobility, and what the 2022-23 child module suggests about household learning conditions during pandemic disruption.
 
-The paper's contribution is a reproducible multi-wave mobility profile built around descriptive and associational evidence. Descriptive rank-based persistence measures rise from `r fmt_num(metric_est("rank_rank_slope", 2010))` in 2010 to `r fmt_num(metric_est("rank_rank_slope", 2016))` in 2016 and `r fmt_num(metric_est("rank_rank_slope", 2022))` in 2022-23, but pooled models do not estimate that change precisely once controls and fixed effects are added. Category-based rates move in the same direction, yet the 2022-23 categorical estimates rely on only `r metric_n("upward_mobility_rate", 2022)` valid observations and therefore receive limited interpretive weight. In pooled correlates models, parental education remains the clearest predictor of attainment, while women record somewhat lower attainment scores conditional on controls. The LiTS IV child module suggests widespread disruption and household-based support, and lower parental education is associated with a higher probability that education stopped during COVID, though the child-module evidence remains suggestive because of sample limits.
+The paper's contribution is a reproducible multi-wave mobility profile built around descriptive and associational evidence. The national rank-rank slope rises from `r fmt_num(metric_est("rank_rank_slope", 2010))` in 2010 to `r fmt_num(metric_est("rank_rank_slope", 2016))` in 2016 and remains elevated at `r fmt_num(metric_est("rank_rank_slope", 2022))` in 2022-23. In pooled correlates models, parental rank is positively associated with respondent rank, the 2016 persistence interaction is stronger than in 2010, and parental education remains the clearest predictor of attainment. The LiTS IV child module documents widespread disruption and household-based support, but adjusted parental-education gaps in education stoppage are near zero in the baseline specification and fragile across alternative split rules.
 
-The results point to substantial educational persistence and to the importance of household support conditions, but they do not provide precise model-based evidence of a worsening time trend or a causal pandemic mechanism.
+The results point to substantial educational persistence and to the importance of household support conditions, but the time profile is clearer between 2010 and 2016 than between 2016 and 2022-23, and the child-module evidence does not identify a causal pandemic mechanism.
 
 ## Introduction
 
@@ -67,7 +67,7 @@ Uzbekistan is an important setting for this question. The country combines a you
 
 This paper uses LiTS repeated cross-sections from 2010, 2016, and 2022-23 to provide a structured profile of intergenerational educational mobility in Uzbekistan. It makes three contributions. First, it documents national mobility patterns using a locked bundle of measures: a rank-rank slope, upward mobility, downward mobility, and same-category persistence. Second, it estimates pooled correlates models with a disciplined set of household and regional controls. Third, it adds a short LiTS IV child-module extension on pandemic-era disruption and support patterns.
 
-The claims are intentionally limited by design. Module A is descriptive, Module B is associational, and Module C is a bounded non-causal extension. Descriptive persistence measures rise across waves, but the pooled models do not estimate the change precisely. The paper therefore emphasizes levels, correlates, and household constraints rather than a firm time-trend claim. Section 2 positions the paper in the literature, Section 3 describes the data and measurement choices, Sections 4-7 present the empirical design and results, and Sections 8-10 discuss interpretation, limitations, and conclusion.
+The claims are intentionally limited by design. Module A is descriptive, Module B is associational, and Module C is a bounded non-causal extension. Descriptive persistence rises sharply from 2010 to 2016 and remains above the 2010 level in 2022-23, while the pooled persistence model indicates a clearer 2016 strengthening than an additional 2022 shift. The paper therefore emphasizes levels, correlates, and household constraints rather than a causal mechanism claim. Section 2 positions the paper in the literature, Section 3 describes the data and measurement choices, Sections 4-7 present the empirical design and results, and Sections 8-10 discuss interpretation, limitations, and conclusion.
 
 ## Related Literature
 
@@ -85,7 +85,7 @@ The Household Budget Survey is used only as a supplementary source for context a
 
 ### Education Measures
 
-The paper uses two measurement families built from a single parental-education harmonization rule. LiTS parental-schooling responses vary somewhat across waves in wording and granularity, so all observed mother and father responses are first mapped onto a common six-category ladder: no formal education, primary, lower secondary, upper secondary, post-secondary non-tertiary, and tertiary. When both parents are observed, the analysis uses the higher reported category as the parental education measure; when only one parent's schooling is available, the observed value is retained. This rule keeps the comparison consistent across waves while limiting attrition from asymmetric parental reporting.
+The paper uses two measurement families built from a single parental-education harmonization rule. LiTS parental-schooling responses vary somewhat across waves in wording and granularity, so all observed mother and father responses are first mapped onto a common six-category ladder: no formal education, primary, lower secondary, upper secondary, post-secondary non-tertiary, and tertiary. When both parents are observed, the analysis uses the higher reported category as the parental education measure; when only one parent's schooling is available, the observed value is retained. This rule keeps the comparison consistent across waves while limiting attrition from asymmetric parental reporting. Appendix D2 shows that the rank-based national series is qualitatively stable under alternative parent constructions, although some category-based rates are more sensitive to whether the parent proxy uses the maximum, an average, or a single observed parent.
 
 That harmonized ladder then supports two complementary measures. First, the paper constructs an ordered education score used for category-based mobility rates and pooled attainment regressions. Second, it converts both respondent and parental schooling into within-wave weighted percentile ranks for the rank-rank persistence models. The category-based outcomes preserve the intuitive language of upward mobility, downward mobility, and same-category persistence. The rank-based outcomes, by contrast, are better suited to cross-wave comparison because they are less sensitive to modest questionnaire differences and to aggregate educational expansion. Reporting both is therefore deliberate rather than redundant: one family preserves substantive interpretability, while the other provides the paper's preferred cross-wave benchmark.
 
@@ -108,7 +108,7 @@ The core covariates in the pooled correlates models are urban residence, female,
 
 The 2022-23 LiTS child module is used to create descriptive indicators for remote-learning disruption, learning support, and home-learning constraints. These include switching to online learning, switching to hybrid learning, education stopping during COVID, school closure without online learning, shared-device use, support from mother, father, or relatives, and indicators for internet, device, cost, and time-balance challenges.
 
-The mechanism sample is much smaller than the full LiTS IV sample. The child-module flow is as follows: `r sample_n("^Uzbekistan LiTS IV respondents$")` Uzbekistan respondents in LiTS IV, `r sample_n("^Respondents with child module eligibility info")` with child-module eligibility information, `r sample_n("^Respondents with child enrolled pre-COVID")` with a child enrolled before COVID, and `r sample_n("^Mechanism sample with non-missing parental schooling$")` with non-missing parental schooling. This extension is therefore used to illustrate patterns rather than to support broad generalization.
+The mechanism sample is much smaller than the full LiTS IV sample. The child-module flow moves from `r sample_n("^Uzbekistan LiTS IV respondents$")` Uzbekistan respondents in LiTS IV to `r sample_n("^Respondents with child module eligibility info")` with child-module eligibility information, `r sample_n("^Respondents with child enrolled pre-COVID")` with a child enrolled before COVID, and `r sample_n("^Mechanism sample with non-missing parental schooling$")` with non-missing parental schooling. This extension is therefore used to illustrate patterns rather than to support broad generalization.
 
 ## Empirical Strategy
 
@@ -145,15 +145,15 @@ $$
 Y_i = \alpha + \beta L_i + \delta_1 U_i + \delta_2 M_i + \kappa \left(L_i \times U_i\right) + \mu_r + \varepsilon_i
 $$
 
-where $Y_i$ is a binary child-module outcome. In the main text, the focal case is education stoppage during COVID, so $\beta$ is the conditional difference in stoppage risk between lower- and higher-parent-education households, while $\kappa$ indicates whether that gap differs between urban and non-urban households. Parallel estimates for online switching, school closure without online learning, and the broad remote-learning-challenge indicator are reported in the appendix. These regressions are descriptive heterogeneity exercises rather than identification strategies.
+where $Y_i$ is a binary child-module outcome estimated with a weighted logit model and region fixed effects. In the main text, the focal case is education stoppage during COVID, so $\beta$ is a log-odds coefficient comparing lower- and higher-parent-education households conditional on controls, while $\kappa$ indicates whether that log-odds gap differs between urban and non-urban households. Parallel estimates for online switching, school closure without online learning, and the broad remote-learning-challenge indicator are reported in the appendix. These regressions are descriptive heterogeneity exercises rather than identification strategies.
 
 ## Descriptive Results
 
 ### Sample Composition and Completeness
 
-Before turning to the mobility estimates, Table @tbl-sample-composition establishes the analytical base by wave. The age-restricted Uzbekistan LiTS samples contain `r fmt_int(sample_by_wave$n_total[sample_by_wave$wave_year == 2010])` respondents in 2010, `r fmt_int(sample_by_wave$n_total[sample_by_wave$wave_year == 2016])` in 2016, and `r fmt_int(sample_by_wave$n_total[sample_by_wave$wave_year == 2022])` in 2022-23. The 2022-23 wave is notably more female in the harmonized adult sample, while the cohort mix remains centered on the younger and middle adult cohorts in all three surveys.
+Before turning to the mobility estimates, Table @tbl-sample-composition establishes the analytical base by wave. The age-restricted Uzbekistan LiTS samples contain `r fmt_int(sample_by_wave$n_total[sample_by_wave$wave_year == 2010])` respondents in 2010, `r fmt_int(sample_by_wave$n_total[sample_by_wave$wave_year == 2016])` in 2016, and `r fmt_int(sample_by_wave$n_total[sample_by_wave$wave_year == 2022])` in 2022-23. The 2022-23 wave is somewhat more female in the unweighted analytical sample, although the weighted estimation sample is much closer to balanced, while the cohort mix remains centered on the younger and middle adult cohorts in all three surveys.
 
-The more consequential descriptive issue is completeness rather than headline sample size. Missingness in respondents' own education rises to `r fmt_pct(1 - data_completeness$own_ed_non_na[data_completeness$wave_year == 2022] / data_completeness$n_total[data_completeness$wave_year == 2022])` in 2022-23, and missingness in parental education reaches `r fmt_pct(1 - data_completeness$parent_ed_non_na[data_completeness$wave_year == 2022] / data_completeness$n_total[data_completeness$wave_year == 2022])`, which helps explain why category-based mobility denominators deteriorate more sharply than the rank-based sample in the latest wave.
+The more consequential descriptive issue is now uncertainty rather than missingness. After harmonization, respondents' own education is fully observed in all three waves, while parental education remains observed for `r fmt_pct(data_completeness$parent_ed_non_na[data_completeness$wave_year == 2010] / data_completeness$n_total[data_completeness$wave_year == 2010])` of the 2010 sample, `r fmt_pct(data_completeness$parent_ed_non_na[data_completeness$wave_year == 2016] / data_completeness$n_total[data_completeness$wave_year == 2016])` of the 2016 sample, and `r fmt_pct(data_completeness$parent_ed_non_na[data_completeness$wave_year == 2022] / data_completeness$n_total[data_completeness$wave_year == 2022])` of the 2022-23 sample. The latest-wave caution therefore comes less from a collapsing denominator than from wider confidence intervals in subgroup and regional descriptives.
 
 ```{r}
 #| label: tbl-sample-composition
@@ -206,13 +206,13 @@ knitr::kable(
 )
 ```
 
-Table @tbl-sample-composition combines the published Tier A sample and completeness outputs with simple analytical-sample composition shares from the harmonized LiTS file; the main takeaway is that the descriptive section rests on usable national samples in every wave, but 2022-23 has substantially weaker education completeness than the earlier surveys.
+Table @tbl-sample-composition combines the published Tier A sample and completeness outputs with simple analytical-sample composition shares from the harmonized LiTS file; the main takeaway is that the descriptive section rests on usable national samples in every wave and that the harmonized adult sample retains broad parental-education coverage even in 2022-23.
 
 ### National Mobility Metrics by Wave
 
-Table @tbl-mobility-metrics reports the paper's locked national mobility measures in a by-wave layout. The rank-rank slope rises from **`r fmt_num(metric_est("rank_rank_slope", 2010))`** in 2010 to **`r fmt_num(metric_est("rank_rank_slope", 2016))`** in 2016 and **`r fmt_num(metric_est("rank_rank_slope", 2022))`** in 2022-23, while the category-based measures move in the same direction but with much thinner support in the latest wave.
+Table @tbl-mobility-metrics reports the paper's locked national mobility measures in a by-wave layout. The rank-rank slope rises from **`r fmt_num(metric_est("rank_rank_slope", 2010))`** in 2010 to **`r fmt_num(metric_est("rank_rank_slope", 2016))`** in 2016 and remains at **`r fmt_num(metric_est("rank_rank_slope", 2022))`** in 2022-23; the corresponding 95 percent confidence intervals are `r metric_ci("rank_rank_slope", 2010)`, `r metric_ci("rank_rank_slope", 2016)`, and `r metric_ci("rank_rank_slope", 2022)`. Category-based rates tell a similar broad story, with persistence rising and downward mobility falling in the later waves.
 
-The 2022-23 category profile therefore remains strictly secondary. The valid denominator for the 2022 rank-rank slope is `r fmt_int(metric_n("rank_rank_slope", 2022))`, whereas the valid denominator for the 2022 category-based rates is only `r fmt_int(metric_n("upward_mobility_rate", 2022))`. As a result, the rank-based series is the paper's preferred descriptive benchmark across waves.
+The harmonized denominator is now aligned across the rank and category measures within each wave. In 2022-23, both the rank-rank slope and the category-based rates rely on `r fmt_int(metric_n("rank_rank_slope", 2022))` valid observations. The main caution is therefore inferential rather than mechanical: the 2022 national estimates remain noisier than the 2016 values, and several subgroup or regional intervals are wide.
 
 ```{r}
 #| label: tbl-mobility-metrics
@@ -222,9 +222,9 @@ national_table <- data.frame(
   stringsAsFactors = FALSE
 )
 national_table$Wave <- unname(wave_labels[as.character(national_table$wave_year)])
-national_table$`Rank-rank slope` <- vapply(
+national_table$`Rank-rank slope (95% CI)` <- vapply(
   national_table$wave_year,
-  function(wave) fmt_num(metric_est("rank_rank_slope", wave)),
+  function(wave) paste0(fmt_num(metric_est("rank_rank_slope", wave)), " ", metric_ci("rank_rank_slope", wave)),
   character(1)
 )
 national_table$`Upward mobility` <- vapply(
@@ -242,31 +242,25 @@ national_table$`Persistence` <- vapply(
   function(wave) fmt_pct(metric_est("persistence_probability", wave)),
   character(1)
 )
-national_table$`Valid N (rank / category)` <- vapply(
+national_table$`Valid N` <- vapply(
   national_table$wave_year,
-  function(wave) {
-    paste0(
-      fmt_int(metric_n("rank_rank_slope", wave)),
-      " / ",
-      fmt_int(metric_n("upward_mobility_rate", wave))
-    )
-  },
+  function(wave) fmt_int(metric_n("rank_rank_slope", wave)),
   character(1)
 )
 
 knitr::kable(
   national_table[, c(
     "Wave",
-    "Rank-rank slope",
+    "Rank-rank slope (95% CI)",
     "Upward mobility",
     "Downward mobility",
     "Persistence",
-    "Valid N (rank / category)"
+    "Valid N"
   )]
 )
 ```
 
-Table @tbl-mobility-metrics and Figures @fig-rank-rank and @fig-directional-rates tell the same high-level story: educational persistence is substantial in every wave, and the rise in descriptive persistence is clearer in the rank-based series than in the much thinner 2022-23 category measures. The main takeaway is that descriptive persistence measures rise across waves, but pooled models do not estimate the change precisely.
+Table @tbl-mobility-metrics and Figures @fig-rank-rank and @fig-directional-rates tell the same high-level story: educational persistence is substantial in every wave, the steepest descriptive increase occurs between 2010 and 2016, and the 2022-23 profile remains more persistent than the 2010 baseline without clearly exceeding the 2016 peak once uncertainty is shown.
 
 ![Rank-rank slope by LiTS wave.](../outputs/figures/tier_a_rank_rank_by_wave.png){#fig-rank-rank fig-alt="Rank-rank slope by LiTS wave."}
 
@@ -276,7 +270,7 @@ Table @tbl-mobility-metrics and Figures @fig-rank-rank and @fig-directional-rate
 
 The by-wave rates are easier to interpret alongside the transition structure in Table @tbl-transition-structure. In both 2010 and 2016, respondents from lower-secondary and primary parental origins most often reach upper secondary, while respondents from upper-secondary parental origins remain concentrated in the same category. This is consistent with a system that permits some upward movement from lower origins but still exhibits strong persistence around the upper-secondary category that dominates the analytical sample.
 
-The 2022-23 transition matrix is too sparse to serve as a persuasive main-text exhibit. Only the upper-secondary parental-origin row clears the reporting threshold, and within that row the table shows `r fmt_pct(transition_summary$share[transition_summary$wave_year == 2022 & transition_summary$parent_ed_level == "upper_secondary" & transition_summary$own_ed_level == "upper_secondary"])` persistence out of `r fmt_int(transition_summary$n_parent_total[transition_summary$wave_year == 2022 & transition_summary$parent_ed_level == "upper_secondary" & transition_summary$own_ed_level == "upper_secondary"])` valid cases. The main takeaway is that the transition evidence reinforces high persistence in the upper-middle of the education ladder, while the latest-wave category detail is too sparse to anchor a time-trend claim.
+The 2022-23 transition matrix remains thin at the lowest parental origins, but it is no longer confined to a single usable row. The tertiary parental-origin row shows `r fmt_pct(transition_summary$share[transition_summary$wave_year == 2022 & transition_summary$parent_ed_level == "tertiary" & transition_summary$own_ed_level == "tertiary"])` same-category persistence out of `r fmt_int(transition_summary$n_parent_total[transition_summary$wave_year == 2022 & transition_summary$parent_ed_level == "tertiary" & transition_summary$own_ed_level == "tertiary"])` valid cases, while the upper-secondary parental-origin row shows `r fmt_pct(transition_summary$share[transition_summary$wave_year == 2022 & transition_summary$parent_ed_level == "upper_secondary" & transition_summary$own_ed_level == "tertiary"])` movement into tertiary and `r fmt_pct(transition_summary$share[transition_summary$wave_year == 2022 & transition_summary$parent_ed_level == "upper_secondary" & transition_summary$own_ed_level == "upper_secondary"])` same-category persistence out of `r fmt_int(transition_summary$n_parent_total[transition_summary$wave_year == 2022 & transition_summary$parent_ed_level == "upper_secondary" & transition_summary$own_ed_level == "upper_secondary"])` valid cases. The main takeaway is that the transition evidence reinforces strong persistence at the top of the ladder while lower-origin 2022 rows remain too sparse for fine-grained inference.
 
 ```{r}
 #| label: tbl-transition-structure
@@ -365,7 +359,7 @@ The main takeaway is that cohort profiles are heterogeneous in levels, but they 
 
 #### Regional Variation
 
-Regional dispersion is most legible in the rank-based measure, because the 2022 category-based regional outputs are sparse for most origin cells. Figure @fig-region-rank-rank ranks the 2022-23 regional slopes and shows a wide descriptive spread around the national slope of **`r fmt_num(metric_est("rank_rank_slope", 2022))`**. The highest observed persistence appears in Andijan region at **`r fmt_num(region_trends$estimate[region_trends$region == "Andijan region" & region_trends$wave_year == 2022 & region_trends$metric == "rank_rank_slope"])`**, while Surkhandarya region sits at **`r fmt_num(region_trends$estimate[region_trends$region == "Surkhandarya region" & region_trends$wave_year == 2022 & region_trends$metric == "rank_rank_slope"])`**.
+Regional dispersion is most legible in the rank-based measure, because the 2022 category-based regional outputs remain sparse for many origin cells. Figure @fig-region-rank-rank ranks the 2022-23 regional slopes and shows a wide descriptive spread around the national slope of **`r fmt_num(metric_est("rank_rank_slope", 2022))`**. The highest observed persistence appears in Tashkent city at **`r fmt_num(region_trends$estimate[region_trends$region == "Tashkent city" & region_trends$wave_year == 2022 & region_trends$metric == "rank_rank_slope"])`**, while Khorezm region sits near **`r fmt_num(region_trends$estimate[region_trends$region == "Khorezm region" & region_trends$wave_year == 2022 & region_trends$metric == "rank_rank_slope"])`**. These regional differences are descriptive and several intervals remain wide, so they should be read as dispersion rather than ranked certainty.
 
 ```{r}
 #| label: fig-region-rank-rank
@@ -394,13 +388,13 @@ ggplot2::ggplot(region_plot, ggplot2::aes(x = estimate, y = region, size = n)) +
   ggplot2::theme(legend.position = "bottom")
 ```
 
-The main takeaway is that regional differences are descriptively large enough to matter for interpretation, even though the paper does not treat them as identified regional effects.
+The main takeaway is that regional differences are descriptively large enough to matter for interpretation, even though the paper does not treat them as identified regional effects and several regional estimates remain imprecise.
 
 #### Subgroup Split
 
 Figure @fig-upward-urban-rural brings one existing subgroup visual into the main text. The urban-rural split is worth showing because it connects directly to the paper's pooled correlates framework, but it should still be read as descriptive because the figure is based on the category-coded upward-mobility rate rather than the paper's preferred rank-based trend benchmark.
 
-The companion gender split is not promoted to the main text because the 2022-23 male denominator for category-based upward mobility is only `r fmt_int(subgroup_metrics$n[subgroup_metrics$subgroup_type == "gender" & subgroup_metrics$subgroup_value == "male" & subgroup_metrics$metric == "upward_mobility_rate" & subgroup_metrics$wave_year == 2022])`, which makes that panel less informative than the urban-rural comparison.
+The companion gender split is not promoted to the main text because the 2022-23 male category-mobility sample is only `r fmt_int(subgroup_metrics$n[subgroup_metrics$subgroup_type == "gender" & subgroup_metrics$subgroup_value == "male" & subgroup_metrics$metric == "upward_mobility_rate" & subgroup_metrics$wave_year == 2022])` with a weighted effective N of about `r fmt_num(subgroup_metrics$effective_n[subgroup_metrics$subgroup_type == "gender" & subgroup_metrics$subgroup_value == "male" & subgroup_metrics$metric == "upward_mobility_rate" & subgroup_metrics$wave_year == 2022], digits = 1)`, which makes that panel less informative than the urban-rural comparison.
 
 ![Upward mobility by urban and rural residence.](../outputs/figures/tier_a_upward_by_urban_rural.png){#fig-upward-urban-rural fig-alt="Upward mobility by urban and rural residence."}
 
@@ -410,29 +404,27 @@ The main takeaway is that subgroup descriptives are useful for orientation, but 
 
 ### Pooled Persistence-Trend Model
 
-The pooled rank-based persistence model does not provide precise evidence that persistence changed relative to 2010 once controls and fixed effects are added. The coefficient on parental rank is positive at **`r fmt_num(coef_est("eq2_persistence_trend", "parent_rank"))`**, but the interaction terms for 2016 and 2022 relative to 2010 are imprecisely estimated in this specification.
+The pooled rank-based persistence model shows a clear positive association between parental rank and respondent rank. The coefficient on parental rank is **`r fmt_num(coef_est("eq2_persistence_trend", "parent_rank"))`**, the interaction with 2016 is positive and precisely estimated at **`r fmt_num(coef_est("eq2_persistence_trend", "wave_year_fe::2016:parent_rank"))`**, and the additional 2022 interaction is also positive but only marginally estimated at **`r fmt_num(coef_est("eq2_persistence_trend", "wave_year_fe::2022:parent_rank"))`**.
 
-This result matters for interpretation. The descriptive by-wave rank-rank slopes clearly rise across the three surveys, but once the model adds region, cohort, wave fixed effects, and the selected covariates, the change in persistence over time is estimated less precisely. That suggests that part of the raw trend may reflect shifts in composition or limited power rather than a simple structural break. Descriptive persistence measures rise across waves, but pooled models do not estimate the change precisely.
+This result sharpens the descriptive reading. Once the model adds region, cohort, wave fixed effects, and the selected covariates, the data support a stronger parent-child gradient in 2016 than in 2010, while the 2022-23 gradient remains above the 2010 baseline but is less clearly distinguished from the 2016 level. The pooled evidence therefore supports persistence and a mid-period strengthening more clearly than a monotonic worsening in every later wave.
 
 ### Attainment-Score Model
 
 The attainment-score regression shows a robust positive association between parental education and own educational attainment. The coefficient on parental education score is **`r fmt_num(coef_est("eq3_attainment_score", "parent_ed_score"))`** and is precisely estimated. This is the clearest correlates result in the paper: better-educated parents are associated with higher educational attainment among adult children even after adding fixed effects and the active covariates.
 
-Among the covariates, the female coefficient is negative at **`r fmt_num(coef_est("eq3_attainment_score", "female"))`**, while the urban coefficient is positive but not estimated precisely. Migration exposure and multigenerational household structure are also imprecisely estimated in this specification. The central correlates result is that parental educational background remains the strongest and most stable predictor in the pooled attainment model.
+Among the non-parental covariates, none is precisely estimated in the current pooled specification. The female coefficient is slightly negative at **`r fmt_num(coef_est("eq3_attainment_score", "female"))`**, while urban residence, migration exposure, and multigenerational household structure are likewise imprecisely estimated. The central correlates result is therefore narrow: parental educational background remains the strongest and most stable predictor in the pooled attainment model.
 
 ### Upward Mobility Models
 
 The upward-mobility linear probability models are useful mainly for showing where upward transitions are mechanically more likely. Relative to the upper-secondary reference group, respondents from primary-educated households and lower-secondary households have much higher estimated probabilities of upward mobility, with coefficients of **`r fmt_num(coef_est("eq4_upward_full_lpm", "parent_ed_level::primary"))`** and **`r fmt_num(coef_est("eq4_upward_full_lpm", "parent_ed_level::lower_secondary"))`**, respectively.
 
-The non-parental covariates in the upward-mobility models are weaker. Urban residence is close to zero, the female coefficient is negative but only modestly estimated, migration exposure is not precise, and multigenerational household structure is positive but not strongly estimated. In substantive terms, the upward-mobility models mostly reflect where households begin in the parental education ladder rather than strong independent roles for the additional covariates.
+The non-parental covariates in the upward-mobility models are weaker. Urban residence is close to zero, migration exposure is not precisely estimated, and multigenerational household structure is negligible. The one clearer non-parental pattern is a lower upward-mobility probability for women conditional on the same controls. In substantive terms, the upward-mobility models still mostly reflect where households begin in the parental education ladder rather than strong independent roles for the additional covariates.
 
 ### Heterogeneity in Persistence
 
-The persistence heterogeneity model shows a strong positive association between parental education score and the probability of remaining in the same education category as one's parents. The coefficient on parental education score is **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score"))`** and is precisely estimated.
+The persistence heterogeneity model shows a positive association between parental education score and the probability of remaining in the same education category as one's parents. The coefficient on parental education score is **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score"))`** and is precisely estimated.
 
-There is suggestive heterogeneity by subgroup. The interaction between parent education and urban residence is positive at **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score:urban"))`**, while the interaction between parent education and female is negative at **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score:female"))`**. By contrast, the interaction between parent education and the 2022 wave is not precisely estimated.
-
-A cautious reading is that parental education translates into same-category persistence across the entire sample, but the strength of that translation may vary by subgroup. In this dataset, the strongest subgroup signal points to weaker persistence among women and somewhat stronger persistence in urban settings. The broader result, however, remains the overall persistence gradient by parental education. Table @tbl-pooled-correlates collects the selected coefficients discussed in Section 6.
+The interaction pattern differs from the earlier draft. The urban and female interaction terms are small and not precisely estimated, while the interaction between parent education and the 2022 wave is positive at **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score:wave2022"))`** and precisely estimated. A cautious reading is that parental education translates into same-category persistence across the full sample, and that this translation is stronger in 2022-23 than in the earlier pooled baseline, but there is little evidence here of separate urban or female heterogeneity in that persistence gradient. Table @tbl-pooled-correlates collects the selected coefficients discussed in Section 6.
 
 ```{r}
 #| label: tbl-pooled-correlates
@@ -446,6 +438,7 @@ selected_terms <- c(
   "eq4_upward_full_lpm::parent_ed_level::primary",
   "eq4_upward_full_lpm::parent_ed_level::lower_secondary",
   "eq5_persistence_heterogeneity::parent_ed_score",
+  "eq5_persistence_heterogeneity::parent_ed_score:wave2022",
   "eq5_persistence_heterogeneity::parent_ed_score:urban",
   "eq5_persistence_heterogeneity::parent_ed_score:female"
 )
@@ -463,6 +456,7 @@ term_labels <- c(
   female = "Female",
   "parent_ed_level::primary" = "Parent education: primary",
   "parent_ed_level::lower_secondary" = "Parent education: lower secondary",
+  "parent_ed_score:wave2022" = "Parent education score x 2022-23",
   "parent_ed_score:urban" = "Parent education score x urban",
   "parent_ed_score:female" = "Parent education score x female"
 )
@@ -513,7 +507,7 @@ knitr::kable(
 
 The child-module extension is deliberately kept secondary to Modules A and B. It is based on `r sample_n("^Mechanism sample with non-missing parental schooling$")` respondents with a child enrolled before COVID and non-missing parental schooling. Table @tbl-modulec-sample reports the sample flow.
 
-Within this restricted sample, disruption and household substitution were substantial: **`r fmt_pct(mech_est("education_stopped_covid"))`** report education stoppage during COVID, **`r fmt_pct(mech_est("any_remote_challenge"))`** report at least one remote-learning challenge, and mothers are reported as the learning-support channel in **`r fmt_pct(mech_est("support_mother"))`** of cases. Additional descriptive splits and the lower-value mechanism details are reported in the technical appendix so that the main text remains focused on the strongest facts.
+Within this restricted sample, disruption and household substitution were substantial: **`r fmt_pct(mech_est("education_stopped_covid"))`** report education stoppage during COVID, **`r fmt_pct(mech_est("any_remote_challenge"))`** report at least one remote-learning challenge, and mothers are reported as the learning-support channel in **`r fmt_pct(mech_est("support_mother"))`** of cases. Additional descriptive splits and the fragility checks for the mechanism regressions are reported in the technical appendix so that the main text remains focused on the strongest facts.
 
 ```{r}
 #| label: tbl-modulec-sample
@@ -527,21 +521,21 @@ knitr::kable(
 
 ### Main Regression Takeaway
 
-One regression result deserves emphasis. Low parental education is positively associated with the probability that a child's education stopped during COVID, with a coefficient of **`r fmt_num(mech_coef_est("m3_education_stopped_covid", "parent_low_edu"))`** in the stoppage model. This aligns with the descriptive split: the stoppage rate is **`r fmt_pct(mech_est("education_stopped_covid", "parent_education", "lower_or_equal_median_parent_edu"))`** among children from lower-parent-education households versus **`r fmt_pct(mech_est("education_stopped_covid", "parent_education", "above_median_parent_edu"))`** among those from higher-parent-education households.
+The adjusted regression evidence is much weaker than the descriptive disruption rates. In the baseline weighted median-split specification, the coefficient on low parental education in the stoppage model is **`r fmt_num(mech_coef_est("m3_education_stopped_covid", "parent_low_edu"))`** with p-value **`r fmt_p(mech_coef_p("m3_education_stopped_covid", "parent_low_edu"))`**, and the descriptive stoppage rates are nearly identical: **`r fmt_pct(mech_est("education_stopped_covid", "parent_education", "lower_or_equal_median_parent_edu"))`** among children from lower-parent-education households versus **`r fmt_pct(mech_est("education_stopped_covid", "parent_education", "above_median_parent_edu"))`** among those from higher-parent-education households.
 
-Beyond this stoppage result, the remaining mechanism regressions are secondary and less precise, so they are reported in the technical appendix rather than emphasized in the main text. Module C therefore contributes bounded descriptive evidence on household vulnerability, not causal evidence on pandemic mechanisms.
+The technical appendix shows that the stoppage coefficient is fragile across weighting and threshold choices and becomes unstable under the strict `<=9` split. Module C therefore contributes bounded descriptive evidence on household vulnerability and learning support, not a stable adjusted parental-education gradient and not causal evidence on pandemic mechanisms.
 
 ## Discussion and Policy Implications
 
 Three broad conclusions emerge from the analysis.
 
-First, Uzbekistan exhibits substantial intergenerational educational persistence. Descriptive persistence measures rise across waves, but the pooled models do not estimate the change precisely, so the evidence is stronger on levels than on time trends.
+First, Uzbekistan exhibits substantial intergenerational educational persistence. Descriptive persistence rises strongly from 2010 to 2016 and remains above the 2010 level in 2022-23. The pooled rank-based model supports a stronger persistence gradient in 2016 relative to 2010, while the additional 2022 increment is less precisely estimated.
 
 Second, parental education is the most consistent predictor in the pooled correlates models. The data provide less clear evidence that migration exposure or multigenerational household structure independently explain mobility once the core controls and fixed effects are added, although these factors may still matter through channels the present specifications do not capture well.
 
-Third, the pandemic mechanism evidence underscores the practical importance of household learning conditions. Device sharing, internet quality, and time- or cost-related constraints were common, and support was overwhelmingly provided by mothers. This suggests that inequality in education is shaped not only by formal access to schools but also by what households can do when schools are disrupted or when learning increasingly depends on home resources.
+Third, the pandemic mechanism evidence underscores the practical importance of household learning conditions. Device sharing, internet quality, and time- or cost-related constraints were common, and support was overwhelmingly provided by mothers. What the child module establishes most clearly is the scale of disruption and household substitution, not a robust adjusted stoppage gap by parental education.
 
-These findings imply several policy priorities. The first is to reduce the degree to which educational attainment depends on parental background through earlier remedial support, stronger transitions across schooling stages, and wider access to quality secondary and post-secondary pathways. The second is to address spatial and household bottlenecks directly. Even when the pooled urban coefficient is imprecise, the broader pattern points to local infrastructure, service access, and household support conditions as meaningful constraints on mobility.
+These findings imply several policy priorities. The first is to reduce the degree to which educational attainment depends on parental background through earlier remedial support, stronger transitions across schooling stages, and wider access to quality secondary and post-secondary pathways. The second is to address spatial and household bottlenecks directly. Even without a precise pooled urban coefficient, the broader descriptive evidence points to local infrastructure, service access, and household support conditions as meaningful constraints on mobility.
 
 The third priority is to strengthen household support capacity in periods of disruption. The child module shows that digital inclusion is not only a question of nominal internet access, but also of connection quality, device availability, and adults' ability to help children learn. A related implication is that education policy should recognize mothers' support burden as a real part of learning continuity rather than assume that home-based adjustment is costless inside the household.
 
@@ -553,16 +547,16 @@ First, the three LiTS waves are repeated cross-sections rather than a panel, so 
 
 Second, the comparability of some parental education information across waves is imperfect, which is why the rank-based measures are more reliable than some category-based comparisons.
 
-Third, the 2022-23 category-based mobility estimates rely on a much smaller valid denominator than the 2022 rank-based measure. This means the apparent spike in persistence in 2022-23 should be interpreted as suggestive rather than definitive.
+Third, several 2022-23 subgroup and regional estimates remain noisy even after the harmonized denominator problem is resolved. The national 2022 profile is informative, but some disaggregated category-based and regional comparisons still have wide confidence intervals or sparse origin cells.
 
-Fourth, the pandemic mechanism module is based on a limited child subsample and is not a causal design. It is useful for describing disruption and support patterns, but it should not be treated as evidence of the causal effect of parental education.
+Fourth, the pandemic mechanism module is based on a limited child subsample and is not a causal design. Its adjusted parental-education coefficients are also fragile across weighting and threshold choices, so it is useful for describing disruption and support patterns rather than for establishing a stable mechanism.
 
 These limitations do not undermine the central contribution of the paper, but they do shape the appropriate scope of the conclusions.
 
 ## Conclusion
 
-This paper provides structured multi-wave evidence on intergenerational educational mobility in Uzbekistan using LiTS 2010, 2016, and 2022-23. The results indicate substantial educational persistence across generations. Descriptive persistence measures rise across waves, but the pooled models do not estimate that change precisely enough to support a firm trend claim. Parental education remains the clearest predictor of children's educational attainment in the pooled correlates models.
+This paper provides structured multi-wave evidence on intergenerational educational mobility in Uzbekistan using LiTS 2010, 2016, and 2022-23. The results indicate substantial educational persistence across generations. Descriptive persistence rises from 2010 to 2016 and remains elevated in 2022-23, while the pooled correlates models point to a stronger mid-period persistence gradient and continue to show parental education as the clearest predictor of children's educational attainment.
 
-The extension based on the LiTS IV child module shows that pandemic-era learning disruption was widespread and that household support, especially maternal support, was central to learning continuity. Lower parental education appears to be associated with a higher risk that education stopped during COVID, but these patterns should be treated as suggestive due to sample limits.
+The extension based on the LiTS IV child module shows that pandemic-era learning disruption was widespread and that household support, especially maternal support, was central to learning continuity. The same extension does not provide robust adjusted evidence that lower parental education raised the probability that education stopped during COVID.
 
 The broader message is that improving educational mobility in Uzbekistan will require more than expanding formal access. It will require reducing the degree to which family background governs educational trajectories, especially through the unequal household conditions under which children study, recover from shocks, and convert schooling opportunities into completed attainment.
