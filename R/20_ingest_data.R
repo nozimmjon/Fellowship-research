@@ -123,6 +123,72 @@ coerce_gender_label <- function(x) {
   )
 }
 
+# Locked cross-wave mapping for Uzbekistan LiTS region labels.
+UZB_REGION_HARMONIZATION_MAP <- c(
+  "andijan" = "Andijan region",
+  "andijanregion" = "Andijan region",
+  "bukhara" = "Bukhara region",
+  "bukharaoblast" = "Bukhara region",
+  "bukhararegion" = "Bukhara region",
+  "djizakoblast" = "Jizzakh region",
+  "djizakregion" = "Jizzakh region",
+  "jizzakoblast" = "Jizzakh region",
+  "jizzakhoblast" = "Jizzakh region",
+  "jizzakregion" = "Jizzakh region",
+  "jizzakhregion" = "Jizzakh region",
+  "fergana" = "Fergana region",
+  "ferganaregion" = "Fergana region",
+  "karakalpakistanar" = "Karakalpakstan republic",
+  "karakalpakstan" = "Karakalpakstan republic",
+  "karakalpakstanregion" = "Karakalpakstan republic",
+  "karakalpakstanar" = "Karakalpakstan republic",
+  "kashkadarya" = "Kashkadarya region",
+  "kashkadaryaregion" = "Kashkadarya region",
+  "qashqadaryo" = "Kashkadarya region",
+  "khorezm" = "Khorezm region",
+  "khorezmoblast" = "Khorezm region",
+  "khorezmregion" = "Khorezm region",
+  "namangan" = "Namangan region",
+  "namanganoblast" = "Namangan region",
+  "namanganregion" = "Namangan region",
+  "navoi" = "Navoi region",
+  "navoioblast" = "Navoi region",
+  "navoiregion" = "Navoi region",
+  "navoiy" = "Navoi region",
+  "samarkand" = "Samarkand region",
+  "samarkandoblast" = "Samarkand region",
+  "samarkandregion" = "Samarkand region",
+  "sirdarya" = "Sirdarya region",
+  "sirdaryaoblast" = "Sirdarya region",
+  "sirdaryaregion" = "Sirdarya region",
+  "syrdarya" = "Sirdarya region",
+  "syrdaryaoblast" = "Sirdarya region",
+  "syrdaryaregion" = "Sirdarya region",
+  "surkhandarya" = "Surkhandarya region",
+  "surkhandaryaregion" = "Surkhandarya region",
+  "tashkent" = "Tashkent city",
+  "tashkentcity" = "Tashkent city",
+  "tashkentoblast" = "Tashkent region",
+  "tashkentregion" = "Tashkent region"
+)
+
+region_label_key <- function(x) {
+  x_chr <- tolower(trimws(as.character(x)))
+  x_chr <- stringr::str_replace_all(x_chr, "[^a-z]", "")
+  dplyr::na_if(x_chr, "")
+}
+
+harmonize_uzbekistan_region <- function(region) {
+  region_chr <- trimws(as.character(region))
+  key <- region_label_key(region_chr)
+  mapped <- unname(UZB_REGION_HARMONIZATION_MAP[key])
+  dplyr::case_when(
+    is.na(region_chr) | region_chr == "" ~ NA_character_,
+    !is.na(mapped) ~ mapped,
+    TRUE ~ region_chr
+  )
+}
+
 yes_no_to_binary <- function(x) {
   x <- tolower(trimws(as.character(x)))
   dplyr::case_when(
@@ -218,7 +284,7 @@ as_harmonized_frame <- function(
   tibble::tibble(
     wave_year = as.integer(wave_year),
     country = as.character(country),
-    region = as.character(region),
+    region = harmonize_uzbekistan_region(region),
     age = clean_numeric(age),
     gender = coerce_gender_label(gender),
     urban = coerce_urban_binary(urban),

@@ -18,8 +18,8 @@ hbs_appendix_model|stem|013f25e7e9e42392|1f692b1a4aff70c4|27b664332a7d8db4|-2072
 hbs_linkage_files|stem|4d41fb2225ef1b3f|b6f1f9587565b255|c9d9c7d16388052b|1278365628|C:/Users/n.ortiqov/Desktop/Fellowship research/data/processed/hbs_linkage_diagnostics.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/data/processed/hbs_linked_adult_sample.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/hbs_linkage_overview.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/hbs_linkage_selection.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/hbs_linkage_parent_measure_availability.csv|t20539.7161381676s|s1815648b|1815648|file|local|vector|||0.3||
 hbs_household_context_files|stem|7c31c763a705b616|d04b6be60c442b79|daca079efa6cb7e6|2102714665|C:/Users/n.ortiqov/Desktop/Fellowship research/data/processed/hbs_household_context.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/hbs_household_support_context.csv|t20539.7161408528s|s4136313b|4136313|file|local|vector|||0.19||
 hbs_linkage_results|stem|8cca2ed24e17dc83|b1d7b58b60e8aa71|a35c075dd91c8631|-1908838219||t20539.7265399283s|s243831b|243831|rds|local|vector|||16.75|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
-module_c_model|stem|bdcde7d40d41e55a|37d76ed41d989fd8|2066f6fe99a32827|1151713364||t20540.6356896553s|s201895b|201895|rds|local|vector|||1.04|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
-module_c_files|stem|5ac93cf44f7b6de0|b530aaf57352b837|64e6bc0f675c2e5a|-83800478|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_summary.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_coverage.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_sample.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_formulae.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_robustness_scenarios.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_robustness_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/models/module_c_mechanism_models.rds|t20540.6356918829s|s222390b|222390|file|local|vector|||0.13||
+mobility_measure_spec_csv|stem|9893f19d243d4827|81e589732f7f73a0|ed64f859485d5753|-1875568739|C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_measure_set.csv|t20540.6434399878s|s963b|963|file|local|vector|||0.09|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
+mobility_variable_lock_csv|stem|df13a5e4375dbff3|176fba88c3cd03cc|5b2dfc2ad91ef2c9|-1228650967|C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_variable_lock.csv|t20540.6434400228s|s1642b|1642|file|local|vector|||0||
 available_subgroup_vars|function|9ae740d35a2b157c
 PROJ_PATHS|object|633412a3290080fc
 hbs_available_years_label|function|11b44076179a995e
@@ -63,8 +63,10 @@ required_packages|object|fd4d9b400fcfe941
 build_covariate_coverage|function|e67ac94e53f78556
 infer_wave_from_filename|function|48c7ec33c0539f62
 PROJECT_ROOT|object|1f22bac59e0b1a90
+MODULE_C_MIN_GROUP_N|object|fc68b7f7b40cc54f
 read_any_table|function|728ff52a838ee4a6
 apply_parent_education_split|function|ee7692fa6aed2c61
+UZB_REGION_HARMONIZATION_MAP|object|fa1dec777b703a3c
 build_hbs_appendix_model|function|92347f10d44c2eff
 weighted_rate|function|3e5fae06e591ce4e
 age_from_band|function|492b4192b006ca95
@@ -83,9 +85,11 @@ build_mobility_measure_spec|function|8ab2907be93b234b
 extract_roster_value_by_code|function|32d09a257bdaf891
 build_tier_a_descriptive|function|b8ba0f36f7f0dabc
 empty_module_a_result|function|abc9a1dcfe6b5d0d
-.Random.seed|object|f77e8694f27d4b54
+region_label_key|function|95ff8f2ac2eb8f63
+.Random.seed|object|86d7c7faa9ac6fec
 text_match_binary|function|ba3d8a2008747201
 UZB_REGIONS|object|d95c52e72d47be0c
+MODULE_C_MIN_EVENTS_PER_GROUP|object|b3a2147ad240fae3
 find_project_root|function|e31159b458691626
 ensure_project_dirs|function|cf978b90c2a7d47f
 hbs_year_folders|function|88f3e826b8e13115
@@ -113,6 +117,8 @@ plot_national_rank_rank|function|c5b341cf779ab34c
 hbs_build_multigenerational|function|e9d2f4df2c602cc9
 missing_packages|function|2f86f58fe33b9172
 build_module_c_summary|function|a2a82f34c76dbc3f
+harmonize_uzbekistan_region|function|12bab03b82a10b30
+assess_module_c_model_support|function|bb0b76c4a8db68b6
 write_mobility_variable_lock|function|77c66544fd48d19c
 write_lits_harmonized|function|fad757648c1c5b78
 write_data_inventory_template|function|bd6e9c2d5ba477a3
@@ -122,44 +128,44 @@ write_variable_dictionary_template|function|64482435da1161b8
 prepare_mobility_data|function|d4262ac6e57dc68f
 prepare_module_b_data|function|b1c14118e220625d
 coalesce_years_from_level|function|47a58f8f1701111d
-as_harmonized_frame|function|f65d45d8d2e1008b
 compute_directional_rates|function|cf6663b610202ee3
 hbs_binary|function|fcc7f13cb041921e
 hbs_normalize_province|function|666bf2d7325227cf
 hbs_map_education_years|function|15cbe9660f3f24b3
-prepare_module_c_mechanism_data|function|5f54679f5b724d22
 save_module_a_tier_a_outputs|function|4efef12b252988af
 check_required_packages|function|36460fad0e903198
 install_missing_packages|function|af761ae749949e87
+as_harmonized_frame|function|ef3233930004c571
+prepare_module_c_mechanism_data|function|4100208501d85203
 fit_module_b_models|function|e1f69fdbf6a5d9be
 prepare_empirical_master_flags|function|0283cf04d264b780
 build_parent_variant_data|function|7f8e150f49acd681
-read_lits_2010|function|f4c0df82f2f092c7
-read_lits_2016|function|e8c49f19d808f9d2
-read_lits_2022|function|8870d22e75d04ab4
 estimate_mobility_metrics|function|6ba3b0eb5b0ba162
 hbs_build_education_household_flags|function|3d006550612bdb94
 hbs_binary_any|function|0126427e16b2a82f
 hbs_read_household_weights|function|d2be2d308c4277ad
 hbs_build_adult_person_file|function|5e6db26c737885e8
-fit_module_c_mechanisms|function|5519c6073f4031f2
 load_required_packages|function|084c6ad08d093101
-build_lits_harmonized|function|e840a93c5935634e
+read_lits_2010|function|6ea0c214f619527e
+read_lits_2016|function|0ddc77247081a6e7
+read_lits_2022|function|353454e2e202453d
+fit_module_c_mechanisms|function|7413d82e51448f18
 build_parent_measure_robustness|function|7d6e7c0a92f5d06c
 hbs_build_internet_household_flags|function|33c7ed47cb391e13
 hbs_build_migration_household_flags|function|44d005382d3ea42e
 build_hbs_linkage_diagnostics|function|1846a56074d9b861
+build_lits_harmonized|function|ad45c50c0fbeea33
 build_empirical_audit|function|6015097381585e52
 build_hbs_household_context|function|5031f994bd887eeb
-lits_harmonized|stem|e9bbbd8ae19252c2|faa306ad180050f8|bdeb8e9eccae2d2c|656146977||t20540.6573086515s|s38882b|38882|rds|local|vector|||1.69|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
-mobility_measure_spec_csv|stem|9893f19d243d4827|81e589732f7f73a0|ed64f859485d5753|-1875568739|C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_measure_set.csv|t20540.6434399878s|s963b|963|file|local|vector|||0.09|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
-mobility_variable_lock_csv|stem|df13a5e4375dbff3|176fba88c3cd03cc|5b2dfc2ad91ef2c9|-1228650967|C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_variable_lock.csv|t20540.6434400228s|s1642b|1642|file|local|vector|||0||
-module_b_models|stem|9f320d3447cc3f8c|a72cc66dda7ea03a|16c0bcefe8522b73|-801911758||t20540.6573133952s|s998005b|998005|rds|local|vector|||0.26||
-module_a_metrics|stem|6c55b0db4a78b1a9|cd455fda32151972|0c271dd959c249dd|-548845857||t20540.6573305154s|s12153b|12153|rds|local|vector|||1.43||
-lits_harmonized_csv|stem|e2132a3e99b9d0d7|94b2d0d3a210bef5|4e37df8c118d9afe|-1149006851|C:/Users/n.ortiqov/Desktop/Fellowship research/data/processed/lits_harmonized.csv|t20540.6573355659s|s428945b|428945|file|local|vector|||0.4||
-module_b_files|stem|0c8d37391466770d|0fa7bed86dc4cde4|215306405cd5ed6e|-870279112|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_model_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_covariate_coverage.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_selected_covariates.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_formulae.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/models/module_b_models.rds|t20540.6573378139s|s1003776b|1003776|file|local|vector|||0.14||
-empirical_audit|stem|6ae945a4db63c0ed|3c69aeadad873182|6d867295f85ad73c|1809157309||t20540.6574123652s|s36516b|36516|rds|local|vector|||6.39||
-module_a_tier_a|stem|289c260c43dcfa15|63da1cce4d70d25e|188b30290c592d37|2043644909||t20540.6574136027s|s7917b|7917|rds|local|vector|||0.07||
-module_a_files|stem|e886f5a32f43f8b4|9f6c5f291a833437|b23a82395586de5b|-151818714|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_summary_metrics.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_subgroup_metrics.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_upward_mobility.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_transition_matrix.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_persistence_by_parent.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_measure_set.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_variable_lock.csv|t20540.6574147497s|s52785b|52785|file|local|vector|||0.08||
-empirical_audit_files|stem|a3006ce5bb205d6f|9841bcfdafca25e5|7011da5d8d093134|1157178876|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_master_inclusion_flags.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_module_c_inclusion_flags.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_sample_flow.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_inclusion_composition.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_parent_availability.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_parent_measure_robustness.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_claim_audit.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_model_inventory.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/publication/empirical_audit_memo.md|t20540.6574206449s|s584972b|584972|file|local|vector|||0.49||
-module_a_tier_a_files|stem|d7460016ae20bcec|a5f4976ddf24f0f0|66f04076730b9d53|1853466565|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_national_trends.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_subgroup_trends.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_region_trends.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_transition_summary.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_sample_by_wave.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_data_completeness.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_rank_rank_by_wave.png*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_directional_rates_by_wave.png*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_upward_by_urban_rural.png*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_upward_by_gender.png|t20540.6574238056s|s88453b|88453|file|local|vector|||0.27||
+lits_harmonized|stem|e5bf76a17fbca2fb|faa306ad180050f8|918aeee682f030df|656146977||t20541.4561678522s|s38846b|38846|rds|local|vector|||1.71|пакет 'dplyr' был собран под R версии 4.5.3. пакет 'tidyr' был собран под R версии 4.5.3. пакет 'readr' был собран под R версии 4.5.3. пакет 'purrr' был собран под R версии 4.5.3. пакет 'stringr' был собран под R версии 4.5.3. пакет 'janitor' был собран под R версии 4.5.3. пакет 'broom' был собран под R версии 4.5.3|
+module_c_model|stem|8d06869d24bd3ac2|37d76ed41d989fd8|43c7fefecc882298|1151713364||t20541.4561843377s|s201635b|201635|rds|local|vector|||1.36||
+module_b_models|stem|a65153cfb44e157c|a72cc66dda7ea03a|00ea58333a834dd0|-801911758||t20541.4561911642s|s997326b|997326|rds|local|vector|||0.27||
+module_a_metrics|stem|3f9aac08a630aeac|cd455fda32151972|808ce57af117e1ed|-548845857||t20541.4562051365s|s12041b|12041|rds|local|vector|||1.16||
+lits_harmonized_csv|stem|76e02066b6fe13f9|94b2d0d3a210bef5|280328c7e149bd37|-1149006851|C:/Users/n.ortiqov/Desktop/Fellowship research/data/processed/lits_harmonized.csv|t20541.4562093712s|s431477b|431477|file|local|vector|||0.32||
+module_c_files|stem|23bb1737092b7da5|b530aaf57352b837|9c6d129530795ccb|-83800478|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_summary.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_coverage.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_sample.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_formulae.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_robustness_scenarios.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_c_mechanism_robustness_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/models/module_c_mechanism_models.rds|t20541.4562111139s|s220261b|220261|file|local|vector|||0.12||
+module_b_files|stem|685c6b59e7e1ca33|0fa7bed86dc4cde4|89fc1c6eab58a53a|-870279112|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_model_coefficients.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_covariate_coverage.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_selected_covariates.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_b_formulae.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/models/module_b_models.rds|t20541.4562130783s|s1003092b|1003092|file|local|vector|||0.13||
+empirical_audit|stem|f2c5f63509107795|3c69aeadad873182|6806c55f5812f6b3|1809157309||t20541.4562851698s|s36433b|36433|rds|local|vector|||6.16||
+module_a_tier_a|stem|c2457d5fa67f643d|63da1cce4d70d25e|65790055e72ed17a|2043644909||t20541.4562862488s|s7803b|7803|rds|local|vector|||0.04||
+module_a_files|stem|7a7ffdfe07f8d6ec|9f6c5f291a833437|49fbc2cc1953fe89|-151818714|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_summary_metrics.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_subgroup_metrics.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_upward_mobility.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_transition_matrix.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/module_a_persistence_by_parent.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_measure_set.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/data/metadata/mobility_variable_lock.csv|t20541.4562876534s|s52905b|52905|file|local|vector|||0.08||
+empirical_audit_files|stem|d9418c44429f04b1|9841bcfdafca25e5|7d9479891e358288|1157178876|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_master_inclusion_flags.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_module_c_inclusion_flags.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_sample_flow.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_inclusion_composition.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_parent_availability.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_parent_measure_robustness.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_claim_audit.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/empirical_model_inventory.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/publication/empirical_audit_memo.md|t20541.4562945926s|s587746b|587746|file|local|vector|||0.57||
+module_a_tier_a_files|stem|4ec98bd918313574|a5f4976ddf24f0f0|ba0e14d1d60afd97|1853466565|C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_national_trends.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_subgroup_trends.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_region_trends.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_transition_summary.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_sample_by_wave.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/tables/tier_a_data_completeness.csv*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_rank_rank_by_wave.png*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_directional_rates_by_wave.png*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_upward_by_urban_rural.png*C:/Users/n.ortiqov/Desktop/Fellowship research/outputs/figures/tier_a_upward_by_gender.png|t20541.4562983455s|s88501b|88501|file|local|vector|||0.3||

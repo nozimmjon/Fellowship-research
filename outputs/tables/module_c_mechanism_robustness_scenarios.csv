@@ -1,5 +1,5 @@
-scenario_id,split_rule,split_threshold,use_weights,n_total,n_parent_non_missing,n_low_group,n_high_group
-baseline_weighted_median,median,13.5,TRUE,186,183,114,69
-unweighted_median,median,13.5,FALSE,186,183,114,69
-weighted_leq11,leq_11,11,TRUE,186,183,74,109
-weighted_leq9,leq_9,9,TRUE,186,183,7,176
+scenario_id,split_rule,split_threshold,use_weights,n_total,n_parent_non_missing,n_low_group,n_high_group,support_min_group_n,scenario_status
+baseline_weighted_median,median,13.5,TRUE,186,183,114,69,15,supported
+unweighted_median,median,13.5,FALSE,186,183,114,69,15,supported
+weighted_leq11,leq_11,11,TRUE,186,183,74,109,15,supported
+weighted_leq9,leq_9,9,TRUE,186,183,7,176,15,degenerate_low_group_support

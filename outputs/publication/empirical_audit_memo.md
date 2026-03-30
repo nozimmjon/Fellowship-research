@@ -1,6 +1,6 @@
 # Empirical Audit Memo
 
-Generated on 2026-03-28.
+Generated on 2026-03-29.
 
 ## Scope
 
@@ -32,7 +32,7 @@ Generated on 2026-03-28.
 - [ok] eq4_upward_full_lpm: upward_any ~ i(parent_ed_level, ref = "upper_secondary") + urban + female + migration_exposure + multigenerational_hh | region + cohort + wave_year_fe
 - [ok] eq4_upward_lowparent_lpm: upward_any ~ i(parent_ed_level, ref = "upper_secondary") + urban + female + migration_exposure + multigenerational_hh | region + cohort + wave_year_fe
 - [ok] eq5_persistence_heterogeneity: persist_same ~ parent_ed_score + parent_ed_score:urban + parent_ed_score:female + parent_ed_score:wave2022 + urban + female + migration_exposure + multigenerational_hh | region + cohort + wave_year_fe
-- [ok] Eq. 2 parent_rank estimate=0.146, p-value=0.000.
+- [ok] Eq. 2 parent_rank estimate=0.154, p-value=0.002.
 - [caution] Main Module C models are weighted region-fixed-effects logits, so coefficients are on the log-odds scale.
-- [caution] Stoppage robustness: 1 of 4 parent_low_edu scenarios significant at 5%; extreme coefficient present=yes.
+- [caution] Stoppage robustness: 0 of 3 parent_low_edu scenarios significant at 5%; extreme coefficient present=no.
 - [ok] Module C parental-schooling sample N=183; main stoppage-model usable N=183.

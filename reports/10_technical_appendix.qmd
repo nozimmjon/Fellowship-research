@@ -293,6 +293,8 @@ if (file.exists(mech_coef_file)) {
 
 ## G1. Module C Stoppage Fragility Check
 
+The strict `<=9` split is retained for transparency but treated as a weak-support scenario when the low-parent group becomes too small for stable FE logit estimation.
+
 ```{r}
 robust_coef_file <- file.path("..", "outputs", "tables", "module_c_mechanism_robustness_coefficients.csv")
 
@@ -300,8 +302,8 @@ if (file.exists(robust_coef_file)) {
   stop_gap_table <- read_csv_safe(robust_coef_file)
   stop_gap_table <- stop_gap_table[
     stop_gap_table$model == "m3_education_stopped_covid" &
-      stop_gap_table$term == "parent_low_edu",
-    c("scenario_id", "split_rule", "split_threshold", "use_weights", "estimate", "std.error", "p.value", "n_used", "status")
+      (stop_gap_table$term == "parent_low_edu" | stop_gap_table$status != "estimated"),
+    c("scenario_id", "split_rule", "split_threshold", "use_weights", "estimate", "std.error", "p.value", "n_used", "status", "support_reason")
   ]
   scenario_labels <- c(
     baseline_weighted_median = "Weighted median split",
@@ -315,8 +317,8 @@ if (file.exists(robust_coef_file)) {
   stop_gap_table$`P-value` <- vapply(stop_gap_table$p.value, fmt_p, character(1))
 
   knitr::kable(
-    stop_gap_table[, c("Scenario", "split_threshold", "Estimate", "Std. Error", "P-value", "n_used", "status")],
-    col.names = c("Scenario", "Threshold", "Log-odds estimate", "Std. Error", "P-value", "Used N", "Status")
+    stop_gap_table[, c("Scenario", "split_threshold", "Estimate", "Std. Error", "P-value", "n_used", "status", "support_reason")],
+    col.names = c("Scenario", "Threshold", "Log-odds estimate", "Std. Error", "P-value", "Used N", "Status", "Support diagnostics")
   )
 } else {
   data.frame(note = "Module C stoppage fragility diagnostics are not available yet.")

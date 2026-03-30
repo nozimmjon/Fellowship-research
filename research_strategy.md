@@ -20,8 +20,8 @@ This paper provides reproducible multi-wave evidence on intergenerational educat
 - 2022-23 LiTS IV mechanism section using child-learning/device/support variables.
 - Explicitly labeled as suggestive heterogeneity evidence.
 
-### Conditional Module (Not Main by Default)
-- Reform/COVID DiD only if admin data with credible region-by-time variation is added and diagnostics pass.
+### Conditional Module (Archived; Not Implemented in Frozen Repo)
+- No baseline DiD or event-study specification is included in the frozen repository.
 
 ## 4) Final Sample Rules
 - Respondents aged 25-64.
@@ -54,7 +54,7 @@ This paper provides reproducible multi-wave evidence on intergenerational educat
 - Parent proxy for category analysis:
   - Main spec: `parent_ed_level = max(father_ed_level, mother_ed_level)`
   - Robustness: averaged ordered parent score
-- Primary cross-wave comparisons are category-based.
+- Primary cross-wave comparisons are rank-based.
 - Rank-rank slope is estimated with within-wave education ranks from monotone parent/child scores.
 
 ## 7) Locked Equation Set
@@ -75,7 +75,7 @@ This paper provides reproducible multi-wave evidence on intergenerational educat
 `Persist(i) = alpha + beta*S_parent(i) + d1*(S_parent(i)*Urban(i)) + d2*(S_parent(i)*Female(i)) + d3*(S_parent(i)*D2022) + region_FE + cohort_FE + wave_FE + e(i)`
 
 ### Eq. 6: LiTS IV Mechanism Model (2022-23 only)
-`M(i) = alpha + beta*S_parent(i) + gamma'X(i) + region_FE + e(i)`
+`logit(Pr(M(i)=1)) = alpha + beta*LowParentEdu(i) + eta*Urban(i) + phi*Male(i) + kappa*(LowParentEdu(i)*Urban(i)) + region_FE + e(i)`
 
 ### Eq. 7: HBS Supplemental Model (Appendix-only, conditional)
 Run only if parent-child linkage diagnostics are adequate.
@@ -115,7 +115,7 @@ Run only if parent-child linkage diagnostics are adequate.
 
 ## 10) Items to Exclude from Current Main Draft
 - Full causal reform claims.
-- Any DiD section based on school-closure timing unless validated admin variation is available.
+- Any DiD or event-study section in the frozen paper scope.
 - Direct ma(h)alla effect claims unless measured.
 - Main-text HBS intergenerational claims unless linkage diagnostics support them.
 

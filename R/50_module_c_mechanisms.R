@@ -1,3 +1,4 @@
+# Module C: descriptive, non-causal child-module mechanism regressions.
 challenge_to_binary <- function(x) {
   txt <- tolower(trimws(as_label_text(x)))
   dplyr::case_when(
@@ -21,6 +22,9 @@ weighted_rate <- function(x, w) {
   stats::weighted.mean(as.numeric(x[keep]), w[keep])
 }
 
+MODULE_C_MIN_GROUP_N <- 15L
+MODULE_C_MIN_EVENTS_PER_GROUP <- 2L
+
 prepare_module_c_mechanism_data <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "lits")) {
   path <- select_existing_file(c(file.path(raw_dir, "lits_iv_dta", "lits_iv.dta")))
   if (is.na(path)) {
@@ -38,7 +42,7 @@ prepare_module_c_mechanism_data <- function(raw_dir = file.path(PROJ_PATHS$raw_d
   ) %>%
     dplyr::mutate(
       country = as.character(haven::as_factor(country)),
-      region = as.character(haven::as_factor(region))
+      region = harmonize_uzbekistan_region(as.character(haven::as_factor(region)))
     ) %>%
     dplyr::filter(country == "Uzbekistan") %>%
     dplyr::mutate(
@@ -190,6 +194,88 @@ apply_parent_education_split <- function(df, split_rule = "median") {
     )
 }
 
+assess_module_c_model_support <- function(
+    df,
+    outcome_var,
+    use_weights = TRUE,
+    min_group_n = MODULE_C_MIN_GROUP_N,
+    min_events_per_group = MODULE_C_MIN_EVENTS_PER_GROUP
+) {
+  model_df <- df %>%
+    dplyr::filter(
+      !is.na(.data[[outcome_var]]),
+      !is.na(parent_low_edu),
+      !is.na(urban),
+      !is.na(gender),
+      !is.na(region)
+    )
+
+  if (use_weights) {
+    model_df <- model_df %>%
+      dplyr::filter(!is.na(weight_final), weight_final > 0)
+  }
+
+  if (nrow(model_df) == 0) {
+    return(list(
+      estimable = FALSE,
+      reason = "no_complete_rows",
+      n_used = 0L
+    ))
+  }
+
+  if (dplyr::n_distinct(model_df[[outcome_var]]) < 2) {
+    return(list(
+      estimable = FALSE,
+      reason = "no_outcome_variation",
+      n_used = nrow(model_df)
+    ))
+  }
+
+  support <- model_df %>%
+    dplyr::group_by(parent_low_edu) %>%
+    dplyr::summarise(
+      n = dplyr::n(),
+      n_events = sum(.data[[outcome_var]] == 1, na.rm = TRUE),
+      n_nonevents = sum(.data[[outcome_var]] == 0, na.rm = TRUE),
+      .groups = "drop"
+    )
+
+  low <- support[support$parent_low_edu == 1, ]
+  high <- support[support$parent_low_edu == 0, ]
+
+  low_n <- if (nrow(low) == 0) 0L else as.integer(low$n[1])
+  high_n <- if (nrow(high) == 0) 0L else as.integer(high$n[1])
+  low_events <- if (nrow(low) == 0) 0L else as.integer(low$n_events[1])
+  high_events <- if (nrow(high) == 0) 0L else as.integer(high$n_events[1])
+  low_nonevents <- if (nrow(low) == 0) 0L else as.integer(low$n_nonevents[1])
+  high_nonevents <- if (nrow(high) == 0) 0L else as.integer(high$n_nonevents[1])
+
+  reasons <- character()
+  if (low_n < min_group_n || high_n < min_group_n) {
+    reasons <- c(reasons, paste0("group_n_below_", min_group_n))
+  }
+  if (
+    low_events < min_events_per_group ||
+      low_nonevents < min_events_per_group ||
+      high_events < min_events_per_group ||
+      high_nonevents < min_events_per_group
+  ) {
+    reasons <- c(reasons, paste0("event_support_below_", min_events_per_group))
+  }
+
+  list(
+    estimable = length(reasons) == 0,
+    reason = if (length(reasons) == 0) NA_character_ else paste(unique(reasons), collapse = ";"),
+    n_used = nrow(model_df),
+    low_n = low_n,
+    high_n = high_n,
+    low_events = low_events,
+    low_nonevents = low_nonevents,
+    high_events = high_events,
+    high_nonevents = high_nonevents
+  )
+}
+
 fit_module_c_outcome_model <- function(df, outcome_var, use_weights = TRUE) {
   model_df <- df %>%
     dplyr::filter(
@@ -310,6 +396,10 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
   for (i in seq_len(nrow(model_specs))) {
     model_name <- model_specs$model_name[[i]]
     outcome <- model_specs$outcome[[i]]
+    support <- assess_module_c_model_support(mech_df, outcome, use_weights = TRUE)
+    if (!isTRUE(support$estimable)) {
+      next
+    }
     fit_obj <- fit_module_c_outcome_model(mech_df, outcome, use_weights = TRUE)
     if (is.null(fit_obj)) {
       next
@@ -340,6 +430,9 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
     use_w <- scenario_specs$use_weights[[s]]
     df_s <- apply_parent_education_split(mech_df_base, split_rule = split_rule)
     split_threshold <- unique(df_s$split_threshold)[1]
+    n_low_group <- sum(df_s$parent_low_edu == 1, na.rm = TRUE)
+    n_high_group <- sum(df_s$parent_low_edu == 0, na.rm = TRUE)
+    scenario_supported <- n_low_group >= MODULE_C_MIN_GROUP_N && n_high_group >= MODULE_C_MIN_GROUP_N
 
     scenario_rows[[length(scenario_rows) + 1]] <- tibble::tibble(
       scenario_id = sid,
@@ -348,13 +441,42 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
       use_weights = use_w,
       n_total = nrow(df_s),
       n_parent_non_missing = sum(!is.na(df_s$parent_years_schooling)),
-      n_low_group = sum(df_s$parent_low_edu == 1, na.rm = TRUE),
-      n_high_group = sum(df_s$parent_low_edu == 0, na.rm = TRUE)
+      n_low_group = n_low_group,
+      n_high_group = n_high_group,
+      support_min_group_n = MODULE_C_MIN_GROUP_N,
+      scenario_status = dplyr::if_else(
+        scenario_supported,
+        "supported",
+        "degenerate_low_group_support"
+      )
     )
 
     for (i in seq_len(nrow(model_specs))) {
       model_name <- model_specs$model_name[[i]]
       outcome <- model_specs$outcome[[i]]
+      support <- assess_module_c_model_support(df_s, outcome, use_weights = use_w)
+
+      if (!isTRUE(support$estimable)) {
+        row_id <- row_id + 1L
+        robust_rows[[row_id]] <- tibble::tibble(
+          scenario_id = sid,
+          split_rule = split_rule,
+          split_threshold = split_threshold,
+          use_weights = use_w,
+          model = model_name,
+          outcome = outcome,
+          term = NA_character_,
+          estimate = NA_real_,
+          std.error = NA_real_,
+          statistic = NA_real_,
+          p.value = NA_real_,
+          n_used = as.integer(support$n_used),
+          status = "degenerate_support",
+          support_reason = support$reason
+        )
+        next
+      }
+
       fit_obj <- fit_module_c_outcome_model(df_s, outcome, use_weights = use_w)
 
       if (is.null(fit_obj)) {
@@ -372,7 +494,8 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
           statistic = NA_real_,
           p.value = NA_real_,
           n_used = NA_integer_,
-          status = "not_estimable"
+          status = "not_estimable",
+          support_reason = NA_character_
         )
       } else {
         tid <- broom::tidy(fit_obj$model) %>%
@@ -385,6 +508,7 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
             outcome = outcome,
             n_used = fit_obj$n_used,
             status = "estimated",
+            support_reason = NA_character_,
             .before = 1
           )
         row_id <- row_id + 1L

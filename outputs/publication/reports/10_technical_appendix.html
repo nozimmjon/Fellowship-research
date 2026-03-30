@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Research Team">
-<meta name="dcterms.date" content="2026-03-28">
+<meta name="dcterms.date" content="2026-03-29">
 
 <title>Technical Appendix</title>
 <style>
@@ -88,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 28, 2026</p>
+      <p class="date">March 29, 2026</p>
     </div>
   </div>
   
@@ -327,7 +327,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">module_b</td>
 <td style="text-align: left;">eq2_parent_rank_precision</td>
 <td style="text-align: left;">ok</td>
-<td style="text-align: left;">Eq. 2 parent_rank estimate=0.146, p-value=0.000.</td>
+<td style="text-align: left;">Eq. 2 parent_rank estimate=0.154, p-value=0.002.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">module_c</td>
@@ -339,7 +339,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">module_c</td>
 <td style="text-align: left;">stoppage_fragility</td>
 <td style="text-align: left;">caution</td>
-<td style="text-align: left;">Stoppage robustness: 1 of 4 parent_low_edu scenarios significant at 5%; extreme coefficient present=yes.</td>
+<td style="text-align: left;">Stoppage robustness: 0 of 3 parent_low_edu scenarios significant at 5%; extreme coefficient present=no.</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">module_c</td>
@@ -755,11 +755,16 @@ ul.task-list li input[type="checkbox"] {
 2        unweighted_median     median            13.5       FALSE     186
 3           weighted_leq11     leq_11            11.0        TRUE     186
 4            weighted_leq9      leq_9             9.0        TRUE     186
-  n_parent_non_missing n_low_group n_high_group
-1                  183         114           69
-2                  183         114           69
-3                  183          74          109
-4                  183           7          176</code></pre>
+  n_parent_non_missing n_low_group n_high_group support_min_group_n
+1                  183         114           69                  15
+2                  183         114           69                  15
+3                  183          74          109                  15
+4                  183           7          176                  15
+               scenario_status
+1                    supported
+2                    supported
+3                    supported
+4 degenerate_low_group_support</code></pre>
 </div>
 </div>
 </section>
@@ -1001,18 +1006,20 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="g1.-module-c-stoppage-fragility-check" class="level2" data-number="12">
 <h2 data-number="12" class="anchored" data-anchor-id="g1.-module-c-stoppage-fragility-check"><span class="header-section-number">12</span> G1. Module C Stoppage Fragility Check</h2>
+<p>The strict <code>&lt;=9</code> split is retained for transparency but treated as a weak-support scenario when the low-parent group becomes too small for stable FE logit estimation.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 3%">
-<col style="width: 27%">
-<col style="width: 10%">
-<col style="width: 19%">
-<col style="width: 11%">
+<col style="width: 2%">
+<col style="width: 21%">
 <col style="width: 8%">
-<col style="width: 7%">
-<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 15%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1024,6 +1031,7 @@ ul.task-list li input[type="checkbox"] {
 <th style="text-align: left;">P-value</th>
 <th style="text-align: right;">Used N</th>
 <th style="text-align: left;">Status</th>
+<th style="text-align: left;">Support diagnostics</th>
 </tr>
 </thead>
 <tbody>
@@ -1036,6 +1044,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">0.952</td>
 <td style="text-align: right;">183</td>
 <td style="text-align: left;">estimated</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">25</td>
@@ -1046,6 +1055,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">0.865</td>
 <td style="text-align: right;">183</td>
 <td style="text-align: left;">estimated</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">41</td>
@@ -1056,16 +1066,18 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">0.148</td>
 <td style="text-align: right;">183</td>
 <td style="text-align: left;">estimated</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">56</td>
+<td style="text-align: left;">51</td>
 <td style="text-align: left;">Weighted &lt;=9 years split</td>
 <td style="text-align: right;">9.0</td>
-<td style="text-align: left;">-18.399</td>
-<td style="text-align: left;">1.610</td>
-<td style="text-align: left;">&lt;0.001</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 <td style="text-align: right;">183</td>
-<td style="text-align: left;">estimated</td>
+<td style="text-align: left;">degenerate_support</td>
+<td style="text-align: left;">group_n_below_15</td>
 </tr>
 </tbody>
 </table>

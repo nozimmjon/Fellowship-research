@@ -35,6 +35,8 @@ subgroup_metrics <- read_csv_safe(project_file("outputs", "tables", "module_a_su
 lits_harmonized <- read_csv_safe(project_file("data", "processed", "lits_harmonized.csv"))
 hbs_support_context <- read_csv_safe(project_file("outputs", "tables", "hbs_household_support_context.csv"))
 hbs_linkage_diagnostics <- read_csv_safe(project_file("data", "processed", "hbs_linkage_diagnostics.csv"))
+module_c_robust_scenarios <- read_csv_safe(project_file("outputs", "tables", "module_c_mechanism_robustness_scenarios.csv"))
+module_c_robust_coef <- read_csv_safe(project_file("outputs", "tables", "module_c_mechanism_robustness_coefficients.csv"))
 
 lits_harmonized$age_num <- suppressWarnings(as.numeric(lits_harmonized$age))
 lits_harmonized$wave_year <- suppressWarnings(as.integer(lits_harmonized$wave_year))
@@ -48,6 +50,14 @@ lits_uzb_sample <- lits_harmonized[
 
 hbs_context_value <- function(metric, column = "national") {
   as.numeric(hbs_support_context[hbs_support_context$metric == metric, column][1])
+}
+
+robust_scenario_value <- function(scenario_id, column) {
+  rows <- module_c_robust_scenarios[module_c_robust_scenarios$scenario_id == scenario_id, ]
+  if (nrow(rows) == 0 || !(column %in% names(rows))) {
+    return(NA)
+  }
+  rows[[column]][1]
 }
 ```
 
@@ -77,7 +87,7 @@ The claims are intentionally limited by design. Module A is descriptive, Module 
 
 ### Core Data
 
-The main source is the Life in Transition Survey (LiTS) for 2010, 2016, and 2022-23. These repeated cross-sections provide comparable information on respondents' own education, parental education, age, sex, place of residence, and regional identifiers, which makes them suitable for multi-wave mobility analysis.
+The main source is the Life in Transition Survey (LiTS) for 2010, 2016, and 2022-23. These repeated cross-sections provide comparable information on respondents' own education, parental education, age, sex, and place of residence. Regional labels are harmonized with a locked cross-wave mapping before pooled estimation; regional coverage still differs by wave, so regional results are interpreted as composition-conditional rather than fully balanced panel comparisons.
 
 The analytical sample is restricted to respondents aged 25-64 so that own education is largely complete. Cohorts are grouped as 25-34, 35-44, 45-54, and 55-64. Weighted estimates are used throughout, and subgroup outputs are suppressed when the valid cell size is below 30.
 
@@ -424,7 +434,7 @@ The non-parental covariates in the upward-mobility models are weaker. Urban resi
 
 The persistence heterogeneity model shows a positive association between parental education score and the probability of remaining in the same education category as one's parents. The coefficient on parental education score is **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score"))`** and is precisely estimated.
 
-The interaction pattern differs from the earlier draft. The urban and female interaction terms are small and not precisely estimated, while the interaction between parent education and the 2022 wave is positive at **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score:wave2022"))`** and precisely estimated. A cautious reading is that parental education translates into same-category persistence across the full sample, and that this translation is stronger in 2022-23 than in the earlier pooled baseline, but there is little evidence here of separate urban or female heterogeneity in that persistence gradient. Table @tbl-pooled-correlates collects the selected coefficients discussed in Section 6.
+The interaction pattern differs from the earlier draft. The urban interaction is close to zero and not precisely estimated, while the female interaction is negative at **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score:female"))`** with p-value **`r fmt_p(coef_p("eq5_persistence_heterogeneity", "parent_ed_score:female"))`**. The interaction between parent education and the 2022 wave is positive at **`r fmt_num(coef_est("eq5_persistence_heterogeneity", "parent_ed_score:wave2022"))`** and precisely estimated. A cautious reading is that parental education translates into same-category persistence across the pooled sample, with a stronger gradient in 2022-23 and weaker transmission among women in this specification. Table @tbl-pooled-correlates collects the selected coefficients discussed in Section 6.
 
 ```{r}
 #| label: tbl-pooled-correlates
@@ -523,7 +533,7 @@ knitr::kable(
 
 The adjusted regression evidence is much weaker than the descriptive disruption rates. In the baseline weighted median-split specification, the coefficient on low parental education in the stoppage model is **`r fmt_num(mech_coef_est("m3_education_stopped_covid", "parent_low_edu"))`** with p-value **`r fmt_p(mech_coef_p("m3_education_stopped_covid", "parent_low_edu"))`**, and the descriptive stoppage rates are nearly identical: **`r fmt_pct(mech_est("education_stopped_covid", "parent_education", "lower_or_equal_median_parent_edu"))`** among children from lower-parent-education households versus **`r fmt_pct(mech_est("education_stopped_covid", "parent_education", "above_median_parent_edu"))`** among those from higher-parent-education households.
 
-The technical appendix shows that the stoppage coefficient is fragile across weighting and threshold choices and becomes unstable under the strict `<=9` split. Module C therefore contributes bounded descriptive evidence on household vulnerability and learning support, not a stable adjusted parental-education gradient and not causal evidence on pandemic mechanisms.
+The technical appendix shows that the stoppage coefficient is fragile across weighting and threshold choices. Under the strict `<=9` split, the low-parent-education group falls to **`r fmt_int(robust_scenario_value("weighted_leq9", "n_low_group"))`** observations (vs **`r fmt_int(robust_scenario_value("weighted_leq9", "n_high_group"))`** in the comparison group), so this scenario is treated as degenerate support (`r robust_scenario_value("weighted_leq9", "scenario_status")`) rather than an interpretable robustness estimate. Module C therefore contributes bounded descriptive evidence on household vulnerability and learning support, not a stable adjusted parental-education gradient and not causal evidence on pandemic mechanisms.
 
 ## Discussion and Policy Implications
 

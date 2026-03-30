@@ -10,7 +10,7 @@ source("R/31_build_hbs_household_context.R")
 source("R/32_build_hbs_linkage_diagnostics.R")
 source("R/33_estimate_hbs_appendix_models.R")
 source("R/40_module_b_determinants.R")
-source("R/50_module_c_policy_did.R")
+source("R/50_module_c_mechanisms.R")
 source("R/60_empirical_audit.R")
 source("R/90_reporting_helpers.R")
 
