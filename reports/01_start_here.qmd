@@ -1,0 +1,93 @@
+---
+title: "Start Here"
+subtitle: "Reader guide to the paper outputs"
+author: "Research Team"
+date: today
+format:
+  html:
+    toc: false
+    number-sections: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+This page is the simplest entry point to the project outputs. Choose the version that matches how much detail you want and what kind of reader you are.
+
+## Best Entry Points
+
+### Final paper
+
+The main paper is the best place to start if you want the full argument, evidence, and interpretation.
+
+- [Open the main paper (HTML)](00_main.html)
+- [Download the main paper (DOCX)](00_main.docx)
+
+### Technical appendix
+
+The appendix is the best companion if you want robustness, inventories, and audit-style supporting material.
+
+- [Open the technical appendix (HTML)](10_technical_appendix.html)
+- [Download the technical appendix (DOCX)](10_technical_appendix.docx)
+
+### Plain-English process guide
+
+This is the best option for a non-academic reader who wants the full workflow explained step by step in simple language.
+
+- [Open the process guide (HTML)](05_process_guide.html)
+- [Download the process guide (DOCX)](05_process_guide.docx)
+
+### One-page visual flowchart
+
+This is the fastest way to understand the whole pipeline at a glance.
+
+- [Open the process flowchart (HTML)](06_process_flowchart.html)
+
+## Which One Should I Read?
+
+| If you are... | Best file to open first | Why |
+|---|---|---|
+| A new reader who wants the big picture quickly | [06_process_flowchart.html](06_process_flowchart.html) | It gives the whole process on one page. |
+| A non-academic who wants the full process explained clearly | [05_process_guide.html](05_process_guide.html) | It explains each empirical step in plain language. |
+| A research reader who wants the final argument | [00_main.html](00_main.html) | It is the main manuscript. |
+| A technical reader who wants robustness and supporting diagnostics | [10_technical_appendix.html](10_technical_appendix.html) | It holds the technical backup and audit material. |
+
+## Recommended Reading Order
+
+### Fast orientation
+
+1. [Process flowchart](06_process_flowchart.html)
+2. [Process guide](05_process_guide.html)
+3. [Main paper](00_main.html)
+
+### Research reading
+
+1. [Main paper](00_main.html)
+2. [Technical appendix](10_technical_appendix.html)
+3. [Process guide](05_process_guide.html)
+
+### Teaching or briefing someone else
+
+1. [Process flowchart](06_process_flowchart.html)
+2. [Process guide](05_process_guide.html)
+3. [Policy brief](20_policy_brief.html)
+
+## Other Outputs
+
+- [Policy brief (HTML)](20_policy_brief.html)
+- [Policy brief (DOCX)](20_policy_brief.docx)
+- [Slides (HTML)](30_slides.html)
+
+## Source Files
+
+If you want the source documents rather than the rendered outputs, the main files are:
+
+- `reports/00_main.qmd`
+- `reports/10_technical_appendix.qmd`
+- `reports/05_process_guide.qmd`
+- `reports/06_process_flowchart.qmd`
+
+## One-Sentence Guide
+
+If you are unsure where to begin, open the [process guide](05_process_guide.html) first, then the [main paper](00_main.html), and use the [technical appendix](10_technical_appendix.html) only when you want more detail.

@@ -1,0 +1,66 @@
+---
+title: "Paper Process Flowchart"
+subtitle: "One-page visual guide for non-academic readers"
+author: "Research Team"
+date: today
+format:
+  html:
+    toc: false
+    number-sections: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+This is the shortest visual explanation of how the paper is built. For the full plain-English walkthrough, see `reports/05_process_guide.qmd`.
+
+## The Flow
+
+```{mermaid}
+flowchart TD
+    A["Locked scope<br/>research_strategy.md<br/>_targets.R"] --> B["LiTS raw files<br/>2010, 2016, 2022-23"]
+    B --> C["Harmonize LiTS<br/>R/20_ingest_data.R<br/>lits_harmonized.csv"]
+    C --> D["Module A<br/>Descriptive mobility measures<br/>R/30_module_a_mobility.R"]
+    D --> E["Tier A packaging<br/>Tables and figures for the paper<br/>R/31_module_a_tier_a_descriptive.R"]
+    C --> F["Module B<br/>Pooled associational models<br/>R/40_module_b_determinants.R"]
+    B --> G["Module C<br/>LiTS IV child-module extension<br/>R/50_module_c_mechanisms.R"]
+    H["HBS raw files"] --> I["HBS support layer<br/>Context + linkage diagnostics<br/>R/31-33 HBS scripts"]
+    E --> J["Empirical audit<br/>R/60_empirical_audit.R"]
+    F --> J
+    G --> J
+    I --> J
+    E --> K["Main manuscript<br/>reports/00_main.qmd"]
+    F --> K
+    G --> K
+    I --> K
+    J --> K
+    K --> L["Publication outputs<br/>HTML/DOCX paper and appendix"]
+```
+
+## What Each Box Means
+
+| Box | Meaning |
+|---|---|
+| Locked scope | Fix the question, modules, and rules before writing results. |
+| LiTS raw files | The core survey source for the paper's intergenerational evidence. |
+| Harmonize LiTS | Convert different waves into one comparable adult analysis file. |
+| Module A | Describe mobility levels, transitions, and persistence across waves. |
+| Tier A packaging | Turn descriptive outputs into manuscript-ready tables and figures. |
+| Module B | Estimate pooled regressions that show conditional associations. |
+| Module C | Add a short, non-causal child-module extension for 2022-23. |
+| HBS support layer | Provide household context and test whether HBS can support an appendix model. |
+| Empirical audit | Check sample flow, formulas, denominators, and whether claims match outputs. |
+| Main manuscript | Pull saved output files into the final paper text, tables, and figures. |
+| Publication outputs | Render the final products readers actually open. |
+
+## How To Read This As A Beginner
+
+1. Start in the middle, not at the end: the manuscript is assembled from stored outputs rather than typed manually from memory.
+2. Treat Module A as the core facts, Module B as the conditional correlates layer, and Module C as a bounded extension.
+3. Read HBS as supporting context unless the linkage diagnostics justify something stronger.
+4. Use the audit box as the quality-control checkpoint that keeps the paper from drifting away from the code.
+
+## One-Sentence Summary
+
+The paper is built by cleaning and harmonizing LiTS data, estimating three tightly scoped empirical modules, auditing the outputs, and then assembling those saved outputs into the manuscript.

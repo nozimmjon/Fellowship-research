@@ -1,0 +1,488 @@
+---
+title: "How This Paper Is Built"
+subtitle: "A nontechnical guide to the pipeline and empirics"
+author: "Research Team"
+date: today
+format:
+  html:
+    toc: true
+    number-sections: true
+  docx:
+    toc: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+source(file.path("..", "R", "00_config.R"))
+
+read_csv_safe <- function(path) {
+  tryCatch(
+    readr::read_csv(path, show_col_types = FALSE, progress = FALSE),
+    error = function(e) tibble::tibble(note = paste("Could not read", basename(path), "-", conditionMessage(e)))
+  )
+}
+
+fmt_num <- function(x, digits = 3) {
+  x <- suppressWarnings(as.numeric(x))
+  ifelse(is.na(x), NA_character_, sprintf(paste0("%.", digits, "f"), x))
+}
+
+fmt_pct <- function(x, digits = 1) {
+  x <- suppressWarnings(as.numeric(x))
+  ifelse(is.na(x), NA_character_, sprintf(paste0("%.", digits, "f%%"), 100 * x))
+}
+
+fmt_int <- function(x) {
+  x <- suppressWarnings(as.numeric(x))
+  ifelse(is.na(x), NA_character_, format(as.integer(round(x)), big.mark = ",", scientific = FALSE, trim = TRUE))
+}
+
+project_file <- function(...) {
+  file.path("..", ...)
+}
+
+sample_by_wave <- read_csv_safe(project_file("outputs", "tables", "tier_a_sample_by_wave.csv"))
+module_a_summary <- read_csv_safe(project_file("outputs", "tables", "module_a_summary_metrics.csv"))
+module_b_inventory <- read_csv_safe(project_file("outputs", "tables", "empirical_model_inventory.csv"))
+module_b_formulae <- read_csv_safe(project_file("outputs", "tables", "module_b_formulae.csv"))
+module_b_selected_covariates <- read_csv_safe(project_file("outputs", "tables", "module_b_selected_covariates.csv"))
+module_c_sample <- read_csv_safe(project_file("outputs", "tables", "module_c_mechanism_sample.csv"))
+module_c_summary <- read_csv_safe(project_file("outputs", "tables", "module_c_mechanism_summary.csv"))
+module_c_formulae <- read_csv_safe(project_file("outputs", "tables", "module_c_mechanism_formulae.csv"))
+hbs_context <- read_csv_safe(project_file("outputs", "tables", "hbs_household_support_context.csv"))
+hbs_status <- read_csv_safe(project_file("outputs", "tables", "hbs_appendix_model_status.csv"))
+claim_audit <- read_csv_safe(project_file("outputs", "tables", "empirical_claim_audit.csv"))
+sample_flow <- read_csv_safe(project_file("outputs", "tables", "empirical_sample_flow.csv"))
+
+metric_value <- function(metric_id, wave_year) {
+  rows <- module_a_summary[
+    module_a_summary$subgroup_type == "overall" &
+      module_a_summary$subgroup_value == "all" &
+      module_a_summary$metric == metric_id &
+      module_a_summary$wave_year == wave_year,
+  ]
+  if (nrow(rows) == 0) {
+    return(NA_real_)
+  }
+  suppressWarnings(as.numeric(rows$estimate[[1]]))
+}
+
+sample_value <- function(wave_year) {
+  rows <- sample_by_wave[sample_by_wave$wave_year == wave_year, ]
+  if (nrow(rows) == 0) {
+    return(NA_real_)
+  }
+  suppressWarnings(as.numeric(rows$n_total[[1]]))
+}
+
+module_c_step_value <- function(step_name) {
+  rows <- module_c_sample[module_c_sample$step == step_name, ]
+  if (nrow(rows) == 0) {
+    return(NA_real_)
+  }
+  suppressWarnings(as.numeric(rows$n[[1]]))
+}
+
+module_c_rate <- function(outcome_name, group = "overall", group_value = "all") {
+  rows <- module_c_summary[
+    module_c_summary$outcome == outcome_name &
+      module_c_summary$group == group &
+      module_c_summary$group_value == group_value,
+  ]
+  if (nrow(rows) == 0) {
+    return(NA_real_)
+  }
+  suppressWarnings(as.numeric(rows$estimate[[1]]))
+}
+
+hbs_metric_value <- function(metric_name) {
+  rows <- hbs_context[hbs_context$metric == metric_name, ]
+  if (nrow(rows) == 0) {
+    return(NA_real_)
+  }
+  suppressWarnings(as.numeric(rows$national[[1]]))
+}
+```
+
+## What This Guide Does
+
+This document is the plain-English companion to the paper. It is written for a reader who wants to understand **how the paper is produced**, **what each empirical module does**, and **how the tables and figures in the manuscript are generated**, without needing to read the R scripts first.
+
+The easiest way to understand the project is to think of it as a pipeline with four layers:
+
+1. Raw survey data are cleaned and harmonized.
+2. Empirical modules transform the harmonized data into estimates.
+3. Output files store tables, figures, formulas, and audit checks.
+4. The manuscript pulls those outputs into the final paper.
+
+The project is intentionally scoped. Module A is descriptive. Module B is associational. Module C is a short, bounded, non-causal extension based on the LiTS IV child module. The HBS material is supplementary context, not the main intergenerational engine of the paper.
+
+## The Big Picture
+
+```{r}
+process_map <- tibble::tribble(
+  ~Step, ~Main_script_or_file, ~What_happens, ~Main_outputs,
+  "1. Lock scope", "_targets.R + research_strategy.md", "Defines the paper question, modules, and target pipeline.", "Pipeline targets and locked empirical scope",
+  "2. Ingest data", "R/20_ingest_data.R", "Reads LiTS waves and standardizes variables across years.", "data/processed/lits_harmonized.csv",
+  "3. Estimate Module A", "R/30_module_a_mobility.R", "Builds descriptive mobility measures.", "module_a_summary_metrics.csv, module_a_transition_matrix.csv",
+  "4. Package descriptive outputs", "R/31_module_a_tier_a_descriptive.R", "Reformats Module A for manuscript tables and figures.", "tier_a_*.csv and tier_a_*.png",
+  "5. Estimate Module B", "R/40_module_b_determinants.R", "Fits pooled associational models with fixed effects.", "module_b_model_coefficients.csv, module_b_formulae.csv",
+  "6. Estimate Module C", "R/50_module_c_mechanisms.R", "Builds LiTS IV child-module disruption and support evidence.", "module_c_mechanism_*.csv",
+  "7. Add HBS support layer", "R/31-33 HBS scripts", "Builds household context and checks whether HBS can support a co-resident appendix model.", "hbs_*.csv",
+  "8. Audit the empirics", "R/60_empirical_audit.R", "Checks denominators, formulas, model inventory, and claim support.", "empirical_*.csv and empirical_audit_memo.md",
+  "9. Assemble manuscript", "reports/00_main.qmd", "Reads output files and turns them into the paper text, tables, and figures.", "outputs/publication/*"
+)
+
+knitr::kable(process_map)
+```
+
+The main point is that the paper is **not** produced by hand-copying results from R into prose. The manuscript is the last step in a chain of files that are built in a fixed order.
+
+## Step 1: Start With a Narrow Research Question
+
+The paper asks a focused question: how persistent educational attainment is across generations in Uzbekistan, how that pattern changes across LiTS waves, and which household or regional correlates are associated with mobility.
+
+This matters because it determines what the empirics are allowed to do:
+
+1. Module A describes levels and trends in mobility.
+2. Module B estimates conditional associations, not causal effects.
+3. Module C adds suggestive child-module evidence for 2022-23 only.
+4. No baseline DiD or event-study design is part of the locked repository.
+
+For a non-academic reader, this is the first important distinction: the paper is trying to **measure and organize patterns carefully**, not to prove a clean causal treatment effect.
+
+## Step 2: Bring the Data Into a Single Analytical Frame
+
+The project uses two data families:
+
+1. **LiTS** is the core source. It provides the intergenerational education data used in the headline results.
+2. **HBS** is supplementary. It is used for household context and for a diagnostic check on whether a co-resident appendix model is even credible.
+
+The adult LiTS analytical sample is restricted to ages 25 to 64. In the current outputs, the sample sizes are:
+
+```{r}
+sample_table <- tibble::tibble(
+  Wave = c("2010", "2016", "2022-23"),
+  `Adult analytical sample` = c(
+    fmt_int(sample_value(2010)),
+    fmt_int(sample_value(2016)),
+    fmt_int(sample_value(2022))
+  )
+)
+
+knitr::kable(sample_table)
+```
+
+Why the age restriction? Because the paper wants respondents whose own education is mostly complete. That reduces the risk of comparing people who are still in school with people who already finished their education.
+
+## Step 3: Harmonize the LiTS Waves
+
+`R/20_ingest_data.R` is the script that turns separate raw survey files into one harmonized file, `data/processed/lits_harmonized.csv`. This is the most important data-preparation step in the project.
+
+In plain language, it does five jobs.
+
+1. It identifies which raw file belongs to which wave.
+2. It converts different variable labels and storage formats into comparable variables.
+3. It harmonizes education into a common six-level ladder:
+   no formal, primary, lower secondary, upper secondary, post-secondary non-tertiary, tertiary.
+4. It creates a parental education proxy.
+   The main category rule uses the higher observed parent education when both parents are available, and keeps the observed parent when only one is observed.
+5. It standardizes region, urban/rural, gender, age, cohort, and sample weights.
+
+This step is where cross-wave comparability is built. Without harmonization, the later regressions would look more technical than they really are, because they would be combining slightly different measures from different survey waves.
+
+## Step 4: Build the Core Descriptive Mobility Measures
+
+Module A lives in `R/30_module_a_mobility.R`. This is the descriptive backbone of the paper.
+
+It asks: **How tightly does respondents' education track parental education, and how does that differ across waves and subgroups?**
+
+Module A produces four main kinds of evidence.
+
+1. **Rank-rank slope**
+   This converts respondent and parent schooling into within-wave weighted ranks, then regresses child rank on parent rank. A higher slope means stronger persistence and therefore lower relative mobility.
+2. **Directional mobility rates**
+   These are the weighted shares that are upward, downward, or unchanged relative to the parent education category.
+3. **Transition matrix**
+   This shows where children end up for each parent education category.
+4. **Persistence by parent category**
+   This isolates the share who stay in the same education category as their parents.
+
+Two design choices matter here.
+
+1. The rank-based measure is the preferred trend measure because it is less sensitive to modest questionnaire differences across waves.
+2. Results are suppressed when the valid cell size is below 30, so small disaggregated cells do not get overinterpreted.
+
+The current national descriptive outputs show the following pattern:
+
+```{r}
+module_a_headlines <- tibble::tibble(
+  Wave = c("2010", "2016", "2022-23"),
+  `Rank-rank slope` = c(
+    fmt_num(metric_value("rank_rank_slope", 2010)),
+    fmt_num(metric_value("rank_rank_slope", 2016)),
+    fmt_num(metric_value("rank_rank_slope", 2022))
+  ),
+  `Upward mobility rate` = c(
+    fmt_pct(metric_value("upward_mobility_rate", 2010)),
+    fmt_pct(metric_value("upward_mobility_rate", 2016)),
+    fmt_pct(metric_value("upward_mobility_rate", 2022))
+  ),
+  `Persistence rate` = c(
+    fmt_pct(metric_value("persistence_probability", 2010)),
+    fmt_pct(metric_value("persistence_probability", 2016)),
+    fmt_pct(metric_value("persistence_probability", 2022))
+  )
+)
+
+knitr::kable(module_a_headlines)
+```
+
+For a non-academic reader, the interpretation is simple:
+
+1. The rank-rank slope is the paper's cleanest summary of intergenerational persistence.
+2. Upward and downward mobility rates are intuitive category-based summaries.
+3. Looking at both is useful because one is more comparable across waves and the other is easier to explain substantively.
+
+## Step 5: Repackage Module A Into Manuscript-Ready Tables and Figures
+
+`R/31_module_a_tier_a_descriptive.R` is a bridge script. It does not create a new empirical design. Instead, it takes the raw Module A results and repackages them into the exact forms the paper needs:
+
+1. `tier_a_sample_by_wave.csv`
+2. `tier_a_data_completeness.csv`
+3. `tier_a_national_trends.csv`
+4. `tier_a_subgroup_trends.csv`
+5. `tier_a_region_trends.csv`
+6. `tier_a_transition_summary.csv`
+7. `tier_a_rank_rank_by_wave.png`
+8. `tier_a_directional_rates_by_wave.png`
+9. `tier_a_upward_by_urban_rural.png`
+10. `tier_a_upward_by_gender.png`
+
+This step matters because the final manuscript usually needs cleaner presentation files than the raw estimation step. Think of it as the publication layer for the descriptive evidence.
+
+## Step 6: Estimate the Pooled Associational Models
+
+Module B lives in `R/40_module_b_determinants.R`. This is where the paper moves from “what the descriptive pattern looks like” to “which correlates are associated with the pattern once we condition on a standard set of controls.”
+
+The logic is:
+
+1. Prepare a pooled adult LiTS sample with harmonized variables and valid weights.
+2. Create within-wave ranks for the persistence models.
+3. Build a small set of core and optional covariates.
+4. Fit weighted fixed-effects regressions with region-clustered standard errors.
+
+In plain language, the fixed effects mean the models compare people **after absorbing broad average differences by region, cohort, and survey wave**. That does not make the design causal, but it does make the comparison more disciplined than a raw bivariate relationship.
+
+The script checks candidate covariates for coverage and informativeness before keeping them. In the current outputs, the informative candidate set is:
+
+```{r}
+selected_covariates_table <- module_b_selected_covariates
+names(selected_covariates_table) <- "Covariate retained as informative"
+knitr::kable(selected_covariates_table)
+```
+
+The pooled models are:
+
+```{r}
+module_b_guide <- tibble::tribble(
+  ~Model, ~Plain_English_question, ~How_to_read_the_main_coefficient,
+  "Eq. 2: Persistence trend", "Does the parent-child education gradient differ across 2010, 2016, and 2022-23 once controls and fixed effects are added?", "A larger parent-rank coefficient or positive wave interaction means stronger persistence, not more mobility.",
+  "Eq. 3: Attainment score", "Is higher parental education associated with higher respondent attainment after conditioning on the selected covariates?", "A positive parent-education-score coefficient means better-educated parents are associated with higher child attainment.",
+  "Eq. 4: Upward mobility model", "Which parental starting points are associated with higher probabilities of moving above the parent education category?", "Coefficients compare upward-mobility probabilities against the upper-secondary parent reference group.",
+  "Eq. 5: Persistence heterogeneity", "Does the persistence gradient differ by urban residence, gender, or the 2022-23 wave?", "The interaction terms tell us whether the parent-education gradient is steeper or flatter for those subgroups."
+)
+
+knitr::kable(module_b_guide)
+```
+
+The estimation method is ordinary least squares with fixed effects for Module B. The project stores both the formulas and the coefficients, which is useful for transparency:
+
+1. `outputs/tables/module_b_formulae.csv`
+2. `outputs/tables/module_b_model_coefficients.csv`
+3. `outputs/tables/module_b_covariate_coverage.csv`
+4. `outputs/tables/module_b_selected_covariates.csv`
+
+The most important caution for non-academics is this: these regressions organize associations after conditioning on observed covariates and fixed effects, but they do **not** identify the causal effect of parental education.
+
+## Step 7: Add the LiTS IV Child-Module Extension
+
+Module C lives in `R/50_module_c_mechanisms.R`. It is short on purpose and uses only the 2022-23 LiTS IV child module.
+
+Its question is narrower than the rest of the paper: **during the COVID-era learning disruption, did children in lower-parent-education households report different disruption or support patterns?**
+
+The current sample flow is:
+
+```{r}
+knitr::kable(module_c_sample)
+```
+
+This immediately shows why the paper treats Module C cautiously. The child-module sample is much smaller than the adult LiTS sample used in Modules A and B.
+
+Module C does three things:
+
+1. It builds descriptive indicators such as education stoppage, switched online, school closed with no online learning, shared device use, and several challenge/support measures.
+2. It splits households into lower-parent-education and higher-parent-education groups using the median parental schooling threshold in the baseline specification.
+3. It estimates weighted logit models with region fixed effects for a small set of binary outcomes.
+
+The main outcomes are:
+
+```{r}
+module_c_guide <- tibble::tribble(
+  ~Outcome, ~What_it_means,
+  "Switched online", "Whether schooling moved online during disruption.",
+  "School closed without online learning", "Whether schooling stopped in-person without an online substitute.",
+  "Education stopped during COVID", "Whether education was reported to stop during the pandemic period.",
+  "Any remote-learning challenge", "Whether the household reported at least one remote-learning challenge."
+)
+
+knitr::kable(module_c_guide)
+```
+
+The current descriptive child-module outputs already show how household disruption and substitution are summarized:
+
+```{r}
+module_c_snapshot <- tibble::tibble(
+  Indicator = c(
+    "Education stopped during COVID",
+    "Any remote-learning challenge",
+    "Learning support from mother"
+  ),
+  `Current weighted rate` = c(
+    fmt_pct(module_c_rate("education_stopped_covid")),
+    fmt_pct(module_c_rate("any_remote_challenge")),
+    fmt_pct(module_c_rate("support_mother"))
+  )
+)
+
+knitr::kable(module_c_snapshot)
+```
+
+Why is Module C labeled bounded and non-causal?
+
+1. It uses one late-wave child subsample only.
+2. The sample is small.
+3. The models are descriptive heterogeneity exercises, not an identification design.
+4. The script explicitly checks whether support is adequate before estimating a model.
+5. The project also stores robustness scenarios, because these results are fragile to split rules and weighting choices.
+
+That is why Module C is best understood as a disciplined “what was happening inside households during disruption?” section, not as a clean mechanism test.
+
+## Step 8: Add the HBS Support Layer
+
+The HBS scripts serve two separate purposes.
+
+1. `R/31_build_hbs_household_context.R` summarizes the household support environment around schooling.
+2. `R/32_build_hbs_linkage_diagnostics.R` checks whether HBS can credibly support a co-resident parent-child appendix design.
+3. `R/33_estimate_hbs_appendix_models.R` only estimates the appendix model if those diagnostics pass.
+
+The first HBS role is contextual. In the current outputs, the pooled HBS context shows:
+
+```{r}
+hbs_snapshot <- tibble::tibble(
+  Indicator = c(
+    "Households with enrolled members",
+    "Households with positive education spending",
+    "Households with tutoring",
+    "Households with internet access"
+  ),
+  `Current national share` = c(
+    fmt_pct(hbs_metric_value("has_enrolled_member")),
+    fmt_pct(hbs_metric_value("education_spending_positive")),
+    fmt_pct(hbs_metric_value("has_tutoring")),
+    fmt_pct(hbs_metric_value("internet_access_hh"))
+  )
+)
+
+knitr::kable(hbs_snapshot)
+```
+
+The second HBS role is diagnostic. The repository does **not** assume that HBS can automatically stand in for a true intergenerational survey. It tests whether a co-resident linkage rule is good enough.
+
+In the current outputs, the appendix model status is:
+
+```{r}
+knitr::kable(hbs_status)
+```
+
+This is exactly the kind of discipline a non-academic reader should know about. A lot of empirical work goes wrong when researchers keep an attractive extra dataset in the paper after the linkage is shown to be too selective. This repository does the opposite: it checks first and demotes HBS to a supplementary role if the diagnostics are not good enough.
+
+## Step 9: Audit the Empirics
+
+`R/60_empirical_audit.R` is the quality-control layer. It does not estimate a new scientific model. It checks whether the project is internally coherent.
+
+The audit covers:
+
+1. Sample flow and inclusion flags.
+2. Denominator alignment between rank-based and category-based measures.
+3. Parent-measure robustness.
+4. Model inventory and stored formulas.
+5. Claim support for the manuscript.
+
+Some current audit checks are:
+
+```{r}
+claim_audit_preview <- claim_audit[, c("module", "check_id", "status", "detail")]
+claim_audit_preview <- utils::head(claim_audit_preview, 10)
+knitr::kable(claim_audit_preview)
+```
+
+For a non-academic reader, this section is important because it shows that the pipeline is not only about producing estimates. It is also about verifying that the paper's claims match the underlying outputs.
+
+## Step 10: Turn Outputs Into the Paper
+
+The manuscript file is `reports/00_main.qmd`. It does not rerun the raw data ingestion or all models line by line inside the paper. Instead, it **reads the stored output files** and uses them to populate:
+
+1. the abstract,
+2. the descriptive tables,
+3. the pooled correlates discussion,
+4. the HBS contextual section,
+5. the Module C extension,
+6. the final discussion and conclusion.
+
+That is the final assembly step. The paper is therefore best understood as a reporting layer built on top of reproducible outputs, not as a free-standing text document.
+
+## How the Main Empirical Outputs Map Into the Manuscript
+
+```{r}
+paper_crosswalk <- tibble::tribble(
+  ~Paper_section, ~Main_output_files, ~Why_these_files_matter,
+  "Data and Measurement", "lits_harmonized.csv; tier_a_sample_by_wave.csv; tier_a_data_completeness.csv", "They define the usable analytical sample and how comparability is built.",
+  "Descriptive Results", "module_a_summary_metrics.csv; tier_a_national_trends.csv; tier_a_transition_summary.csv; tier_a_region_trends.csv; tier_a_*.png", "They supply the level, trend, transition, and subgroup evidence.",
+  "Correlates of Educational Mobility", "module_b_model_coefficients.csv; module_b_formulae.csv", "They store the pooled associational regressions and the exact formulas used.",
+  "Household Support Environment from HBS", "hbs_household_support_context.csv; hbs_linkage_overview.csv; hbs_appendix_model_status.csv", "They explain what HBS contributes and why it remains supplementary.",
+  "Bounded LiTS IV Child Module Extension", "module_c_mechanism_sample.csv; module_c_mechanism_summary.csv; module_c_mechanism_coefficients.csv; module_c_mechanism_robustness_*.csv", "They provide the disruption, support, and robustness evidence for the 2022-23 child-module extension.",
+  "Audit and Appendix Support", "empirical_claim_audit.csv; empirical_model_inventory.csv; empirical_parent_measure_robustness.csv", "They make the project auditable and reduce the chance of drift between code and paper."
+)
+
+knitr::kable(paper_crosswalk)
+```
+
+## A Simple Way to Read the Empirics
+
+If you want the shortest possible non-technical reading strategy, use this order:
+
+1. Read the question and scope first.
+2. Check how the LiTS sample is built and harmonized.
+3. Read Module A to understand the main mobility facts.
+4. Read Module B to see which correlates remain associated after controls and fixed effects.
+5. Read Module C as a small, suggestive extension only.
+6. Read the HBS section as contextual support, not as a substitute for the LiTS core.
+7. Use the audit files if you want to verify where a claim came from.
+
+That order matches the way the repository itself is organized.
+
+## What the Empirics Can and Cannot Say
+
+The safest summary for a non-academic reader is:
+
+1. The paper can describe intergenerational educational persistence in Uzbekistan across three LiTS waves.
+2. It can show which correlates remain associated with those patterns in pooled models.
+3. It can document household disruption and support patterns in the 2022-23 child module.
+4. It cannot make a strong causal claim that one observed factor definitively caused the mobility pattern.
+5. It cannot use HBS as the headline intergenerational design unless linkage diagnostics justify that move.
+
+That is not a weakness. It is the empirical discipline of the project.

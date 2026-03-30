@@ -15,6 +15,9 @@ This repository contains the research pipeline for intergenerational education m
 - `R/`: modular scripts
 - `outputs/tables/`, `outputs/figures/`, `outputs/models/`: analysis outputs
 - `reports/`: Quarto publication files
+- `reports/01_start_here.qmd`: landing page that links the main reader-facing outputs
+- `reports/05_process_guide.qmd`: plain-English walkthrough of the pipeline and empirics
+- `reports/06_process_flowchart.qmd`: one-page visual map of how the paper is built
 
 ## Quick Start
 1. Open `FellowshipResearch.Rproj` in RStudio.
@@ -31,6 +34,9 @@ This repository contains the research pipeline for intergenerational education m
 5. Build pipeline:
     - `source("run_pipeline.R")`
 6. Render reports:
+    - `quarto render reports/01_start_here.qmd`
+    - `quarto render reports/05_process_guide.qmd`
+    - `quarto render reports/06_process_flowchart.qmd`
     - `quarto render reports/00_main.qmd`
     - `quarto render reports/10_technical_appendix.qmd`
     - `quarto render reports/20_policy_brief.qmd`
