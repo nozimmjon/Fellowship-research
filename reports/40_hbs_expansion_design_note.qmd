@@ -1,0 +1,251 @@
+---
+title: "HBS University Expansion Design Note"
+author: "Research Team"
+date: today
+format:
+  html:
+    toc: true
+    number-sections: true
+  docx:
+    toc: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(readr)
+  library(knitr)
+})
+
+root_dir <- normalizePath("..", winslash = "/", mustWork = TRUE)
+module_dir <- file.path(root_dir, "outputs", "hbs_expansion_causal")
+table_dir <- file.path(module_dir, "tables")
+
+read_csv_safe <- function(path) {
+  if (!file.exists(path)) {
+    return(tibble::tibble())
+  }
+  readr::read_csv(path, show_col_types = FALSE, progress = FALSE)
+}
+
+read_md_safe <- function(path) {
+  if (!file.exists(path)) {
+    return("File not available.")
+  }
+  paste(readLines(path, warn = FALSE), collapse = "\n")
+}
+
+linkage_summary <- dplyr::bind_rows(
+  read_csv_safe(file.path(module_dir, "linkage_diagnostics_18_24.csv")),
+  read_csv_safe(file.path(module_dir, "linkage_diagnostics_22_30.csv")),
+  read_csv_safe(file.path(module_dir, "linkage_diagnostics_25_35.csv"))
+)
+merge_coverage <- read_csv_safe(file.path(module_dir, "merge_coverage_by_year_region.csv"))
+outcome_checks <- read_csv_safe(file.path(module_dir, "outcome_maturity_checks.csv"))
+stability_comparison <- read_csv_safe(file.path(module_dir, "residence_stability_sample_comparison.csv"))
+model_status <- read_csv_safe(file.path(table_dir, "model_status.csv"))
+model_coefficients <- read_csv_safe(file.path(table_dir, "model_coefficients.csv"))
+model_descriptive <- read_csv_safe(file.path(table_dir, "model_descriptive_comparisons.csv"))
+model_b_gate <- read_csv_safe(file.path(table_dir, "model_b_gate_status.csv"))
+model_a_direction <- read_csv_safe(file.path(table_dir, "model_a_direction_review.csv"))
+model_a_region_sensitivity <- read_csv_safe(file.path(table_dir, "model_a_region_sensitivity.csv"))
+model_a_cell_balance <- read_csv_safe(file.path(table_dir, "model_a_cell_balance_summary.csv"))
+model_a_year_stability <- read_csv_safe(file.path(table_dir, "model_a_year_stability.csv"))
+model_a_sample_profile <- read_csv_safe(file.path(table_dir, "model_a_sample_profile_comparison.csv"))
+outcome_candidate_year_audit <- read_csv_safe(file.path(table_dir, "outcome_candidate_year_audit.csv"))
+outcome_candidate_summary <- read_csv_safe(file.path(table_dir, "outcome_candidate_summary.csv"))
+sample_year_support_trace <- read_csv_safe(file.path(table_dir, "sample_year_support_trace.csv"))
+```
+
+## Scope
+
+This note documents a separate exploratory HBS design audit for the university-expansion question. It does not modify or replace the frozen LiTS main paper.
+
+## Data Audit
+
+{{< include ../outputs/hbs_expansion_causal/cohort_definition_note.md >}}
+
+## Linkage Diagnostics
+
+```{r}
+if (nrow(linkage_summary) == 0) {
+  cat("Linkage diagnostics were not available at render time.")
+} else {
+  linkage_view <- linkage_summary %>%
+    select(
+      age_window,
+      eligible_sample_n,
+      linked_sample_n,
+      link_rate,
+      linked_to_mother_rate,
+      linked_to_father_rate,
+      usable_parent_proxy_share,
+      max_abs_region_share_gap,
+      materially_better_than_old_pooled
+    )
+  knitr::kable(linkage_view, digits = 3)
+}
+```
+
+## Merge Coverage
+
+```{r}
+if (nrow(merge_coverage) == 0) {
+  cat("Merge coverage output was not available at render time.")
+} else {
+  merge_view <- merge_coverage %>%
+    group_by(survey_year) %>%
+    summarise(
+      regions = n_distinct(admin_region),
+      person_n = sum(person_n, na.rm = TRUE),
+      matched_current_n = sum(matched_current_n, na.rm = TRUE),
+      current_merge_coverage = sum(matched_current_n, na.rm = TRUE) / sum(person_n, na.rm = TRUE),
+      .groups = "drop"
+    )
+  knitr::kable(merge_view, digits = 3)
+}
+```
+
+## Outcome Readiness
+
+```{r}
+if (nrow(outcome_checks) == 0) {
+  cat("Outcome-maturity checks were not available at render time.")
+} else {
+  knitr::kable(outcome_checks, digits = 3)
+}
+```
+
+## Outcome Harmonization Audit
+
+{{< include ../outputs/hbs_expansion_causal/outcome_harmonization_audit.md >}}
+
+```{r}
+if (nrow(sample_year_support_trace) > 0) {
+  cat("\n### Sample Year Support Trace\n")
+  knitr::kable(sample_year_support_trace, digits = 3)
+}
+```
+
+```{r}
+if (nrow(outcome_candidate_summary) > 0) {
+  cat("\n### Outcome Candidate Summary\n")
+  knitr::kable(outcome_candidate_summary, digits = 3)
+}
+```
+
+```{r}
+if (nrow(outcome_candidate_year_audit) > 0) {
+  cat("\n### Outcome Candidate Audit By Year\n")
+  knitr::kable(outcome_candidate_year_audit, digits = 3)
+}
+```
+
+## Residence-Stability Pass
+
+```{r}
+if (nrow(stability_comparison) == 0) {
+  cat("Residence-stability comparison output was not available at render time.")
+} else {
+  stability_view <- stability_comparison %>%
+    select(
+      sample_name,
+      sample_n,
+      effective_link_rate,
+      immigrant_share,
+      exposure_region_ambiguity_share,
+      ambiguity_reduction_vs_full,
+      cell_median_n,
+      cell_share_ge_10,
+      overall_pass
+    )
+  knitr::kable(stability_view, digits = 3)
+}
+```
+
+## Design Readiness
+
+{{< include ../outputs/hbs_expansion_causal/design_readiness_note.md >}}
+
+## Harmonization Notes
+
+{{< include ../outputs/hbs_expansion_causal/harmonization_notes.md >}}
+
+## Linkage Failure Modes
+
+{{< include ../outputs/hbs_expansion_causal/linkage_failure_modes.md >}}
+
+## Exploratory Estimation
+
+```{r}
+if (nrow(model_status) == 0) {
+  cat("Model-status output was not available at render time.")
+} else {
+  knitr::kable(model_status, digits = 3)
+}
+```
+
+```{r}
+if (nrow(model_descriptive) > 0) {
+  cat("\n### Model A\n")
+  knitr::kable(model_descriptive, digits = 3)
+}
+```
+
+```{r}
+if (nrow(model_coefficients) > 0) {
+  cat("\n### Model B and Model C Coefficients\n")
+  knitr::kable(model_coefficients, digits = 3)
+}
+```
+
+## Model A Review Gate
+
+{{< include ../outputs/hbs_expansion_causal/model_a_review_note.md >}}
+
+```{r}
+if (nrow(model_b_gate) == 0) {
+  cat("Model A review-gate output was not available at render time.")
+} else {
+  knitr::kable(model_b_gate, digits = 3)
+}
+```
+
+```{r}
+if (nrow(model_a_direction) > 0) {
+  cat("\n### Direction Review\n")
+  knitr::kable(model_a_direction, digits = 3)
+}
+```
+
+```{r}
+if (nrow(model_a_region_sensitivity) > 0) {
+  cat("\n### Region Sensitivity\n")
+  knitr::kable(model_a_region_sensitivity, digits = 3)
+}
+```
+
+```{r}
+if (nrow(model_a_cell_balance) > 0) {
+  cat("\n### Cell Balance Summary\n")
+  knitr::kable(model_a_cell_balance, digits = 3)
+}
+```
+
+```{r}
+if (nrow(model_a_year_stability) > 0) {
+  cat("\n### Year Stability\n")
+  knitr::kable(model_a_year_stability, digits = 3)
+}
+```
+
+```{r}
+if (nrow(model_a_sample_profile) > 0) {
+  cat("\n### Sample Profile Comparison\n")
+  knitr::kable(model_a_sample_profile, digits = 3)
+}
+```
