@@ -167,6 +167,7 @@ hbs_context_est <- function(metric) {
 - `r fmt_pct(hbs_context_est("has_enrolled_member"))` of pooled HBS households had an enrolled member.
 - `r fmt_pct(hbs_context_est("education_spending_positive"))` reported positive education spending and `r fmt_pct(hbs_context_est("has_tutoring"))` reported tutoring.
 - `r fmt_pct(hbs_context_est("has_remittance_hh"))` received remittances, while `r fmt_pct(hbs_context_est("internet_access_hh"))` had internet access in the 2021-2024 internet module.
+- A separate HBS descriptive note extends this context by year, urban-rural setting, region, and descriptive expansion grouping.
 
 ## Policy Implications
 

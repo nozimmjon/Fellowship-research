@@ -52,7 +52,7 @@ hbs_normalize_province <- function(x) {
     stringr::str_detect(txt, "samar|самар") ~ "Samarkand",
     stringr::str_detect(txt, "sird|syrd|сирд") ~ "Syrdarya",
     stringr::str_detect(txt, "surx|surk|сурх") ~ "Surkhandarya",
-    stringr::str_detect(txt, "toshkent sh|tashkent city|ташкент шаҳ") ~ "Tashkent City",
+    stringr::str_detect(txt, "toshkent.*sh|tashkent.*city|ташкент шаҳ") ~ "Tashkent City",
     stringr::str_detect(txt, "toshkent|tashkent|ташкент") ~ "Tashkent Region",
     TRUE ~ stringr::str_to_title(trimws(as.character(x)))
   )

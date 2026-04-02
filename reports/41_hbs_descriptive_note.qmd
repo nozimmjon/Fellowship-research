@@ -1,0 +1,202 @@
+---
+title: "HBS Descriptive Companion Note"
+author: "Research Team"
+date: today
+format:
+  html:
+    toc: true
+    number-sections: true
+  docx:
+    toc: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(readr)
+  library(knitr)
+})
+
+root_dir <- normalizePath("..", winslash = "/", mustWork = TRUE)
+module_dir <- file.path(root_dir, "outputs", "hbs_descriptive")
+table_dir <- file.path(module_dir, "tables")
+
+read_csv_safe <- function(path) {
+  if (!file.exists(path)) {
+    return(tibble::tibble())
+  }
+  readr::read_csv(path, show_col_types = FALSE, progress = FALSE)
+}
+
+fmt_pct <- function(x, digits = 1) {
+  ifelse(is.na(x), "NA", paste0(format(round(100 * as.numeric(x), digits), nsmall = digits, trim = TRUE), "%"))
+}
+
+format_share_table <- function(df, value_cols) {
+  out <- df
+  for (col in value_cols) {
+    if (col %in% names(out)) {
+      out[[col]] <- fmt_pct(out[[col]])
+    }
+  }
+  out
+}
+
+support_by_year <- read_csv_safe(file.path(table_dir, "hbs_support_by_year.csv"))
+support_urban_rural <- read_csv_safe(file.path(table_dir, "hbs_support_urban_rural.csv"))
+support_by_region <- read_csv_safe(file.path(table_dir, "hbs_support_by_region.csv"))
+young_cohort_profile <- read_csv_safe(file.path(table_dir, "hbs_young_cohort_profile.csv"))
+high_low_expansion <- read_csv_safe(file.path(table_dir, "hbs_high_low_expansion_comparison.csv"))
+
+fig_trends <- file.path("..", "outputs", "hbs_descriptive", "figures", "hbs_support_trends_by_year.png")
+fig_urban_rural <- file.path("..", "outputs", "hbs_descriptive", "figures", "hbs_support_urban_rural.png")
+fig_region <- file.path("..", "outputs", "hbs_descriptive", "figures", "hbs_region_ranked_plot.png")
+fig_expansion <- file.path("..", "outputs", "hbs_descriptive", "figures", "hbs_high_low_expansion_plot.png")
+```
+
+## Scope
+
+This note adds a supplementary HBS descriptive layer to the Uzbekistan LiTS paper. Its purpose is to document the household support environment around schooling, not to replace the paper's core LiTS mobility estimates.
+
+The organizing rule is strict. HBS is used here for descriptive context only: year profiles, urban-rural contrasts, regional overlays, younger-cohort household conditions, and high-versus-low expansion grouping based on the existing university-expansion treatment panel. None of the tables or figures below should be read as direct intergenerational mobility estimates.
+
+## Household Support by Year
+
+The first descriptive layer tracks whether households report enrolled members, positive education spending, tutoring, migration-linked resources, remittance use for education, and internet access. Most support indicators are available across the 2021-2025 HBS span; internet access remains limited to the years covered by the working internet module in the current processed layer.
+
+```{r}
+if (file.exists(file.path(root_dir, fig_trends))) {
+  knitr::include_graphics(fig_trends)
+} else {
+  cat("Trend figure not available at render time.")
+}
+```
+
+```{r}
+if (nrow(support_by_year) == 0) {
+  cat("Support-by-year table not available at render time.")
+} else {
+  year_cols <- intersect(c("2021", "2022", "2023", "2024", "2025", "pooled_national"), names(support_by_year))
+  support_year_view <- support_by_year %>%
+    select(row_label, all_of(year_cols), denominator, available_years) %>%
+    format_share_table(year_cols)
+  knitr::kable(
+    support_year_view,
+    col.names = c("Indicator", year_cols, "Denominator", "Available years")
+  )
+}
+```
+
+## Urban-Rural Differences
+
+Urban-rural contrasts help anchor the LiTS interpretation in a broader support environment. These differences are descriptive household-level overlays rather than coefficients from a pooled mobility model.
+
+```{r}
+if (file.exists(file.path(root_dir, fig_urban_rural))) {
+  knitr::include_graphics(fig_urban_rural)
+} else {
+  cat("Urban-rural figure not available at render time.")
+}
+```
+
+```{r}
+if (nrow(support_urban_rural) == 0) {
+  cat("Urban-rural table not available at render time.")
+} else {
+  urban_rural_view <- support_urban_rural %>%
+    select(row_label, national, urban, rural, urban_minus_rural, denominator, available_years) %>%
+    format_share_table(c("national", "urban", "rural", "urban_minus_rural"))
+  knitr::kable(
+    urban_rural_view,
+    col.names = c("Indicator", "National", "Urban", "Rural", "Urban - rural", "Denominator", "Available years")
+  )
+}
+```
+
+## Regional Overlays
+
+Regional variation is reported in long form in the supporting CSV so that all provinces remain visible without forcing an unreadably wide table. For the note itself, the ranked figure focuses on two readable indicators: positive education spending and household internet access.
+
+```{r}
+if (file.exists(file.path(root_dir, fig_region))) {
+  knitr::include_graphics(fig_region)
+} else {
+  cat("Regional ranked figure not available at render time.")
+}
+```
+
+```{r}
+if (nrow(support_by_region) == 0) {
+  cat("Regional table not available at render time.")
+} else {
+  region_view <- support_by_region %>%
+    filter(metric %in% c("education_spending_positive", "internet_access_hh")) %>%
+    group_by(row_label) %>%
+    summarise(
+      lowest_regions = paste(head(region[order(value)], 3), collapse = ", "),
+      highest_regions = paste(head(region[order(-value)], 3), collapse = ", "),
+      national = first(national),
+      available_years = first(available_years),
+      .groups = "drop"
+    ) %>%
+    format_share_table("national")
+  knitr::kable(
+    region_view,
+    col.names = c("Indicator", "Lowest three regions", "Highest three regions", "National reference", "Available years")
+  )
+}
+```
+
+## Younger Cohort Profile
+
+The younger-cohort profile is person-weighted and focuses on the age ranges closest to the current education pipeline. It combines person-level enrollment markers with household environment variables carried through the harmonized HBS person overlay.
+
+```{r}
+if (nrow(young_cohort_profile) == 0) {
+  cat("Young-cohort profile not available at render time.")
+} else {
+  young_view <- young_cohort_profile %>%
+    select(row_label, `18_24`, `25_30`, `18_30_combined`, denominator, available_years_18_24, available_years_25_30) %>%
+    format_share_table(c("18_24", "25_30", "18_30_combined"))
+  knitr::kable(
+    young_view,
+    col.names = c("Indicator", "18-24", "25-30", "18-30 combined", "Denominator", "Years for 18-24", "Years for 25-30")
+  )
+}
+```
+
+## High- and Low-Expansion Region Grouping
+
+The expansion comparison uses the existing university-expansion treatment panel only to group regions descriptively. Survey years are aligned to the prior academic year, following the established merge rule in the separate HBS expansion module. These contrasts are not causal treatment effects.
+
+```{r}
+if (file.exists(file.path(root_dir, fig_expansion))) {
+  knitr::include_graphics(fig_expansion)
+} else {
+  cat("High-low expansion figure not available at render time.")
+}
+```
+
+```{r}
+if (nrow(high_low_expansion) == 0) {
+  cat("High-low expansion table not available at render time.")
+} else {
+  expansion_view <- high_low_expansion %>%
+    select(row_label, low_expansion, high_expansion, high_minus_low, pooled_national, denominator, available_years) %>%
+    format_share_table(c("low_expansion", "high_expansion", "high_minus_low", "pooled_national"))
+  knitr::kable(
+    expansion_view,
+    col.names = c("Indicator", "Low expansion", "High expansion", "High - low", "Pooled national", "Denominator", "Available years")
+  )
+}
+```
+
+## Interpretation and Limits
+
+Three boundaries matter for interpretation. First, LiTS remains the paper's only source of headline intergenerational mobility estimates. Second, the HBS support variables are most useful as descriptive household context rather than as substitutes for parent-child mobility measures. Third, indicator availability is not perfectly uniform: internet access is year-limited in the current processed layer, and remittance use for education is defined only among remittance-receiving households.
+
+The descriptive message is nevertheless useful. Household support conditions vary across years, place, and regions, and those conditions provide a more concrete background for interpreting the LiTS evidence on persistence, household constraints, and learning support.

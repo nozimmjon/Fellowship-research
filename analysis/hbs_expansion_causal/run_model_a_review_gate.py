@@ -25,6 +25,19 @@ OUTCOME_MAP = {
 }
 
 
+def load_latest_merged_df() -> pd.DataFrame:
+    parquet_path = PROCESSED_DIR / "hbs_expansion_merged.parquet"
+    tmp_csv_path = TABLE_DIR / "_tmp_hbs_expansion_merged.csv"
+
+    if tmp_csv_path.exists() and (
+        not parquet_path.exists() or tmp_csv_path.stat().st_mtime > parquet_path.stat().st_mtime
+    ):
+        return pd.read_csv(tmp_csv_path)
+    if parquet_path.exists():
+        return pd.read_parquet(parquet_path)
+    raise FileNotFoundError("Merged analysis dataset was missing in both parquet and temporary CSV form.")
+
+
 def fmt_pct(value: float | int | None, digits: int = 1) -> str:
     if value is None or pd.isna(value):
         return "NA"
@@ -189,10 +202,9 @@ def update_progress(model_b_gate_pass: bool, chosen_sample: str) -> None:
 
 def main() -> None:
     model_status_path = TABLE_DIR / "model_status.csv"
-    merged_path = PROCESSED_DIR / "hbs_expansion_merged.parquet"
 
-    if not model_status_path.exists() or not merged_path.exists():
-        write_empty_outputs("Model A review gate not run because the required model-status file or merged analysis parquet was missing.")
+    if not model_status_path.exists():
+        write_empty_outputs("Model A review gate not run because the required model-status file was missing.")
         return
 
     model_status = pd.read_csv(model_status_path)
@@ -210,7 +222,11 @@ def main() -> None:
         write_empty_outputs("Model A review gate not run because the preferred window or preferred outcome could not be interpreted.")
         return
 
-    df = pd.read_parquet(merged_path)
+    try:
+        df = load_latest_merged_df()
+    except FileNotFoundError:
+        write_empty_outputs("Model A review gate not run because the merged analysis dataset was missing.")
+        return
     full_linked_complete = build_analysis_base_df(df, preferred_window, outcome_var, True)
     chosen_complete = get_residence_sample_df(full_linked_complete, chosen_sample)
     full_linked_prefilter = build_analysis_base_df(df, preferred_window, outcome_var, False)

@@ -64,7 +64,7 @@ This log tracks the exploratory HBS university-expansion module.
 
 **Key findings**
 
-- Compared full linked, no migration-signal, and conservative likely-stayer samples for the 18_24 window. The binding constraint is none, and the rescued sample is no_migration_signal.
+- Compared full linked, no migration-signal, and conservative likely-stayer samples for the 18_24 window. The binding constraint is none, and the rescued sample is no_migration_signal
 
 **Blockers**
 
@@ -74,25 +74,7 @@ This log tracks the exploratory HBS university-expansion module.
 
 - Unlock Model A only if a residence-stability restriction passes the diagnostic gate; otherwise keep the design note negative.
 
-## Stage 5: Exploratory estimation decision
-
-**Completed stage**
-
-- Exploratory estimation decision
-
-**Key findings**
-
-- The residence-stability pass rescued the exposure-region proxy enough to unlock Model A only. Model B and Model C remain deferred.
-
-**Blockers**
-
-- None at this stage.
-
-**Next action**
-
-- Render the separate HBS expansion design note and verify the final output set.
-
-## Stage 6: Model A review gate
+## Stage 5: Model A review gate
 
 **Completed stage**
 
@@ -109,6 +91,24 @@ This log tracks the exploratory HBS university-expansion module.
 **Next action**
 
 - Hold the module at Model A only until the failed review checks are resolved.
+
+## Stage 6: Exploratory estimation decision
+
+**Completed stage**
+
+- Exploratory estimation decision
+
+**Key findings**
+
+- The residence-stability pass rescued the exposure-region proxy enough to unlock Model A, but the Model A review gate still holds Model B and Model C back.
+
+**Blockers**
+
+- None at this stage.
+
+**Next action**
+
+- Render the separate HBS expansion design note and verify the final output set.
 
 ## Stage 7: Outcome harmonization audit
 
@@ -127,3 +127,22 @@ This log tracks the exploratory HBS university-expansion module.
 **Next action**
 
 - Keep Model B and Model C deferred unless an upstream linkage or migration harmonization pass restores repeated-year support.
+
+## Stage 8: Post-fix downstream recomputation
+
+**Completed stage**
+
+- Downstream recomputation after the Tashkent city region-harmonization fix
+
+**Key findings**
+
+- Synced the refreshed HBS expansion staging CSVs into the processed parquet files, reran the Model A gate and the outcome harmonization audit, and rerendered the separate design note on the corrected region assignments.
+- The downstream verdict did not change materially: Model B and Model C remain deferred, while the descriptive Model A pattern stays directionally sensible on the no_migration_signal sample.
+
+**Blockers**
+
+- The working analytical sample still collapses to survey year 2025 under the current linkage and migration restrictions.
+
+**Next action**
+
+- Keep the module as Model A only unless an upstream harmonization pass restores repeated-year support in the chosen analytical sample.

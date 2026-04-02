@@ -82,6 +82,19 @@ CANDIDATE_OUTCOMES = [
 ]
 
 
+def load_latest_merged_df() -> pd.DataFrame:
+    parquet_path = PROCESSED_DIR / "hbs_expansion_merged.parquet"
+    tmp_csv_path = TABLE_DIR / "_tmp_hbs_expansion_merged.csv"
+
+    if tmp_csv_path.exists() and (
+        not parquet_path.exists() or tmp_csv_path.stat().st_mtime > parquet_path.stat().st_mtime
+    ):
+        return pd.read_csv(tmp_csv_path)
+    if parquet_path.exists():
+        return pd.read_parquet(parquet_path)
+    raise FileNotFoundError("Merged analysis dataset was missing in both parquet and temporary CSV form.")
+
+
 def fmt_pct(value: float | int | None, digits: int = 1) -> str:
     if value is None or pd.isna(value):
         return "NA"
@@ -148,14 +161,13 @@ def update_progress(note: str) -> None:
 
 
 def main() -> None:
-    merged_path = PROCESSED_DIR / "hbs_expansion_merged.parquet"
     inventory_path = OUTPUT_DIR / "hbs_5y_variable_inventory.csv"
     model_status_path = TABLE_DIR / "model_status.csv"
 
-    if not merged_path.exists() or not inventory_path.exists() or not model_status_path.exists():
-        raise FileNotFoundError("Merged parquet, variable inventory, or model status is missing.")
+    if not inventory_path.exists() or not model_status_path.exists():
+        raise FileNotFoundError("Variable inventory or model status is missing.")
 
-    df = pd.read_parquet(merged_path)
+    df = load_latest_merged_df()
     model_status = pd.read_csv(model_status_path)
     inventory = pd.read_csv(inventory_path)
 
