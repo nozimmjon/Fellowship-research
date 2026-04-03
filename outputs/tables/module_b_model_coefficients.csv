@@ -1,37 +1,81 @@
-model,term,estimate,std.error,statistic,p.value
-eq2_persistence_trend,parent_rank,0.15416091385196973,0.0408550133482653,3.773365891178087,0.002321941900607635
-eq2_persistence_trend,wave_year_fe::2016:parent_rank,0.15965501422155748,0.04661229555410011,3.425169524986287,0.00451848882846438
-eq2_persistence_trend,wave_year_fe::2022:parent_rank,0.09425273266904582,0.06683488714984992,1.410232540046377,0.1819472588389634
-eq2_persistence_trend,urban,0.0012519631190945086,0.015968712938407494,0.07840100350751014,0.9387030047726853
-eq2_persistence_trend,female,-0.01156406414618668,0.008948033007352417,-1.2923582352327851,0.21873315860089926
-eq2_persistence_trend,migration_exposure,-0.008199660230807787,0.021669596004741703,-0.37839469776056517,0.7112445857488221
-eq2_persistence_trend,multigenerational_hh,-0.005628655817441573,0.013435979859893357,-0.41892410349938175,0.6821105442745051
-eq3_attainment_score,parent_ed_score,0.2447590708055244,0.02211071904077616,11.069702000832466,5.4666616318314445e-8
-eq3_attainment_score,urban,-0.0029716689130892273,0.061010344494139744,-0.04870762389113647,0.9618926738309564
-eq3_attainment_score,female,-0.03592612082084021,0.03431906102539894,-1.0468270327749327,0.3142535140799114
-eq3_attainment_score,migration_exposure,-0.020671256932620827,0.07925670089718782,-0.26081399678035655,0.7983218468785493
-eq3_attainment_score,multigenerational_hh,-0.023959632472989486,0.056689358054796975,-0.4226478001361325,0.6794593343286789
-eq4_upward_full_lpm,parent_ed_level::no_formal,0.6357322176991143,0.07192256639625412,8.83912031443061,7.381941539666036e-7
-eq4_upward_full_lpm,parent_ed_level::primary,0.6790773132549003,0.03644946691657898,18.63065143885611,9.276895447162514e-11
-eq4_upward_full_lpm,parent_ed_level::lower_secondary,0.4964472962041859,0.044597618861960564,11.131699603532633,5.116828517689987e-8
-eq4_upward_full_lpm,parent_ed_level::post_secondary_non_tertiary,0.00947073772741628,0.05046504369967402,0.18766926634955944,0.8540334525471032
-eq4_upward_full_lpm,parent_ed_level::tertiary,-0.4233112157080321,0.054397697196370505,-7.781785581472667,3.0229281630605752e-6
-eq4_upward_full_lpm,urban,-0.010706337909195165,0.017644767811974653,-0.6067712549852478,0.5544522155700453
-eq4_upward_full_lpm,female,-0.018652681855977606,0.015656761369197938,-1.1913499488261756,0.25481340467900837
-eq4_upward_full_lpm,migration_exposure,-0.02724369372832273,0.026191741458175568,-1.0401635100066553,0.3172235941666116
-eq4_upward_full_lpm,multigenerational_hh,-0.00283399925194668,0.010174704837897187,-0.2785338048717671,0.784983846898567
-eq4_upward_lowparent_lpm,parent_ed_level::no_formal,0.6416836238210982,0.07207769925932533,8.902665185141545,6.809042849854732e-7
-eq4_upward_lowparent_lpm,parent_ed_level::primary,0.7379466885163728,0.028920367388495474,25.516504635066568,1.7238099570503934e-12
-eq4_upward_lowparent_lpm,parent_ed_level::lower_secondary,0.56275694777286,0.03678564701118969,15.2982751017449,1.082540316385615e-9
-eq4_upward_lowparent_lpm,urban,-0.009863902556799461,0.030407888199028933,-0.32438630700814214,0.75080595308324
-eq4_upward_lowparent_lpm,female,-0.05467513538051995,0.02208099303523053,-2.476117595494234,0.027812596442437786
-eq4_upward_lowparent_lpm,migration_exposure,-0.020616576950007633,0.0261733296619214,-0.7876940846392166,0.4450009858181534
-eq4_upward_lowparent_lpm,multigenerational_hh,0.0034022406144977035,0.02007089140317016,0.16951118643192528,0.8680039147033264
-eq5_persistence_heterogeneity,parent_ed_score,0.08283525965241778,0.01315311841260657,6.2977658266213545,2.7543247446876266e-5
-eq5_persistence_heterogeneity,urban,-0.08932133626871012,0.10245604319819164,-0.8718015402559158,0.39913170811592946
-eq5_persistence_heterogeneity,female,0.16387604441918271,0.06142269440247095,2.6680048150507414,0.019337642792938044
-eq5_persistence_heterogeneity,migration_exposure,0.05755322869051629,0.03756455371770724,1.5321153319967902,0.1494614759538712
-eq5_persistence_heterogeneity,multigenerational_hh,-0.008823375307404796,0.01963344683583933,-0.44940531233152653,0.6605405158872597
-eq5_persistence_heterogeneity,parent_ed_score:urban,0.02266256232772383,0.020100230719802423,1.1274777212082965,0.27992099443647517
-eq5_persistence_heterogeneity,parent_ed_score:female,-0.027536847125642163,0.01273869481897545,-2.1616694266529968,0.04988121977880229
-eq5_persistence_heterogeneity,parent_ed_score:wave2022,0.16076289999517732,0.04009464368422132,4.009585451396424,0.0014850389255559155
+model,term,estimate,std.error,statistic,p.value,model_family,specification,specification_label,n_used
+eq2_persistence_trend_minimal,parent_rank,0.139016177611948,0.03746477031622334,3.710584008351706,0.00261671653545512,eq2_persistence_trend,minimal,Minimal parental association + fixed effects,2901
+eq2_persistence_trend_minimal,wave_year_fe::2016:parent_rank,0.17083624038015827,0.04597121147726324,3.7161570228500858,0.00258907367458859,eq2_persistence_trend,minimal,Minimal parental association + fixed effects,2901
+eq2_persistence_trend_minimal,wave_year_fe::2022:parent_rank,0.11187189316468288,0.06442452980205594,1.736479777320979,0.10609992302903402,eq2_persistence_trend,minimal,Minimal parental association + fixed effects,2901
+eq3_attainment_score_minimal,parent_ed_score,0.23485675602632694,0.019715633384539608,11.912209536747339,2.2820483862543908e-8,eq3_attainment_score,minimal,Minimal parental association + fixed effects,2901
+eq4_upward_full_lpm_minimal,parent_ed_level::no_formal,0.6416590623439863,0.0654490191705742,9.803952304795965,2.262803135184623e-7,eq4_upward_full_lpm,minimal,Minimal parental association + fixed effects,2901
+eq4_upward_full_lpm_minimal,parent_ed_level::primary,0.6845414866124162,0.034465009516888204,19.861926522230725,4.145191792842517e-11,eq4_upward_full_lpm,minimal,Minimal parental association + fixed effects,2901
+eq4_upward_full_lpm_minimal,parent_ed_level::lower_secondary,0.4969225153954029,0.04056826543130082,12.249045161590708,1.6327715134729842e-8,eq4_upward_full_lpm,minimal,Minimal parental association + fixed effects,2901
+eq4_upward_full_lpm_minimal,parent_ed_level::post_secondary_non_tertiary,-0.005290594239010599,0.050363623195724905,-0.10504792751804419,0.9179413013637552,eq4_upward_full_lpm,minimal,Minimal parental association + fixed effects,2901
+eq4_upward_full_lpm_minimal,parent_ed_level::tertiary,-0.41737485528822826,0.053317838829292113,-7.828052757812232,2.834406309930169e-6,eq4_upward_full_lpm,minimal,Minimal parental association + fixed effects,2901
+eq4_upward_lowparent_lpm_minimal,parent_ed_level::no_formal,0.6457671281483269,0.06544583762319583,9.867199375861437,2.1006793480810974e-7,eq4_upward_lowparent_lpm,minimal,Minimal parental association + fixed effects,1672
+eq4_upward_lowparent_lpm_minimal,parent_ed_level::primary,0.7439350894022995,0.029966749083837906,24.825351836496978,2.446886005620329e-12,eq4_upward_lowparent_lpm,minimal,Minimal parental association + fixed effects,1672
+eq4_upward_lowparent_lpm_minimal,parent_ed_level::lower_secondary,0.5600673045067407,0.03423690145036603,16.35858622658018,4.715816176515485e-10,eq4_upward_lowparent_lpm,minimal,Minimal parental association + fixed effects,1672
+eq5_persistence_heterogeneity_minimal,parent_ed_score,0.0827927428449004,0.012763389094293661,6.486736573902297,2.0454814039814266e-5,eq5_persistence_heterogeneity,minimal,Minimal parental association + fixed effects,2767
+eq5_persistence_heterogeneity_minimal,urban,-0.08870100340563934,0.10152784213205089,-0.8736618600666358,0.39815426478107563,eq5_persistence_heterogeneity,minimal,Minimal parental association + fixed effects,2767
+eq5_persistence_heterogeneity_minimal,female,0.15820018464100363,0.05735195246759572,2.7584097460393857,0.016274191876285347,eq5_persistence_heterogeneity,minimal,Minimal parental association + fixed effects,2767
+eq5_persistence_heterogeneity_minimal,parent_ed_score:urban,0.022754426899293544,0.01991203797184349,1.1427472633122393,0.27375326325996946,eq5_persistence_heterogeneity,minimal,Minimal parental association + fixed effects,2767
+eq5_persistence_heterogeneity_minimal,parent_ed_score:female,-0.02705334937732666,0.012117053987078871,-2.2326672313398324,0.04378526058244051,eq5_persistence_heterogeneity,minimal,Minimal parental association + fixed effects,2767
+eq5_persistence_heterogeneity_minimal,parent_ed_score:wave2022,0.16074401809230537,0.039776894901636266,4.0411404281256,0.001399475808852933,eq5_persistence_heterogeneity,minimal,Minimal parental association + fixed effects,2767
+eq2_persistence_trend_demographic,parent_rank,0.15344979087290955,0.040573986598812534,3.7819747019239296,0.002284248634308215,eq2_persistence_trend,demographic,Add standard demographics,2767
+eq2_persistence_trend_demographic,wave_year_fe::2016:parent_rank,0.1564935385864042,0.047006622885989155,3.329180634098452,0.005433970535759235,eq2_persistence_trend,demographic,Add standard demographics,2767
+eq2_persistence_trend_demographic,wave_year_fe::2022:parent_rank,0.0949212526393212,0.06697609023701911,1.4172408736223334,0.17993144650143109,eq2_persistence_trend,demographic,Add standard demographics,2767
+eq2_persistence_trend_demographic,urban,0.001766779322043795,0.01603071165964465,0.11021215773542015,0.9139243762897103,eq2_persistence_trend,demographic,Add standard demographics,2767
+eq2_persistence_trend_demographic,female,-0.011719642372745177,0.0087977389549455,-1.3321198131432597,0.20570372768633047,eq2_persistence_trend,demographic,Add standard demographics,2767
+eq3_attainment_score_demographic,parent_ed_score,0.2428641887319622,0.021264545605234147,11.421085276902534,3.772772012260147e-8,eq3_attainment_score,demographic,Add standard demographics,2767
+eq3_attainment_score_demographic,urban,-5.109492051147751e-4,0.06119667648584174,-0.008349296635953534,0.9934650708914461,eq3_attainment_score,demographic,Add standard demographics,2767
+eq3_attainment_score_demographic,female,-0.03733127094802071,0.03383775458083497,-1.1032431498620894,0.28992581858408373,eq3_attainment_score,demographic,Add standard demographics,2767
+eq4_upward_full_lpm_demographic,parent_ed_level::no_formal,0.6356391997367837,0.07291829732137417,8.717142652622828,8.630579280229253e-7,eq4_upward_full_lpm,demographic,Add standard demographics,2767
+eq4_upward_full_lpm_demographic,parent_ed_level::primary,0.6784469659528797,0.03690796440722829,18.382129083770558,1.0980771916714468e-10,eq4_upward_full_lpm,demographic,Add standard demographics,2767
+eq4_upward_full_lpm_demographic,parent_ed_level::lower_secondary,0.49709577665832866,0.044240714964831764,11.23616056054891,4.5804120018014925e-8,eq4_upward_full_lpm,demographic,Add standard demographics,2767
+eq4_upward_full_lpm_demographic,parent_ed_level::post_secondary_non_tertiary,0.011138941109888367,0.050883166418697966,0.21891210578819553,0.8301179302297179,eq4_upward_full_lpm,demographic,Add standard demographics,2767
+eq4_upward_full_lpm_demographic,parent_ed_level::tertiary,-0.4228641053955825,0.054477472637238476,-7.7621828789930065,3.106778478771659e-6,eq4_upward_full_lpm,demographic,Add standard demographics,2767
+eq4_upward_full_lpm_demographic,urban,-0.011566245505767547,0.017674985773967485,-0.6543849966093231,0.524272571852952,eq4_upward_full_lpm,demographic,Add standard demographics,2767
+eq4_upward_full_lpm_demographic,female,-0.01686578987516614,0.015017299922701503,-1.1230906995251717,0.28171241642638,eq4_upward_full_lpm,demographic,Add standard demographics,2767
+eq4_upward_lowparent_lpm_demographic,parent_ed_level::no_formal,0.642721197723143,0.07199526438872585,8.927270469525359,6.600101325336333e-7,eq4_upward_lowparent_lpm,demographic,Add standard demographics,1570
+eq4_upward_lowparent_lpm_demographic,parent_ed_level::primary,0.73880526374938,0.02983338453614909,24.764379745589046,2.5248106182024264e-12,eq4_upward_lowparent_lpm,demographic,Add standard demographics,1570
+eq4_upward_lowparent_lpm_demographic,parent_ed_level::lower_secondary,0.5635053862798318,0.03642801827932968,15.469010198657479,9.43691546234212e-10,eq4_upward_lowparent_lpm,demographic,Add standard demographics,1570
+eq4_upward_lowparent_lpm_demographic,urban,-0.010703426779678577,0.030517339605349473,-0.3507326299767737,0.7314071681844558,eq4_upward_lowparent_lpm,demographic,Add standard demographics,1570
+eq4_upward_lowparent_lpm_demographic,female,-0.05289955366526857,0.021575574605378685,-2.4518259482220683,0.029112914726726495,eq4_upward_lowparent_lpm,demographic,Add standard demographics,1570
+eq5_persistence_heterogeneity_demographic,parent_ed_score,0.0827927428449004,0.012763389094293661,6.486736573902297,2.0454814039814266e-5,eq5_persistence_heterogeneity,demographic,Add standard demographics,2767
+eq5_persistence_heterogeneity_demographic,urban,-0.08870100340563934,0.10152784213205089,-0.8736618600666358,0.39815426478107563,eq5_persistence_heterogeneity,demographic,Add standard demographics,2767
+eq5_persistence_heterogeneity_demographic,female,0.15820018464100363,0.05735195246759572,2.7584097460393857,0.016274191876285347,eq5_persistence_heterogeneity,demographic,Add standard demographics,2767
+eq5_persistence_heterogeneity_demographic,parent_ed_score:urban,0.022754426899293544,0.01991203797184349,1.1427472633122393,0.27375326325996946,eq5_persistence_heterogeneity,demographic,Add standard demographics,2767
+eq5_persistence_heterogeneity_demographic,parent_ed_score:female,-0.02705334937732666,0.012117053987078871,-2.2326672313398324,0.04378526058244051,eq5_persistence_heterogeneity,demographic,Add standard demographics,2767
+eq5_persistence_heterogeneity_demographic,parent_ed_score:wave2022,0.16074401809230537,0.039776894901636266,4.0411404281256,0.001399475808852933,eq5_persistence_heterogeneity,demographic,Add standard demographics,2767
+eq2_persistence_trend_extended,parent_rank,0.15416091385196973,0.0408550133482653,3.773365891178087,0.002321941900607635,eq2_persistence_trend,extended,Add potentially endogenous household controls,2756
+eq2_persistence_trend_extended,wave_year_fe::2016:parent_rank,0.15965501422155748,0.04661229555410011,3.425169524986287,0.00451848882846438,eq2_persistence_trend,extended,Add potentially endogenous household controls,2756
+eq2_persistence_trend_extended,wave_year_fe::2022:parent_rank,0.09425273266904582,0.06683488714984992,1.410232540046377,0.1819472588389634,eq2_persistence_trend,extended,Add potentially endogenous household controls,2756
+eq2_persistence_trend_extended,urban,0.0012519631190945086,0.015968712938407494,0.07840100350751014,0.9387030047726853,eq2_persistence_trend,extended,Add potentially endogenous household controls,2756
+eq2_persistence_trend_extended,female,-0.01156406414618668,0.008948033007352417,-1.2923582352327851,0.21873315860089926,eq2_persistence_trend,extended,Add potentially endogenous household controls,2756
+eq2_persistence_trend_extended,migration_exposure,-0.008199660230807787,0.021669596004741703,-0.37839469776056517,0.7112445857488221,eq2_persistence_trend,extended,Add potentially endogenous household controls,2756
+eq2_persistence_trend_extended,multigenerational_hh,-0.005628655817441573,0.013435979859893357,-0.41892410349938175,0.6821105442745051,eq2_persistence_trend,extended,Add potentially endogenous household controls,2756
+eq3_attainment_score_extended,parent_ed_score,0.2447590708055244,0.02211071904077616,11.069702000832466,5.4666616318314445e-8,eq3_attainment_score,extended,Add potentially endogenous household controls,2756
+eq3_attainment_score_extended,urban,-0.0029716689130892273,0.061010344494139744,-0.04870762389113647,0.9618926738309564,eq3_attainment_score,extended,Add potentially endogenous household controls,2756
+eq3_attainment_score_extended,female,-0.03592612082084021,0.03431906102539894,-1.0468270327749327,0.3142535140799114,eq3_attainment_score,extended,Add potentially endogenous household controls,2756
+eq3_attainment_score_extended,migration_exposure,-0.020671256932620827,0.07925670089718782,-0.26081399678035655,0.7983218468785493,eq3_attainment_score,extended,Add potentially endogenous household controls,2756
+eq3_attainment_score_extended,multigenerational_hh,-0.023959632472989486,0.056689358054796975,-0.4226478001361325,0.6794593343286789,eq3_attainment_score,extended,Add potentially endogenous household controls,2756
+eq4_upward_full_lpm_extended,parent_ed_level::no_formal,0.6357322176991143,0.07192256639625412,8.83912031443061,7.381941539666036e-7,eq4_upward_full_lpm,extended,Add potentially endogenous household controls,2756
+eq4_upward_full_lpm_extended,parent_ed_level::primary,0.6790773132549003,0.03644946691657898,18.63065143885611,9.276895447162514e-11,eq4_upward_full_lpm,extended,Add potentially endogenous household controls,2756
+eq4_upward_full_lpm_extended,parent_ed_level::lower_secondary,0.4964472962041859,0.044597618861960564,11.131699603532633,5.116828517689987e-8,eq4_upward_full_lpm,extended,Add potentially endogenous household controls,2756
+eq4_upward_full_lpm_extended,parent_ed_level::post_secondary_non_tertiary,0.00947073772741628,0.05046504369967402,0.18766926634955944,0.8540334525471032,eq4_upward_full_lpm,extended,Add potentially endogenous household controls,2756
+eq4_upward_full_lpm_extended,parent_ed_level::tertiary,-0.4233112157080321,0.054397697196370505,-7.781785581472667,3.0229281630605752e-6,eq4_upward_full_lpm,extended,Add potentially endogenous household controls,2756
+eq4_upward_full_lpm_extended,urban,-0.010706337909195165,0.017644767811974653,-0.6067712549852478,0.5544522155700453,eq4_upward_full_lpm,extended,Add potentially endogenous household controls,2756
+eq4_upward_full_lpm_extended,female,-0.018652681855977606,0.015656761369197938,-1.1913499488261756,0.25481340467900837,eq4_upward_full_lpm,extended,Add potentially endogenous household controls,2756
+eq4_upward_full_lpm_extended,migration_exposure,-0.02724369372832273,0.026191741458175568,-1.0401635100066553,0.3172235941666116,eq4_upward_full_lpm,extended,Add potentially endogenous household controls,2756
+eq4_upward_full_lpm_extended,multigenerational_hh,-0.00283399925194668,0.010174704837897187,-0.2785338048717671,0.784983846898567,eq4_upward_full_lpm,extended,Add potentially endogenous household controls,2756
+eq4_upward_lowparent_lpm_extended,parent_ed_level::no_formal,0.6416836238210982,0.07207769925932533,8.902665185141545,6.809042849854732e-7,eq4_upward_lowparent_lpm,extended,Add potentially endogenous household controls,1567
+eq4_upward_lowparent_lpm_extended,parent_ed_level::primary,0.7379466885163728,0.028920367388495474,25.516504635066568,1.7238099570503934e-12,eq4_upward_lowparent_lpm,extended,Add potentially endogenous household controls,1567
+eq4_upward_lowparent_lpm_extended,parent_ed_level::lower_secondary,0.56275694777286,0.03678564701118969,15.2982751017449,1.082540316385615e-9,eq4_upward_lowparent_lpm,extended,Add potentially endogenous household controls,1567
+eq4_upward_lowparent_lpm_extended,urban,-0.009863902556799461,0.030407888199028933,-0.32438630700814214,0.75080595308324,eq4_upward_lowparent_lpm,extended,Add potentially endogenous household controls,1567
+eq4_upward_lowparent_lpm_extended,female,-0.05467513538051995,0.02208099303523053,-2.476117595494234,0.027812596442437786,eq4_upward_lowparent_lpm,extended,Add potentially endogenous household controls,1567
+eq4_upward_lowparent_lpm_extended,migration_exposure,-0.020616576950007633,0.0261733296619214,-0.7876940846392166,0.4450009858181534,eq4_upward_lowparent_lpm,extended,Add potentially endogenous household controls,1567
+eq4_upward_lowparent_lpm_extended,multigenerational_hh,0.0034022406144977035,0.02007089140317016,0.16951118643192528,0.8680039147033264,eq4_upward_lowparent_lpm,extended,Add potentially endogenous household controls,1567
+eq5_persistence_heterogeneity_extended,parent_ed_score,0.08283525965241778,0.01315311841260657,6.2977658266213545,2.7543247446876266e-5,eq5_persistence_heterogeneity,extended,Add potentially endogenous household controls,2756
+eq5_persistence_heterogeneity_extended,urban,-0.08932133626871012,0.10245604319819164,-0.8718015402559158,0.39913170811592946,eq5_persistence_heterogeneity,extended,Add potentially endogenous household controls,2756
+eq5_persistence_heterogeneity_extended,female,0.16387604441918271,0.06142269440247095,2.6680048150507414,0.019337642792938044,eq5_persistence_heterogeneity,extended,Add potentially endogenous household controls,2756
+eq5_persistence_heterogeneity_extended,migration_exposure,0.05755322869051629,0.03756455371770724,1.5321153319967902,0.1494614759538712,eq5_persistence_heterogeneity,extended,Add potentially endogenous household controls,2756
+eq5_persistence_heterogeneity_extended,multigenerational_hh,-0.008823375307404796,0.01963344683583933,-0.44940531233152653,0.6605405158872597,eq5_persistence_heterogeneity,extended,Add potentially endogenous household controls,2756
+eq5_persistence_heterogeneity_extended,parent_ed_score:urban,0.02266256232772383,0.020100230719802423,1.1274777212082965,0.27992099443647517,eq5_persistence_heterogeneity,extended,Add potentially endogenous household controls,2756
+eq5_persistence_heterogeneity_extended,parent_ed_score:female,-0.027536847125642163,0.01273869481897545,-2.1616694266529968,0.04988121977880229,eq5_persistence_heterogeneity,extended,Add potentially endogenous household controls,2756
+eq5_persistence_heterogeneity_extended,parent_ed_score:wave2022,0.16076289999517732,0.04009464368422132,4.009585451396424,0.0014850389255559155,eq5_persistence_heterogeneity,extended,Add potentially endogenous household controls,2756

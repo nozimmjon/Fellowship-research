@@ -154,7 +154,237 @@ if (file.exists(parent_robust_file)) {
 }
 ```
 
-## D3. Model Inventory
+These parent-proxy checks also clarify the paper's preferred interpretation. The rank-based series is the main cross-wave benchmark because it is less sensitive to the coarse six-category ladder used for the category-coded transition rates. The paper therefore studies relative educational persistence and category transitions, not an absolute mobility concept tied one-for-one to schooling expansion.
+
+## D3. Parental-Education Missingness Diagnostics
+
+```{r}
+parent_missing_file <- file.path("..", "outputs", "tables", "empirical_parent_missingness_by_wave.csv")
+parent_missing_obs_file <- file.path("..", "outputs", "tables", "empirical_parent_missingness_observables.csv")
+parent_missing_sens_file <- file.path("..", "outputs", "tables", "empirical_parent_missingness_sensitivity.csv")
+
+if (file.exists(parent_missing_file)) {
+  parent_missing <- read_csv_safe(parent_missing_file)
+  parent_missing$parent_missing_share <- fmt_pct(parent_missing$parent_missing_share)
+  parent_missing$weighted_parent_missing_share <- fmt_pct(parent_missing$weighted_parent_missing_share)
+  knitr::kable(
+    parent_missing,
+    col.names = c("Wave", "N", "Observed parent education", "Missing parent education", "Unweighted missing share", "Weighted missing share")
+  )
+} else {
+  data.frame(note = "Parent-missingness summary is not available yet.")
+}
+```
+
+```{r}
+if (file.exists(parent_missing_obs_file)) {
+  parent_missing_obs <- read_csv_safe(parent_missing_obs_file)
+  parent_missing_obs$observed <- ifelse(
+    grepl("share", parent_missing_obs$statistic),
+    fmt_pct(parent_missing_obs$estimate_observed_parent_education),
+    fmt_num(parent_missing_obs$estimate_observed_parent_education)
+  )
+  parent_missing_obs$missing <- ifelse(
+    grepl("share", parent_missing_obs$statistic),
+    fmt_pct(parent_missing_obs$estimate_missing_parent_education),
+    fmt_num(parent_missing_obs$estimate_missing_parent_education)
+  )
+  parent_missing_obs$diff <- ifelse(
+    grepl("share", parent_missing_obs$statistic),
+    fmt_pct(parent_missing_obs$difference_missing_minus_observed),
+    fmt_num(parent_missing_obs$difference_missing_minus_observed)
+  )
+  knitr::kable(
+    parent_missing_obs[, c("wave_year", "statistic_label", "observed", "missing", "diff")],
+    col.names = c("Wave", "Statistic", "Observed-parent cases", "Missing-parent cases", "Missing minus observed")
+  )
+} else {
+  data.frame(note = "Parent-missingness observable comparisons are not available yet.")
+}
+```
+
+```{r}
+if (file.exists(parent_missing_sens_file)) {
+  parent_missing_sens <- read_csv_safe(parent_missing_sens_file)
+  parent_missing_sens <- parent_missing_sens[
+    parent_missing_sens$metric == "rank_rank_slope",
+    c("scenario_label", "wave_year", "estimate")
+  ]
+  parent_missing_sens$display <- fmt_num(parent_missing_sens$estimate)
+  parent_missing_sens_wide <- reshape(
+    parent_missing_sens[, c("scenario_label", "wave_year", "display")],
+    idvar = "scenario_label",
+    timevar = "wave_year",
+    direction = "wide"
+  )
+  names(parent_missing_sens_wide) <- sub("^display\\.", "", names(parent_missing_sens_wide))
+  knitr::kable(
+    parent_missing_sens_wide,
+    col.names = c("Sensitivity scenario", "2010", "2016", "2022-23")
+  )
+} else {
+  data.frame(note = "Parent-missingness sensitivity outputs are not available yet.")
+}
+```
+
+## D4. Module B Specification Discipline
+
+```{r}
+module_b_class_file <- file.path("..", "outputs", "tables", "module_b_covariate_classification.csv")
+module_b_key_file <- file.path("..", "outputs", "tables", "module_b_key_coefficient_comparison.csv")
+module_b_wave_test_file <- file.path("..", "outputs", "tables", "module_b_wave_difference_tests.csv")
+
+if (file.exists(module_b_class_file)) {
+  module_b_class <- read_csv_safe(module_b_class_file)
+  module_b_class$share_non_missing <- fmt_pct(module_b_class$share_non_missing)
+  module_b_class$included_in_extended <- ifelse(module_b_class$included_in_extended, "Yes", "No")
+  knitr::kable(
+    module_b_class[, c("covariate", "control_class", "share_non_missing", "included_in_extended", "rationale")],
+    col.names = c("Covariate", "Control class", "Non-missing share", "Included in extended model", "Design note")
+  )
+} else {
+  data.frame(note = "Module B covariate-classification output is not available yet.")
+}
+```
+
+```{r}
+if (file.exists(module_b_key_file)) {
+  module_b_key <- read_csv_safe(module_b_key_file)
+  module_b_key <- module_b_key[
+    module_b_key$model_family %in% c("eq2_persistence_trend", "eq3_attainment_score") &
+      module_b_key$term %in% c("parent_rank", "wave_year_fe::2016:parent_rank", "wave_year_fe::2022:parent_rank", "parent_ed_score"),
+  ]
+  module_b_key$model_label <- ifelse(
+    module_b_key$model_family == "eq2_persistence_trend",
+    "Persistence trend",
+    "Attainment score"
+  )
+  module_b_key$spec_label <- dplyr::recode(
+    module_b_key$specification,
+    minimal = "Minimal",
+    demographic = "Demographic",
+    extended = "Extended"
+  )
+  module_b_key$term_label <- dplyr::recode(
+    module_b_key$term,
+    parent_rank = "Parent rank (2010 slope)",
+    "wave_year_fe::2016:parent_rank" = "2016 minus 2010 slope",
+    "wave_year_fe::2022:parent_rank" = "2022-23 minus 2010 slope",
+    parent_ed_score = "Parent education score"
+  )
+  module_b_key$estimate <- fmt_num(module_b_key$estimate)
+  module_b_key$std.error <- fmt_num(module_b_key$std.error)
+  module_b_key$p.value <- vapply(module_b_key$p.value, fmt_p, character(1))
+  knitr::kable(
+    module_b_key[, c("model_label", "spec_label", "term_label", "estimate", "std.error", "p.value", "n_used")],
+    col.names = c("Model", "Specification", "Parameter", "Estimate", "Std. Error", "P-value", "Used N")
+  )
+} else {
+  data.frame(note = "Module B key-coefficient comparison output is not available yet.")
+}
+```
+
+```{r}
+if (file.exists(module_b_wave_test_file)) {
+  module_b_wave_test <- read_csv_safe(module_b_wave_test_file)
+  module_b_wave_test$spec_label <- dplyr::recode(
+    module_b_wave_test$specification,
+    minimal = "Minimal",
+    demographic = "Demographic",
+    extended = "Extended"
+  )
+  module_b_wave_test$comparison_label <- dplyr::recode(
+    module_b_wave_test$comparison,
+    `2010_to_2016` = "2010 to 2016",
+    `2016_to_2022` = "2016 to 2022-23",
+    `2010_to_2022` = "2010 to 2022-23"
+  )
+  module_b_wave_test$estimate <- fmt_num(module_b_wave_test$estimate)
+  module_b_wave_test$std.error <- fmt_num(module_b_wave_test$std.error)
+  module_b_wave_test$p.value <- vapply(module_b_wave_test$p.value, fmt_p, character(1))
+  knitr::kable(
+    module_b_wave_test[, c("spec_label", "comparison_label", "estimate", "std.error", "p.value", "n_used")],
+    col.names = c("Specification", "Conditional slope comparison", "Estimate", "Std. Error", "P-value", "Used N")
+  )
+} else {
+  data.frame(note = "Module B wave-difference tests are not available yet.")
+}
+```
+
+## D5. Cross-Wave Trend Tests and Composition Checks
+
+```{r}
+rank_change_file <- file.path("..", "outputs", "tables", "empirical_rank_rank_change_tests.csv")
+subgroup_trend_file <- file.path("..", "outputs", "tables", "empirical_subgroup_trend_checks.csv")
+
+if (file.exists(rank_change_file)) {
+  rank_change <- read_csv_safe(rank_change_file)
+  rank_change$comparison <- dplyr::recode(
+    rank_change$comparison,
+    `2010_to_2016` = "2010 to 2016",
+    `2016_to_2022` = "2016 to 2022-23",
+    `2010_to_2022` = "2010 to 2022-23"
+  )
+  rank_change$estimate <- fmt_num(rank_change$estimate)
+  rank_change$std.error <- fmt_num(rank_change$std.error)
+  rank_change$p.value <- vapply(rank_change$p.value, fmt_p, character(1))
+  knitr::kable(
+    rank_change[, c("comparison", "estimate", "std.error", "p.value")],
+    col.names = c("Raw descriptive slope comparison", "Estimate", "Std. Error", "P-value")
+  )
+} else {
+  data.frame(note = "Raw descriptive slope-difference tests are not available yet.")
+}
+```
+
+```{r}
+if (file.exists(subgroup_trend_file)) {
+  subgroup_trend <- read_csv_safe(subgroup_trend_file)
+  subgroup_trend$comparison <- dplyr::recode(
+    subgroup_trend$comparison,
+    `2010_to_2016` = "2010 to 2016",
+    `2016_to_2022` = "2016 to 2022-23"
+  )
+  subgroup_trend$estimate <- fmt_num(subgroup_trend$estimate)
+  subgroup_trend$std.error <- fmt_num(subgroup_trend$std.error)
+  subgroup_trend$p.value <- vapply(subgroup_trend$p.value, fmt_p, character(1))
+  knitr::kable(
+    subgroup_trend[, c("subgroup_type", "subgroup_value", "comparison", "estimate", "std.error", "p.value")],
+    col.names = c("Subgroup type", "Subgroup value", "Slope comparison", "Estimate", "Std. Error", "P-value")
+  )
+} else {
+  data.frame(note = "Subgroup trend checks are not available yet.")
+}
+```
+
+## D6. Fuller Module B Coefficient Tables
+
+```{r}
+module_b_coef_file <- file.path("..", "outputs", "tables", "module_b_model_coefficients.csv")
+
+if (file.exists(module_b_coef_file)) {
+  module_b_coef_full <- read_csv_safe(module_b_coef_file)
+  module_b_coef_full <- module_b_coef_full[
+    module_b_coef_full$model_family %in% c(
+      "eq2_persistence_trend",
+      "eq3_attainment_score",
+      "eq4_upward_full_lpm",
+      "eq5_persistence_heterogeneity"
+    ),
+  ]
+  module_b_coef_full$estimate <- fmt_num(module_b_coef_full$estimate)
+  module_b_coef_full$std.error <- fmt_num(module_b_coef_full$std.error)
+  module_b_coef_full$p.value <- vapply(module_b_coef_full$p.value, fmt_p, character(1))
+  knitr::kable(
+    module_b_coef_full[, c("model", "model_family", "specification", "term", "estimate", "std.error", "p.value", "n_used")],
+    col.names = c("Model id", "Model family", "Specification", "Term", "Estimate", "Std. Error", "P-value", "Used N")
+  )
+} else {
+  data.frame(note = "Full Module B coefficient output is not available yet.")
+}
+```
+
+## D7. Model Inventory
 
 ```{r}
 model_inventory_file <- file.path("..", "outputs", "tables", "empirical_model_inventory.csv")

@@ -302,6 +302,8 @@ as_harmonized_frame <- function(
     multigenerational_hh = suppressWarnings(as.integer(multigenerational_hh))
   ) %>%
     dplyr::mutate(
+      # Keep only strictly positive survey weights in the harmonized file.
+      sample_weight = dplyr::if_else(is.na(sample_weight) | sample_weight <= 0, NA_real_, sample_weight),
       cohort = assign_cohort(age)
     )
 }

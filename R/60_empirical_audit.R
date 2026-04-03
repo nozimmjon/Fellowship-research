@@ -315,6 +315,351 @@ build_parent_measure_robustness <- function(lits_harmonized) {
   })
 }
 
+weighted_mean_safe <- function(x, w) {
+  keep <- !is.na(x) & !is.na(w) & w > 0
+  if (!any(keep)) {
+    return(NA_real_)
+  }
+  stats::weighted.mean(as.numeric(x[keep]), w[keep])
+}
+
+mode_education_level <- function(x) {
+  x_norm <- normalize_ed_level(x)
+  x_norm <- x_norm[!is.na(x_norm)]
+  if (length(x_norm) == 0) {
+    return(NA_character_)
+  }
+  tab <- table(factor(x_norm, levels = EDUCATION_LEVELS))
+  EDUCATION_LEVELS[which.max(as.numeric(tab))]
+}
+
+prepare_parent_missingness_data <- function(lits_harmonized) {
+  if (is.null(lits_harmonized) || nrow(lits_harmonized) == 0) {
+    return(tibble::tibble())
+  }
+
+  lits_harmonized %>%
+    dplyr::mutate(
+      wave_year = suppressWarnings(as.integer(wave_year)),
+      age = suppressWarnings(as.numeric(age)),
+      own_years_schooling = clean_numeric(own_years_schooling),
+      sample_weight = suppressWarnings(as.numeric(sample_weight)),
+      sample_weight = dplyr::if_else(is.na(sample_weight) | sample_weight <= 0, NA_real_, sample_weight),
+      parent_ed_level = normalize_ed_level(parent_ed_level),
+      parent_years_schooling = coalesce_years_from_level(parent_years_schooling, parent_ed_level),
+      own_ed_level = normalize_ed_level(own_ed_level),
+      gender_group = coerce_gender_group(gender),
+      urban_group = coerce_urban_group(urban),
+      female = dplyr::if_else(gender_group == "female", 1, 0, missing = NA_real_),
+      urban_binary = dplyr::if_else(urban_group == "urban", 1, 0, missing = NA_real_),
+      own_tertiary = dplyr::if_else(own_ed_level == "tertiary", 1, 0, missing = NA_real_),
+      parent_missing = is.na(parent_ed_level) | is.na(parent_years_schooling)
+    )
+}
+
+build_parent_missingness_by_wave <- function(lits_harmonized) {
+  dat <- prepare_parent_missingness_data(lits_harmonized)
+  if (nrow(dat) == 0) {
+    return(tibble::tibble())
+  }
+
+  dat %>%
+    dplyr::group_by(wave_year) %>%
+    dplyr::summarise(
+      n_total = dplyr::n(),
+      parent_non_missing_n = sum(!parent_missing),
+      parent_missing_n = sum(parent_missing),
+      parent_missing_share = mean(parent_missing),
+      weighted_parent_missing_share = weighted_mean_safe(parent_missing, sample_weight),
+      .groups = "drop"
+    ) %>%
+    dplyr::arrange(wave_year)
+}
+
+build_parent_missingness_observables <- function(lits_harmonized) {
+  dat <- prepare_parent_missingness_data(lits_harmonized)
+  if (nrow(dat) == 0) {
+    return(tibble::tibble())
+  }
+
+  stats_map <- list(
+    mean_age = "age",
+    female_share = "female",
+    urban_share = "urban_binary",
+    mean_own_years = "own_years_schooling",
+    tertiary_share = "own_tertiary"
+  )
+
+  stat_labels <- c(
+    mean_age = "Mean age",
+    female_share = "Female share",
+    urban_share = "Urban share",
+    mean_own_years = "Mean own years of schooling",
+    tertiary_share = "Tertiary attainment share"
+  )
+
+  purrr::imap_dfr(stats_map, function(var_name, stat_name) {
+    dat %>%
+      dplyr::group_by(wave_year, parent_missing) %>%
+      dplyr::summarise(
+        n = dplyr::n(),
+        estimate = weighted_mean_safe(.data[[var_name]], sample_weight),
+        .groups = "drop"
+      ) %>%
+      dplyr::mutate(
+        parent_missing = ifelse(parent_missing, "missing_parent_education", "observed_parent_education")
+      ) %>%
+      tidyr::pivot_wider(names_from = parent_missing, values_from = c(n, estimate)) %>%
+      dplyr::mutate(
+        statistic = stat_name,
+        statistic_label = stat_labels[[stat_name]],
+        difference_missing_minus_observed = estimate_missing_parent_education - estimate_observed_parent_education,
+        .before = 1
+      )
+  }) %>%
+    dplyr::arrange(wave_year, statistic)
+}
+
+apply_parent_missingness_scenario <- function(lits_harmonized, scenario_id) {
+  dat <- prepare_parent_missingness_data(lits_harmonized)
+  if (nrow(dat) == 0) {
+    return(dat)
+  }
+
+  missing_idx <- dat$parent_missing
+
+  if (scenario_id == "observed_only") {
+    return(dat)
+  }
+
+  if (scenario_id == "lower_bound_no_formal") {
+    dat$parent_ed_level[missing_idx] <- "no_formal"
+    dat$parent_years_schooling[missing_idx] <- 0
+    return(dat)
+  }
+
+  if (scenario_id == "upper_bound_tertiary") {
+    dat$parent_ed_level[missing_idx] <- "tertiary"
+    dat$parent_years_schooling[missing_idx] <- 16
+    return(dat)
+  }
+
+  if (scenario_id == "cell_mode_imputed") {
+    cell_modes <- dat %>%
+      dplyr::filter(!is.na(parent_ed_level)) %>%
+      dplyr::group_by(wave_year, cohort, gender_group, urban_group) %>%
+      dplyr::summarise(cell_parent_level = mode_education_level(parent_ed_level), .groups = "drop")
+
+    wave_modes <- dat %>%
+      dplyr::filter(!is.na(parent_ed_level)) %>%
+      dplyr::group_by(wave_year) %>%
+      dplyr::summarise(wave_parent_level = mode_education_level(parent_ed_level), .groups = "drop")
+
+    dat <- dat %>%
+      dplyr::left_join(cell_modes, by = c("wave_year", "cohort", "gender_group", "urban_group")) %>%
+      dplyr::left_join(wave_modes, by = "wave_year") %>%
+      dplyr::mutate(
+        parent_ed_level = dplyr::if_else(
+          parent_missing,
+          dplyr::coalesce(cell_parent_level, wave_parent_level, "upper_secondary"),
+          parent_ed_level
+        ),
+        parent_years_schooling = dplyr::if_else(
+          parent_missing,
+          education_level_to_years(parent_ed_level),
+          parent_years_schooling
+        )
+      ) %>%
+      dplyr::select(-cell_parent_level, -wave_parent_level)
+
+    return(dat)
+  }
+
+  stop("Unknown parent-missingness scenario: ", scenario_id)
+}
+
+build_parent_missingness_sensitivity <- function(lits_harmonized) {
+  if (is.null(lits_harmonized) || nrow(lits_harmonized) == 0) {
+    return(tibble::tibble())
+  }
+
+  scenarios <- tibble::tribble(
+    ~scenario_id, ~scenario_label, ~scenario_note,
+    "observed_only", "Observed-parent sample only", "Uses the observed parental-education data without filling missing parent values.",
+    "cell_mode_imputed", "Wave x cohort x sex x urban mode imputation", "Fills missing parent education with the modal observed category inside the wave-by-demographic cell, falling back to the wave mode when needed.",
+    "lower_bound_no_formal", "All missing parents assigned no formal education", "Mechanical lower bound that assigns every missing parent to the bottom of the education ladder.",
+    "upper_bound_tertiary", "All missing parents assigned tertiary education", "Mechanical upper bound that assigns every missing parent to the top of the education ladder."
+  )
+
+  baseline_missing <- prepare_parent_missingness_data(lits_harmonized) %>%
+    dplyr::group_by(wave_year) %>%
+    dplyr::summarise(n_parent_missing = sum(parent_missing), .groups = "drop")
+
+  purrr::pmap_dfr(scenarios, function(scenario_id, scenario_label, scenario_note) {
+    scenario_data <- apply_parent_missingness_scenario(lits_harmonized, scenario_id)
+    metrics <- estimate_mobility_metrics(scenario_data)$core_metrics %>%
+      dplyr::filter(
+        subgroup_type == "overall",
+        subgroup_value == "all",
+        metric %in% c("rank_rank_slope", "upward_mobility_rate", "downward_mobility_rate", "persistence_probability")
+      ) %>%
+      dplyr::mutate(
+        scenario_id = scenario_id,
+        scenario_label = scenario_label,
+        scenario_note = scenario_note,
+        .before = 1
+      )
+
+    metrics %>%
+      dplyr::left_join(baseline_missing, by = "wave_year")
+  })
+}
+
+build_parent_measure_map <- function() {
+  tibble::tribble(
+    ~module, ~parent_measure, ~aggregation_rule, ~interpretation_note,
+    "Module A", "Parental education category and years", "Higher observed parent category; if only one parent is observed, retain the observed parent.", "Supports cross-wave descriptive comparability with limited attrition from one-parent reports.",
+    "Module B", "Parental education score and parental rank", "Same max-parent harmonization used in Module A.", "Keeps the pooled associational models anchored to the main descriptive parent measure.",
+    "Module C", "Mean observed parent years for low-vs-high split", "Average observed mother and father years within the child-module sample.", "Used because the max-parent weighted median split is support-degenerate in the small child-module sample."
+  )
+}
+
+build_rank_rank_change_tests <- function(module_a_metrics) {
+  core_metrics <- module_a_metrics$core_metrics
+  if (is.null(core_metrics) || nrow(core_metrics) == 0) {
+    return(tibble::tibble())
+  }
+
+  slopes <- core_metrics %>%
+    dplyr::filter(
+      subgroup_type == "overall",
+      subgroup_value == "all",
+      metric == "rank_rank_slope",
+      status == "ok"
+    ) %>%
+    dplyr::select(wave_year, estimate, std.error, n, effective_n)
+
+  comparisons <- tibble::tribble(
+    ~comparison, ~base_wave, ~comparison_wave,
+    "2010_to_2016", 2010L, 2016L,
+    "2016_to_2022", 2016L, 2022L,
+    "2010_to_2022", 2010L, 2022L
+  )
+
+  purrr::pmap_dfr(comparisons, function(comparison, base_wave, comparison_wave) {
+    base_row <- slopes %>% dplyr::filter(wave_year == base_wave)
+    comp_row <- slopes %>% dplyr::filter(wave_year == comparison_wave)
+    if (nrow(base_row) == 0 || nrow(comp_row) == 0) {
+      return(tibble::tibble())
+    }
+    estimate <- comp_row$estimate[[1]] - base_row$estimate[[1]]
+    std_error <- sqrt(base_row$std.error[[1]] ^ 2 + comp_row$std.error[[1]] ^ 2)
+    statistic <- if (is.na(std_error) || std_error == 0) NA_real_ else estimate / std_error
+    p_value <- if (is.na(statistic)) NA_real_ else 2 * stats::pnorm(abs(statistic), lower.tail = FALSE)
+    tibble::tibble(
+      comparison = comparison,
+      base_wave = base_wave,
+      comparison_wave = comparison_wave,
+      estimate = estimate,
+      std.error = std_error,
+      ci_low = estimate - stats::qnorm(0.975) * std_error,
+      ci_high = estimate + stats::qnorm(0.975) * std_error,
+      statistic = statistic,
+      p.value = p_value
+    )
+  })
+}
+
+build_subgroup_trend_checks <- function(module_a_metrics) {
+  subgroup_metrics <- module_a_metrics$subgroup_metrics
+  if (is.null(subgroup_metrics) || nrow(subgroup_metrics) == 0) {
+    return(tibble::tibble())
+  }
+
+  slopes <- subgroup_metrics %>%
+    dplyr::filter(
+      subgroup_type %in% c("urban_rural", "gender", "cohort"),
+      metric == "rank_rank_slope",
+      status == "ok"
+    ) %>%
+    dplyr::select(subgroup_type, subgroup_value, wave_year, estimate, std.error, n)
+
+  comparisons <- tibble::tribble(
+    ~comparison, ~base_wave, ~comparison_wave,
+    "2010_to_2016", 2010L, 2016L,
+    "2016_to_2022", 2016L, 2022L
+  )
+
+  purrr::pmap_dfr(comparisons, function(comparison, base_wave, comparison_wave) {
+    base_rows <- slopes %>%
+      dplyr::filter(wave_year == base_wave) %>%
+      dplyr::rename(base_estimate = estimate, base_std_error = std.error, base_n = n)
+    comp_rows <- slopes %>%
+      dplyr::filter(wave_year == comparison_wave) %>%
+      dplyr::rename(comp_estimate = estimate, comp_std_error = std.error, comp_n = n)
+
+    base_rows %>%
+      dplyr::inner_join(comp_rows, by = c("subgroup_type", "subgroup_value")) %>%
+      dplyr::mutate(
+        comparison = comparison,
+        base_wave = base_wave,
+        comparison_wave = comparison_wave,
+        estimate = comp_estimate - base_estimate,
+        std.error = sqrt(base_std_error ^ 2 + comp_std_error ^ 2),
+        statistic = estimate / std.error,
+        p.value = 2 * stats::pnorm(abs(statistic), lower.tail = FALSE),
+        ci_low = estimate - stats::qnorm(0.975) * std.error,
+        ci_high = estimate + stats::qnorm(0.975) * std.error
+      ) %>%
+      dplyr::select(
+        subgroup_type, subgroup_value, comparison, base_wave, comparison_wave,
+        estimate, std.error, ci_low, ci_high, statistic, p.value, base_n, comp_n
+      )
+  }) %>%
+    dplyr::arrange(subgroup_type, subgroup_value, comparison)
+}
+
+build_trend_comparison <- function(module_a_metrics, module_b_models) {
+  raw_slopes <- module_a_metrics$core_metrics %>%
+    dplyr::filter(
+      subgroup_type == "overall",
+      subgroup_value == "all",
+      metric == "rank_rank_slope",
+      status == "ok"
+    ) %>%
+    dplyr::transmute(
+      evidence_family = "module_a_raw_descriptive",
+      specification = "descriptive",
+      specification_label = "Raw descriptive slope",
+      wave_year,
+      estimate,
+      std.error,
+      ci_low,
+      ci_high,
+      n_used = n
+    )
+
+  conditional_slopes <- if (is.null(module_b_models$persistence_wave_profiles) || nrow(module_b_models$persistence_wave_profiles) == 0) {
+    tibble::tibble()
+  } else {
+    module_b_models$persistence_wave_profiles %>%
+      dplyr::transmute(
+        evidence_family = "module_b_conditional_association",
+        specification,
+        specification_label,
+        wave_year,
+        estimate,
+        std.error,
+        ci_low,
+        ci_high,
+        n_used
+      )
+  }
+
+  dplyr::bind_rows(raw_slopes, conditional_slopes) %>%
+    dplyr::arrange(evidence_family, specification, wave_year)
+}
+
 build_empirical_model_inventory <- function(module_b_models, module_c_model) {
   module_b_inventory <- if (is.null(module_b_models$formulae) || nrow(module_b_models$formulae) == 0) {
     tibble::tibble()
@@ -323,11 +668,11 @@ build_empirical_model_inventory <- function(module_b_models, module_c_model) {
       dplyr::mutate(
         module = "module_b",
         outcome = dplyr::case_when(
-          model == "eq2_persistence_trend" ~ "own rank",
-          model == "eq3_attainment_score" ~ "own education score",
-          model %in% c("eq4_upward_full_lpm", "eq4_upward_lowparent_lpm") ~ "upward mobility indicator",
-          model == "eq5_persistence_heterogeneity" ~ "same-category persistence indicator",
-          TRUE ~ model
+          model_family == "eq2_persistence_trend" ~ "own rank",
+          model_family == "eq3_attainment_score" ~ "own education score",
+          model_family %in% c("eq4_upward_full_lpm", "eq4_upward_lowparent_lpm") ~ "upward mobility indicator",
+          model_family == "eq5_persistence_heterogeneity" ~ "same-category persistence indicator",
+          TRUE ~ model_family
         ),
         estimator = "fixest::feols",
         family = "gaussian",
@@ -335,17 +680,17 @@ build_empirical_model_inventory <- function(module_b_models, module_c_model) {
         weighted = TRUE,
         fixed_effects = "region + cohort + wave_year_fe",
         parameter_scale = dplyr::case_when(
-          model == "eq2_persistence_trend" ~ "rank outcome / rank coefficient",
-          model == "eq3_attainment_score" ~ "education-score points",
+          model_family == "eq2_persistence_trend" ~ "rank outcome / rank coefficient",
+          model_family == "eq3_attainment_score" ~ "education-score points",
           TRUE ~ "linear-probability coefficient"
         ),
         interaction_structure = dplyr::case_when(
-          model == "eq2_persistence_trend" ~ "parent_rank x wave",
-          model == "eq5_persistence_heterogeneity" ~ "parent_ed_score x urban + female + wave2022",
+          model_family == "eq2_persistence_trend" ~ "parent_rank x wave",
+          model_family == "eq5_persistence_heterogeneity" ~ "parent_ed_score x urban + female + wave2022",
           TRUE ~ "no parent-by-wave interaction"
         )
       ) %>%
-      dplyr::select(module, model, outcome, estimator, family, link, weighted, fixed_effects, parameter_scale, interaction_structure, formula)
+      dplyr::select(module, model, model_family, specification, outcome, estimator, family, link, weighted, fixed_effects, parameter_scale, interaction_structure, formula, n_used)
   }
 
   module_c_inventory <- if (is.null(module_c_model$formulae) || nrow(module_c_model$formulae) == 0) {
@@ -429,8 +774,19 @@ build_empirical_claim_audit <- function(master_flags, module_a_metrics, module_b
     }
   }
 
-  if (!is.null(module_b_models$models$eq2_persistence_trend)) {
-    eq2_coef <- broom::tidy(module_b_models$models$eq2_persistence_trend) %>%
+  eq2_model_id <- if (!is.null(module_b_models$formulae) && nrow(module_b_models$formulae) > 0) {
+    eq2_rows <- module_b_models$formulae %>%
+      dplyr::filter(model_family == "eq2_persistence_trend", specification == "extended")
+    if (nrow(eq2_rows) == 0) {
+      eq2_rows <- module_b_models$formulae %>% dplyr::filter(model_family == "eq2_persistence_trend")
+    }
+    eq2_rows$model[[1]]
+  } else {
+    NA_character_
+  }
+
+  if (!is.na(eq2_model_id) && !is.null(module_b_models$models[[eq2_model_id]])) {
+    eq2_coef <- broom::tidy(module_b_models$models[[eq2_model_id]]) %>%
       dplyr::filter(term == "parent_rank")
     if (nrow(eq2_coef) > 0) {
       row_id <- row_id + 1L
@@ -441,6 +797,28 @@ build_empirical_claim_audit <- function(master_flags, module_a_metrics, module_b
         detail = paste0(
           "Eq. 2 parent_rank estimate=", sprintf("%.3f", eq2_coef$estimate[[1]]),
           ", p-value=", sprintf("%.3f", eq2_coef$p.value[[1]]), "."
+        )
+      )
+    }
+  }
+
+  if (!is.null(module_b_models$wave_difference_tests) && nrow(module_b_models$wave_difference_tests) > 0) {
+    extended_wave_test <- module_b_models$wave_difference_tests %>%
+      dplyr::filter(specification == "extended", comparison == "2016_to_2022")
+    if (nrow(extended_wave_test) == 0) {
+      extended_wave_test <- module_b_models$wave_difference_tests %>%
+        dplyr::filter(comparison == "2016_to_2022")
+    }
+    if (nrow(extended_wave_test) > 0) {
+      row_id <- row_id + 1L
+      rows[[row_id]] <- tibble::tibble(
+        module = "module_b",
+        check_id = "eq2_2016_to_2022_difference",
+        status = if (!is.na(extended_wave_test$p.value[[1]]) && extended_wave_test$p.value[[1]] < 0.05) "ok" else "caution",
+        detail = paste0(
+          "Conditional 2016-to-2022 rank-slope difference estimate=",
+          sprintf("%.3f", extended_wave_test$estimate[[1]]),
+          ", p-value=", sprintf("%.3f", extended_wave_test$p.value[[1]]), "."
         )
       )
     }
@@ -523,6 +901,7 @@ build_empirical_claim_audit <- function(master_flags, module_a_metrics, module_b
 build_empirical_audit_memo_lines <- function(audit_bundle) {
   master_flags <- audit_bundle$master_flags
   parent_availability <- audit_bundle$parent_availability
+  parent_missingness <- audit_bundle$parent_missingness_by_wave
   claim_audit <- audit_bundle$claim_audit
 
   fmt_int <- function(x) format(as.integer(round(as.numeric(x))), big.mark = ",", scientific = FALSE, trim = TRUE)
@@ -567,6 +946,23 @@ build_empirical_audit_memo_lines <- function(audit_bundle) {
     lines <- c(lines, "")
   }
 
+  if (nrow(parent_missingness) > 0) {
+    lines <- c(lines, "## Parent-Education Missingness", "")
+    for (i in seq_len(nrow(parent_missingness))) {
+      lines <- c(
+        lines,
+        paste0(
+          "- Wave ", parent_missingness$wave_year[[i]],
+          ": parent education missing for ",
+          sprintf("%.1f", 100 * parent_missingness$parent_missing_share[[i]]),
+          " percent of respondents (", fmt_int(parent_missingness$parent_missing_n[[i]]),
+          " of ", fmt_int(parent_missingness$n_total[[i]]), ")."
+        )
+      )
+    }
+    lines <- c(lines, "")
+  }
+
   if (nrow(claim_audit) > 0) {
     lines <- c(lines, "## Main Checks", "")
     for (i in seq_len(nrow(claim_audit))) {
@@ -584,6 +980,13 @@ build_empirical_audit <- function(lits_harmonized, module_a_metrics, module_b_mo
   inclusion_composition <- build_inclusion_composition(master_flags)
   parent_availability <- build_parent_availability(master_flags)
   parent_measure_robustness <- build_parent_measure_robustness(lits_harmonized)
+  parent_missingness_by_wave <- build_parent_missingness_by_wave(lits_harmonized)
+  parent_missingness_observables <- build_parent_missingness_observables(lits_harmonized)
+  parent_missingness_sensitivity <- build_parent_missingness_sensitivity(lits_harmonized)
+  parent_measure_map <- build_parent_measure_map()
+  rank_rank_change_tests <- build_rank_rank_change_tests(module_a_metrics)
+  subgroup_trend_checks <- build_subgroup_trend_checks(module_a_metrics)
+  trend_comparison <- build_trend_comparison(module_a_metrics, module_b_models)
   model_inventory <- build_empirical_model_inventory(module_b_models, module_c_model)
   claim_audit <- build_empirical_claim_audit(master_flags, module_a_metrics, module_b_models, module_c_model)
 
@@ -594,6 +997,13 @@ build_empirical_audit <- function(lits_harmonized, module_a_metrics, module_b_mo
     inclusion_composition = inclusion_composition,
     parent_availability = parent_availability,
     parent_measure_robustness = parent_measure_robustness,
+    parent_missingness_by_wave = parent_missingness_by_wave,
+    parent_missingness_observables = parent_missingness_observables,
+    parent_missingness_sensitivity = parent_missingness_sensitivity,
+    parent_measure_map = parent_measure_map,
+    rank_rank_change_tests = rank_rank_change_tests,
+    subgroup_trend_checks = subgroup_trend_checks,
+    trend_comparison = trend_comparison,
     model_inventory = model_inventory,
     claim_audit = claim_audit
   )

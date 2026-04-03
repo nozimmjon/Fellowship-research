@@ -257,7 +257,12 @@ save_module_b_outputs <- function(model_list) {
   coef_path <- file.path(PROJ_PATHS$tables, "module_b_model_coefficients.csv")
   coverage_path <- file.path(PROJ_PATHS$tables, "module_b_covariate_coverage.csv")
   selected_covariates_path <- file.path(PROJ_PATHS$tables, "module_b_selected_covariates.csv")
+  classification_path <- file.path(PROJ_PATHS$tables, "module_b_covariate_classification.csv")
+  specifications_path <- file.path(PROJ_PATHS$tables, "module_b_specifications.csv")
   formulae_path <- file.path(PROJ_PATHS$tables, "module_b_formulae.csv")
+  key_coef_path <- file.path(PROJ_PATHS$tables, "module_b_key_coefficient_comparison.csv")
+  wave_profile_path <- file.path(PROJ_PATHS$tables, "module_b_persistence_wave_profiles.csv")
+  wave_test_path <- file.path(PROJ_PATHS$tables, "module_b_wave_difference_tests.csv")
   model_obj_path <- file.path(PROJ_PATHS$models, "module_b_models.rds")
 
   if (length(model_list) == 0 || is.null(model_list$models) || length(model_list$models) == 0) {
@@ -281,9 +286,18 @@ save_module_b_outputs <- function(model_list) {
     safe_write_csv(empty_coef, coef_path)
     safe_write_csv(empty_cov, coverage_path)
     safe_write_csv(empty_selected, selected_covariates_path)
+    safe_write_csv(tibble::tibble(), classification_path)
+    safe_write_csv(tibble::tibble(), specifications_path)
     safe_write_csv(empty_formulae, formulae_path)
+    safe_write_csv(tibble::tibble(), key_coef_path)
+    safe_write_csv(tibble::tibble(), wave_profile_path)
+    safe_write_csv(tibble::tibble(), wave_test_path)
     saveRDS(model_list, model_obj_path)
-    return(c(coef_path, coverage_path, selected_covariates_path, formulae_path, model_obj_path))
+    return(c(
+      coef_path, coverage_path, selected_covariates_path, classification_path,
+      specifications_path, formulae_path, key_coef_path, wave_profile_path,
+      wave_test_path, model_obj_path
+    ))
   }
 
   coef_df <- purrr::imap_dfr(model_list$models, function(model, model_name) {
@@ -293,19 +307,47 @@ save_module_b_outputs <- function(model_list) {
 
   coverage_df <- model_list$coverage
   selected_df <- tibble::tibble(covariate = model_list$selected_covariates)
+  classification_df <- model_list$covariate_classification
+  specifications_df <- model_list$specifications
   formulae_df <- model_list$formulae
+  key_coef_df <- model_list$key_coefficients
+  wave_profile_df <- model_list$persistence_wave_profiles
+  wave_test_df <- model_list$wave_difference_tests
 
   if (is.null(coverage_df)) coverage_df <- tibble::tibble()
   if (is.null(selected_df)) selected_df <- tibble::tibble(covariate = character())
+  if (is.null(classification_df)) classification_df <- tibble::tibble()
+  if (is.null(specifications_df)) specifications_df <- tibble::tibble()
   if (is.null(formulae_df)) formulae_df <- tibble::tibble()
+  if (is.null(key_coef_df)) key_coef_df <- tibble::tibble()
+  if (is.null(wave_profile_df)) wave_profile_df <- tibble::tibble()
+  if (is.null(wave_test_df)) wave_test_df <- tibble::tibble()
+
+  if (nrow(coef_df) > 0 && nrow(formulae_df) > 0) {
+    coef_df <- coef_df %>%
+      dplyr::left_join(
+        formulae_df %>%
+          dplyr::select(model, model_family, specification, specification_label, n_used),
+        by = "model"
+      )
+  }
 
   safe_write_csv(coef_df, coef_path)
   safe_write_csv(coverage_df, coverage_path)
   safe_write_csv(selected_df, selected_covariates_path)
+  safe_write_csv(classification_df, classification_path)
+  safe_write_csv(specifications_df, specifications_path)
   safe_write_csv(formulae_df, formulae_path)
+  safe_write_csv(key_coef_df, key_coef_path)
+  safe_write_csv(wave_profile_df, wave_profile_path)
+  safe_write_csv(wave_test_df, wave_test_path)
   saveRDS(model_list, model_obj_path)
 
-  c(coef_path, coverage_path, selected_covariates_path, formulae_path, model_obj_path)
+  c(
+    coef_path, coverage_path, selected_covariates_path, classification_path,
+    specifications_path, formulae_path, key_coef_path, wave_profile_path,
+    wave_test_path, model_obj_path
+  )
 }
 
 save_module_c_outputs <- function(model) {
@@ -378,6 +420,13 @@ save_empirical_audit_outputs <- function(audit_bundle) {
   inclusion_comp_path <- file.path(PROJ_PATHS$tables, "empirical_inclusion_composition.csv")
   parent_availability_path <- file.path(PROJ_PATHS$tables, "empirical_parent_availability.csv")
   parent_robustness_path <- file.path(PROJ_PATHS$tables, "empirical_parent_measure_robustness.csv")
+  parent_missingness_path <- file.path(PROJ_PATHS$tables, "empirical_parent_missingness_by_wave.csv")
+  parent_missingness_compare_path <- file.path(PROJ_PATHS$tables, "empirical_parent_missingness_observables.csv")
+  parent_missingness_sensitivity_path <- file.path(PROJ_PATHS$tables, "empirical_parent_missingness_sensitivity.csv")
+  parent_measure_map_path <- file.path(PROJ_PATHS$tables, "empirical_parent_measure_map.csv")
+  rank_change_tests_path <- file.path(PROJ_PATHS$tables, "empirical_rank_rank_change_tests.csv")
+  subgroup_trend_path <- file.path(PROJ_PATHS$tables, "empirical_subgroup_trend_checks.csv")
+  trend_comparison_path <- file.path(PROJ_PATHS$tables, "empirical_trend_comparison.csv")
   claim_audit_path <- file.path(PROJ_PATHS$tables, "empirical_claim_audit.csv")
   model_inventory_path <- file.path(PROJ_PATHS$tables, "empirical_model_inventory.csv")
   memo_path <- file.path(PROJ_PATHS$outputs, "publication", "empirical_audit_memo.md")
@@ -388,6 +437,13 @@ save_empirical_audit_outputs <- function(audit_bundle) {
   safe_write_csv(audit_bundle$inclusion_composition, inclusion_comp_path)
   safe_write_csv(audit_bundle$parent_availability, parent_availability_path)
   safe_write_csv(audit_bundle$parent_measure_robustness, parent_robustness_path)
+  safe_write_csv(audit_bundle$parent_missingness_by_wave, parent_missingness_path)
+  safe_write_csv(audit_bundle$parent_missingness_observables, parent_missingness_compare_path)
+  safe_write_csv(audit_bundle$parent_missingness_sensitivity, parent_missingness_sensitivity_path)
+  safe_write_csv(audit_bundle$parent_measure_map, parent_measure_map_path)
+  safe_write_csv(audit_bundle$rank_rank_change_tests, rank_change_tests_path)
+  safe_write_csv(audit_bundle$subgroup_trend_checks, subgroup_trend_path)
+  safe_write_csv(audit_bundle$trend_comparison, trend_comparison_path)
   safe_write_csv(audit_bundle$claim_audit, claim_audit_path)
   safe_write_csv(audit_bundle$model_inventory, model_inventory_path)
 
@@ -401,6 +457,13 @@ save_empirical_audit_outputs <- function(audit_bundle) {
     inclusion_comp_path,
     parent_availability_path,
     parent_robustness_path,
+    parent_missingness_path,
+    parent_missingness_compare_path,
+    parent_missingness_sensitivity_path,
+    parent_measure_map_path,
+    rank_change_tests_path,
+    subgroup_trend_path,
+    trend_comparison_path,
     claim_audit_path,
     model_inventory_path,
     memo_path
