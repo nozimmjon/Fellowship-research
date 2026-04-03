@@ -255,14 +255,15 @@ if (file.exists(mech_summary_file)) {
 }
 ```
 
-## G. Module C Secondary Mechanism Regressions
+## G. Module C Secondary Mechanism Regressions (Appendix Diagnostics Only)
+
+These logit specifications are retained as diagnostics, not as headline evidence. They are reported to document sensitivity to split support and threshold choices in the child-module sample.
 
 ```{r}
 if (file.exists(mech_coef_file)) {
   mech_term_labels <- c(
     parent_low_edu = "Low parent education",
     urban = "Urban",
-    gendermale = "Male child",
     "parent_low_edu:urban" = "Low parent education x urban"
   )
   mech_model_labels <- c(
@@ -293,7 +294,7 @@ if (file.exists(mech_coef_file)) {
 
 ## G1. Module C Stoppage Fragility Check
 
-The strict `<=9` split is retained for transparency but treated as a weak-support scenario when the low-parent group becomes too small for stable FE logit estimation.
+The baseline Module C split uses mean parent years. This is an explicit exception to the main max-parent proxy used in Modules A and B, because the weighted median split becomes support-degenerate under the max-parent rule in the child-module sample. The strict `<=9` split is likewise retained for transparency but treated as a weak-support scenario when the low-parent group becomes too small for stable FE logit estimation.
 
 ```{r}
 robust_coef_file <- file.path("..", "outputs", "tables", "module_c_mechanism_robustness_coefficients.csv")
@@ -309,7 +310,8 @@ if (file.exists(robust_coef_file)) {
     baseline_weighted_median = "Weighted median split",
     unweighted_median = "Unweighted median split",
     weighted_leq11 = "Weighted <=11 years split",
-    weighted_leq9 = "Weighted <=9 years split"
+    weighted_leq9 = "Weighted <=9 years split",
+    weighted_median_maxparent = "Weighted median split (max-parent proxy)"
   )
   stop_gap_table$Scenario <- unname(scenario_labels[stop_gap_table$scenario_id])
   stop_gap_table$Estimate <- fmt_num(stop_gap_table$estimate)

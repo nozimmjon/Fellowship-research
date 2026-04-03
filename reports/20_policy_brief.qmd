@@ -1,44 +1,116 @@
 ---
-title: "Policy Brief"
-subtitle: "Intergenerational Educational Mobility in Uzbekistan"
+title: "Educational Opportunity in Uzbekistan Still Depends Too Much on Family Background"
+subtitle: "Why the next phase of reform should focus on equity in learning, transition, and completion"
 author: "Research Team"
 date: today
 format:
   html:
     toc: false
-  docx: default
+    number-sections: false
+  docx:
+    toc: false
 execute:
   echo: false
   warning: false
   message: false
 ---
 
-## Audience
+::: {.callout-important title="Executive Summary"}
+Uzbekistan has entered a new phase of education reform. Since 2017, the system has expanded, especially in tertiary education [@wb_modernizing_tertiary_2017; @wb_uzb_2018; @unicef_compact_2024; @unicef_sitan_2024]. That progress matters. But expansion alone does not guarantee equal opportunity. This brief uses the project's core evidence from LiTS 2010, 2016, and 2022-23 to ask how much children's educational outcomes still depend on family background.
 
-This brief is written for three core audiences: education policymakers in Uzbekistan, development partners supporting education and human-capital programs, and researchers working on mobility and inequality measurement.
+Three findings stand out. First, adult educational attainment in Uzbekistan still tracks parental education closely. The paper's preferred rank-based persistence measure rises from 0.13 in 2010 to 0.31 in 2016 and remains elevated at 0.25 in 2022-23. Second, household conditions matter sharply when schooling is disrupted. In the LiTS IV child module, 76 percent of households report at least one remote-learning challenge, and mothers are reported as the main support channel in 87 percent of cases. Third, recent expansion in access should be welcomed, but the evidence suggests that larger systems do not automatically become fairer systems.
 
-## What This Evidence Is
+The policy takeaway is direct: the next phase of reform should not focus only on adding places. It should focus on who can learn well, move through key transitions, enter tertiary education on fair terms, and complete it successfully.
+:::
 
-The paper provides a descriptive and associational profile of intergenerational educational mobility in Uzbekistan using LiTS 2010, 2016, and 2022-23. It does not estimate causal policy effects.
+## Why This Matters Now
 
-## Core Findings
+Uzbekistan's education system has changed substantially since 2017. Sector diagnostics and reform documents describe a period of broad restructuring, renewed policy attention to preschool and school quality, and a major push to widen access to higher education [@wb_modernizing_tertiary_2017; @wb_uzb_2018; @unicef_compact_2024; @unicef_sitan_2024]. That shift is visible in the project's verified official administrative series. Between academic years 2019/20 and 2024/25, the number of higher education institutions rose from 119 to 222, total students rose from 440,991 to 1,432,810, and bachelor admissions rose from 128,730 to 360,110 [@uzb_admin_he_2025]. Demand has remained high as well: verified official data record 1.66 million bachelor applications in 2022/23 [@uzb_admin_he_2025].
 
-Descriptive persistence measures rise across the three LiTS waves, but pooled models do not estimate that change precisely once controls and fixed effects are added. The strongest inference is therefore about substantial persistence levels, not a precisely estimated worsening time trend.
+Expanding access is essential in a country that wants stronger human capital, higher productivity, and broader opportunity. It can reduce old bottlenecks and widen the set of students who can realistically continue after secondary school. It also creates new policy responsibilities. Once more students can enter the system, the central question is no longer only how many places exist. It is also who is prepared to use them, who can afford to stay, and who reaches completion with meaningful learning.
 
-Across pooled correlates models, parental education remains the clearest predictor of adult educational attainment. Other household correlates are less consistently estimated once fixed effects are included.
+That is why intergenerational educational mobility matters now. It is a practical way to test whether opportunity is spreading beyond families that already have educational advantages. If parental background remains a strong predictor of attainment even after access expands, then reform has reached only part of the equity problem.
 
-The bounded LiTS IV child-module extension shows widespread disruption during COVID-era schooling and heavy reliance on household support, especially maternal support. It also shows higher education-stoppage risk among children from lower-parent-education households. These patterns are suggestive, not causal.
+These post-2017 reforms are therefore important context for interpretation in this brief. They are not used here as causal proof. This project does not estimate the causal effect of reforms, university expansion, or admissions growth on mobility outcomes.
 
-## Caveats for Decision-Makers
+## The Policy Problem
 
-The 2022-23 category-based mobility rates should be treated cautiously because the valid categorical denominator is much smaller than the valid sample used for the 2022 rank-based measure. Those rates are useful as directional checks, not stand-alone headline evidence.
+When educational attainment depends heavily on parental education, the costs are economic as well as social. Talent is filtered through family circumstances before it reaches the labor market. Students from less educated households are more likely to face weaker preparation, more fragile transitions between school stages, and greater risk of dropout when costs or shocks rise. Over time, that reduces the efficiency of public investment in education. A system can expand on paper while still under-using a large share of national ability.
 
-## Policy Implications
+For Uzbekistan, this is not an abstract concern. Recent reform documents place strong emphasis on quality, relevance, and inclusion [@wb_uzb_2018; @unicef_sitan_2024; @wb_gender_2024]. If family background continues to shape who advances and who completes, then educational expansion will deliver less than it could for inclusive growth.
 
-1. Protect learning transitions where persistence is most likely to harden: prioritize remedial support at lower-to-upper-secondary and upper-secondary-to-post-secondary transitions in regions with weaker progression profiles.
-2. Target household learning constraints directly: combine school-side interventions with household-side support packages (device access, reliable connectivity support, and practical caregiver guidance for home learning).
-3. Build shock-readiness protocols into routine education planning: pre-position remote-learning continuity tools so future disruptions are less likely to convert into education stoppage among lower-parent-education households.
-4. Recognize household care and support burdens in program design: when continuity plans assume home support, include gender-aware measures that reduce disproportionate burdens on mothers.
-5. Strengthen mobility monitoring: maintain regular rank-based and category-based reporting from repeated surveys so policy can track persistence levels without over-interpreting noisy categorical cells.
+The policy issue is therefore not whether access should keep expanding. It should. The issue is whether the next stage of reform is equally serious about learning conditions, transition points, and completion risks for students from less advantaged homes. Mobility evidence helps identify that gap.
 
-Supplementary HBS evidence on the household support environment points in the same direction: connectivity, tutoring access, education spending capacity, and migration/remittance resources remain part of the constraint set facing families, even though HBS is not used for headline mobility estimation. The companion HBS descriptive note shows that these support conditions also vary meaningfully across years, urban-rural settings, and regions.
+## What The Evidence Shows
+
+### Finding 1. Educational attainment still tracks family background
+
+The clearest message from the LiTS evidence is that family background still matters strongly for educational attainment in Uzbekistan. The paper's preferred rank-based measure of persistence rises from 0.13 in 2010 to 0.31 in 2016 and remains elevated at 0.25 in 2022-23. In plain terms, adult educational rank continues to move closely with parental educational rank, even in the latest wave.
+
+![Educational persistence remains substantial across LiTS waves. Higher values indicate a stronger link between parental and own education rank.](../outputs/figures/tier_a_rank_rank_by_wave.png)
+
+The simpler category-based measures tell the same broad story. Same-category persistence rises from 44 percent in 2010 to 56 percent in 2016 and 67 percent in 2022-23. That series is useful as a directional check, although the rank-based measure remains the better cross-wave benchmark because it is less sensitive to category coding and educational expansion.
+
+The pooled models sharpen the interpretation. Once the analysis adds cohort, region, and wave controls, the data support a stronger parent-child gradient in 2016 than in 2010. The 2022-23 gradient remains above the 2010 baseline, but it is less clearly distinct from 2016. The evidence is strongest on substantial persistence levels, not on a claim that mobility worsened monotonically in every later period.
+
+Parental education is also the most stable predictor in the pooled attainment model. Other observed correlates, such as urban residence, migration exposure, and multigenerational household structure, are not estimated as consistently once the model includes the fixed effects and controls used in the project. For decisionmakers, the practical implication is straightforward: equalizing access alone does not break the link between parents' schooling and children's eventual attainment.
+
+The transition matrix points in the same direction. In 2022-23, 87 percent of respondents from tertiary-educated households also reach tertiary education. That does not mean upward movement is absent. It means the top of the ladder remains highly secure for families already positioned there.
+
+### Finding 2. Household conditions shape learning, especially during disruption
+
+The LiTS IV child module is not the main mobility design, but it adds a valuable policy lens. It shows how much learning continuity can depend on what happens inside the household when schooling is disrupted.
+
+The headline fact is scale. In the Uzbekistan child-module sample, 78 percent report that a child stopped education during COVID at some point, 76 percent report at least one remote-learning challenge, 73 percent report internet-related difficulties, 63 percent report device-related constraints, and 61 percent report shared-device use. These are not small frictions. They are large household-level barriers to sustaining learning.
+
+The second fact is substitution. Schooling continuity did not rest only on formal institutions. It shifted heavily onto families. Mothers are reported as the main learning-support channel in 87 percent of observed cases, while fathers are reported in only 4 percent. This shows how strongly learning continuity can depend on unpaid support that is not evenly available across homes.
+
+The third fact is that lower-parent-education households tend to show somewhat worse challenge profiles in the descriptive splits. For example, any remote-learning challenge is reported by 78 percent of lower-parent-education households, compared with 73 percent of higher-parent-education households. Internet challenges are also more common in the lower-parent-education group.
+
+At the same time, the project keeps an important boundary. The adjusted model for education stoppage does not show a stable parental-education gap once controls are added. The child-module evidence is therefore strongest on disruption, home-learning barriers, and household support burdens. It is not a causal estimate of pandemic effects, and it does not establish a robust adjusted stoppage mechanism by parental education alone.
+
+### Finding 3. Expansion in access does not automatically equalize opportunity
+
+Uzbekistan's recent expansion in tertiary access is real and policy-relevant. But the LiTS results show why expansion should not be read as the same thing as equal opportunity. A system can become larger while family background still shapes who converts access into completed attainment.
+
+This is where the household context matters. Supplementary HBS evidence is not used for the headline mobility estimates, but it helps show the environment in which students and families are making education decisions. Across pooled HBS 2021-2025 households, 63 percent report positive education spending, 14 percent report tutoring, 15 percent receive remittances, and about 80 percent report internet access. These indicators also vary across regions; for example, positive education spending ranges from about 54 percent to 69 percent in the pooled regional overlays. Those are not mobility measures. They are signals that the costs of staying on track in education still sit partly inside the household.
+
+That matters for reform design. When admissions expand, students from better-educated or better-resourced families are still more likely to benefit if they have stronger preparation, more information, more stable connectivity, more spending capacity, or more adult support at home. Expansion can widen opportunity. It does not guarantee that the newly available opportunity is used evenly.
+
+The policy implication is not to slow expansion. It is to complete it. The next stage of reform should ask not only whether more students can enter the system, but whether students from less educated households can learn, transition, persist, and graduate on fair terms. That is the equity test the current evidence puts on the table.
+
+## Policy Recommendations
+
+### A. Protect learning for students from lower-resource households
+
+The first priority is to intervene before disadvantage hardens into lower attainment. That means moving beyond broad access measures and using practical risk reduction at the stages where students are most likely to fall behind: late primary to lower secondary, lower to upper secondary, and upper secondary to post-secondary entry.
+
+Schools and local authorities should use short diagnostic assessments at the start of the academic year to identify students with learning loss and then fund structured catch-up support, not generic remediation. The most effective package is likely to be small-group tutoring, time-bound catch-up modules in core subjects, and transition support around exam years and school-stage changes. Where schools identify concrete constraints, support should extend beyond the classroom. Device lending, short-term connectivity support, transport or meal assistance, and simple caregiver guidance can all help protect continuity when the barrier is household-based rather than strictly academic.
+
+This is especially important because the child-module evidence shows that learning shocks are absorbed inside households. Policy should not assume that every family can provide the same home support at the same cost.
+
+### B. Make tertiary expansion more equitable, not only larger
+
+The second priority is to treat tertiary expansion as an equity agenda as well as a capacity agenda. New places matter. But the mobility evidence suggests that students from more educated families remain better positioned to convert those places into attainment.
+
+In practice, this means focusing on access, persistence, and completion together. Outreach should target first-generation and non-tertiary-origin applicants earlier, while they are still in secondary school. Information on pathways, fees, scholarships, dormitory options, and admissions procedures should be provided through schools, not left to informal networks. At entry, institutions should strengthen first-year academic advising, bridge support, and foundation modules for students arriving with weaker preparation. For students already admitted, small but predictable support can matter: need-based aid, dormitory access, transport support, and early-alert systems for dropout risk are often more useful than large but thinly spread programs.
+
+The policy test should also change. Expansion should not be judged only by admissions counts or the number of institutions. It should be judged by whether students from less advantaged backgrounds enter, stay, and complete at higher rates over time.
+
+### C. Build an equity-monitoring system
+
+The third priority is to monitor who benefits from expansion. Uzbekistan already has a reform narrative around access. It now needs a routine equity dashboard.
+
+That dashboard should combine survey and administrative indicators. On the survey side, periodic modules should continue to capture parental education, household learning conditions, and key mobility benchmarks. On the administrative side, the Ministry and partner institutions should track regional and socioeconomic patterns in upper-secondary completion, tertiary entry, first-year retention, and graduation. Where possible, these indicators should be disaggregated by region, gender, and markers of disadvantage.
+
+The point is not to create a large reporting burden. It is to make reform visible in equity terms. If admissions rise but persistence gaps do not narrow, policy should be able to see that quickly and respond.
+
+## Limits Of The Evidence
+
+This brief relies mainly on descriptive and associational evidence from repeated LiTS cross-sections. It shows how strongly adult educational outcomes still track parental background and how household conditions shaped learning during disruption, but it does not identify the causal effect of post-2017 reforms, university expansion, or pandemic policy responses. The HBS layer is supplementary household context, not a source of headline intergenerational mobility estimates. The child-module extension is also based on a much smaller subsample and is best used to describe disruption and support patterns rather than to isolate a stable mechanism. Fuller methods, diagnostics, and robustness checks are reported in the companion main paper and technical appendix.
+
+## Data Sources And Further Reading
+
+This brief draws primarily on LiTS 2010, 2016, and 2022-23 for intergenerational mobility, the LiTS IV child module for disruption and household-support patterns, supplementary HBS 2021-2025 context tables, and a verified official higher-education administrative series compiled for the project [@uzb_admin_he_2025].
+
+For full methods, tables, and robustness checks, see the companion main paper and technical appendix in this project.

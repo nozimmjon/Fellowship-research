@@ -1,5 +1,6 @@
-scenario_id,split_rule,split_threshold,use_weights,n_total,n_parent_non_missing,n_low_group,n_high_group,support_min_group_n,scenario_status
-baseline_weighted_median,median,13.5,TRUE,186,183,114,69,15,supported
-unweighted_median,median,13.5,FALSE,186,183,114,69,15,supported
-weighted_leq11,leq_11,11,TRUE,186,183,74,109,15,supported
-weighted_leq9,leq_9,9,TRUE,186,183,7,176,15,degenerate_low_group_support
+scenario_id,parent_proxy,split_rule,split_threshold,use_weights,n_total,n_parent_non_missing,n_low_group,n_high_group,support_min_group_n,scenario_status
+baseline_weighted_median,mean_parent_years,median,13.5,TRUE,186,183,114,69,15,supported
+unweighted_median,mean_parent_years,median,13.5,FALSE,186,183,114,69,15,supported
+weighted_leq11,mean_parent_years,leq_11,11,TRUE,186,183,74,109,15,supported
+weighted_leq9,mean_parent_years,leq_9,9,TRUE,186,183,7,176,15,degenerate_low_group_support
+weighted_median_maxparent,max_parent_level,median,16,TRUE,186,183,183,0,15,degenerate_low_group_support

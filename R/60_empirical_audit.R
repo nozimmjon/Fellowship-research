@@ -80,7 +80,6 @@ prepare_module_c_inclusion_flags <- function(module_c_model) {
       module_c_row_id = dplyr::row_number(),
       wave_year = 2022L,
       region = as.character(region),
-      gender = as.character(gender),
       urban = suppressWarnings(as.integer(urban)),
       weight_final = suppressWarnings(as.numeric(weight_final)),
       weight_valid = !is.na(weight_final) & weight_final > 0,
@@ -111,14 +110,13 @@ prepare_module_c_inclusion_flags <- function(module_c_model) {
       !is.na(out[[outcome_var]]) &
       !is.na(out$parent_low_edu) &
       !is.na(out$urban) &
-      !is.na(out$gender) &
       !is.na(out$region) &
       out$weight_valid
   }
 
   out %>%
     dplyr::select(
-      module_c_row_id, wave_year, region, gender, urban, weight_valid,
+      module_c_row_id, wave_year, region, urban, weight_valid,
       child_module_eligibility_observed, child_enrolled_pre_covid,
       mechanism_sample_eligible, parent_schooling_observed, mechanism_parent_non_missing,
       parent_years_schooling, parent_low_edu,
@@ -473,6 +471,26 @@ build_empirical_claim_audit <- function(master_flags, module_a_metrics, module_b
           "Stoppage robustness: ", n_sig, " of ", nrow(stoppage_rows),
           " parent_low_edu scenarios significant at 5%; extreme coefficient present=",
           ifelse(extreme_sep, "yes", "no"), "."
+        )
+      )
+    }
+  }
+
+  if (!is.null(module_c_model$robustness_scenarios) && nrow(module_c_model$robustness_scenarios) > 0) {
+    max_parent_row <- module_c_model$robustness_scenarios %>%
+      dplyr::filter(scenario_id == "weighted_median_maxparent")
+
+    if (nrow(max_parent_row) > 0) {
+      row_id <- row_id + 1L
+      rows[[row_id]] <- tibble::tibble(
+        module = "module_c",
+        check_id = "parent_proxy_exception",
+        status = if (max_parent_row$n_high_group[[1]] == 0) "caution" else "ok",
+        detail = paste0(
+          "Module C uses mean parent years for the low/high split; under the max-parent median split, threshold=",
+          sprintf("%.1f", max_parent_row$split_threshold[[1]]),
+          ", low-group N=", max_parent_row$n_low_group[[1]],
+          ", high-group N=", max_parent_row$n_high_group[[1]], "."
         )
       )
     }

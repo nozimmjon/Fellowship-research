@@ -25,6 +25,22 @@ weighted_rate <- function(x, w) {
 MODULE_C_MIN_GROUP_N <- 15L
 MODULE_C_MIN_EVENTS_PER_GROUP <- 2L
 
+apply_module_c_parent_proxy <- function(df, parent_proxy = c("mean_parent_years", "max_parent_level")) {
+  parent_proxy <- match.arg(parent_proxy)
+
+  if (nrow(df) == 0) {
+    return(df)
+  }
+
+  if (parent_proxy == "mean_parent_years") {
+    df$parent_years_schooling <- df$parent_years_schooling_mean
+  } else {
+    df$parent_years_schooling <- df$parent_years_schooling_max
+  }
+
+  df
+}
+
 prepare_module_c_mechanism_data <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "lits")) {
   path <- select_existing_file(c(file.path(raw_dir, "lits_iv_dta", "lits_iv.dta")))
   if (is.na(path)) {
@@ -34,7 +50,7 @@ prepare_module_c_mechanism_data <- function(raw_dir = file.path(PROJ_PATHS$raw_d
   d <- haven::read_dta(
     path,
     col_select = c(
-      country, region, int_gender, urbanity,
+      country, region, urbanity,
       q110b, q111b,
       q713, q714, q715a, q715b, q715c, q716, q717, q718a, q718b, q718c, q718d, q718e,
       weight_pop, weight
@@ -50,9 +66,11 @@ prepare_module_c_mechanism_data <- function(raw_dir = file.path(PROJ_PATHS$raw_d
       mother_level = map_education_level(as_label_text(q111b)),
       father_years = education_level_to_years(father_level),
       mother_years = education_level_to_years(mother_level),
-      parent_years_schooling = rowMeans(cbind(father_years, mother_years), na.rm = TRUE),
-      parent_years_schooling = dplyr::if_else(is.nan(parent_years_schooling), NA_real_, parent_years_schooling),
-      gender = coerce_gender_label(as_label_text(int_gender)),
+      parent_ed_level_max = parent_max_level(father_level, mother_level),
+      parent_years_schooling_mean = rowMeans(cbind(father_years, mother_years), na.rm = TRUE),
+      parent_years_schooling_mean = dplyr::if_else(is.nan(parent_years_schooling_mean), NA_real_, parent_years_schooling_mean),
+      parent_years_schooling_max = education_level_to_years(parent_ed_level_max),
+      parent_years_schooling = parent_years_schooling_mean,
       urban = coerce_urban_binary(as_label_text(urbanity)),
       weight_final = clean_numeric(dplyr::coalesce(weight_pop, weight)),
       child_enrolled_pre_covid = yes_no_to_binary(as_label_text(q713)),
@@ -83,7 +101,6 @@ prepare_module_c_mechanism_data <- function(raw_dir = file.path(PROJ_PATHS$raw_d
     ) %>%
     dplyr::mutate(
       region = factor(region),
-      gender = factor(gender),
       urban = as.integer(urban)
     )
 
@@ -206,7 +223,6 @@ assess_module_c_model_support <- function(
       !is.na(.data[[outcome_var]]),
       !is.na(parent_low_edu),
       !is.na(urban),
-      !is.na(gender),
       !is.na(region)
     )
 
@@ -282,7 +298,6 @@ fit_module_c_outcome_model <- function(df, outcome_var, use_weights = TRUE) {
       !is.na(.data[[outcome_var]]),
       !is.na(parent_low_edu),
       !is.na(urban),
-      !is.na(gender),
       !is.na(region)
     )
 
@@ -296,7 +311,7 @@ fit_module_c_outcome_model <- function(df, outcome_var, use_weights = TRUE) {
   }
 
   fml <- stats::as.formula(
-    paste0(outcome_var, " ~ parent_low_edu + urban + gender + parent_low_edu:urban | region")
+    paste0(outcome_var, " ~ parent_low_edu + urban + parent_low_edu:urban | region")
   )
 
   fit <- if (use_weights) {
@@ -340,7 +355,9 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
     ))
   }
 
-  mech_df_base <- prepared %>% dplyr::filter(in_mechanism_sample)
+  mech_df_base <- prepared %>%
+    dplyr::filter(in_mechanism_sample) %>%
+    apply_module_c_parent_proxy("mean_parent_years")
   mech_df <- apply_parent_education_split(mech_df_base, split_rule = "median")
   median_parent_years <- unique(mech_df$split_threshold)[1]
 
@@ -350,9 +367,9 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
       "Respondents with child module eligibility info (q713 non-missing)",
       "Respondents with child enrolled pre-COVID (q713 = yes)",
       "Mechanism sample with non-missing parental schooling",
-      "Parental schooling median threshold (years)",
-      "Baseline low-parent-education group size",
-      "Baseline higher-parent-education group size"
+      "Baseline parental-schooling median threshold (mean parent years)",
+      "Baseline low-parent-education group size (mean parent years)",
+      "Baseline higher-parent-education group size (mean parent years)"
     ),
     n = c(
       nrow(prepared),
@@ -368,7 +385,7 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
   summary_tbl <- build_module_c_summary(mech_df)
 
   coverage_vars <- c(
-    "parent_years_schooling", "parent_low_edu", "urban", "gender", "weight_final",
+    "parent_years_schooling", "parent_low_edu", "urban", "weight_final",
     "education_stopped_covid", "switched_online", "school_closed_no_online", "switched_hybrid",
     "support_mother", "support_father", "support_grand_relatives", "no_support_needed",
     "shared_device", "any_remote_challenge", "challenge_internet", "challenge_device",
@@ -414,11 +431,12 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
   }
 
   scenario_specs <- tibble::tribble(
-    ~scenario_id, ~split_rule, ~use_weights,
-    "baseline_weighted_median", "median", TRUE,
-    "unweighted_median", "median", FALSE,
-    "weighted_leq11", "leq_11", TRUE,
-    "weighted_leq9", "leq_9", TRUE
+    ~scenario_id, ~split_rule, ~use_weights, ~parent_proxy,
+    "baseline_weighted_median", "median", TRUE, "mean_parent_years",
+    "unweighted_median", "median", FALSE, "mean_parent_years",
+    "weighted_leq11", "leq_11", TRUE, "mean_parent_years",
+    "weighted_leq9", "leq_9", TRUE, "mean_parent_years",
+    "weighted_median_maxparent", "median", TRUE, "max_parent_level"
   )
 
   scenario_rows <- list()
@@ -428,7 +446,10 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
     sid <- scenario_specs$scenario_id[[s]]
     split_rule <- scenario_specs$split_rule[[s]]
     use_w <- scenario_specs$use_weights[[s]]
-    df_s <- apply_parent_education_split(mech_df_base, split_rule = split_rule)
+    parent_proxy <- scenario_specs$parent_proxy[[s]]
+    df_s <- mech_df_base %>%
+      apply_module_c_parent_proxy(parent_proxy) %>%
+      apply_parent_education_split(split_rule = split_rule)
     split_threshold <- unique(df_s$split_threshold)[1]
     n_low_group <- sum(df_s$parent_low_edu == 1, na.rm = TRUE)
     n_high_group <- sum(df_s$parent_low_edu == 0, na.rm = TRUE)
@@ -436,6 +457,7 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
 
     scenario_rows[[length(scenario_rows) + 1]] <- tibble::tibble(
       scenario_id = sid,
+      parent_proxy = parent_proxy,
       split_rule = split_rule,
       split_threshold = split_threshold,
       use_weights = use_w,
@@ -460,6 +482,7 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
         row_id <- row_id + 1L
         robust_rows[[row_id]] <- tibble::tibble(
           scenario_id = sid,
+          parent_proxy = parent_proxy,
           split_rule = split_rule,
           split_threshold = split_threshold,
           use_weights = use_w,
@@ -483,6 +506,7 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
         row_id <- row_id + 1L
         robust_rows[[row_id]] <- tibble::tibble(
           scenario_id = sid,
+          parent_proxy = parent_proxy,
           split_rule = split_rule,
           split_threshold = split_threshold,
           use_weights = use_w,
@@ -501,6 +525,7 @@ fit_module_c_mechanisms <- function(raw_dir = file.path(PROJ_PATHS$raw_data, "li
         tid <- broom::tidy(fit_obj$model) %>%
           dplyr::mutate(
             scenario_id = sid,
+            parent_proxy = parent_proxy,
             split_rule = split_rule,
             split_threshold = split_threshold,
             use_weights = use_w,

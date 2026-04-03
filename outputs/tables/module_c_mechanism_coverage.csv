@@ -2,7 +2,6 @@ variable,n_total,n_non_missing,share_non_missing,n_unique_non_missing
 parent_years_schooling,186,183,0.9838709677419355,10
 parent_low_edu,186,183,0.9838709677419355,2
 urban,186,186,1,2
-gender,186,186,1,2
 weight_final,186,186,1,149
 education_stopped_covid,186,186,1,2
 switched_online,186,186,1,2

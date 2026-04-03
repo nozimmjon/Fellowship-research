@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Research Team">
-<meta name="dcterms.date" content="2026-04-02">
+<meta name="dcterms.date" content="2026-04-03">
 
 <title>Intergenerational Educational Mobility in Uzbekistan</title>
 <style>
@@ -139,7 +139,7 @@ window.Quarto = {
   <li><a href="#bounded-lits-iv-child-module-extension" id="toc-bounded-lits-iv-child-module-extension" class="nav-link" data-scroll-target="#bounded-lits-iv-child-module-extension"><span class="header-section-number">7</span> Bounded LiTS IV Child Module Extension</a>
   <ul class="collapse">
   <li><a href="#sample-and-disruption-profile" id="toc-sample-and-disruption-profile" class="nav-link" data-scroll-target="#sample-and-disruption-profile"><span class="header-section-number">7.1</span> Sample and Disruption Profile</a></li>
-  <li><a href="#main-regression-takeaway" id="toc-main-regression-takeaway" class="nav-link" data-scroll-target="#main-regression-takeaway"><span class="header-section-number">7.2</span> Main Regression Takeaway</a></li>
+  <li><a href="#main-module-c-takeaway" id="toc-main-module-c-takeaway" class="nav-link" data-scroll-target="#main-module-c-takeaway"><span class="header-section-number">7.2</span> Main Module C Takeaway</a></li>
   </ul></li>
   <li><a href="#discussion-and-policy-implications" id="toc-discussion-and-policy-implications" class="nav-link" data-scroll-target="#discussion-and-policy-implications"><span class="header-section-number">8</span> Discussion and Policy Implications</a></li>
   <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">9</span> Limitations</a></li>
@@ -169,7 +169,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 2, 2026</p>
+      <p class="date">April 3, 2026</p>
     </div>
   </div>
   
@@ -231,7 +231,7 @@ window.Quarto = {
 </section>
 <section id="education-measures" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="education-measures"><span class="header-section-number">3.2</span> Education Measures</h3>
-<p>The paper uses two measurement families built from a single parental-education harmonization rule. LiTS parental-schooling responses vary somewhat across waves in wording and granularity, so all observed mother and father responses are first mapped onto a common six-category ladder: no formal education, primary, lower secondary, upper secondary, post-secondary non-tertiary, and tertiary. When both parents are observed, the analysis uses the higher reported category as the parental education measure; when only one parent’s schooling is available, the observed value is retained. This rule keeps the comparison consistent across waves while limiting attrition from asymmetric parental reporting. Appendix D2 shows that the rank-based national series is qualitatively stable under alternative parent constructions, although some category-based rates are more sensitive to whether the parent proxy uses the maximum, an average, or a single observed parent.</p>
+<p>The paper uses two measurement families built from a common parental-education harmonization step. LiTS parental-schooling responses vary somewhat across waves in wording and granularity, so all observed mother and father responses are first mapped onto a common six-category ladder: no formal education, primary, lower secondary, upper secondary, post-secondary non-tertiary, and tertiary. In Modules A and B, when both parents are observed, the analysis uses the higher reported category as the parental education measure; when only one parent’s schooling is available, the observed value is retained. This rule keeps the main intergenerational comparison consistent across waves while limiting attrition from asymmetric parental reporting. Module C is narrower and uses the mean of observed mother and father years for the low-versus-high split, because a weighted median split built on the max-parent proxy would set the threshold at 16.0 years and leave 0 observations in the higher-parent comparison group. Appendix D2 shows that the rank-based national series is qualitatively stable under alternative parent constructions, although some category-based rates are more sensitive to whether the parent proxy uses the maximum, an average, or a single observed parent.</p>
 <p>That harmonized ladder then supports two complementary measures. First, the paper constructs an ordered education score used for category-based mobility rates and pooled attainment regressions. Second, it converts both respondent and parental schooling into within-wave weighted percentile ranks for the rank-rank persistence models. The category-based outcomes preserve the intuitive language of upward mobility, downward mobility, and same-category persistence. The rank-based outcomes, by contrast, are better suited to cross-wave comparison because they are less sensitive to modest questionnaire differences and to aggregate educational expansion. Reporting both is therefore deliberate rather than redundant: one family preserves substantive interpretability, while the other provides the paper’s preferred cross-wave benchmark.</p>
 </section>
 <section id="mobility-outcomes" class="level3" data-number="3.3">
@@ -257,7 +257,7 @@ window.Quarto = {
 </section>
 <section id="empirical-strategy" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="empirical-strategy"><span class="header-section-number">4</span> Empirical Strategy</h2>
-<p>The empirical strategy has three modules and uses one compact notation throughout. Let <span class="math inline">\(Y_{iw}\)</span> denote respondent <span class="math inline">\(i\)</span>’s educational outcome in wave <span class="math inline">\(w\)</span>, and let <span class="math inline">\(P_{iw}\)</span> denote parental education measured on the corresponding scale. In Module A, <span class="math inline">\(Y_{iw}\)</span> and <span class="math inline">\(P_{iw}\)</span> are within-wave education ranks. In Module B, <span class="math inline">\(Y_i\)</span> alternates across respondent rank, the harmonized education score, an indicator for upward mobility, and an indicator for same-category persistence; <span class="math inline">\(P_i\)</span> likewise denotes parental rank, the parental education score, or a set of parental education-category indicators. <span class="math inline">\(U_i\)</span> and <span class="math inline">\(F_i\)</span> indicate urban residence and female, <span class="math inline">\(X_i\)</span> collects migration exposure and multigenerational household structure, <span class="math inline">\(D_{ti}\)</span> is a wave indicator for <span class="math inline">\(t \in \{2016, 2022\}\)</span> with 2010 as the omitted category, and <span class="math inline">\(\mu_r\)</span>, <span class="math inline">\(\lambda_c\)</span>, and <span class="math inline">\(\tau_w\)</span> denote region, cohort, and wave effects. In Module C, <span class="math inline">\(L_i\)</span> indicates low parental education and <span class="math inline">\(M_i\)</span> a male child.</p>
+<p>The empirical strategy has three modules and uses one compact notation throughout. Let <span class="math inline">\(Y_{iw}\)</span> denote respondent <span class="math inline">\(i\)</span>’s educational outcome in wave <span class="math inline">\(w\)</span>, and let <span class="math inline">\(P_{iw}\)</span> denote parental education measured on the corresponding scale. In Module A, <span class="math inline">\(Y_{iw}\)</span> and <span class="math inline">\(P_{iw}\)</span> are within-wave education ranks. In Module B, <span class="math inline">\(Y_i\)</span> alternates across respondent rank, the harmonized education score, an indicator for upward mobility, and an indicator for same-category persistence; <span class="math inline">\(P_i\)</span> likewise denotes parental rank, the parental education score, or a set of parental education-category indicators. <span class="math inline">\(U_i\)</span> and <span class="math inline">\(F_i\)</span> indicate urban residence and female, <span class="math inline">\(X_i\)</span> collects migration exposure and multigenerational household structure, <span class="math inline">\(D_{ti}\)</span> is a wave indicator for <span class="math inline">\(t \in \{2016, 2022\}\)</span> with 2010 as the omitted category, and <span class="math inline">\(\mu_r\)</span>, <span class="math inline">\(\lambda_c\)</span>, and <span class="math inline">\(\tau_w\)</span> denote region, cohort, and wave effects. In Module C, <span class="math inline">\(L_i\)</span> indicates low parental education.</p>
 <section id="module-a-mobility-levels-and-trends" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="module-a-mobility-levels-and-trends"><span class="header-section-number">4.1</span> Module A: Mobility Levels and Trends</h3>
 <p>The first module estimates national mobility levels by wave. Its core descriptive specification is:</p>
@@ -279,11 +279,7 @@ Y_i
 </section>
 <section id="module-c-pandemic-era-mechanisms" class="level3" data-number="4.3">
 <h3 data-number="4.3" class="anchored" data-anchor-id="module-c-pandemic-era-mechanisms"><span class="header-section-number">4.3</span> Module C: Pandemic-Era Mechanisms</h3>
-<p>The third module uses the 2022-23 child module to examine whether disruption and support patterns differ by parental education. Its descriptive heterogeneity specification is:</p>
-<p><span class="math display">\[
-Y_i = \alpha + \beta L_i + \delta_1 U_i + \delta_2 M_i + \kappa \left(L_i \times U_i\right) + \mu_r + \varepsilon_i
-\]</span></p>
-<p>where <span class="math inline">\(Y_i\)</span> is a binary child-module outcome estimated with a weighted logit model and region fixed effects. In the main text, the focal case is education stoppage during COVID, so <span class="math inline">\(\beta\)</span> is a log-odds coefficient comparing lower- and higher-parent-education households conditional on controls, while <span class="math inline">\(\kappa\)</span> indicates whether that log-odds gap differs between urban and non-urban households. Parallel estimates for online switching, school closure without online learning, and the broad remote-learning-challenge indicator are reported in the appendix. These regressions are descriptive heterogeneity exercises rather than identification strategies.</p>
+<p>The third module uses the 2022-23 child module to document disruption and household-support patterns by parental education group. In the main text, Module C is reported descriptively through weighted outcome rates and low-versus-high parental-education splits. Adjusted region-fixed-effects logits are retained only as appendix diagnostics because split support is unstable in this sample under stricter thresholds and alternative parent proxies. Module C is therefore interpreted as bounded descriptive evidence, not as a stable adjusted mechanism and not as a causal design.</p>
 </section>
 </section>
 <section id="descriptive-results" class="level2" data-number="5">
@@ -864,15 +860,15 @@ Table&nbsp;6: LiTS IV child-module sample construction for Uzbekistan.
 <td style="text-align: right;">183.0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Parental schooling median threshold (years)</td>
+<td style="text-align: left;">Baseline parental-schooling median threshold (mean parent years)</td>
 <td style="text-align: right;">13.5</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Baseline low-parent-education group size</td>
+<td style="text-align: left;">Baseline low-parent-education group size (mean parent years)</td>
 <td style="text-align: right;">114.0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Baseline higher-parent-education group size</td>
+<td style="text-align: left;">Baseline higher-parent-education group size (mean parent years)</td>
 <td style="text-align: right;">69.0</td>
 </tr>
 </tbody>
@@ -883,10 +879,10 @@ Table&nbsp;6: LiTS IV child-module sample construction for Uzbekistan.
 </div>
 </div>
 </section>
-<section id="main-regression-takeaway" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="main-regression-takeaway"><span class="header-section-number">7.2</span> Main Regression Takeaway</h3>
-<p>The adjusted regression evidence is much weaker than the descriptive disruption rates. In the baseline weighted median-split specification, the coefficient on low parental education in the stoppage model is <strong>0.025</strong> with p-value <strong>0.952</strong>, and the descriptive stoppage rates are nearly identical: <strong>78.2 percent</strong> among children from lower-parent-education households versus <strong>78.0 percent</strong> among those from higher-parent-education households.</p>
-<p>The technical appendix shows that the stoppage coefficient is fragile across weighting and threshold choices. Under the strict <code>&lt;=9</code> split, the low-parent-education group falls to <strong>7</strong> observations (vs <strong>176</strong> in the comparison group), so this scenario is treated as degenerate support (degenerate_low_group_support) rather than an interpretable robustness estimate. Module C therefore contributes bounded descriptive evidence on household vulnerability and learning support, not a stable adjusted parental-education gradient and not causal evidence on pandemic mechanisms.</p>
+<section id="main-module-c-takeaway" class="level3" data-number="7.2">
+<h3 data-number="7.2" class="anchored" data-anchor-id="main-module-c-takeaway"><span class="header-section-number">7.2</span> Main Module C Takeaway</h3>
+<p>The main-text conclusion is descriptive. Under the baseline weighted median split, stoppage rates are nearly identical: <strong>78.2 percent</strong> among children from lower-parent-education households versus <strong>78.0 percent</strong> among those from higher-parent-education households. Together with the high overall disruption rates, this supports a practical reading centered on widespread household learning constraints rather than a precise adjusted parent-gap effect.</p>
+<p>Appendix fragility diagnostics explain why adjusted split-based coefficients are not used as headline evidence. Under the strict <code>&lt;=9</code> split, the low-parent-education group falls to <strong>7</strong> observations (vs <strong>176</strong> in the comparison group), yielding a degenerate-support scenario (degenerate_low_group_support). Under the weighted median split with the project-wide max-parent proxy, the higher-parent group falls to <strong>0</strong> observations. Module C therefore contributes bounded descriptive evidence on household vulnerability and learning support, not a stable adjusted parental-education gradient and not causal evidence on pandemic mechanisms.</p>
 </section>
 </section>
 <section id="discussion-and-policy-implications" class="level2" data-number="8">

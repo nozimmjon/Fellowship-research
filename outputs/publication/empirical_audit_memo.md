@@ -1,6 +1,6 @@
 # Empirical Audit Memo
 
-Generated on 2026-03-29.
+Generated on 2026-04-03.
 
 ## Scope
 
@@ -35,4 +35,5 @@ Generated on 2026-03-29.
 - [ok] Eq. 2 parent_rank estimate=0.154, p-value=0.002.
 - [caution] Main Module C models are weighted region-fixed-effects logits, so coefficients are on the log-odds scale.
 - [caution] Stoppage robustness: 0 of 3 parent_low_edu scenarios significant at 5%; extreme coefficient present=no.
+- [caution] Module C uses mean parent years for the low/high split; under the max-parent median split, threshold=16.0, low-group N=183, high-group N=0.
 - [ok] Module C parental-schooling sample N=183; main stoppage-model usable N=183.
