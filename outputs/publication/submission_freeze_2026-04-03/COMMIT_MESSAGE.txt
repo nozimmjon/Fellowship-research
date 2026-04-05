@@ -1,0 +1,6 @@
+Finalize empirical-audit revisions and freeze submission package
+
+- clean the computation audit and patch nonpositive weight handling upstream
+- complete the focused methodology revision without reintroducing causal claims
+- align paper, appendix, policy brief, and slides to the same moderated timing claim
+- tighten the policy brief for handoff and package the submission freeze bundle
